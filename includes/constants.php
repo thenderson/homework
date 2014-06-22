@@ -10,7 +10,7 @@
     define("DATABASE", "commitment_db");
 
     // your database's password
-    define("PASSWORD", "wGS2S$Z#");
+    define("PASSWORD", "wGS2S-Z#"); // beware of escape-worthy characters in password.
 
     // your database's server
     define("SERVER", "localhost");
