@@ -4,14 +4,14 @@
     <head>
 
         <link href="/commgr/public/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="/public/css/bootstrap-theme.min.css" rel="stylesheet"/>
-        <link href="/public/css/styles.css" rel="stylesheet"/>
+        <link href="/commgr/public/css/bootstrap-theme.min.css" rel="stylesheet"/>
+        <link href="/commgr/public/css/styles.css" rel="stylesheet"/>
 
         <title>COMMGR</title>
 
-        <script src="/public/js/jquery-1.10.2.min.js"></script>
-        <script src="/public/js/bootstrap.min.js"></script>
-        <script src="/public/js/scripts.js"></script>
+        <script src="/commgr/public/js/jquery-1.10.2.min.js"></script>
+        <script src="/commgr/public/js/bootstrap.min.js"></script>
+        <script src="/commgr/public/js/scripts.js"></script>
 
     </head>
 
