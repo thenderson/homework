@@ -1,7 +1,5 @@
-            <div id="bottom">
-                Boulder Associates Architects | Boulder | Sacramento | Irvine | San Francisco | Dallas
-            </div>
-
+        <div id="bottom">
+            (c) 2014 Boulder Associates Architects, Inc.  |  terms  |  privacy  |  feedback
         </div>
 
     </body>
