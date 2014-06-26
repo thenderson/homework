@@ -156,19 +156,19 @@
     function render($template, $values = [])
     {
         // if template exists, render it
-        if (file_exists("commgr/public/templates/$template"))
+        if (file_exists("commgr/templates/$template"))
         {
             // extract variables into local scope
             extract($values);
 
             // render header
-            require("commgr/public/templates/header.php");
+            require("commgr/templates/header.php");
 
             // render template
-            require("commgr/public/templates/$template");
+            require("commgr/templates/$template");
 
             // render footer
-            require("commgr/public/templates/footer.php");
+            require("commgr/templates/footer.php");
         }
 
         // else err
