@@ -156,25 +156,25 @@
     function render($template, $values = [])
     {
         // if template exists, render it
-        if (file_exists("commgr/templates/$template"))
+        if (file_exists("../templates/$template"))
         {
             // extract variables into local scope
             extract($values);
 
             // render header
-            require("commgr/templates/header.php");
+            require("../templates/header.php");
 
             // render template
-            require("commgr/templates/$template");
+            require("../templates/$template");
 
             // render footer
-            require("commgr/templates/footer.php");
+            require("../templates/footer.php");
         }
 
         // else err
         else
         {
-            trigger_error("Invalid template: $template", E_USER_ERROR);
+            trigger_error("Ooh! Invalid template: $template", E_USER_ERROR);
         }
     }
 
