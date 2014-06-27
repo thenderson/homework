@@ -20,7 +20,7 @@
 		
 			<header class="row">
 				<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-1 col-lg-push-8 col-md-push-8 col-sm-push-8 col-xs-push-9">
-					<img src="/commgr/public/img/BA Logo Blue.jpg" alt="">
+					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="" class="img-responsive">
 				</div>
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-9 col-lg-pull-4 col-md-pull-4 col-sm-pull-4 col-xc-pull-3">
 					<h3>reliable: commitment tracking for project teams</h3>
@@ -45,25 +45,5 @@
 						</form>
 					</div>
 				</form>
-			
-                <table class="center" id="buttonbar">
-                <tr>
-                    <td>
-                        <form action="index.php">
-                            <input type="submit" value = "commitms">
-                        </form> 
-                    </td>
-                    <td>  
-                        <form action="settings.php">
-                            <input type="submit" value = "setgs">
-                        </form>  
-                    </td> 
-                    <td>  
-                        <form action="logout.php">
-                            <input type="submit" value = "logt">
-                        </form>  
-                    </td> 
-                </tr>
-                </table>
             </div>
 		</div> <!--close container-->
