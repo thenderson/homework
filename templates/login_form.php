@@ -1,6 +1,6 @@
 <form action="login.php" method="post">
     <fieldset>
-		<legend>Please login</legend>
+		<legend>l o g i n</legend>
         <div class="form-group">
             <input autofocus class="form-control" name="username" placeholder="username" type="text"/>
         <!--</div>
@@ -8,7 +8,7 @@
             <input class="form-control" name="password" placeholder="password" type="password"/>
         <!--</div>
         <div class="form-group"> -->
-            <button type="submit" class="btn btn-default">Log In</button>
+            <button type="submit" class="btn btn-default">go</button>
         </div>
     </fieldset>
 </form>
