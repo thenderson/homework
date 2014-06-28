@@ -18,10 +18,10 @@
 		
         <div class="container">
 			<header class="row">
-				<div class="col-lg-2 col-lg-offset-2 col-xs-2 col-xs-offset-2 col-lg-push-8 col-xs-push-8">
+				<div class="col-lg-4 col-lg-push-8">
 					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="" class="img-responsive">
 				</div>
-				<div class="col-lg-8 col-xs-8 col-lg-pull-4 col-xc-pull-4">
+				<div class="col-lg-8">
 					<h3><b>r e l i a b l e</b></h3>
 					<h4>commitment tracking for individuals & teams</h4>
 				</div>
@@ -30,13 +30,13 @@
 		
 		<!--nav bar-->
 		<nav class="navbar navbar-default" role="navigation">
-			<div class="container-fluid">
+			<div class="container">
 				<ul class="nav nav-pills">
 					<li><a href="index.php">home</a></li>
 					<li class="disabled"><a href="settings.php">settings</a></li>
 					<li><a href="logout.php">logout</a></li>
+					<li><p class="navbar-text navbar-right">username</p></li>
 				</ul>
-				<p class="navbar-text navbar-right">username</p>
 
 					<!--<form action="index.php">
 						<input type="submit" class="btn btn-default" value = "commitments">
