@@ -7,7 +7,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
 		echo("hash for fish follows:");
-		echo(password_hash("fish", PASSWORD_DEFAULT)."\n";
+		echo(password_hash("fish", PASSWORD_DEFAULT)."\n");
 		
         // validate submission
         if (empty($_POST["username"]))
