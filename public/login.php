@@ -6,8 +6,10 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-		echo("hash for fish follows:");
-		echo(password_hash("fish", PASSWORD_DEFAULT)."\n");
+//	echo("hash for fish follows:");
+//	echo crypt("fish")."\n";
+
+	//TODO implement stronger encryption.
 		
         // validate submission
         if (empty($_POST["username"]))
@@ -29,13 +31,13 @@
             $row = $rows[0];
 
             // compare hash of user's input against hash that's in database
-            if (password_hash($_POST["password"], PASSWORD_DEFAULT) == $row["hash"])
+            if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
             {
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
 
                 // redirect to commitment view
-                redirect("/");
+                redirect("/commgr/public/");
             }
         }
 
