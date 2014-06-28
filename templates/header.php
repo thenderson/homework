@@ -22,16 +22,23 @@
 					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="" class="img-responsive">
 				</div>
 				<div class="col-lg-8 col-xs-8 col-lg-pull-4 col-xc-pull-4">
-					<h3>r e l i a b l e</h3>
-					<h3>commitment tracking for individuals & teams</h3>
+					<h3><b>r e l i a b l e</b></h3>
+					<h4>commitment tracking for individuals & teams</h4>
 				</div>
 			</header>
 		</div>
 		
-		<div class = "container"> <!--button bar-->
-			<form class="navbar-form navbar-left">
-				<div class="form-group">
-					<form action="index.php">
+		<!--nav bar-->
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<ul class="nav nav-pills">
+					<li><a href="index.php">home</a></li>
+					<li class="disabled"><a href="settings.php">settings</a></li>
+					<li><a href="logout.php">logout</a></li>
+				</ul>
+				<p class="navbar-text navbar-right">username</p>
+
+					<!--<form action="index.php">
 						<input type="submit" class="btn btn-default" value = "commitments">
 					</form>
 				</div>
@@ -44,6 +51,7 @@
 					<form action="logout.php">
 						<input type="submit" class="btn btn-default" value = "logout">
 					</form>
-				</div>
-			</form>
-		</div> <!--close container-->
+				</div>-->
+				
+			</div> <!--close container-->
+		</nav> <!--close nav-->

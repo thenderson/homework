@@ -1,6 +1,6 @@
 <div class="container">
 
-<h5>C O M M I T M E N T S</h5>
+<h3>C O M M I T M E N T S</h3>
 
 <table class="table table-striped">
     <tr>
