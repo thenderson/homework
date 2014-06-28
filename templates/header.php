@@ -18,40 +18,36 @@
 		
         <div class="container">
 			<header class="row">
-				<div class="col-lg-4 col-lg-push-8">
-					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="" class="img-responsive">
-				</div>
-				<div class="col-lg-8">
-					<h3><b>r e l i a b l e</b></h3>
+				<div class="col-lg-9">
+					<h3><b>R E L I A B L E</b></h3>
 					<h4>commitment tracking for individuals & teams</h4>
+				</div>
+				<div class="col-lg-3">
+					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo" class="img-responsive">
 				</div>
 			</header>
 		</div>
 		
 		<!--nav bar-->
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container">
-				<ul class="nav nav-pills">
-					<li><a href="index.php">home</a></li>
-					<li class="disabled"><a href="settings.php">settings</a></li>
-					<li><a href="logout.php">logout</a></li>
-					<li><p class="navbar-text navbar-right">username</p></li>
-				</ul>
-
-					<!--<form action="index.php">
-						<input type="submit" class="btn btn-default" value = "commitments">
-					</form>
-				</div>
-				<div class="form-group">
-					<form action="settings.php">
-						<input type="submit" class="btn btn-default" value = "settings">
-					</form>
-				</div>
-				<div class="form-group">
-					<form action="logout.php">
-						<input type="submit" class="btn btn-default" value = "logout">
-					</form>
-				</div>-->
-				
-			</div> <!--close container-->
-		</nav> <!--close nav-->
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default navbar-inverse" role="navigation">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-type="collapse" data-target="#collapse">
+							<span class="sr-only">toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="index.php">home</a></li>
+							<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
+							<li><a href="logout.php">logout</a></li>
+							<li class="navbar-text navbar-right">username</li>
+						</ul>
+					</div>
+				</nav> <!--close nav-->
+			</div> <!--close row-->
+		</div> <!--close container-->

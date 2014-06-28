@@ -6,9 +6,6 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-//	echo("hash for fish follows:");
-//	echo crypt("fish")."\n";
-
 	//TODO implement stronger encryption.
 		
         // validate submission
@@ -37,7 +34,7 @@
                 $_SESSION["id"] = $row["id"];
 
                 // redirect to commitment view
-                redirect("/commgr/public/");
+                redirect("/commgr/public/index.php");
             }
         }
 
