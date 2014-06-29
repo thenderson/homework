@@ -1,8 +1,8 @@
 <?php
-	debug("index!!");
+
     // configuration
     require("../includes/config.php");
-    
+    debug("index!!");
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
