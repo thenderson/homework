@@ -25,17 +25,17 @@
 				case($days_til_due<0):
 					?>
 					<tr class="danger">
-					<?=
+					<?php
 					break;
 				case($days_til_due<8):
 					?>
 					<tr class="info">
-					<?=
+					<?php
 					break;
 				default:
 					?>
 					<tr>
-					<?=
+					<?
 			}   
 			
 		?>
