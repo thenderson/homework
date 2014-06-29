@@ -21,7 +21,8 @@
         else
         {
             // register user in database
-            $result = query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.00)", $_POST["username"], crypt($_POST["password"]));
+            $result = query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) VALUES(?, ?, ?, ?, ?, ?, ?)", 
+				$_POST["name"], $_POST["company"], $_POST["username"], crypt($_POST["password"]), $_POST["email"], "no_alerts", "no_reports");
             
             if ($result === false)
             {
@@ -32,7 +33,7 @@
                 $rows = query("SELECT LAST_INSERT_ID() AS id");
                 $id = $rows[0]["id"];
                 $_SESSION = $id;
-                redirect("index.php");
+                redirect("/commgr/public/index.php");
             }
         }
     }

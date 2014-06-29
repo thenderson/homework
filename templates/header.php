@@ -18,20 +18,20 @@
 		
         <div class="container">
 			<header class="row">
-				<div class="col-lg-9">
-					<h3><b>R E L I A B L E</b></h3>
-					<h4>commitment tracking for individuals & teams</h4>
-				</div>
-				<div class="col-lg-3">
+				<div class="col-sm-1">
 					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo" class="img-responsive">
+				</div>
+				<div class="col-sm-11">
+					<h3><b>r e l i a b l e</b></h3>
+					<h5>commitment tracking for individuals & teams</h5>
 				</div>
 			</header>
 		</div>
-		
+		<br>
 		<!--nav bar-->
 		<div class="container">
 			<div class="row">
-				<nav class="navbar navbar-default navbar-inverse" role="navigation">
+				<nav class="navbar navbar-default" role="navigation">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-type="collapse" data-target="#collapse">
 							<span class="sr-only">toggle navigation</span>
@@ -45,7 +45,17 @@
 							<li><a href="index.php">home</a></li>
 							<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
 							<li><a href="logout.php">logout</a></li>
-							<li class="navbar-text navbar-right">username</li>
+								<?php
+									if (empty($_POST["username"]))
+									{ ?>
+										<li class="navbar-text navbar-right">guest</li>
+									<?php
+									}
+									else
+									{ ?>
+										<li class="navbar-text navbar-right"><?$_POST["username"]?></li>
+									<?php
+									} ?>
 						</ul>
 					</div>
 				</nav> <!--close nav-->
