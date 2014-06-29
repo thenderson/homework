@@ -1,7 +1,9 @@
+<br>
+<br>
 <div class="container">
 	<form class="form-horizontal" action="register.php" method="post" role="form">
 		<fieldset>
-			<legend><h5>r e g i s t e r</h5></legend>
+			<legend><h5>register for a new account or <a href="login.php">login</a> if you already have one.</h5></legend>
 			<div class="form-group">
 				<label for="name" class="col-sm-1 control-label">name</label>
 				<div class="col-sm-4">
@@ -46,9 +48,4 @@
 		</fieldset>
 	</form>
 	<br>
-	<div class="row">
-		<div class="col-sm-11 col-sm-offset-1">
-			or <a href="login.php">login</a> if you already have an account
-		</div>
-	</div>
 </div><!-- close container-->
