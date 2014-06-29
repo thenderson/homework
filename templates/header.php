@@ -16,19 +16,19 @@
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 		
-        <div class="container">
+        <div class="container-fluid">
 			<div class="jumbotron">
 				<header class="row">
-					<div class="col-sm-1 pull-left">
+					<div class="col-sm-2 pull-left">
 						<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
 					</div>
-					<div class="col-sm-11">
-						<h3><b>r e l i a b l e</b></h3>
+					<div class="col-sm-10">
+						<h2>r e l i a b l e</h2>
 						<h4>commitment tracking for individuals & teams</h4>
 					</div>
 				</header>
 			</div> <!-- close jumbotron -->
-
+			
 			<br>
 			<!--nav bar-->
 			<div class="row">
@@ -61,3 +61,5 @@
 					</div>
 				</nav> <!--close nav-->
 			</div> <!--close row-->
+		</div> <!--close container-->
+		<div class="container">

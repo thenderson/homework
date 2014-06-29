@@ -38,6 +38,17 @@
         require("../templates/dump.php");
         exit;
     }
+	
+	/**/ 
+	function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
+}
 
     /**
      * Logs out current user, if any.  Based on Example #1 at

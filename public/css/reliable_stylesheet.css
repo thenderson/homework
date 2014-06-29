@@ -2,11 +2,17 @@
 
 .nav>li>a {
 position: relative;
-/* display: inline; */
+display: inline; */
 /* padding: 10px 15px; */
 }
 
 .jumbotron {
-/* padding-top: 0px; */
-/* padding-bottom: 0px; */
+padding-top: 0px; */
+padding-bottom: 0px; */
+}
+
+@media screen and (min-width: 768px)
+.container .jumbotron {
+/*padding-left: 60px;
+padding-right: 60px;*/
 }
