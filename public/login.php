@@ -31,7 +31,7 @@
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
             {
                 // remember that user's now logged in by storing user's ID in session
-                $_SESSION["id"] = $row["id"];
+                $_SESSION["id"] = $row["user_id"];
 
                 // Successful login ... redirect to commitment view
                 redirect("/commgr/public/index.php");

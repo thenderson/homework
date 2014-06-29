@@ -31,7 +31,7 @@
             else //success
             {
                 $rows = query("SELECT LAST_INSERT_ID() AS id");
-                $id = $rows[0]["id"];
+                $id = $rows[0]["user_id"];
                 $_SESSION = $id;
 				error_log("successful registration; session id ".$id);
                 redirect("/commgr/public/index.php");

@@ -3,7 +3,7 @@
 <br>
 <div class="container">
 		<div class="row">
-			<div class="col-sm-3 pull-right">
+			<div class="col-sm-3">
 				<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
 			</div>
 			<div class="col-sm-9">
