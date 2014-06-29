@@ -12,7 +12,7 @@
 	error_log("form was posted!");
 		$now = new DateTime();
         $planning_horizon = $now->modify("+14 day");
-        $commitments = query("SELECT * FROM commitments WHERE due_by <= ? ORDER BY promisor ASC project ASC due_date ASC)", $planning_horizon);
+        $commitments = query("SELECT * FROM commitments WHERE due_by <= ? ORDER BY promisor, project, due_date)", $planning_horizon);
         render("commitments_form.php", ["commitments" => $commitments]);
     }
     else // show default configuration
@@ -21,7 +21,7 @@
 	error_log("showing default config");
 		$now = new DateTime();
         $planning_horizon = $now->modify("+28 day");
-        $commitments = query("SELECT * FROM commitments WHERE due_by <= ? ORDER BY project ASC due_date ASC promisor ASC)", $planning_horizon);
+        $commitments = query("SELECT * FROM commitments WHERE due_by <= ? ORDER BY project, due_date, promisor)", $planning_horizon);
         render("commitments_form.php", ["commitments" => $commitments]);
     }
 ?>

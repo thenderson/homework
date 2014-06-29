@@ -1,25 +1,27 @@
 <br>
-<div class="container-fluid">
-	<div class="row">
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-type="collapse" data-target="#collapse2">
-					<span class="sr-only">toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="collapse2">
-				<ul class="nav navbar-nav">
-					<li><p>&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></p></li>
-					<li class="disabled"><a href="#">terms</a></li>
-					<li class="disabled"><a href="#">privacy</a></li>
-					<li class="disabled"><a href="#">feedback</a></li>
-				</ul>
-			</div>
-		</nav> <!--close nav-->
-	</div> <!--close row-->
-</div> <!--close container-->
+<footer class="navbar navbar-default" id="bottom" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-type="collapse" data-target="#collapse2">
+				<span class="sr-only">toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<nav class="collapse navbar-collapse" id="collapse2">
+			<ul class="nav navbar-nav">
+				<li><p>&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></p></li>
+				<li class="disabled"><a href="#">terms</a></li>
+				<li class="disabled"><a href="#">privacy</a></li>
+				<li class="disabled"><a href="#">feedback</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="disabled"><a href="#">resources</a></li>
+				<li class="disabled"><a href="#">tutorial</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
 </body>
 </html>
