@@ -10,6 +10,9 @@
     ini_set("display_errors", true);
     error_reporting(E_ALL);
 
+	// set timezone to US PST
+	date_default_timezone_set('America/Los_Angeles');
+	
     // requirements
     require("constants.php");
     require("functions.php");
