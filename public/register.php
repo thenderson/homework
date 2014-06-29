@@ -32,10 +32,8 @@
             {
                 $rows = query("SELECT LAST_INSERT_ID() AS user_id");
                 $id = $rows[0]["user_id"];
-                $_SESSION = $id;
-				error_log("successful registration; query ".$rows);
-				error_log("successful registration; id ".$id);
-				error_log("successful registration; session ".$_SESSION);				
+                $_SESSION["id"] = $id;
+				error_log("successful registration; session ".$_SESSION["id"]);				
                 redirect("/commgr/public/index.php");
             }
         }
