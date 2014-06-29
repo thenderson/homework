@@ -17,15 +17,17 @@
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 		
         <div class="container">
-			<header class="row">
-				<div class="col-sm-1">
-					<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo" class="img-responsive">
-				</div>
-				<div class="col-sm-11">
-					<h3><b>r e l i a b l e</b></h3>
-					<h5>commitment tracking for individuals & teams</h5>
-				</div>
-			</header>
+			<div class="jumbotron">
+				<header class="row">
+					<div class="col-sm-1 pull-left">
+						<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo" class="img-responsive">
+					</div>
+					<div class="col-sm-11">
+						<h3><b>r e l i a b l e</b></h3>
+						<h4>commitment tracking for individuals & teams</h4>
+					</div>
+				</header>
+			</div> <!-- close jumbotron -->
 		</div>
 		<br>
 		<!--nav bar-->
