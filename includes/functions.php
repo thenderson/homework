@@ -40,7 +40,7 @@
     }
 	
 	/**/ 
-	function debug_to_console( $data ) {
+	function debug( $data ) {
 
     if ( is_array( $data ) )
         $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";

@@ -1,4 +1,4 @@
-
+<div class="container">
 	<form class="form-horizontal" action="register.php" method="post" role="form">
 		<fieldset>
 			<legend><h5>r e g i s t e r</h5></legend>
@@ -51,3 +51,4 @@
 			or <a href="login.php">login</a> if you already have an account
 		</div>
 	</div>
+</div><!-- close container-->

@@ -1,7 +1,20 @@
 <br>
 <br>
 <br>
-<div class="container">
+<div class="container-fluid">
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-sm-4">
+				<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
+			</div>
+			<div class="col-sm-8">
+				<h2>r e l i a b l e</h2>
+				<h4>commitment tracking for individuals & teams</h4>
+			</div>
+		</div>
+	</div> <!-- close jumbotron -->
+</div>
+<div class="container">		
 	<form class="form-horizontal" action="login.php" method="post" role="form">
 		<fieldset>
 			<legend><h5>l o g i n</h5></legend>
@@ -26,11 +39,11 @@
 	</form>
 	<br>
 	<div class="row">
-		<div class="col-sm-2 col-sm-offset-1">
+		<div class="col-sm-3 col-sm-offset-1">
 			or <a href="register.php">register</a> for an account
 		</div>
 	</div>
-</div> <!--close container-->
+</div><!--close container-->
 <br>
 <br>
 <br>

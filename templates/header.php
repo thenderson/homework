@@ -62,4 +62,3 @@
 				</nav> <!--close nav-->
 			</div> <!--close row-->
 		</div> <!--close container-->
-		<div class="container">

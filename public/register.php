@@ -7,7 +7,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         // TODO
-        //validate form data
+        //validate form data: duplicate username, duplicate email, crappy password
         if (empty($_POST["username"]) || empty($_POST["password"]))
         {
             // ID-10-T error
@@ -30,9 +30,11 @@
             }
             else //success
             {
+				debug("successful registration");
                 $rows = query("SELECT LAST_INSERT_ID() AS id");
                 $id = $rows[0]["id"];
                 $_SESSION = $id;
+				debug("session id ".$id);
                 redirect("/commgr/public/index.php");
             }
         }
