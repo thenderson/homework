@@ -18,7 +18,7 @@
 		
 		foreach ($commitments as $commitment)
 		{
-			$days_til_due = $now->date_diff(new DateTime($commitment[due_by]);
+			$days_til_due = $now->date_diff(new DateTime($commitment[due_by]));
 			
 			switch($days_til_due) //choose row formatting by task due date proximity
 			{

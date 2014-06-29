@@ -33,6 +33,7 @@
 				</div>
 				<nav class="collapse navbar-collapse" id="collapse" role="navigation">
 					<ul class="nav navbar-nav">
+						<li></li>
 						<li><a href="index.php">home</a></li>
 						<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
 						<li><a href="logout.php">logout</a></li>
