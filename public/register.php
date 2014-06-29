@@ -30,10 +30,12 @@
             }
             else //success
             {
-                $rows = query("SELECT LAST_INSERT_ID() AS id");
+                $rows = query("SELECT LAST_INSERT_ID() AS user_id");
                 $id = $rows[0]["user_id"];
                 $_SESSION = $id;
-				error_log("successful registration; session id ".$id);
+				error_log("successful registration; query ".$rows);
+				error_log("successful registration; id ".$id);
+				error_log("successful registration; session ".$_SESSION);				
                 redirect("/commgr/public/index.php");
             }
         }

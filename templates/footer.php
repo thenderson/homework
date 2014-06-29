@@ -12,7 +12,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="collapse2">
 				<ul class="nav navbar-nav">
-					<li><p>&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></p></li>
+					<li>&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></li>
 					<li class="disabled"><a href="#">terms</a></li>
 					<li class="disabled"><a href="#">privacy</a></li>
 					<li class="disabled"><a href="#">feedback</a></li>

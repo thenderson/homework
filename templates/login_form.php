@@ -12,7 +12,8 @@
 			</div>
 		</div>
 </div>
-
+<br>
+<br>
 <div class="container">		
 	<form class="form-horizontal" action="login.php" method="post" role="form">
 		<fieldset>
