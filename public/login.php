@@ -33,7 +33,7 @@
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
 
-                // redirect to commitment view
+                // Successful login ... redirect to commitment view
                 redirect("/commgr/public/index.php");
             }
         }

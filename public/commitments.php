@@ -4,5 +4,5 @@
         
     $commitments = query("SELECT * FROM commitments WHERE VALUES (project, due_by)", $project, $planning_horizon);
     
-    render("commitments.php", ["commitmens" => $commitments]);
+    render("commitments_form.php", ["commitments" => $commitments]);
 ?>

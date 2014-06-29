@@ -13,7 +13,7 @@
             // ID-10-T error
             apologize("Error ID-10t: missing username and/or password.");
         }
-        else if ($_POST["password"] != $_POST["confirmation"])
+        else if ($_POST["password"] != $_POST["password-conf"])
         {
             // ID-10-T error
             apologize("Error ID-10t: password & confirmation don't match.");
@@ -28,7 +28,7 @@
             {
                 apologize("Crap. Something went wrong ... duplicate username?");
             }
-            else
+            else //success
             {
                 $rows = query("SELECT LAST_INSERT_ID() AS id");
                 $id = $rows[0]["id"];
