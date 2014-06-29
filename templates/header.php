@@ -20,7 +20,7 @@
 			<div class="jumbotron">
 				<header class="row">
 					<div class="col-sm-1 pull-left">
-						<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo" class="img-responsive">
+						<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
 					</div>
 					<div class="col-sm-11">
 						<h3><b>r e l i a b l e</b></h3>
@@ -28,10 +28,9 @@
 					</div>
 				</header>
 			</div> <!-- close jumbotron -->
-		</div>
-		<br>
-		<!--nav bar-->
-		<div class="container">
+
+			<br>
+			<!--nav bar-->
 			<div class="row">
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="navbar-header">
@@ -55,11 +54,10 @@
 									}
 									else
 									{ ?>
-										<li class="navbar-text navbar-right"><?$_POST["username"]?></li>
+										<li class="navbar-text navbar-right"><?=$_POST["username"]?></li>
 									<?php
 									} ?>
 						</ul>
 					</div>
 				</nav> <!--close nav-->
 			</div> <!--close row-->
-		</div> <!--close container-->

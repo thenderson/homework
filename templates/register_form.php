@@ -1,4 +1,4 @@
-<div class="container">
+
 	<form class="form-horizontal" action="register.php" method="post" role="form">
 		<fieldset>
 			<legend><h5>r e g i s t e r</h5></legend>
@@ -9,9 +9,15 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="email" class="col-sm-1 control-label">email</label>
+				<div class="col-sm-4">
+					<input class="form-control" name="email" id="email" placeholder="email address" type="text"/>
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="company" class="col-sm-1 control-label">company</label>
 				<div class="col-sm-4">
-					<input autofocus class="form-control" name="company" id="company" placeholder="company" type="text"/>
+					<input class="form-control" name="company" id="company" placeholder="company" type="text"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -41,8 +47,7 @@
 	</form>
 	<br>
 	<div class="row">
-		<div class="col-sm-2 col-sm-offset-1">
+		<div class="col-sm-11 col-sm-offset-1">
 			or <a href="login.php">login</a> if you already have an account
 		</div>
 	</div>
-</div> <!--close container-->

@@ -1,1 +1,12 @@
 /* custom CSS stylesheet for reliable commitment mgr */
+
+.nav>li>a {
+position: relative;
+/* display: inline; */
+/* padding: 10px 15px; */
+}
+
+.jumbotron {
+/* padding-top: 0px; */
+/* padding-bottom: 0px; */
+}
