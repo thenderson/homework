@@ -1,19 +1,18 @@
 <br>
 <br>
 <br>
-<div class="container-fluid">
-	<div class="jumbotron">
+<div class="container">
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-sm-3 pull-right">
 				<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-9">
 				<h2>r e l i a b l e</h2>
 				<h4>commitment tracking for individuals & teams</h4>
 			</div>
 		</div>
-	</div> <!-- close jumbotron -->
 </div>
+
 <div class="container">		
 	<form class="form-horizontal" action="login.php" method="post" role="form">
 		<fieldset>

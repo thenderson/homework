@@ -17,20 +17,6 @@
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 		
         <div class="container-fluid">
-			<div class="jumbotron">
-				<header class="row">
-					<div class="col-sm-2 pull-left">
-						<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
-					</div>
-					<div class="col-sm-10">
-						<h2>r e l i a b l e</h2>
-						<h4>commitment tracking for individuals & teams</h4>
-					</div>
-				</header>
-			</div> <!-- close jumbotron -->
-			
-			<br>
-			<!--nav bar-->
 			<div class="row">
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="navbar-header">
