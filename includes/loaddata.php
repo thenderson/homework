@@ -1,6 +1,4 @@
 <?php     
-
-
 /*
  * examples/mysql/loaddata.php
  * 
@@ -11,7 +9,6 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://editablegrid.net/license
  */
-
 
 /**
  * This script loads data from the database and returns it to the js
