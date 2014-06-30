@@ -21,6 +21,7 @@ padding-right: 60px;*/
  * Copyright (c) 2011 Webismymind SPRL
  * Dual licensed under the MIT or GPL Version 2 licenses. http://editablegrid.net/license */
 
+ /*
 body {
 	font-family:'lucida grande', tahoma, verdana, arial, sans-serif;
 	font-size:11px;
@@ -42,7 +43,7 @@ a {
 h1 a {
 	font-size: 12px;
 	float: right;
-}
+}*/
 
 a:hover {
 	text-decoration: underline;
