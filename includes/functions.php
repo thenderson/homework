@@ -19,15 +19,6 @@
         render("apology.php", ["message" => $message]);
         exit;
     }
-    
-     /**
-     * Celebrate success to user with message.
-     */
-    function celebrate($message)
-    {
-        render("celebration.php", ["message" => $message]);
-        exit;
-    }
 
     /**
      * Facilitates debugging by dumping contents of variable
