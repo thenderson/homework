@@ -64,7 +64,7 @@
      * Executes SQL statement, possibly with parameters, returning
      * an array of all rows in result set or false on (non-fatal) error.
      */
-    function query(/* $sql [, ... ] */)
+    function queryx(/* $sql [, ... ] */)
     {
         // SQL statement
         $sql = func_get_arg(0);

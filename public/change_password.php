@@ -7,7 +7,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         // query database for user
-        $rows = query("SELECT hash FROM users WHERE id = ?", $_SESSION["id"]);
+        $rows = queryx("SELECT hash FROM users WHERE id = ?", $_SESSION["id"]);
         
         // first (and only) row
         $hash = $rows[0]["hash"];
@@ -31,7 +31,7 @@
         else
         {
             // update password
-            $result = query("UPDATE users SET hash = ? WHERE id = ?", crypt($_POST["new_password"]), $_SESSION["id"]);
+            $result = queryx("UPDATE users SET hash = ? WHERE id = ?", crypt($_POST["new_password"]), $_SESSION["id"]);
             
             if ($result === false)
             {

@@ -19,7 +19,7 @@
         }
 
         // query database for user
-        $rows = query("SELECT * FROM users WHERE username = ?", $_POST["username"]);
+        $rows = queryx("SELECT * FROM users WHERE username = ?", $_POST["username"]);
 
         // if we found user, check password
         if (count($rows) == 1)
