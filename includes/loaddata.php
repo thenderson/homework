@@ -51,11 +51,11 @@ $grid = new EditableGrid();
 *  The second argument is the label that will be displayed in the header
 */
 $grid->addColumn('project', 'project', 'float', NULL, false); 
-// $grid->addColumn('project', 'project name', 'float', fetch_pairs($mysqli,'SELECT project_number, project_shortname FROM users'),true);
-// $grid->addColumn('task_id', 'task #', 'string', NULL, false);  
-// $grid->addColumn('description', 'task description', 'string');  
-// $grid->addColumn('promiser', 'promised by', 'email' , fetch_pairs($mysqli,'SELECT user_id, name FROM users'),true);  
-// $grid->addColumn('requester', 'requested by', 'email', fetch_pairs($mysqli,'SELECT user_id, name FROM users'),true);  
+$grid->addColumn('project', 'project name', 'float', fetch_pairs($mysqli,'SELECT project_number, project_shortname FROM users'),true);
+$grid->addColumn('task_id', 'task #', 'string', NULL, false);  
+$grid->addColumn('description', 'task description', 'string');  
+$grid->addColumn('promiser', 'promised by', 'email' , fetch_pairs($mysqli,'SELECT user_id, name FROM users'),true);  
+$grid->addColumn('requester', 'requested by', 'email', fetch_pairs($mysqli,'SELECT user_id, name FROM users'),true);  
 $grid->addColumn('due_by', 'due', 'date');                                               
 $grid->addColumn('requested_on', 'date requested', 'date', NULL, false);  
 $grid->addColumn('status', 'status', 'string');  
