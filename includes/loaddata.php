@@ -64,7 +64,7 @@ $grid->addColumn('metric', 'planning', 'string', NULL, false);
                                                                        
 $result = $mysqli->query("SELECT * FROM commitments");
 $mysqli->close();
-error_log($result);
+error_log(print_R($result,TRUE));
 // send data to the browser
 $grid->renderXML($result);
 
