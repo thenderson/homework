@@ -1,13 +1,13 @@
 <div class="container">
 
-	<h4>C O M M I T M E N T S</h4>
+	<h5>C O M M I T M E N T S</h5>
 
 	<table class="table table-striped">
 		<tr>
 			<th>id</th>
 			<th>description</th>
-			<th>promisor</th>
-			<th>requestor</th>
+			<th>promiser</th>
+			<th>requester</th>
 			<th>due</th>
 			<th>status</th>
 		</th>
@@ -42,8 +42,8 @@
 
 				<td><?= $commitment["task_id"]?></td>
 				<td><?= $commitment["description"]?></td>
-				<td><?= $commitment["requestor"]?></td>
-				<td><?= $commitment["promisor"]?></td>
+				<td><?= $commitment["requester"]?></td>
+				<td><?= $commitment["promiser"]?></td>
 				<td><?= $commitment["due_by"]?></td>
 				<td><?= $commitment["status"]?></td>
 			</tr>
