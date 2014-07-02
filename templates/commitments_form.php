@@ -2,7 +2,7 @@
 
 	<h5>C O M M I T M E N T S</h5>
 
-	<table class="table table-striped">
+	<table class="table table-striped" id="commitments">
 		<tr>
 			<th>id</th>
 			<th>description</th>
@@ -52,4 +52,27 @@
 		?>
 
     </table>
+	
+    <script>
+	$('#commitments').editableTableWidget();
+	$('#commitments').editableTableWidget({editor: $('<textarea>')});
+	$('#commitments').editableTableWidget({
+	cloneProperties: ['background', 'border', 'outline']
+	});
+	
+	<!-- mark invalid data -->
+	//$('table td').on('validate', function(evt, newValue) {
+	//	if (....) { 
+	//		return false; // mark cell as invalid 
+	//	}
+	//});
+
+	<!-- act on changed data -->
+	//$('table td').on('change', function(evt, newValue) {
+	// do something with the new cell value 
+	//if (....) { 
+	//	return false; // reject change
+	//}
+	//});
+    </script>
 </div>
