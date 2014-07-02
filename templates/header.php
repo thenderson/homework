@@ -11,14 +11,16 @@
         <link href="/commgr/public/css/bootstrap.min.css" rel="stylesheet"/>
 		<link href="/commgr/public/css/reliable_stylesheet.css" rel="stylesheet"/>
 		<script src="/commgr/public/js/respond.min.js"></script>
-
         <title>reliable</title>
     </head>
 
     <body>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
-
+		
+		<!-- mindmup editable table -->
+		<script src="mindmup-editabletable.js"></script>
+		<script src="numeric-input-example.js"></script>
 		
 		<header class="navbar navbar-default" id="top" role="navigation">
 			<div class="container">

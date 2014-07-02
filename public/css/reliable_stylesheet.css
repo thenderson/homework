@@ -1,136 +1,52 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 
-/* This file is part of EditableGrid. http://editablegrid.net
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses. http://editablegrid.net/license */
-
-body {
-	font-family:'lucida grande', tahoma, verdana, arial, sans-serif;
-	font-size:11px;
+/* 
+ * this CSS is not part of the widget, it is here just as an example of the demo page styling.... 
+ * 
+ * Don't copy this one, roll your own. One of the key things about the widget is that 
+ * it allows you to do your own styling!
+ *
+ */
+td:focus {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
+	outline: rgb(91, 157, 217) auto 5px;
 }
-
-h1 { 
-	font-size: 15px;
+input.error {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;	
+	outline: thin auto red;
 }
-
-h2 { 
-	font-size: 13px;
+input {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
+	outline: rgb(91, 157, 217) auto 5px;
+	outline-offset: 0px;
+	border: none;
 }
-
-a { 
-	color: #548dc4;
-	text-decoration: none;
+#mainTable thead th, #mainTable tbody td { 
+  width: 25%;
 }
-
-h1 a {
-	font-size: 12px;
-	float: right;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-img {
-	border: 0;
-}
-
-.ok { 
-	background-color: #0a8819; 
-	color: white; 
-	padding: 5px;
-}
-
-input.invalid {
-	background: red;
-	color: #FDFDFD;
-}
-
-#message {
-	width: 100%;
-}  
-
-td.number {
+#mainTable td + td, #mainTable th + th {
 	text-align: right;
-	font-weight: bold;
-	padding-right: 5px;
-	white-space: nowrap;
+}
+table.scrollable thead tr, table.scrollable tfoot tr  {
+	position: relative;
+	display: block
 }
 
-td.boolean {
-	text-align: center;
+html>body table.scrollable tbody {
+	display: block;
+	height: 330px;
+	overflow: auto;
+	width: 100%
 }
 
-th.boolean {
-	text-align: center;
-}
-
-table.testgrid { 
-	border-collapse: collapse; 
-	border: 1px solid #CCB;
-	width: 100%;
-}
-
-table.testgrid tr {
-	border-bottom: 1px solid #DDD;
-}
-
-table.testgrid>tbody tr:hover {
-	background-color: #888888;
-	color: white;
-}
-
-table.testgrid>tbody tr:hover a {
-	color: white;
-}
-
-table.testgrid th {
-	background: #E5E5E5;
-	border: 1px solid #D5D5D5;
-	color: #555;
-	text-align: left;
-	padding-left: 5px;
-	padding-right: 0px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	white-space: nowrap; 
-}
-
-table.testgrid td {
-	padding: 5px;
-	border: 1px solid #E0E0E0;
-}
-
-#edition {
-	padding-top: 5px;
-	width: 600px;
-	border: 0px;	
-}
-
-#paginator {
-	font-family:  Helvetica, Arial, sans-serif;
-  	margin: 10px 0;
-	font-size: 12px;
-	text-align: center;
-	margin-bottom: 5px;
-}
-
-#paginator a { color:  #0078cc; text-decoration: none; font-size: 12px; }           
-#paginator a:hover { color: #000; }
-#paginator a:active { color: #777; }
-#paginator a:focus { outline: 1px; }
-
-#filter { 
-	width: 250px;
-	margin-bottom: 10px; 
-}
-
-#wrap {
-	margin: 10px;
+html>body table.scrollable td, html>body table.scrollable th {
+	width: 200px
 }
 
 
-#pagecontrol {
-	padding-bottom: 5px;
-	float: right;
-}
