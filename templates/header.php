@@ -19,8 +19,8 @@
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 		
 		<!-- mindmup editable table -->
-		<script src="mindmup-editabletable.js"></script>
-		<script src="numeric-input-example.js"></script>
+		<script src="/commgr/public/js/mindmup-editabletable.js"></script>
+		<script src="/commgr/public/js/numeric-input-example.js"></script>
 		
 		<header class="navbar navbar-default" id="top" role="navigation">
 			<div class="container">
