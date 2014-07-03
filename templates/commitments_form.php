@@ -52,14 +52,27 @@
 				}   
 				
 			?>
-					<td><?= $commitment["project"]?></td>
-					<td><?= $commitment["project"]?></td>
+					<td><?= $commitment["project_number"]?></td>
+<!--					<td><?= fetch_pairs($mysqli,'SELECT project_number, project_shortname FROM projects'),true)?></td> -->
+					<td>
+						<select name="project shortname">
+							$res = mysqli->query("SELECT project_number, project_shortname FROM projects");
+							while ($row = mysqli_fetch_array($res)){
+								if ($row['project_number'] == $commitment["project_number"]) {
+									echo '<option selected = "selected" value="' . $row['project_number'] . '">' . $row['project_shortname'] . '</option>';
+								}
+								else {
+									echo '<option value="' . $row['project_number'] . '">' . $row['project_shortname'] . '</option>';
+								}
+							}
+						</select>
 					<td><?= $commitment["task_id"]?></td>
 					<td><?= $commitment["description"]?></td>
 					<td><?= $commitment["requester"]?></td>
 					<td><?= $commitment["promiser"]?></td>
 					<td><?= $commitment["due_by"]?></td>
 					<td><?= $days_til_due?></td>
+					<td><?= $commitment["requested_on"]?></td>
 					<td><?= $commitment["status"]?></td>
 					<td><?= $commitment["type"]?></td>
 					<td><?= $commitment["metric"]?></td>
@@ -90,11 +103,24 @@
 		//});
 
 		<!-- act on changed data -->
-		//$('table td').on('change', function(evt, newValue) {
-		// do something with the new cell value 
-		//if (....) { 
-		//	return false; // reject change
-		//}
-		//});
+		$('table td').on('change', function(evt, newValue) {
+			var cell = $(this),
+				column = cell.index(),
+				total = 0;
+			if (column === 0) {
+				return;
+			}
+			element.find('tbody tr').each(function () {
+				var row = $(this);
+				total += parseFloat(row.children().eq(column).text());
+			});
+			if (column === 1 && total > 5000) {
+				$('.alert').show();
+				return false; // changes can be rejected
+			} else {
+				$('.alert').hide();
+				footer.children().eq(column).text(total);
+			}
+		});
     </script>
 </div>
