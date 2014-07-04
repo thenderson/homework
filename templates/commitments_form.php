@@ -60,7 +60,7 @@
 					<td><?= $commitment["task_id"]?></td>
 					<td><?= $commitment["description"]?></td>
 					<td><?=
-							$res = mysqli->query("SELECT email, name FROM users");
+							$res = queryx("SELECT email, name FROM users");
 							while ($row = mysqli_fetch_array($res)){
 								if ($row['email'] == $commitment["requester"]) {
 									echo '<option selected = "selected" value="' . $row['email'] . '">' . $row['requester'] . '</option>';
