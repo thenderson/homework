@@ -19,10 +19,10 @@
         }
 
         // query database for user
-        $rows = $comm_db->query("SELECT * FROM users WHERE username = ".$_POST["username"]);
-
+        $rows = $comm_db->query("SELECT * FROM users WHERE username = {$_POST["username"]}");
+		
         // if we found user, check password
-        if ($rows->num_rows == 1)
+        if (mysqli_num_rows($rows) == 1)
         {
             // first (and only) row
             $row = $rows->mysqli_fetch_assoc();

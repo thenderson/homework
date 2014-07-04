@@ -21,8 +21,9 @@
         else
         {
             // register user in database
-            $result = $comm_db->query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) VALUES(". 
-				$_POST["name"].",".$_POST["company"].",".$_POST["username"].",".crypt($_POST["password"]).",".$_POST["email"].","."no_alerts".","."no_reports".")");
+			$hash = crypt($_POST('password');
+            $result = $comm_db->query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) 
+				VALUES({$_POST["name"]}, {$_POST["company"]}, {$_POST["username"]}, {$hash}, {$_POST["email"]}, 'no_alerts', 'no_reports')");
             
             if ($result === false)
             {
