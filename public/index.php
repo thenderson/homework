@@ -8,6 +8,6 @@
     //TODO ability to sort & filter
 
         $planning_horizon = 14;
-        $commitments = queryx("SELECT * FROM commitments WHERE due_by <= DATE_ADD(CURDATE(),INTERVAL ? DAY) ORDER BY promiser, project, due_by", $planning_horizon);
+        $commitments = queryx("SELECT * FROM commitments WHERE due_by <= DATE_ADD(CURDATE(),INTERVAL ? DAY) ORDER BY promiser, project_number, due_by", $planning_horizon);
         render("commitments_form.php", ["commitments" => $commitments]);
 ?>
