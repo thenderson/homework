@@ -53,15 +53,15 @@
 				
 			?>
 					<td><?= $commitment["project_number"]?></td>
-					<td><?= 
-						$res = queryx("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);
-						echo $res;
+					<td><?php 
+						$res = $comm_db->query("SELECT project_shortname FROM projects WHERE project_number = ".$commitment["project_number"]);
+						echo $res["project_shortname"];
 					?></td>
 					<td><?= $commitment["task_id"]?></td>
 					<td><?= $commitment["description"]?></td>
-					<td><?=
-							$res = queryx("SELECT email, name FROM users");
-							while ($row = mysqli_fetch_array($res)){
+					<td><?php
+							$res = $comm_db->query("SELECT email, name FROM users");
+							while ($row = $res->mysqli_fetch_assoc()){
 								if ($row['email'] == $commitment["requester"]) {
 									echo '<option selected = "selected" value="' . $row['email'] . '">' . $row['requester'] . '</option>';
 								}

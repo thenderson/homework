@@ -21,8 +21,8 @@
         else
         {
             // register user in database
-            $result = queryx("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) VALUES(?, ?, ?, ?, ?, ?, ?)", 
-				$_POST["name"], $_POST["company"], $_POST["username"], crypt($_POST["password"]), $_POST["email"], "no_alerts", "no_reports");
+            $result = $comm_db->query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) VALUES(". 
+				$_POST["name"].",".$_POST["company"].",".$_POST["username"].",".crypt($_POST["password"]).",".$_POST["email"].","."no_alerts".","."no_reports".")");
             
             if ($result === false)
             {
@@ -30,7 +30,7 @@
             }
             else //success
             {
-                $rows = queryx("SELECT LAST_INSERT_ID() AS user_id");
+                $rows = $comm_db("SELECT LAST_INSERT_ID() AS user_id");
                 $id = $rows[0]["user_id"];
                 $_SESSION["id"] = $id;
 				error_log("successful registration; session ".$_SESSION["id"]);				

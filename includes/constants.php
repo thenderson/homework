@@ -17,13 +17,5 @@
 
     // your database's username
     define("USERNAME", "root");
-	
-	// Define here you own values -- from editablegrid
-	$config = array(
-		"db_name" => "commitment_db",
-		"db_user" => "root",
-		"db_password" => "wGS2S-Z#",
-		"db_host" => "localhost"
-	); 
 
 ?>
