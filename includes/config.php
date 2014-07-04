@@ -28,7 +28,7 @@
             redirect("login.php");
         }
     }
-	
+	echo ("bing!");
 	// open connection to sql database
 	$comm_db = new mysqli("SERVER", "USERNAME", "PASSWORD", "DATABASE");
 	if ($comm_db->connect_errno) {
