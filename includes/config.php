@@ -29,7 +29,7 @@
         }
     }
 	// open connection to sql database
-	$comm_db = new mysqli("SERVER", "USERNAME", "PASSWORD", "DATABASE");
+	$comm_db = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 	if ($comm_db->connect_errno) {
 		echo "Failed to connect to MySQL: (" . $comm_db->connect_errno . ") " . $comm_db->connect_error;
 		}
