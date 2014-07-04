@@ -54,7 +54,7 @@
 			?>
 					<td><?= $commitment["project_number"]?></td>
 					<td><?= 
-						$res = mysqli->query("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);
+						$res = queryx("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);
 						echo $res;
 					?></td>
 					<td><?= $commitment["task_id"]?></td>
