@@ -22,10 +22,10 @@
         $rows = $comm_db->query("SELECT * FROM users WHERE username = ".$_POST["username"]);
 
         // if we found user, check password
-        if (count($rows) == 1)
+        if ($rows->$num_rows) == 1)
         {
             // first (and only) row
-            $row = $rows[0];
+            $row = $rows->mysqli_fetch_assoc();
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
@@ -38,6 +38,10 @@
                 redirect("/commgr/public/index.php");
             }
         }
+		else
+		{
+			apologize("Multiple users exist?");
+		}
 
         // else apologize
         apologize("Invalid username and/or password.");
