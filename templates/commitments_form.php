@@ -53,7 +53,7 @@
 				
 			?>
 					<td><?= $commitment["project_number"]?></td>
-					<td><?= mysqli->query("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);?></td>
+					<td><? mysqli->query("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);?></td>
 					<td><?= $commitment["task_id"]?></td>
 					<td><?= $commitment["description"]?></td>
 					<td><?=
