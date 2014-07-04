@@ -53,7 +53,7 @@
 				
 			?>
 					<td><?= $commitment["project_number"]?></td>
-<!--					<td><?= fetch_pairs($mysqli,'SELECT project_number, project_shortname FROM projects'),true)?></td> -->
+<!--					<td><?=// fetch_pairs($mysqli,'SELECT project_number, project_shortname FROM projects')?></td> -->
 					<td>
 						<select name="project shortname">
 							$res = mysqli->query("SELECT project_number, project_shortname FROM projects");
