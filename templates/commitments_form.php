@@ -53,21 +53,20 @@
 				
 			?>
 					<td><?= $commitment["project_number"]?></td>
-					<td>
-						<select name="project shortname">
-							$res = mysqli->query("SELECT project_number, project_shortname FROM projects");
-							while ($row = mysqli_fetch_array($res)){
-								if ($row['project_number'] == $commitment["project_number"]) {
-									echo '<option selected = "selected" value="' . $row['project_number'] . '">' . $row['project_shortname'] . '</option>';
-								}
-								else {
-									echo '<option value="' . $row['project_number'] . '">' . $row['project_shortname'] . '</option>';
-								}
-							}
-						</select>
+					<td><?= mysqli->query("SELECT project_shortname FROM projects WHERE project_number = ?", $commitment["project_number"]);?></td>
 					<td><?= $commitment["task_id"]?></td>
 					<td><?= $commitment["description"]?></td>
-					<td><?= $commitment["requester"]?></td>
+					<td><?=
+							$res = mysqli->query("SELECT email, name FROM users");
+							while ($row = mysqli_fetch_array($res)){
+								if ($row['email'] == $commitment["requester"]) {
+									echo '<option selected = "selected" value="' . $row['email'] . '">' . $row['requester'] . '</option>';
+								}
+								else {
+									echo '<option value="' . $row['email'] . '">' . $row['requester'] . '</option>';
+								}
+							}
+					?></td>
 					<td><?= $commitment["promiser"]?></td>
 					<td><?= $commitment["due_by"]?></td>
 					<td><?= $days_til_due?></td>
