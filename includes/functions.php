@@ -71,6 +71,9 @@
 			{ //if print
 //				$xx = !(is_array($bt)) ? implode($bt) : $bt;
 				$xx = implode($bt);
+				var_dump($bt);
+				var_dump($xx);
+				
 				echo '<pre>';
 				echo '<!--Debugger Line: ' . $file_line . '-->' . $xx;
 				print_r($file_line);
