@@ -52,7 +52,7 @@
 	
 	if(!function_exists('pr')) 
 	{
-		function pr($p, $func="print_r",$r=false)
+		function pr($p, $func="print_r", $r=false)
 		{
 			if(defined('DEBUG_REMOTE_ADDR')&& $_SERVER['REMOTE_ADDR'] != DEBUG_REMOTE_ADDR) return;
 			
@@ -70,7 +70,7 @@
 			if(!$r)
 			{ //if print
 				echo '&lt;pre&gt;';
-				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $dt;
+				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $bt;
 				print_r($file_line);
 				$func($p);
 				echo '&lt;/pre&gt;';
