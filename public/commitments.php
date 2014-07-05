@@ -45,7 +45,7 @@
 	
 	if ($stmt)
 	{
-		$stmt->bind_param("s", $project_list); bind project number when that become functional.
+		$stmt->bind_param("s", $project_list); //bind project number when that become functional.
 		$stmt->execute();
 		$stmt->bind_result($projects);
 		$stmt->close();
