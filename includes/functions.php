@@ -69,7 +69,8 @@
 			
 			if(!$r)
 			{ //if print
-				$xx = !(is_array($bt)) ? implode($bt) : $bt;
+//				$xx = !(is_array($bt)) ? implode($bt) : $bt;
+				$xx = implode($bt);
 				echo '<pre>';
 				echo '<!--Debugger Line: ' . $file_line . '-->' . $xx;
 				print_r($file_line);
