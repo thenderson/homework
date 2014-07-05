@@ -35,5 +35,4 @@
 		}
 //	pr($comm_db, 'var_dump');
 //	pr($comm_db->host_info, 'var_dump');
-	pr($comm_db->get_connection_stats(), 'var_dump');
 ?>
