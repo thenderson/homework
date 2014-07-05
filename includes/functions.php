@@ -69,11 +69,11 @@
 			
 			if(!$r)
 			{ //if print
-				echo '&lt;pre&gt;';
-				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $bt;
+				echo '<pre>';
+				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $bt[];
 				print_r($file_line);
 				$func($p);
-				echo '&lt;/pre&gt;';
+				echo '</pre>';
 			} 
 			else 
 			{ //if return
