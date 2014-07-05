@@ -9,6 +9,7 @@
 
         $planning_horizon = 14;
         $commitments = $comm_db->query("SELECT * FROM commitments WHERE due_by <= DATE_ADD(CURDATE(),INTERVAL {$planning_horizon} DAY ORDER BY promiser, project_number, due_by");
-        pr($commitments, 'var_dump');
+        var_dump($commitments);
+		var_dump($comm_db);
 		render("commitments_form.php", ["commitments" => $commitments]);
 ?>
