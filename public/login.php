@@ -19,9 +19,9 @@
         }
 
         // query database for user
-        $rows = $comm_db->query("SELECT * FROM users WHERE username = {$_POST["username"]}");
+        $rows = $comm_db->query("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
 		
-		pr("SELECT * FROM users WHERE username = {$_POST["username"]}");
+		pr("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
 		pr($rows, "var_dump");
 		pr($comm_db, 'var_dump');
 		pr($comm_db->host_info, 'var_dump');
