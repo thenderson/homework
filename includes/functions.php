@@ -50,7 +50,52 @@
 		pr($output, ”, ‘your@domain.com’); //sends print_r output enclosed in <pre> tags to email address supplied. Returns as well.
 	*/
 	
-	if(!function_exists('pr')) {<br /> function pr($p, $func="print_r",$r=false) {<br /> if(defined('DEBUG_REMOTE_ADDR') &amp;&amp; $_SERVER['REMOTE_ADDR'] != DEBUG_REMOTE_ADDR) return;<br /> if(!function_exists($func)) {<br /> die("Debug function {$func} does not exist!");<br /> }<br /> if(!$func) $func='print_r';<br /> $bt = debug_backtrace();<br /> $caller = array_shift($bt);<br /> $file_line = "&lt;strong&gt;" . $caller['file'] . "(line " . $caller['line'] . ")&lt;/strong&gt;\n";<br /> if(!$r) { //if print<br /> echo '&lt;pre&gt;';<br /> echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $dt;<br /> print_r($file_line);<br /> $func($p);<br /> echo '&lt;/pre&gt;';<br /> } else { //if return<br /> ob_start();<br /> echo '&lt;pre&gt;';<br /> print_r($file_line);<br /> $func($p);<br /> echo '&lt;pre&gt;';<br /> $d = ob_get_contents();<br /> ob_end_clean();<br /> if(filter_var($r, FILTER_VALIDATE_EMAIL)) {<br /> $headers = 'From: webmaster@example.com' . "\r\n" .<br /> 'Reply-To: webmaster@example.com' . "\r\n" .<br /> 'X-Mailer: PHP/' . phpversion();<br /> mail($r, 'Debug Output', $d, $headers);<br /> }<br /> return $d;<br /> }<br /> }<br />}
+	if(!function_exists('pr')) 
+	{
+		function pr($p, $func="print_r",$r=false)
+		{
+			if(defined('DEBUG_REMOTE_ADDR')&& $_SERVER['REMOTE_ADDR'] != DEBUG_REMOTE_ADDR) return;
+			
+			if(!function_exists($func))
+			{
+				die("Debug function {$func} does not exist!");
+			}
+			
+			if(!$func) $func='print_r';
+			
+			$bt = debug_backtrace();
+			$caller = array_shift($bt);
+			$file_line = "&lt;strong&gt;" . $caller['file'] . "(line " . $caller['line'] . ")&lt;/strong&gt;\n";
+			
+			if(!$r)
+			{ //if print
+				echo '&lt;pre&gt;';
+				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $dt;
+				print_r($file_line);
+				$func($p);
+				echo '&lt;/pre&gt;';
+			} 
+			else 
+			{ //if return
+				ob_start();
+				echo '&lt;pre&gt;';
+				print_r($file_line);
+				$func($p);
+				echo '&lt;pre&gt;';
+				$d = ob_get_contents();
+				ob_end_clean();
+				
+				if(filter_var($r, FILTER_VALIDATE_EMAIL)) 
+				{
+					$headers = 'From: webmaster@example.com' . "\r\n" .
+					'Reply-To: webmaster@example.com' . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
+					mail($r, 'Debug Output', $d, $headers);
+				}
+				return $d;
+			}
+		}
+	}
 
     /**
      * Logs out current user, if any.  Based on Example #1 at
