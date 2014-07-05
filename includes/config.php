@@ -33,7 +33,7 @@
 	if ($comm_db->connect_errno) {
 		echo "Failed to connect to MySQL: (" . $comm_db->connect_errno . ") " . $comm_db->connect_error;
 		}
-	pr($comm_db, 'var_dump');
-	pr($comm_db->host_info, 'var_dump');
-	pr($comm_db->get_connection_stats, 'var_dump');
+//	pr($comm_db, 'var_dump');
+//	pr($comm_db->host_info, 'var_dump');
+	pr($comm_db->get_connection_stats(), 'var_dump');
 ?>

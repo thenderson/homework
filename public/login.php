@@ -23,15 +23,15 @@
 		
 		pr("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
 		pr($rows, "var_dump");
-		pr($comm_db, 'var_dump');
-		pr($comm_db->host_info, 'var_dump');
-		pr($comm_db->get_connection_stats, 'var_dump');
+//		pr($comm_db, 'var_dump');
+//		pr($comm_db->host_info, 'var_dump');
+		pr($comm_db->get_connection_stats(), 'var_dump');
 		
         // if we found user, check password
         if (mysqli_num_rows($rows) == 1)
         {
             // first (and only) row
-            $row = $rows->mysqli_fetch_assoc();
+            $row = $rows->fetch_assoc();
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
