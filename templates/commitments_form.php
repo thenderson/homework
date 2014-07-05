@@ -28,7 +28,7 @@
 			<?php
 
 			$now = new DateTime();
-			
+			pr($commitments);
 			foreach ($commitments as $commitment)
 			{
 				$days_til_due = date_diff($now, new DateTime($commitment["due_by"]))->days;
