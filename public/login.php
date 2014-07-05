@@ -20,6 +20,8 @@
 
         // query database for user
         $rows = $comm_db->query("SELECT * FROM users WHERE username = {$_POST["username"]}");
+		
+		error_log("username: {$_POST["username"]}");
 		error_log("query returned: $rows");
 		
         // if we found user, check password
