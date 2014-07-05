@@ -65,12 +65,12 @@
 			
 			$bt = debug_backtrace();
 			$caller = array_shift($bt);
-			$file_line = "<strong>" . $caller['file'] . "(line " . $caller['line'] . ")</strong>\n";
+			$file_line = "<strong>" . $caller['file'] . " (line " . $caller['line'] . ")</strong>\n";
 			
 			if(!$r)
 			{ //if print
 				echo '<pre>';
-				echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $bt;
+				echo '<!--Debugger Line: ' . $file_line . '-->' . $bt;
 				print_r($file_line);
 				$func($p);
 				echo '</pre>';
@@ -78,10 +78,10 @@
 			else 
 			{ //if return
 				ob_start();
-				echo '&lt;pre&gt;';
+				echo '<pre>';
 				print_r($file_line);
 				$func($p);
-				echo '&lt;pre&gt;';
+				echo '</pre>';
 				$d = ob_get_contents();
 				ob_end_clean();
 				
