@@ -70,7 +70,7 @@
 			if(!$r)
 			{ //if print
 //				$xx = !(is_array($bt)) ? implode($bt) : $bt;
-				$xx = implode(",", $bt);
+				$xx = implode(",", array_values($bt));
 				var_dump($bt, $xx);
 				
 				echo '<pre>';
