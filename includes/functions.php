@@ -69,12 +69,12 @@
 			
 			if(!$r)
 			{ //if print
-//				$xx = !(is_array($bt)) ? implode($bt) : $bt;
-				$xx = implode(",", array_values($bt));
-				var_dump($bt, $xx);
+//				$xx = (is_array($bt)) ? implode(" ",array_values($bt)) : $bt;
+//				$xx = implode(",", array_values($bt));
+//				var_dump($bt, $xx);
 				
 				echo '<pre>';
-				echo '<!--Debugger Line: ' . $file_line . '-->' . $xx;
+				echo '<!--Debugger Line: ' . $file_line . '-->' . array_values($bt);
 				print_r($file_line);
 				$func($p);
 				echo '</pre>';
