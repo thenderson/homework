@@ -40,6 +40,17 @@
 
     echo $output;
 }
+	
+	/*  pr() function from http://www.devarticles.in/php/useful-function-to-output-debug-data-in-php/
+		To print simple output, where is $output is the output to be printed.
+		pr($output) ; //uses print_r by default enclosed in <pre> tags to print output
+		pr($output, “var_dump”); //prints output using var_dump enclosed in <pre> tags
+		pr($output, ”, true); //returns output ; uses print_r enclosed in <pre> tags
+		pr($output, “var_dump”, ‘your@domain.com’); //sends var_dump output enclosed in <pre> tags to email address supplied. Returns as well.
+		pr($output, ”, ‘your@domain.com’); //sends print_r output enclosed in <pre> tags to email address supplied. Returns as well.
+	*/
+	
+	if(!function_exists('pr')) {<br /> function pr($p, $func="print_r",$r=false) {<br /> if(defined('DEBUG_REMOTE_ADDR') &amp;&amp; $_SERVER['REMOTE_ADDR'] != DEBUG_REMOTE_ADDR) return;<br /> if(!function_exists($func)) {<br /> die("Debug function {$func} does not exist!");<br /> }<br /> if(!$func) $func='print_r';<br /> $bt = debug_backtrace();<br /> $caller = array_shift($bt);<br /> $file_line = "&lt;strong&gt;" . $caller['file'] . "(line " . $caller['line'] . ")&lt;/strong&gt;\n";<br /> if(!$r) { //if print<br /> echo '&lt;pre&gt;';<br /> echo '&lt;!--Debugger Line: ' . $file_line . '--&gt;' . $dt;<br /> print_r($file_line);<br /> $func($p);<br /> echo '&lt;/pre&gt;';<br /> } else { //if return<br /> ob_start();<br /> echo '&lt;pre&gt;';<br /> print_r($file_line);<br /> $func($p);<br /> echo '&lt;pre&gt;';<br /> $d = ob_get_contents();<br /> ob_end_clean();<br /> if(filter_var($r, FILTER_VALIDATE_EMAIL)) {<br /> $headers = 'From: webmaster@example.com' . "\r\n" .<br /> 'Reply-To: webmaster@example.com' . "\r\n" .<br /> 'X-Mailer: PHP/' . phpversion();<br /> mail($r, 'Debug Output', $d, $headers);<br /> }<br /> return $d;<br /> }<br /> }<br />}
 
     /**
      * Logs out current user, if any.  Based on Example #1 at

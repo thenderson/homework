@@ -21,8 +21,9 @@
         // query database for user
         $rows = $comm_db->query("SELECT * FROM users WHERE username = {$_POST["username"]}");
 		
-		error_log("username: {$_POST["username"]}");
-		error_log("query returned: $rows");
+		pr("SELECT * FROM users WHERE username = {$_POST["username"]}");
+		pr("username: {$_POST["username"]}", "var_dump");
+		pr("query returned: $rows", "var_dump");
 		
         // if we found user, check password
         if (mysqli_num_rows($rows) == 1)
