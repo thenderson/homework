@@ -35,7 +35,7 @@
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
-	$users_res = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC", PDO::FETCH_ASSOC);
+	$users = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC", PDO::FETCH_ASSOC);
 	
 	if (!$users_res)
 	{
@@ -48,7 +48,7 @@
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
-	$projects_res = $comm_db->query("SELECT project_number, project_shortname FROM projects", PDO::FETCH_ASSOC);
+	$projects = $comm_db->query("SELECT project_number, project_shortname FROM projects", PDO::FETCH_ASSOC);
 	
 	if (!$projects_res)
 	{
