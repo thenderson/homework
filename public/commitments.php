@@ -38,7 +38,8 @@
 	}
 	else
 	{
-		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row);
+//		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row);
+		for ($users = array (); $row = $users_res->fetch_assoc(); $users[array_shift($row)] = $row);
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
