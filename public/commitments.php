@@ -30,25 +30,34 @@
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
-	$users = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC");
+	$users_res = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC");
 	
-	if (!$users)
+	if (!$users_res)
 	{
 		trigger_error('Statement failed : ' . E_USER_ERROR);
+	}
+	else
+	{
+		$users = $users_res->fetch_assoc();
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
-	$projects = $comm_db->query("SELECT project_number, project_shortname FROM projects");
+	$projects_res = $comm_db->query("SELECT project_number, project_shortname FROM projects");
 	
-	if (!$projects)
+	if (!$projects_res)
 	{
 		trigger_error('Statement failed : ' . E_USER_ERROR);
 	}
+	else
+	{
+		$projects = $projects_res->fetch_assoc();
+	}
 
-//      dump($project_numbers);
-//		debug($comm_db);
-//		debug_view($comm_db);
-		dbug($comm_db, $users, $projects); 
-		echo dbug('print');
+		debug_view($users_res);
+		debug_view($users);
+		debug_view($projects_res);
+		debug_view($projects);
+//		dbug($comm_db, $users, $projects); 
+//		echo dbug('print');
 
 //	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
