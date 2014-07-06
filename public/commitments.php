@@ -44,9 +44,9 @@
 	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
 	else $projects = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 	
-	dbug('$commitments', $commitments);
-	dbug('$users', $users); 
-	dbug('$projects', $projects); 
-	echo dbug('print');
+//	dbug('$commitments', $commitments);
+//	dbug('$users', $users); 
+//	dbug('$projects', $projects); 
+//	echo dbug('print');
 
-//	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
+	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "projects" => $projects]);

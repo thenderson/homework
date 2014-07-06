@@ -28,12 +28,10 @@
 			<?php
 
 			$now = new DateTime();		
-//			var_dump($task_ids);
-//			var_dump($users);
 			
-			for ($x=0; $x<count($task_ids); $x++)
+			foreach ($commitments as $commitment)
 			{
-				$days_til_due = date_diff($now, new DateTime($due_bys[$x]))->days;
+				$days_til_due = date_diff($now, new DateTime($commitment['due_by'])->days;
 				
 				switch($days_til_due) //choose row formatting by task due date proximity
 				{
@@ -52,24 +50,24 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td><? $project_numbers[$x]?></td>
-					<td><? $projects[$project_numbers[$x]]?></td>
-					<td><? $task_ids[$x]?></td>
-					<td><? $descriptions[$x]?></td>
-					<td><option selected='selected' value="<?$requester[$x].'">'.$users[$requester[$x]]?></option>
+					<td><? $commitment['project_number']?></td>
+					<td><? $projects[$commitment['project_number']]?></td>
+					<td><? $commitment['task_id']?></td>
+					<td><? $commitment['description']?></td>
+					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']]?></option>
 
 						<? while ($row = $users)
 						{
 							echo '<option value="' . $row['email'] . '">' . $row['username'] . '</option>';
 						} ?>
 					</td>
-					<td><?= $promisers[$x]?></td>
-					<td><?= $due_bys[$x]?></td>
+					<td><?= $commitment['promiser']?></td>
+					<td><?= $commitment['due_bys']?></td>
 					<td><?= $days_til_due?></td>
-					<td><?= $requested_ons[$x]?></td>
-					<td><?= $statuses[$x]?></td>
-					<td><?= $types[$x]?></td>
-					<td><?= $metrics[$x]?></td>
+					<td><?= $commitment['requested_on']?></td>
+					<td><?= $commitment['status']?></td>
+					<td><?= $commitment['type']?></td>
+					<td><?= $commitment['metrics']?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
