@@ -36,7 +36,7 @@
 				dbug('$now', $now);
 				echo dbug('print');
 				
-				$days_til_due = date_diff($now, new DateTime($commitment['due_by'])->days;
+				$days_til_due = 0; //date_diff($now, new DateTime($commitment['due_by'])->days;
 				
 				switch($days_til_due) //choose row formatting by task due date proximity
 				{
