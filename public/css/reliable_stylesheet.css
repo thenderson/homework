@@ -1,5 +1,13 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 
+
+.table > thead > tr.ghost > td,
+.table > tbody > tr.ghost > td,
+.table > tfoot > tr.ghost > td{
+  background-color: #FFFFFF;
+  color: 848484;
+}
+
 /* 
  * this CSS is not part of the widget, it is here just as an example of the demo page styling.... 
  * 

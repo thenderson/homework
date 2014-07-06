@@ -10,13 +10,18 @@
 
 	/*	RETRIEVE COMMITMENTS */
 	$planning_horizon = 14; // days
-	$stmt = $comm_db->prepare("SELECT * FROM commitments WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) ORDER BY promiser, project_number, due_by");
+	
+	$stmt = $comm_db->prepare("
+		SELECT project_number, task_id, description, requester, promiser, due_by, requested_on, status, type, metric 
+		FROM commitments 
+		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
+		ORDER BY promiser, project_number, due_by");
 	
 	if ($stmt)
 	{
 		$stmt->bind_param("i", $planning_horizon);
 		$stmt->execute();
-		$stmt->bind_result($commitments);
+		$stmt->bind_result($project_numbers, $task_ids, $descriptions, $requesters, $promisers, $due_bys, $requested_ons, $statuses, $types, $metrics);
 		$stmt->close();
 	}
 	else
@@ -24,40 +29,23 @@
 		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 	}
 	
-	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */
-	$stmt = $comm_db->prepare("SELECT email, usernamme FROM users ORDER BY email ASC");
+	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
+	$users = $comm_db->query("SELECT email, usernamme FROM users ORDER BY email ASC");
 	
-	if ($stmt)
+	if (!$users)
 	{
-//		$stmt->bind_param("i", $planning_horizon); bind project number when that become functional.
-		$stmt->execute();
-		$stmt->bind_result($users);
-		$stmt->close();
-	}
-	else
-	{
-		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		trigger_error('Statement failed : ' . $users->error, E_USER_ERROR);
 	}
 	
-	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */
-	$project_list="*";
-	$stmt = $comm_db->prepare("SELECT project_shortname FROM projects WHERE project_number = ?");
+	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
+	$projects = $comm_db->query("SELECT project_number, project_shortname FROM projects");
 	
-	if ($stmt)
+	if (!$projects)
 	{
-		$stmt->bind_param("s", $project_list); //bind project number when that become functional.
-		$stmt->execute();
-		$stmt->bind_result($projects);
-		$stmt->close();
+		trigger_error('Statement failed : ' . $projects->error, E_USER_ERROR);
 	}
-	else
-	{
-		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
-	}
-	
-//      $commitments = $comm_db->query("SELECT * FROM commitments WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL $planning_horizon DAY) ORDER BY promiser, project_number, due_by");
-//		$users = $comm_db->query("SELECT email, usernamme FROM users ORDER BY email ASC");
+
 //      var_dump($commitments);
 //		var_dump($comm_db);
 
-	render("commitments_form.php", ["commitments" => $commitments, "users" => $users, "projects" => $projects]);
+	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
