@@ -36,7 +36,7 @@
 	
 	dbug('$comm_db', $comm_db);
 	dbug('$stmt', $stmt);
-	dbug('print');
+	echo dbug('print');
 	exit;
 //		$stmt->bind_param("i", $planning_horizon);
 //		$stmt->execute();
