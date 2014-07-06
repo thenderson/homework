@@ -56,14 +56,14 @@
 						<?
 				} ?>
 					<td><? $commitment['project_number']?></td>
-					<td><? $projects[$commitment['project_number']]?></td>
+					<td><? $projects[$commitment['project_number']=>'project_number']?></td>
 					<td><? $commitment['task_id']?></td>
 					<td><? $commitment['description']?></td>
-					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']]?></option>
+					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']=>'requester']?></option>
 
 						<? while ($row = $users)
 						{
-							echo '<option value="' . $row['email'] . '">' . $row['username'] . '</option>';
+							//echo('<option value="' . $row['email'] . '">' . $row['username'] . '</option>');
 						} ?>
 					</td>
 					<td><?= $commitment['promiser']?></td>

@@ -38,7 +38,9 @@
 				//error_log("successful login; session id=".$_SESSION["id"]);
 
                 // Successful login ... redirect to commitment view
-                redirect("/commgr/public/index.php");
+                //redirect("/commgr/public/index.php");
+				dbug('session id', $_SESSION['id']);
+				echo dbug('print');
             }
         }
 		else
