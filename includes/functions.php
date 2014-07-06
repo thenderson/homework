@@ -63,7 +63,7 @@ function dbug() {
     $output .= "<b>$class$function =&gt;$file #$line</b><pre>";
     ob_start();
     foreach ($args as $arg) {
-		if is_string($arg)
+		if (is_string($arg))
 		{
 			echo ("\n\n<b>$arg</b>\n");
 			continue;
