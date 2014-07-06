@@ -26,11 +26,7 @@
 	try 
 	{
 		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->execute();
-		dbug('$comm_db', $comm_db);
-		dbug('$stmt', $stmt);
-		dbug('print');
-		
+		$stmt->execute();		
 //		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
 	catch(PDOException $e) 
@@ -38,6 +34,10 @@
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
+	dbug('$comm_db', $comm_db);
+	dbug('$stmt', $stmt);
+	dbug('print');
+	exit;
 //		$stmt->bind_param("i", $planning_horizon);
 //		$stmt->execute();
 //		$stmt->store_result();
