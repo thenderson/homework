@@ -33,7 +33,7 @@
 	try
 	{
 		// connect to database
-		$comm_db = new PDO("mysqli:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
+		$comm_db = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
 
 		// ensure that PDO::prepare returns false when passed invalid SQL
 		$comm_db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
