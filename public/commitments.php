@@ -17,16 +17,27 @@
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
 		ORDER BY promiser, project_number, due_by");
 	
-	if ($stmt)
+	if (!$stmt)
 	{
-		$stmt->bind_param("i", $planning_horizon);
-		$stmt->execute();
-		$stmt->bind_result($project_numbers, $task_ids, $descriptions, $requesters, $promisers, $due_bys, $requested_ons, $statuses, $types, $metrics);
-		$stmt->close();
+		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 	}
 	else
 	{
-		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		$stmt->bind_param("i", $planning_horizon);
+		$stmt->execute();
+		$stmt->bind_result($proj, $taskid, $desc, $req, $prom, $due, $req_ons, $stat, $types, $met);
+		$stmt->close();
+		
+		for ($project_numbers = array (); $row = $proj->fetch_assoc(); $project_numbers[] = $row);
+		for ($task_ids = array (); $row = $taskid->fetch_assoc(); $task_ids[] = $row);
+		for ($descriptions = array (); $row = $desc->fetch_assoc(); $descriptions[] = $row);
+		for ($requesters = array (); $row = $req->fetch_assoc(); $requesters[] = $row);
+		for ($promisers = array (); $row = $prom->fetch_assoc(); $promisers[] = $row);
+		for ($due_bys = array (); $row = $due->fetch_assoc(); $due_bys[] = $row);
+		for ($requested_ons = array (); $row = $req_ons->fetch_assoc(); $requested_ons[] = $row);
+		for ($statuses = array (); $row = $stat->fetch_assoc(); $statuses[] = $row);
+		for ($types = array (); $row = $types->fetch_assoc(); $types[] = $row);
+		for ($metrics = array (); $row = $met->fetch_assoc(); $metrics[] = $row);
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
@@ -38,8 +49,8 @@
 	}
 	else
 	{
-//		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row); //makes associative array
-		for ($users = array (); $row = $users_res->fetch_assoc(); $users[array_shift($row)] = $row); //makes array keyed to first field
+		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row); //makes associative array
+//		for ($users = array (); $row = $users_res->fetch_assoc(); $users[array_shift($row)] = $row); //makes array keyed to first field
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
@@ -51,7 +62,8 @@
 	}
 	else
 	{
-		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[array_shift($row)] = $row);
+		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[] = $row);  //makes associative array
+//		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[array_shift($row)] = $row);  //makes array keyed to first field
 	}
 
 	dbug('$project_numbers', $project_numbers, '$sask_ids', $task_ids, '$descriptions', $descriptions, '$requesters', $requesters, '$promisers', $promisers, '$due_bys', $due_bys, '$requested_ons', $requested_ons, '$statuses', $statuses, '$types', $types, '$metrics', $metrics);
