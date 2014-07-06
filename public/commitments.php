@@ -30,11 +30,11 @@
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
-	$users = $comm_db->query("SELECT email, usernamme FROM users ORDER BY email ASC");
+	$users = $comm_db->query("SELECT email, username FROM users ORDER BY email ASC");
 	
 	if (!$users)
 	{
-		trigger_error('Statement failed : ' . $users->error, E_USER_ERROR);
+		trigger_error('Statement failed : ' . E_USER_ERROR);
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
@@ -42,7 +42,7 @@
 	
 	if (!$projects)
 	{
-		trigger_error('Statement failed : ' . $projects->error, E_USER_ERROR);
+		trigger_error('Statement failed : ' . E_USER_ERROR);
 	}
 
 //      var_dump($commitments);
