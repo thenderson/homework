@@ -25,8 +25,8 @@
 	
 	try 
 	{
-		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->execute();
+//		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
+		$stmt->execute(array($planning_horizon));
 		var_dump($stmt->errorInfo());
 		
 //		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@
 //		$stmt->store_result();
 //		$stmt->bind_result($proj, $taskid, $desc, $req, $prom, $due, $req_ons, $stat, $types, $met);
 //		$stmt->fetch();
-		$stmt->close();
+//		$stmt->close();
 		
 		// for ($project_numbers = array (); $row = $proj->fetch_assoc(); $project_numbers[] = $row);
 		// for ($task_ids = array (); $row = $taskid->fetch_assoc(); $task_ids[] = $row);
