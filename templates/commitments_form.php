@@ -27,9 +27,7 @@
 		<tbody>
 			<?php
 
-			$now = new DateTime();
-
-$project_numbers, $task_ids, $descriptions, $requesters, $promisers, $due_bys, $requested_ons, $statuses, $types, $metrics			
+			$now = new DateTime();		
 			
 			for ($x=0; $x<count($task_ids); $x++)
 			{
