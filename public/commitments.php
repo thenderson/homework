@@ -47,8 +47,8 @@
 
 //      dump($project_numbers);
 //		debug($comm_db);
-		debug_view($comm_db);
-		dbug($comm_db); 
+//		debug_view($comm_db);
+		dbug($comm_db, $users, $projects); 
 		dbug('print');
 
 //	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
