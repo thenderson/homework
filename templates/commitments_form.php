@@ -28,8 +28,8 @@
 			<?php
 
 			$now = new DateTime();		
-			var_dump($task_ids);
-			var_dump($users);
+//			var_dump($task_ids);
+//			var_dump($users);
 			
 			for ($x=0; $x<count($task_ids); $x++)
 			{
