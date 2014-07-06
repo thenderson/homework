@@ -63,72 +63,18 @@ function dbug() {
     $output .= "<b>$class$function =&gt;$file #$line</b><pre>";
     ob_start();
     foreach ($args as $arg) {
+		if is_string($arg)
+		{
+			echo ("\n\n<b>$arg</b>\n");
+			continue;
+		}
         var_dump($arg);
     }
     $output .= htmlspecialchars(ob_get_contents(), ENT_COMPAT, 'UTF-8');
     ob_end_clean();
     $output .= '</pre>';
 }
-	
-	/*  pr() function from http://www.devarticles.in/php/useful-function-to-output-debug-data-in-php/
-		To print simple output, where is $output is the output to be printed.
-		pr($output) ; //uses print_r by default enclosed in <pre> tags to print output
-		pr($output, “var_dump”); //prints output using var_dump enclosed in <pre> tags
-		pr($output, ”, true); //returns output ; uses print_r enclosed in <pre> tags
-		pr($output, “var_dump”, ‘your@domain.com’); //sends var_dump output enclosed in <pre> tags to email address supplied. Returns as well.
-		pr($output, ”, ‘your@domain.com’); //sends print_r output enclosed in <pre> tags to email address supplied. Returns as well.
-	*/
-	
-	if(!function_exists('pr')) 
-	{
-		function pr($p, $func="print_r", $r=false)
-		{
-			if(defined('DEBUG_REMOTE_ADDR')&& $_SERVER['REMOTE_ADDR'] != DEBUG_REMOTE_ADDR) return;
-			
-			if(!function_exists($func))
-			{
-				die("Debug function {$func} does not exist!");
-			}
-			
-			if(!$func) $func='print_r';
-			
-			$bt = debug_backtrace();
-			$caller = array_shift($bt);
-			$file_line = "<strong>" . $caller['file'] . " (line " . $caller['line'] . ")</strong>\n";
-			
-			if(!$r)
-			{ //if print
-//				$xx = (is_array($bt)) ? implode(" ",array_values($bt)) : $bt;
-//				$xx = implode(",", array_values($bt));
-//				var_dump($bt, $xx);
-				
-				echo '<pre>';
-				echo '<!--Debugger Line: ' . $file_line . '-->' . array_values($bt);
-				print_r($file_line);
-				$func($p);
-				echo '</pre>';
-			} 
-			else 
-			{ //if return
-				ob_start();
-				echo '<pre>';
-				print_r($file_line);
-				$func($p);
-				echo '</pre>';
-				$d = ob_get_contents();
-				ob_end_clean();
-				
-				if(filter_var($r, FILTER_VALIDATE_EMAIL)) 
-				{
-					$headers = 'From: webmaster@example.com' . "\r\n" .
-					'Reply-To: webmaster@example.com' . "\r\n" .
-					'X-Mailer: PHP/' . phpversion();
-					mail($r, 'Debug Output', $d, $headers);
-				}
-				return $d;
-			}
-		}
-	}
+
 
     /**
      * Logs out current user, if any.  Based on Example #1 at

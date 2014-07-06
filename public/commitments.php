@@ -53,11 +53,7 @@
 		$projects = $projects_res->fetch_assoc();
 	}
 
-//		debug_view($users_res);
-//		debug_view($users);
-//		debug_view($projects_res);
-//		debug_view($projects);
-		dbug($users_res, $users, $projects_res, $projects); 
+		dbug('$users_res', $users_res, '$users', $users, '$projects_res', $projects_res, '$projects', $projects); 
 		echo dbug('print');
 
 //	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
