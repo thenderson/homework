@@ -25,7 +25,9 @@
 	{
 		$stmt->bind_param("i", $planning_horizon);
 		$stmt->execute();
+		$stmt->store_result();
 		$stmt->bind_result($proj, $taskid, $desc, $req, $prom, $due, $req_ons, $stat, $types, $met);
+		$stmt->fetch();
 		$stmt->close();
 		
 		for ($project_numbers = array (); $row = $proj->fetch_assoc(); $project_numbers[] = $row);
@@ -66,9 +68,9 @@
 //		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[array_shift($row)] = $row);  //makes array keyed to first field
 	}
 
-	dbug('$project_numbers', $project_numbers, '$sask_ids', $task_ids, '$descriptions', $descriptions, '$requesters', $requesters, '$promisers', $promisers, '$due_bys', $due_bys, '$requested_ons', $requested_ons, '$statuses', $statuses, '$types', $types, '$metrics', $metrics);
-	dbug('$users_res', $users_res, '$users', $users); 
-	dbug('$projects_res', $projects_res, '$projects', $projects); 
+	dbug('$project_numbers', $project_numbers, '$task_ids', $task_ids, '$descriptions', $descriptions, '$requesters', $requesters, '$promisers', $promisers, '$due_bys', $due_bys, '$requested_ons', $requested_ons, '$statuses', $statuses, '$types', $types, '$metrics', $metrics);
+	dbug('$users', $users); 
+	dbug('$projects', $projects); 
 	echo dbug('print');
 
 	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);

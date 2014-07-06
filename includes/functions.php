@@ -20,15 +20,6 @@
         exit;
     }
 	
-	function debug_view ( $what ) {
-    echo '<pre>';
-    if ( is_array( $what ) )  {
-        print_r ( $what );
-    } else {
-        var_dump ( $what );
-    }
-    echo '</pre>';
-}
 
 /** from http://www.php.net/manual/en/debugger.php
 * dbug (mixed $expression [, mixed $expression [, $... ]])
@@ -101,7 +92,7 @@ function dbug() {
      * Executes SQL statement, possibly with parameters, returning
      * an array of all rows in result set or false on (non-fatal) error.
      */
-    function queryx(/* $sql [, ... ] */)
+    function query(/* $sql [, ... ] */)
     {
         // SQL statement
         $sql = func_get_arg(0);
