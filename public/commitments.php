@@ -38,7 +38,7 @@
 	}
 	else
 	{
-		$users = $users_res->fetch_assoc();
+		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row);
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
@@ -50,7 +50,7 @@
 	}
 	else
 	{
-		$projects = $projects_res->fetch_assoc();
+		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[] = $row);
 	}
 
 		dbug('$users_res', $users_res, '$users', $users, '$projects_res', $projects_res, '$projects', $projects); 

@@ -65,7 +65,7 @@ function dbug() {
     foreach ($args as $arg) {
 		if (is_string($arg))
 		{
-			echo ("\n\n<b>$arg</b>\n");
+			echo ("\n\n</pre><b>$arg</b>\n<pre>");
 			continue;
 		}
         var_dump($arg);
