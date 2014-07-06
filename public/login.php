@@ -21,15 +21,11 @@
         // query database for user
         $rows = $comm_db->query("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
 		
-//		pr($rows, "var_dump");
-//		pr($comm_db, 'var_dump');
-//		pr($comm_db->host_info, 'var_dump');
-		
         // if we found user, check password
-        if (mysqli_num_rows($rows) == 1)
+        if ($rows->rowCount() == 1)
         {
             // first (and only) row
-            $row = $rows->fetch_assoc();
+            $row = $rows->fetch(PDO::FETCH_ASSOC);
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
