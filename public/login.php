@@ -26,6 +26,9 @@
         {
             // first (and only) row
             $row = $rows->fetch(PDO::FETCH_ASSOC);
+			
+			dbug('$rows', $rows, '$row', $row);
+			echo debug('print');
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
