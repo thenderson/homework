@@ -46,7 +46,7 @@
 	}
 
 //      dump($project_numbers);
-		debug($comm_db);
+//		debug($comm_db);
 		debug_view($comm_db);
 		dbug($comm_db); 
 		dbug('print');
