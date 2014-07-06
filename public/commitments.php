@@ -28,7 +28,8 @@
 		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
 		$stmt->execute();
 		var_dump($stmt->errorInfo());
-		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+//		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
 	catch(PDOException $e) 
 	{
