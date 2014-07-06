@@ -19,27 +19,6 @@
         render("apology.php", ["message" => $message]);
         exit;
     }
-
-    /**
-     * Facilitates debugging by dumping contents of variable
-     * to browser.
-     */
-    function dump($variable)
-    {
-        require("../templates/dump.php");
-        exit;
-    }
-	
-	/**/ 
-	function debug( $data ) {
-
-    if ( is_array( $data ) )
-        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-    else
-        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-    echo $output;
-}
 	
 	function debug_view ( $what ) {
     echo '<pre>';
