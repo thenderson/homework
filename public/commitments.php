@@ -30,7 +30,7 @@
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
-	$users = $comm_db->query("SELECT email, username FROM users ORDER BY email ASC");
+	$users = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC");
 	
 	if (!$users)
 	{
