@@ -25,9 +25,11 @@
 	
 	try 
 	{
-//		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->execute(array($planning_horizon));
-		var_dump($stmt->errorInfo());
+		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
+		$stmt->execute();
+		dbug('$comm_db', $comm_db);
+		dbug('$stmt', $stmt);
+		dbug('print');
 		
 //		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
