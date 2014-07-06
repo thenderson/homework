@@ -31,8 +31,10 @@
 			
 			foreach ($commitments as $commitment)
 			{
-				dbug($commitment);
-				dbug($commitment['due_by']);
+				dbug('$commitment', $commitment);
+				dbug('due_by', $commitment['due_by']);
+				dbug('$now', $now);
+				echo dbug('print');
 				
 				$days_til_due = date_diff($now, new DateTime($commitment['due_by'])->days;
 				
