@@ -45,9 +45,9 @@
 		trigger_error('Statement failed : ' . E_USER_ERROR);
 	}
 
-        pr($project_numbers, 'var_dump');
-		pr($task_ids, 'var_dump');
-		pr($users, 'var_dump');
-		pr($projects, 'var_dump');
+        dump($project_numbers);
+		debug($project_numbers);
+		debug_view($project_numbers);
+		dbug($project_numbers); dbug('print');
 
 	render("commitments_form.php", ["project_numbers"=>$project_numbers, "task_ids"=>$task_ids, "descriptions"=>$descriptions, "requesters"=>$requesters, "promisers"=>$promisers, "due_bys"=>$due_bys, "requested_ons"=>$requested_ons, "statuses"=>$statuses, "types"=>$types, "metrics"=>$metrics, "users" => $users, "projects" => $projects]);
