@@ -35,30 +35,14 @@
 	}
 	
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
-	$users = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC", PDO::FETCH_ASSOC);
-	
-	if (!$users_res)
-	{
-		trigger_error('Statement failed : ' . E_USER_ERROR);
-	}
-	else
-	{
-//		for ($users = array (); $row = $users_res->fetch_assoc(); $users[] = $row); //makes associative array
-//		for ($users = array (); $row = $users_res->fetch_assoc(); $users[array_shift($row)] = $row); //makes array keyed to first field
-	}
+	$user_res = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC");
+	if (!$user_res) trigger_error('Statement failed : ' . E_USER_ERROR);
+	else $users = $user_res->fetchAll(PDO::FETCH_ASSOC);
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
-	$projects = $comm_db->query("SELECT project_number, project_shortname FROM projects", PDO::FETCH_ASSOC);
-	
-	if (!$projects_res)
-	{
-		trigger_error('Statement failed : ' . E_USER_ERROR);
-	}
-	else
-	{
-//		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[] = $row);  //makes associative array
-//		for ($projects = array (); $row = $projects_res->fetch_assoc(); $projects[array_shift($row)] = $row);  //makes array keyed to first field
-	}
+	$proj_res = $comm_db->query("SELECT project_number, project_shortname FROM projects");
+	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
+	else $projects = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 	
 	dbug('$commitments', $commitments);
 	dbug('$users', $users); 
