@@ -47,14 +47,14 @@
 				} ?>
 					<td>
 						<table>
-							<tr><td class="secondary"><?= $commitment['project_number']?></td></tr>
+							<tr class="secondary"><td><?= $commitment['project_number']?></td></tr>
 							<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
 						</table>
 					</td>
 					<td>
 						<table>
-							<tr>
-								<td class="secondary"><?= $commitment['task_id']?></td>
+							<tr class="secondary">
+								<td><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
 								<td><?= $commitment['description']?></td>

@@ -32,15 +32,12 @@ h6,
   color: 848484;
 }
 
-tr.secondary,
-th.secondary,
-td.secondary,
+.secondary
 {
   padding: 1px;
   line-height: 1.0;
   vertical-align: top;
   font-size: 11px;
-  color: 848484;
 }
 
 /* 
