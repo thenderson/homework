@@ -14,10 +14,10 @@
 				<th>promiser</th>
 				<th>requester</th>
 				<th>
-					<thead>
+					<table>
 						<th><h6>requested on</h6></th>
 						<th>due by</th>
-					</thead>
+					</table>
 				<th>status</th>
 				<th>type</th>
 				<th>metric</th>
