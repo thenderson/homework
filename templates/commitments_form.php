@@ -6,22 +6,16 @@
 		That would cost too much
 	</div>
 
-	<table class="table table-striped table-hover table-condensed" id="commitments">
+	<table class="table table-striped table-hover" id="commitments">
 		<thead>
 			<tr>
 				<th>project</th>
 				<th>commitment</th>
 				<th>promiser</th>
 				<th>requester</th>
-				<th>
-					<table>
-						<tr><h6>requested on</h6></tr>
-						<tr>due by</tr>
-					</table>
+				<th>due by</th>
 				<th>status</th>
-				<th>type</th>
 				<th>metric</th>
-				<th>days</th>
 			</th>
 		</thead>
 	
@@ -53,28 +47,22 @@
 				} ?>
 					<td>
 						<table>
-							<tr><td><h6><?= $commitment['project_number']?></h6></td></tr>
+							<tr><td class="secondary"><?= $commitment['project_number']?></td></tr>
 							<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
 						</table>
 					</td>
 					<td>
 						<table>
-							<tr><td><h6><?= $commitment['task_id']?></h6></td></tr>
+							<tr><td class="secondary><?= $commitment['task_id']?></td></tr>
 							<tr><td><?= $commitment['description']?></td></tr>
 						</table>
 					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
 						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
 					<td><select><option selected='selected' value="<?=$commitment['promiser'].'">'.$users[array_search($commitment['promiser'], $users['user_id'])]['name']?></option>
 						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
-					<td>
-						<table>
-							<tr><td><h6><?= $commitment['requested_on']?><h6></td></tr>
-							<tr><td><?= $commitment['due_by']?></td></tr>
-						</table>
+					<td><?= $commitment['due_by']?></td>
 					<td><?= $commitment['status']?></td>
-					<td><?= $commitment['type']?></td>
 					<td><?= $commitment['metric']?></td>
-					<td><?= $days_til_due?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
