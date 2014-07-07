@@ -15,8 +15,8 @@
 				<th>requester</th>
 				<th>
 					<table>
-						<th><h6>requested on</h6></th>
-						<th>due by</th>
+						<tr><h6>requested on</h6></tr>
+						<tr>due by</tr>
 					</table>
 				<th>status</th>
 				<th>type</th>
