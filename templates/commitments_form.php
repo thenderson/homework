@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h4>C O M M I T M E N T S</h4>
+	<h3>C O M M I T M E N T S</h3>
 
 	<div class="alert alert-error hide">
 		That would cost too much
@@ -26,7 +26,7 @@
 			
 			foreach ($commitments as $commitment)
 			{				
-				$days_til_due = date_diff($now, new DateTime($commitment['due_by']))->days;
+				$days_til_due = date_diff(new DateTime($commitment['due_by']), $now)->days;
 				
 				switch($days_til_due) //choose row formatting by task due date proximity
 				{
@@ -47,8 +47,12 @@
 				} ?>
 					<td>
 						<table>
-							<tr class="secondary"><td><?= $commitment['project_number']?></td></tr>
-							<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
+							<tr class="secondary">
+								<td><?= $commitment['project_number']?></td>
+							</tr>
+							<tr>
+								<td><?= $projects[$commitment['project_number']]?></td>
+							</tr>
 						</table>
 					</td>
 					<td>
@@ -62,7 +66,7 @@
 						</table>
 					</td>
 					<td>
-						<select>
+						<select class="input_sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -71,7 +75,7 @@
 						</select>
 					</td>
 					<td>
-						<select>
+						<select class="input_sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -95,9 +99,7 @@
     <script>
 		$('#commitments').editableTableWidget();
 		$('#commitments').editableTableWidget({editor: $('<textarea>')});
-		$('#commitments').editableTableWidget({
-		cloneProperties: ['background', 'border', 'outline']
-		});
+		$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
 		
 		<!-- mark invalid data -->
 		//$('table td').on('validate', function(evt, newValue) {
