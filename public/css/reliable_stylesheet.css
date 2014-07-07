@@ -32,8 +32,8 @@ h6,
   color: 848484;
 }
 
-.table > thead > tr > th.secondary,
-.table > tbody > tr > td.secondary,
+th.secondary,
+td.secondary,
 {
   padding: 1px;
   line-height: 1.0;
