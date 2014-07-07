@@ -25,19 +25,18 @@ h6,
   font-size: 10px;
 }
 
-.table > thead > tr.ghost > td,
-.table > tbody > tr.ghost > td,
-.table > tfoot > tr.ghost > td{
+.ghost /*for table rows > one week out */
+{
   background-color: #FFFFFF;
   color: 848484;
 }
 
-.secondary
+.secondary /* for 'secondary' table rows where two rows are stacked in a cell */
 {
   padding: 1px;
   line-height: 1.0;
   vertical-align: top;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 /* 
