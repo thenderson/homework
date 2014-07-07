@@ -53,8 +53,8 @@
 	}
 	
 //	dbug('$commitments', $commitments);
-	dbug('$users', $users); 
-	dbug('$projects', $projects); 
-	echo dbug('print');
+//	dbug('$users', $users); 
+//	dbug('$projects', $projects); 
+//	echo dbug('print');
 
-//	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "projects" => $projects]);
+	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "projects" => $projects]);
