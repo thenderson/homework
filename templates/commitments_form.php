@@ -9,18 +9,19 @@
 	<table class="table table-striped table-hover table-condensed" id="commitments">
 		<thead>
 			<tr>
-				<th>project #</th>
-				<th>project name</th>
-				<th>task #</th>
-				<th>description</th>
+				<th>project</th>
+				<th>commitment</th>
 				<th>promiser</th>
 				<th>requester</th>
-				<th>due by</th>
-				<th>days</th>
-				<th>requested on</th>
+				<th>
+					<thead>
+						<th><h6>requested on</h6></th>
+						<th>due by</th>
+					</thead>
 				<th>status</th>
 				<th>type</th>
 				<th>metric</th>
+				<th>days</th>
 			</th>
 		</thead>
 	
@@ -56,21 +57,24 @@
 							<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
 						</table>
 					</td>
-					<td><?= $commitment['task_id']?></td>
-					<td><?= $commitment['description']?></td>
 					<td>
 						<table>
-							<tr><td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
-							<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td></tr>
-							<tr><td><select><option selected='selected' value="<?=$commitment['promiser'].'">'.$users[array_search($commitment['promiser'], $users['user_id'])]['name']?></option>
-							<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td></tr>
-						</table></td>
-					<td><?= $commitment['due_by']?></td>
-					<td><?= $days_til_due?></td>
-					<td><?= $commitment['requested_on']?></td>
+							<tr><td><h6><?= $commitment['task_id']?></h6></td></tr>
+							<tr><td><?= $commitment['description']?></td></tr>
+						</table>
+					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
+						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
+					<td><select><option selected='selected' value="<?=$commitment['promiser'].'">'.$users[array_search($commitment['promiser'], $users['user_id'])]['name']?></option>
+						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
+					<td>
+						<table>
+							<tr><td><h6><?= $commitment['requested_on']?><h6></td></tr>
+							<tr><td><?= $commitment['due_by']?></td></tr>
+						</table>
 					<td><?= $commitment['status']?></td>
 					<td><?= $commitment['type']?></td>
 					<td><?= $commitment['metric']?></td>
+					<td><?= $days_til_due?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
