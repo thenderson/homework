@@ -37,15 +37,29 @@
 	/*	RETRIEVE USERNAMES & EMAIL ADDRESSES */ //move this to config & pass into this script?
 	$user_res = $comm_db->query("SELECT email, name FROM users ORDER BY email ASC");
 	if (!$user_res) trigger_error('Statement failed : ' . E_USER_ERROR);
-	else $users = $user_res->fetchAll(PDO::FETCH_ASSOC);
+	else 
+	{
+		$rows = $user_res->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($rows as $row)
+		{
+			$users[$row["email"]] = $row["name"];
+		}
+	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
 	$proj_res = $comm_db->query("SELECT project_number, project_shortname FROM projects");
 	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
-	else $projects = $proj_res->fetchAll(PDO::FETCH_ASSOC);
+	else 
+	{
+		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($rows as $row)
+		{
+			$projects[$row["email"]] = $row["name"];
+		}
+	}
 	
 //	dbug('$commitments', $commitments);
-//	dbug('$users', $users); 
+	dbug('$users', $users); 
 	dbug('$projects', $projects); 
 	echo dbug('print');
 
