@@ -40,7 +40,7 @@
 	else 
 	{
 		$rows = $user_res->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($rows as $row) $users[$row["email"]] = $row["name"];
+		//foreach ($rows as $row) $users[$row["email"]] = $row["name"];
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
