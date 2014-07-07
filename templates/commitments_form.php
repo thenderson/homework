@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h5>C O M M I T M E N T S</h5>
+	<h4>C O M M I T M E N T S</h4>
 
 	<div class="alert alert-error hide">
 		That would cost too much
@@ -53,12 +53,15 @@
 					<td>
 						<tr><td><h6><?= $commitment['project_number']?></h6></td></tr>
 						<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
-					<td>
+					</td>
 					<td><?= $commitment['task_id']?></td>
 					<td><?= $commitment['description']?></td>
-					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
-						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
-					<td><?= $commitment['promiser']?></td>
+					<td>
+						<tr><td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
+						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td></tr>
+						<tr><td><select><option selected='selected' value="<?=$commitment['promiser'].'">'.$users[array_search($commitment['promiser'], $users['user_id'])]['name']?></option>
+						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td></tr>
+					</td>
 					<td><?= $commitment['due_by']?></td>
 					<td><?= $days_til_due?></td>
 					<td><?= $commitment['requested_on']?></td>
