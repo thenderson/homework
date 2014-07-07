@@ -40,7 +40,7 @@
 	else 
 	{
 		$users = $user_res->fetchAll(PDO::FETCH_ASSOC);
-		//foreach ($rows as $row) $users[$row["email"]] = $row["name"];
+		foreach ($users as $row) $username_lookup[$row["user_id"]] = $row["name"];
 	}
 	
 	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
@@ -57,4 +57,4 @@
 //	dbug('$projects', $projects); 
 //	echo dbug('print');
 
-	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "projects" => $projects]);
+	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);

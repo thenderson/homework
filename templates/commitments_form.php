@@ -60,10 +60,19 @@
 								<td><?= $commitment['description']?></td>
 							</tr>
 						</table>
-					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
-						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
-					<td><select><option selected='selected' value="<?=$commitment['promiser'].'">'.$users[array_search($commitment['promiser'], $users['user_id'])]['name']?></option>
-						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
+					</td>
+					<td>
+						<select>
+							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
+							<? foreach ($users as $user) echo('<option value="' . {$user['user_id']} . '">' . {$user['name']} . '</option>'); ?>
+						</select>
+					</td>
+					<td>
+						<select>
+							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
+							<? foreach ($users as $user) echo('<option value="' . {$user['user_id']} . '">' . {$user['name']} . '</option>'); ?>
+						</select>
+					</td>
 					<td><?= $commitment['due_by']?></td>
 					<td><?= $commitment['status']?></td>
 					<td><?= $commitment['metric']?></td>
