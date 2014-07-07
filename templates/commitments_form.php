@@ -50,12 +50,14 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td><?= $commitment['project_number']?></td>
-					<td><?= $projects[$commitment['project_number']]?></td>
+					<td>
+						<tr><td><h6><?= $commitment['project_number']?></h6></td></tr>
+						<tr><td><?= $projects[$commitment['project_number']]?></td></tr>
+					<td>
 					<td><?= $commitment['task_id']?></td>
 					<td><?= $commitment['description']?></td>
-					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['email'])]['email']?></option>
-						<? foreach ($users as $row) echo('<option value="' . $row['email'] . '">' . $row['name'] . '</option>'); ?></select></td>
+					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
+						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
 					<td><?= $commitment['promiser']?></td>
 					<td><?= $commitment['due_by']?></td>
 					<td><?= $days_til_due?></td>
