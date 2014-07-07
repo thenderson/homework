@@ -55,7 +55,7 @@
 					<td><? $commitment['task_id']?></td>
 					<td><? $commitment['description']?></td>
 					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']]?></option>
-						<? while ($row = $users) echo('<option value="' . $row['email'] . '">' . $row['username'] . '</option>'); ?> </td>
+						<? foreach ($row as $users) echo('<option value="' . $row['email'] . '">' . $row['username'] . '</option>'); ?> </td>
 					<td><?= $commitment['promiser']?></td>
 					<td><?= $commitment['due_by']?></td>
 					<td><?= $days_til_due?></td>
