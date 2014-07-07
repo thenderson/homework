@@ -64,13 +64,19 @@
 					<td>
 						<select>
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
-							<? foreach ($users as $user) echo('<option value="' . {$user['user_id']} . '">' . {$user['name']} . '</option>'); ?>
+							<? foreach ($users as $user) 
+							{
+								echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
+							} ?>
 						</select>
 					</td>
 					<td>
 						<select>
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
-							<? foreach ($users as $user) echo('<option value="' . {$user['user_id']} . '">' . {$user['name']} . '</option>'); ?>
+							<? foreach ($users as $user) 
+							{
+								echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
+							} ?>
 						</select>
 					</td>
 					<td><?= $commitment['due_by']?></td>
