@@ -30,13 +30,8 @@
 			$now = new DateTime();		
 			
 			foreach ($commitments as $commitment)
-			{
-				//dbug('$commitment', $commitment);
-				//dbug('due_by', $commitment['due_by']);
-				//dbug('$now', $now);
-				//echo dbug('print');
-				
-				$days_til_due = 0; //date_diff($now, new DateTime($commitment['due_by'])->days;
+			{				
+				$days_til_due = date_diff($now, new DateTime($commitment['due_by'])->days;
 				
 				switch($days_til_due) //choose row formatting by task due date proximity
 				{
@@ -60,12 +55,7 @@
 					<td><? $commitment['task_id']?></td>
 					<td><? $commitment['description']?></td>
 					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']]?></option>
-
-						<? while ($row = $users)
-						{
-							//echo('<option value="' . $row['email'] . '">' . $row['username'] . '</option>');
-						} ?>
-					</td>
+						<? while ($row = $users) echo('<option value="' . $row['email'] . '">' . $row['username'] . '</option>'); ?> </td>
 					<td><?= $commitment['promiser']?></td>
 					<td><?= $commitment['due_by']?></td>
 					<td><?= $days_til_due?></td>
