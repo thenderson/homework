@@ -61,12 +61,12 @@
 								<td><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
-								<td><?= $commitment['description']?></td>
+								<td style="cursor: pointer"><?= $commitment['description']?></td>
 							</tr>
 						</table>
 					</td>
 					<td>
-						<select class="input_sm">
+						<select style="cursor: pointer" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -75,7 +75,7 @@
 						</select>
 					</td>
 					<td>
-						<select class="input_sm">
+						<select style="cursor: pointer" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -83,8 +83,8 @@
 							} ?>
 						</select>
 					</td>
-					<td><?= $commitment['due_by']?></td>
-					<td><?= $commitment['status']?></td>
+					<td style="cursor: pointer"><?= $commitment['due_by']?></td>
+					<td style="cursor: pointer"><?= $commitment['status']?></td>
 					<td><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
