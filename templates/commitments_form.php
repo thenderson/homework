@@ -31,10 +31,10 @@
 			
 			foreach ($commitments as $commitment)
 			{
-				dbug('$commitment', $commitment);
-				dbug('due_by', $commitment['due_by']);
-				dbug('$now', $now);
-				echo dbug('print');
+				//dbug('$commitment', $commitment);
+				//dbug('due_by', $commitment['due_by']);
+				//dbug('$now', $now);
+				//echo dbug('print');
 				
 				$days_til_due = 0; //date_diff($now, new DateTime($commitment['due_by'])->days;
 				
@@ -56,7 +56,7 @@
 						<?
 				} ?>
 					<td><? $commitment['project_number']?></td>
-					<td><? $projects[$commitment['project_number']]?></td>
+					<td><? $projects['project_number'=$commitment['project_number']]?></td>
 					<td><? $commitment['task_id']?></td>
 					<td><? $commitment['description']?></td>
 					<td><option selected='selected' value="<?$commitment['requester'].'">'.$users[$commitment['requester']]?></option>
