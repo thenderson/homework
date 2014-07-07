@@ -53,8 +53,12 @@
 					</td>
 					<td>
 						<table>
-							<tr><td class="secondary><?= $commitment['task_id']?></td></tr>
-							<tr><td><?= $commitment['description']?></td></tr>
+							<tr>
+								<td class="secondary"><?= $commitment['task_id']?></td>
+							</tr>
+							<tr>
+								<td><?= $commitment['description']?></td>
+							</tr>
 						</table>
 					<td><select><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'], $users['user_id'])]['name']?></option>
 						<? foreach ($users as $row) echo('<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>'); ?></select></td>
