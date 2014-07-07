@@ -39,7 +39,7 @@
 	if (!$user_res) trigger_error('Statement failed : ' . E_USER_ERROR);
 	else 
 	{
-		$rows = $user_res->fetchAll(PDO::FETCH_ASSOC);
+		$users = $user_res->fetchAll(PDO::FETCH_ASSOC);
 		//foreach ($rows as $row) $users[$row["email"]] = $row["name"];
 	}
 	
