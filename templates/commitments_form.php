@@ -54,7 +54,7 @@
 					<td><?= $projects[$commitment['project_number']]?></td>
 					<td><?= $commitment['task_id']?></td>
 					<td><?= $commitment['description']?></td>
-					<td><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester']]['email']]?></option>
+					<td><option selected='selected' value="<?=$commitment['requester'].'">'.$users[array_search($commitment['requester'])]['email']]?></option>
 						<? foreach ($users as $row) echo('<option value="' . $row['email'] . '">' . $row['name'] . '</option>'); ?> </td>
 					<td><?= $commitment['promiser']?></td>
 					<td><?= $commitment['due_by']?></td>
