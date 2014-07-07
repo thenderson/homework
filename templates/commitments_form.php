@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h3>C O M M I T M E N T S</h3>
+	<h3><b>C O M M I T M E N T S</b></h3>
 
 	<div class="alert alert-error hide">
 		That would cost too much
