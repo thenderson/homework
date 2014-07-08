@@ -9,9 +9,9 @@
 				<span class="icon-bar"></span>
 			</button>
 		</div>
-		<nav class="collapse navbar-collapse lmargin-8px" id="collapse2">
+		<nav class="collapse navbar-collapse margin-8px" id="collapse2">
 			<ul class="nav navbar-nav">
-				<li><p class="navbar-text">&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></p></li>
+				<li><p class="navbar-text">&#169;2014 <a href="http://www.boulderassociates.com"> Boulder Associates Architects, Inc.</a></p></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="disabled"><a href="#">terms</a></li>
