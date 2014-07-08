@@ -10,7 +10,7 @@
 			</button>
 		</div>
 		<nav class="collapse navbar-collapse" id="collapse2">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav lmargin-8px">
 				<li><p class="navbar-text">&#169;2014 <a href="http://www.boulderassociates.com">Boulder Associates Architects, Inc.</a></p></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

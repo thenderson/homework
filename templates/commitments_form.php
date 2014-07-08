@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h3><b>C O M M I T M E N T S</b></h3>
+	<h3 class="padding-8px"><b>C O M M I T M E N T S</b></h3>
 
 	<div class="alert alert-error hide">
 		That would cost too much
@@ -45,7 +45,7 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td>
+					<td style="width:10%">
 						<table>
 							<tr class="secondary">
 								<td><?= $commitment['project_number']?></td>
@@ -55,17 +55,17 @@
 							</tr>
 						</table>
 					</td>
-					<td>
+					<td style="width:40%">
 						<table>
 							<tr class="secondary">
 								<td><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
-								<td style="cursor: pointer"><?= $commitment['description']?></td>
+								<td style="cursor:pointer"><?= $commitment['description']?></td>
 							</tr>
 						</table>
 					</td>
-					<td>
+					<td style="width:15%">
 						<select style="cursor: pointer" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
@@ -74,7 +74,7 @@
 							} ?>
 						</select>
 					</td>
-					<td>
+					<td style="width:15%">
 						<select style="cursor: pointer" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
@@ -83,9 +83,9 @@
 							} ?>
 						</select>
 					</td>
-					<td style="cursor: pointer"><?= $commitment['due_by']?></td>
-					<td style="cursor: pointer"><?= $commitment['status']?></td>
-					<td><?= $commitment['metric']?></td>
+					<td style="width:10% cursor:pointer"><?= $commitment['due_by']?></td>
+					<td style="width:5% cursor:pointer"><?= $commitment['status']?></td>
+					<td style="width:5%"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
@@ -112,7 +112,7 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				total = 0;
+				console.log("change detected at:", column);
 			if (column === 0) {
 				return;
 			}
