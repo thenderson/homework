@@ -24,7 +24,7 @@
 		
 		<header class="navbar navbar-default" id="top" role="navigation">
 			<div class="container">
-				<div class="navbar-header lmargin-8px">
+				<div class="navbar-header">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
@@ -33,7 +33,7 @@
 					</button>
 					<a href="../" class="navbar-brand">r e l i a b l e</a>
 				</div>
-				<nav class="collapse navbar-collapse" id="collapse" role="navigation">
+				<nav class="collapse navbar-collapse lmargin-8px" id="collapse" role="navigation">
 					<ul class="nav navbar-nav">
 						<li></li>
 						<li><a href="index.php">home</a></li>

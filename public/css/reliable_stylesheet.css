@@ -34,7 +34,8 @@ h6.padding-8px { /* for aligning page title text */
 	padding: 8px;
 }
  
-p.lmargin-8px { /* for aligning footer text */
+nav.lmargin-8px, /* for aligning header text */ 
+p.lmargin-8px {  /* for aligning footer text */
 margin-left: 8px;
 }
 

@@ -112,7 +112,10 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				console.debug("change detected at:", column, cell);
+				total = 0;
+			
+			console.log("change detected at:", column);
+			
 			if (column === 0) {
 				return;
 			}
