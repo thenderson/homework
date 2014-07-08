@@ -119,14 +119,6 @@
 			if (column === 0) {
 				return false;
 			}
-			
-			if (column === 1 && total > 5000) {
-				$('.alert').show();
-				return false; // changes can be rejected
-			} else {
-				$('.alert').hide();
-				footer.children().eq(column).text(total);
-			}
 		});
     </script>
 </div>
