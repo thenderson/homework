@@ -15,7 +15,7 @@
 				<th>requester</th>
 				<th class="text-center">due by</th>
 				<th class="text-center">status</th>
-				<th class="text-center">metric</th>
+				<th class="text-right">metric</th>
 			</th>
 		</thead>
 	
@@ -45,7 +45,7 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td style="width:10%">
+					<td style="width:12%">
 						<table>
 							<tr class="secondary">
 								<td><?= $commitment['project_number']?></td>
@@ -55,7 +55,7 @@
 							</tr>
 						</table>
 					</td>
-					<td style="width:38%">
+					<td style="width:42%">
 						<table>
 							<tr class="secondary">
 								<td><?= $commitment['task_id']?></td>
@@ -65,7 +65,7 @@
 							</tr>
 						</table>
 					</td>
-					<td style="width:15%">
+					<td style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
@@ -74,7 +74,7 @@
 							} ?>
 						</select>
 					</td>
-					<td style="width:15%">
+					<td style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
@@ -85,7 +85,7 @@
 					</td>
 					<td style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
 					<td style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
-					<td style="width:5%" class="text-center"><?= $commitment['metric']?></td>
+					<td style="width:5%" class="text-right"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
