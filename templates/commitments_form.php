@@ -55,18 +55,18 @@
 							</tr>
 						</table>
 					</td>
-					<td style="width:40%">
+					<td style="width:35%">
 						<table>
 							<tr class="secondary">
 								<td><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
-								<td style="cursor:pointer"><?= $commitment['description']?></td>
+								<td style="cursor:pointer;"><?= $commitment['description']?></td>
 							</tr>
 						</table>
 					</td>
 					<td style="width:15%">
-						<select style="cursor: pointer" class="form-control input-sm">
+						<select style="cursor:pointer;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -75,7 +75,7 @@
 						</select>
 					</td>
 					<td style="width:15%">
-						<select style="cursor: pointer" class="form-control input-sm">
+						<select style="cursor:pointer;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
 							{
@@ -83,8 +83,8 @@
 							} ?>
 						</select>
 					</td>
-					<td style="width:10% cursor:pointer"><?= $commitment['due_by']?></td>
-					<td style="width:5% cursor:pointer"><?= $commitment['status']?></td>
+					<td style="width:15%;cursor:pointer;"><?= $commitment['due_by']?></td>
+					<td style="width:5%;cursor:pointer;"><?= $commitment['status']?></td>
 					<td style="width:5%"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
@@ -112,7 +112,7 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				console.log("change detected at:", column);
+				console.debug("change detected at:", column, cell);
 			if (column === 0) {
 				return;
 			}

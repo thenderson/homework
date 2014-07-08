@@ -24,7 +24,7 @@
 		
 		<header class="navbar navbar-default" id="top" role="navigation">
 			<div class="container">
-				<div class="navbar-header">
+				<div class="navbar-header lmargin-8px">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
