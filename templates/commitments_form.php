@@ -117,12 +117,9 @@
 			console.log("change detected at:", column);
 			
 			if (column === 0) {
-				return;
+				return false;
 			}
-			element.find('tbody tr').each(function () {
-				var row = $(this);
-				total += parseFloat(row.children().eq(column).text());
-			});
+			
 			if (column === 1 && total > 5000) {
 				$('.alert').show();
 				return false; // changes can be rejected
