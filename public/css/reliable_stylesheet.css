@@ -34,12 +34,14 @@ h6.padding-8px { /* for aligning page title text */
 	padding: 8px;
 }
  
-.container>.navbar-header.lmargin-8px { /* for aligning header text */ 
+.container>.navbar-header.margin-8px { /* for aligning header text */ 
 margin-left: 8px;
+margin-right: 8px;
 }
  
-p.lmargin-8px {  /* for aligning footer text */
+.container>.navbar-collapse.margin-8px {  /* for aligning footer text */
 margin-left: 8px;
+margin-right: 8px;
 }
 
 .ghost /* for table rows > one week out */
