@@ -111,7 +111,7 @@
 		<!-- act on changed data -->
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
-				column = CellIndex,
+				column = cellIndex,
 				row = cell.parentNode.rowIndex,
 				header = cell.headers;
 			
