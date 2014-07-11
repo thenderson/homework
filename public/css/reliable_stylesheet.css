@@ -46,6 +46,10 @@ padding-right: 0px;
 padding-left: 0px;
 }
 
+.navbar-text {  /* for aligning footer text */
+margin-left: 0px;
+}
+
 .ghost /* for table rows > one week out */
 {
   background-color: #FFFFFF;
