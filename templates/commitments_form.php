@@ -112,7 +112,7 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				row = cell.parentNote.rowIndex(),
+				row = cell.parentNode.rowIndex(),
 				header = cell.headers();
 			
 			console.log("change detected at: C:", column, " R:", row, " H:", header);
