@@ -48,7 +48,7 @@
 					<td style="width:12%">
 						<table>
 							<tr class="secondary">
-								<td><?= $commitment['project_number']?></td>
+								<td><?=$commitment['project_number']?></td>
 							</tr>
 							<tr>
 								<td><?= $projects[$commitment['project_number']]?></td>
@@ -61,11 +61,11 @@
 								<td><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
-								<td style="cursor:pointer;"><?= $commitment['description']?></td>
+								<td headers="description" style="cursor:pointer;"><?= $commitment['description']?></td>
 							</tr>
 						</table>
 					</td>
-					<td style="width:12%">
+					<td headers="requester" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
@@ -74,7 +74,7 @@
 							} ?>
 						</select>
 					</td>
-					<td style="width:12%">
+					<td headers="promiser" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
@@ -83,8 +83,8 @@
 							} ?>
 						</select>
 					</td>
-					<td style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
-					<td style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
+					<td headers="due_by" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
+					<td headers="status" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
 					<td style="width:5%" class="text-right"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
@@ -111,13 +111,23 @@
 		<!-- act on changed data -->
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
-				column = cell.index(),
-				total = 0;
+				column = cell.colIndex(),
+				row = cell.rowIndex(),
+				header = cell.headers();
 			
-			console.log("change detected at:", column);
+			console.log("change detected at: C:", column, " R:", row, " H:", header);
 			
-			if (column === 0) {
-				return false;
+			if (header === 0) {
+				console.log("header was zero");
+				//return false;
+			}
+			if (header === NULL) {
+				console.log("header was null");
+				//return false;
+			
+			if (header === FALSE) {
+				console.log("header was false");
+				//return false;
 			}
 		});
     </script>

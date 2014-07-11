@@ -38,6 +38,10 @@ h6.padding-8px { /* for aligning page title text */
 margin-left: 8px;
 margin-right: 8px;
 }
+
+.navbar-right {  /* for aligning header text */ 
+padding-right: 0px;
+}
  
 .container>.navbar-collapse.margin-8px {  /* for aligning footer text */
 margin-left: 8px;
