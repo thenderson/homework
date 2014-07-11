@@ -124,7 +124,7 @@
 			if (header === NULL) {
 				console.log("header was null");
 				//return false;
-			
+			}
 			if (header === FALSE) {
 				console.log("header was false");
 				//return false;
