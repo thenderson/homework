@@ -112,8 +112,8 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				row = $(this).closest('tr'),
-				header = $(this).headers;
+				row = cell.closest('tr').rowIndex,
+				header = cell.headers;
 			
 			console.log("change detected at: C:", column, " R:", row, " H:", header);
 			
