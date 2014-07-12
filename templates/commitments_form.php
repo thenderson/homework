@@ -112,8 +112,8 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				row = cell.parentNode.rowIndex(),
-				header = cell.headers();
+				row = $(this).closest('tr'),
+				header = $(this).headers();
 			
 			console.log("change detected at: C:", column, " R:", row, " H:", header);
 			
@@ -121,11 +121,11 @@
 				console.log("header was zero");
 				//return false;
 			}
-			if (header === NULL) {
+			if (header === null) {
 				console.log("header was null");
 				//return false;
 			}
-			if (header === FALSE) {
+			if (header === false) {
 				console.log("header was false");
 				//return false;
 			}
