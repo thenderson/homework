@@ -113,7 +113,7 @@
 			var cell = $(this),
 				column = cell.index(),
 				row = $(this).closest('tr'),
-				header = $(this).headers();
+				header = $(this).headers;
 			
 			console.log("change detected at: C:", column, " R:", row, " H:", header);
 			
