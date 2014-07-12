@@ -113,7 +113,13 @@
 			var cell = $(this);
 			var col_num = parseInt( $(this).index() );
             var row_num = parseInt( $(this).parent().index() ); 
-			var header = cell.headers();
+			
+			if (!cell.headers)
+			{
+				cell.headers = "trout";
+			}
+			
+			var header = cell.headers;
 				
 			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header);
 		});
