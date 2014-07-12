@@ -110,13 +110,12 @@
 
 		<!-- act on changed data -->
 		$('table td').on('change', function(evt, newValue) {
-			var cell = $(this),
-				column = cell.index(),
-				row = cell.closest('tr'),
-				row_num = $(this).rowIndex,
-				header = cell.headers;
-			
-			console.log("change detected at: C:", column, " R:", row_num, " H:", header);
+			var cell = $(this);
+			var column_num = parseInt( $(this).index() );
+            var row_num = parseInt( $(this).parent().index() ); 
+			var header = $(this).headers;
+				
+			console.log("change detected at: C:", column_num, " R:", row_num, " H:", header, " cell: ", cell);
 			
 			if (header === 0) {
 				console.log("header was zero");
