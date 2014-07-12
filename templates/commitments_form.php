@@ -113,9 +113,7 @@
 			var cell = $(this);
 			var col_num = parseInt( $(this).index() );
             var row_num = parseInt( $(this).parent().index() ); 
-			
-			var table = document.getElementById ("commitments");
-			var header = table.rows[row_num].cells[col_num].headers;
+			var header = cell.headers();
 				
 			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header);
 		});
