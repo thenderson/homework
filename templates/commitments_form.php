@@ -112,10 +112,11 @@
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this),
 				column = cell.index(),
-				row = cell.closest('tr').rowIndex,
+				row = cell.closest('tr'),
+				row_num = row.rowIndex,
 				header = cell.headers;
 			
-			console.log("change detected at: C:", column, " R:", row, " H:", header);
+			console.log("change detected at: C:", column, " R:", row_num, " H:", header);
 			
 			if (header === 0) {
 				console.log("header was zero");
