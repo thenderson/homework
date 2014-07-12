@@ -111,13 +111,13 @@
 		<!-- act on changed data -->
 		$('table td').on('change', function(evt, newValue) {
 			var cell = $(this);
-			var column_num = parseInt( $(this).index() );
+			var col_num = parseInt( $(this).index() );
             var row_num = parseInt( $(this).parent().index() ); 
-			var header = table.rows[row_num].cell[column_num].headers;
-				
-			console.log("change detected at: C:", column_num, " R:", row_num, " H:", header);
 			
-
+			var table = document.getElementById ("commitments");
+			var header = table.rows[row_num].cells[col_num].headers;
+				
+			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header);
 		});
     </script>
 </div>
