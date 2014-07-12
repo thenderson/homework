@@ -113,22 +113,11 @@
 			var cell = $(this);
 			var column_num = parseInt( $(this).index() );
             var row_num = parseInt( $(this).parent().index() ); 
-			var header = $(this).headers;
+			var header = table.rows[row_num].cell[column_num].headers;
 				
-			console.log("change detected at: C:", column_num, " R:", row_num, " H:", header, " cell: ", cell);
+			console.log("change detected at: C:", column_num, " R:", row_num, " H:", header);
 			
-			if (header === 0) {
-				console.log("header was zero");
-				//return false;
-			}
-			if (header === null) {
-				console.log("header was null");
-				//return false;
-			}
-			if (header === false) {
-				console.log("header was false");
-				//return false;
-			}
+
 		});
     </script>
 </div>
