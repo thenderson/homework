@@ -9,13 +9,15 @@
 	<table class="table table-striped table-hover" id="commitments">
 		<thead>
 			<tr>
-				<th id="project">project</th>
+				<th id="project_num">project #</th>
+				<th id="project_shortname">project</th>
+				<th id="task_id">id #</th>
 				<th id="description">commitment</th>
 				<th id="promiser">promiser</th>
 				<th id="requester">requester</th>
 				<th id="due_by" class="text-center">due by</th>
 				<th id="status" class="text-center">status</th>
-				<th class="text-right">metric</th>
+				<th id="metric" class="text-right">metric</th>
 			</th>
 		</thead>
 	
@@ -45,26 +47,12 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td style="width:12%">
-						<table>
-							<tr class="secondary">
-								<td contenteditable="false"><?=$commitment['project_number']?></td>
-							</tr>
-							<tr>
-								<td contenteditable="false"><?= $projects[$commitment['project_number']]?></td>
-							</tr>
-						</table>
-					</td>
-					<td style="width:42%">
-						<table>
-							<tr class="secondary">
-								<td contenteditable="false"><?= $commitment['task_id']?></td>
-							</tr>
-							<tr>
-								<td headers="description" style="cursor:pointer;"><?= $commitment['description']?></td>
-							</tr>
-						</table>
-					</td>
+
+					<td headers="project_num" contenteditable="false" style="width:6%" class="secondary"><?=$commitment['project_number']?></td>
+					<td headers="project_shortname" contenteditable="false" style="width:12%"><?= $projects[$commitment['project_number']]?></td>
+					<td headers="task_id" style="width:6%" class="secondary" contenteditable="false"><?= $commitment['task_id']?></td>
+					<td headers="description" style="width:30% cursor:pointer;"><?= $commitment['description']?></td>
+
 					<td headers="requester" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
@@ -74,6 +62,7 @@
 							} ?>
 						</select>
 					</td>
+					
 					<td headers="promiser" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
@@ -83,18 +72,19 @@
 							} ?>
 						</select>
 					</td>
+					
 					<td headers="due_by" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
 					<td headers="status" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
-					<td contenteditable="false" style="width:5%" class="text-right"><?= $commitment['metric']?></td>
+					<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
-    </table>
-	<tfoot>
-		<tr>
-			
-		</tr>
-	</tfoot>
+		<tfoot>
+			<tr>
+				
+			</tr>
+		</tfoot>
+	</table>
 	
     <script>
 		$('#commitments').editableTableWidget();
@@ -113,12 +103,7 @@
 			var cell = $(this);
 			var col_num = parseInt( $(this).index() );
             var row_num = parseInt( $(this).parent().index() ); 
-			
-			if (!cell.headers)
-			{
-				console.log("headers is empty");
-			}
-			
+
 			var header = cell.headers;
 			var c_class = cell.className;
 				
