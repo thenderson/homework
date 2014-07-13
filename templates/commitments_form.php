@@ -105,7 +105,7 @@
 				var row_num = parseInt(row.index()); 
 				var header = cell.attr("headers");
 				//var c_class = cell.attr("class");
-				var u_id = row.eq(0);
+				var u_id = row.eq(0).text();
 					
 				console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " u_id: ", u_id);
 			});
