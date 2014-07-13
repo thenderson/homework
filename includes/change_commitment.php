@@ -13,9 +13,28 @@
 			exit;
 		}
 
+		switch ($_POST('field'))
+		{
+			case "description"
+				$qry = "UPDATE commitments WHERE unique_id = ? SET description = ?;";
+				break;
+			case "requester"
+				$qry = "UPDATE commitments WHERE unique_id = ? SET requester = ?;";
+				break;
+			case "promiser"
+				$qry = "UPDATE commitments WHERE unique_id = ? SET promiser = ?;";
+				break;
+			case "status"
+				$qry = "UPDATE commitments WHERE unique_id = ? SET status = ?;";
+				break;
+			case "date_due"
+				$qry = "UPDATE commitments WHERE unique_id = ? SET date_due = ?;";
+				break;
+		}
+		
 		try
 		{
-			$stmt = $comm_db->prepare("UPDATE commitments WHERE unique_id = ? SET ? = ?");
+			$stmt = $comm_db->prepare($qry);
 		}
 		
 		catch(PDOException $e)

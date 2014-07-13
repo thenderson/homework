@@ -120,20 +120,20 @@
 							new_value: value
 						},
 						type: 'POST',
-						dataType: 'text'
+						dataType: 'html'
 					});
 									
 					response.done(function(result) {
 						if (result=='success') {
 							// flash the changed cell green for 1 second
-							cell.addClass('flash-green')
-							var delay = setTimeout(function(){cell.removeClass('flash-green')}, 300);
+							cell.attr('background-color','green')
+							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
 							console.log(result);
 							return true;
 						} else {
 							// flash the changed cell red for 1 second & replace value
-							cell.addClass('flash-red')
-							var delay = setTimeout(function(){cell.removeClass('flash-red')}, 300);
+							cell.attr('background-color', 'red')
+							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
 							alert("Error: " + result);
 							console.log(result);
 							return false;
