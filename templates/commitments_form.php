@@ -102,8 +102,8 @@
 				var col_num = parseInt( $(this).index() );
 				var row_num = parseInt( $(this).parent().index() ); 
 
-				var header = cell.attr(headers);
-				var c_class = cell.attr(className);
+				var header = cell.attr("headers");
+				var c_class = cell.attr("className");
 					
 				console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
 			});
