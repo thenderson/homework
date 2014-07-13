@@ -32,7 +32,7 @@
 		} 
 		catch(PDOException $e) 
 		{
-			echo 'Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+			echo 'Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR;
 			//trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 		}
 		
