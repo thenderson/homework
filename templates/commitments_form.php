@@ -9,6 +9,7 @@
 	<table class="table table-striped table-hover" id="commitments">
 		<thead>
 			<tr>
+				<th id="unique_id" class="hidden">u_id</th>
 				<th id="project_num">project #</th>
 				<th id="project_shortname">project</th>
 				<th id="task_id">id #</th>
@@ -47,7 +48,7 @@
 						<tr class="ghost">
 						<?
 				} ?>
-
+					<td headers="unique_id" class="hidden"><?=$commitment['unique_id']?></td>
 					<td headers="project_num" contenteditable="false" style="width:8%" class="secondary"><?=$commitment['project_number']?></td>
 					<td headers="project_shortname" contenteditable="false" style="width:12%"><?= $projects[$commitment['project_number']]?></td>
 					<td headers="task_id" style="width:4%" class="secondary" contenteditable="false"><?= $commitment['task_id']?></td>
@@ -99,13 +100,14 @@
 			<!-- act on changed data -->
 			$('table td').on('change', function(evt, newValue) {
 				var cell = $(this);
-				var col_num = parseInt( $(this).index() );
-				var row_num = parseInt( $(this).parent().index() ); 
-
+				var row = cell.parent();
+				var col_num = parseInt(cell.index());
+				var row_num = parseInt(row.index()); 
 				var header = cell.attr("headers");
-				var c_class = cell.attr("class");
+				//var c_class = cell.attr("class");
+				var u_id = row.eq(0);
 					
-				console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
+				console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " u_id: ", u_id);
 			});
 		});
 	</script>
