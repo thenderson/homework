@@ -48,9 +48,9 @@
 						<?
 				} ?>
 
-					<td headers="project_num" contenteditable="false" style="width:6%" class="secondary"><?=$commitment['project_number']?></td>
+					<td headers="project_num" contenteditable="false" style="width:8%" class="secondary"><?=$commitment['project_number']?></td>
 					<td headers="project_shortname" contenteditable="false" style="width:12%"><?= $projects[$commitment['project_number']]?></td>
-					<td headers="task_id" style="width:6%" class="secondary" contenteditable="false"><?= $commitment['task_id']?></td>
+					<td headers="task_id" style="width:4%" class="secondary" contenteditable="false"><?= $commitment['task_id']?></td>
 					<td headers="description" style="width:30% cursor:pointer;"><?= $commitment['description']?></td>
 
 					<td headers="requester" style="width:12%">
@@ -80,34 +80,33 @@
 			<?php } ?>
 		</tbody>
 		<tfoot>
-			<tr>
-				
-			</tr>
 		</tfoot>
 	</table>
+</div> <!-- close container -->
 	
-    <script>
-		$('#commitments').editableTableWidget();
-		$('#commitments').editableTableWidget({editor: $('<textarea>')});
-		$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
-		
-		<!-- mark invalid data -->
-		//$('table td').on('validate', function(evt, newValue) {
-		//	if (....) { 
-		//		return false; // mark cell as invalid 
-		//	}
-		//});
+<script>
+	$(document).ready(function(){
+	$('#commitments').editableTableWidget();
+	$('#commitments').editableTableWidget({editor: $('<textarea>')});
+	$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
+	
+	<!-- mark invalid data -->
+	//$('table td').on('validate', function(evt, newValue) {
+	//	if (....) { 
+	//		return false; // mark cell as invalid 
+	//	}
+	//});
 
-		<!-- act on changed data -->
-		$('table td').on('change', function(evt, newValue) {
-			var cell = $(this);
-			var col_num = parseInt( $(this).index() );
-            var row_num = parseInt( $(this).parent().index() ); 
+	<!-- act on changed data -->
+	$('table td').on('change', function(evt, newValue) {
+		var cell = $(this);
+		var col_num = parseInt( $(this).index() );
+		var row_num = parseInt( $(this).parent().index() ); 
 
-			var header = cell.headers;
-			var c_class = cell.className;
-				
-			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
-		});
-    </script>
-</div>
+		var header = cell.attr(headers);
+		var c_class = cell.attr(className);
+			
+		console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
+	});
+	)};
+</script>
