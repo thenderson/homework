@@ -17,7 +17,7 @@
 		
 		if (!$stmt)
 		{
-			echo "statement failed: ".$stmt->error, E_USER_ERROR;
+			echo "statement failed: ".$stmt->error;//, E_USER_ERROR;
 			//trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 			exit;
 		}
