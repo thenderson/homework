@@ -17,7 +17,7 @@
 		
 		if (!$stmt)
 		{
-			echo "statement failed: ". E_USER_ERROR;
+			echo "statement failed:\n". $stmt->errorInfo(), E_USER_ERROR;
 			//trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 			exit;
 		}
@@ -32,7 +32,7 @@
 		} 
 		catch(PDOException $e) 
 		{
-			echo 'Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR;
+			echo 'Error: ' . $e->getMessage(), E_USER_ERROR;
 			//trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 		}
 		
