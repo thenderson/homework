@@ -24,7 +24,9 @@
 		
 		try 
 		{
-			$stmt->bindParam('dss', {$_POST["u_id"], $_POST["field"], $_POST["new_value"]}, PDO::PARAM_INT);
+			$stmt->bindParam(1, $_POST["u_id"], PDO::PARAM_INT);
+			$stmt->bindParam(2, $_POST["field"], PDO::PARAM_STR);
+			$stmt->bindParam(3, $_POST["new_value"], PDO::PARAM_STR);
 			$stmt->execute();		
 			//$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} 
