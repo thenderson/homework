@@ -9,12 +9,12 @@
 	<table class="table table-striped table-hover" id="commitments">
 		<thead>
 			<tr>
-				<th>project</th>
-				<th>commitment</th>
-				<th>promiser</th>
-				<th>requester</th>
-				<th class="text-center">due by</th>
-				<th class="text-center">status</th>
+				<th id="project">project</th>
+				<th id="description">commitment</th>
+				<th id="promiser">promiser</th>
+				<th id="requester">requester</th>
+				<th id="due_by" class="text-center">due by</th>
+				<th id="status" class="text-center">status</th>
 				<th class="text-right">metric</th>
 			</th>
 		</thead>
@@ -48,17 +48,17 @@
 					<td style="width:12%">
 						<table>
 							<tr class="secondary">
-								<td><?=$commitment['project_number']?></td>
+								<td contenteditable="false"><?=$commitment['project_number']?></td>
 							</tr>
 							<tr>
-								<td><?= $projects[$commitment['project_number']]?></td>
+								<td contenteditable="false"><?= $projects[$commitment['project_number']]?></td>
 							</tr>
 						</table>
 					</td>
 					<td style="width:42%">
 						<table>
 							<tr class="secondary">
-								<td><?= $commitment['task_id']?></td>
+								<td contenteditable="false"><?= $commitment['task_id']?></td>
 							</tr>
 							<tr>
 								<td headers="description" style="cursor:pointer;"><?= $commitment['description']?></td>
@@ -85,7 +85,7 @@
 					</td>
 					<td headers="due_by" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
 					<td headers="status" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
-					<td style="width:5%" class="text-right"><?= $commitment['metric']?></td>
+					<td contenteditable="false" style="width:5%" class="text-right"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
@@ -118,8 +118,7 @@
 			{
 				console.log("headers is empty");
 			}
-			
-			var header = cell.getAttribute("headers");
+
 			var c_class = cell.className;
 				
 			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
