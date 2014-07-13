@@ -15,19 +15,19 @@
 
 		switch ($_POST('field'))
 		{
-			case "description"
+			case "description":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET description = ?;";
 				break;
-			case "requester"
+			case "requester":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET requester = ?;";
 				break;
-			case "promiser"
+			case "promiser":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET promiser = ?;";
 				break;
-			case "status"
+			case "status":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET status = ?;";
 				break;
-			case "date_due"
+			case "date_due":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET date_due = ?;";
 				break;
 		}
