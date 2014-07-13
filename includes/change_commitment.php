@@ -13,7 +13,7 @@
 			exit;
 		}
 
-		switch ($_POST('field'))
+		switch ($_POST['field'])
 		{
 			case "description":
 				$qry = "UPDATE commitments WHERE unique_id = ? SET description = ?;";
