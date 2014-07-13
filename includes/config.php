@@ -35,8 +35,9 @@
 		// connect to database
 		$comm_db = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
 
-		// ensure that PDO::prepare returns false when passed invalid SQL
-		$comm_db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+		
+		$comm_db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);   // ensure that PDO::prepare returns false when passed invalid SQL
+		$comm_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // thow exceptions when errors arise
 	}
 	catch (Exception $e)
 	{

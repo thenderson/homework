@@ -69,7 +69,6 @@ margin-left: 0px;
 
 .flash-green {
     background-color: green;
-	display: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -77,10 +76,6 @@ margin-left: 0px;
 
 .flash-red {
     background-color: red;
-	display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
 }
 
 /* 
