@@ -13,12 +13,14 @@
 			exit;
 		}
 
-		$stmt = $comm_db->prepare("UPDATE commitments WHERE unique_id = ? SET ? = ?");
-		
-		if (!$stmt)
+		try
 		{
-			echo "statement failed:\n". $stmt->errorInfo(), E_USER_ERROR;
-			//trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+			$stmt = $comm_db->prepare("UPDATE commitments WHERE unique_id = ? SET ? = ?");
+		}
+		
+		catch(PDOException $e)
+		{
+			echo "statement failed:\n". $e->getMessage(), E_USER_ERROR;
 			exit;
 		}
 		
