@@ -113,7 +113,7 @@
  				if (cell.attr("contenteditable"))
 				{
 					var response = $.ajax({
-						url: '/includes/change_commitment.php',
+						url: '/commgr/includes/change_commitment.php',
 						data: {
 							u_id: u_id,
 							field: header,
