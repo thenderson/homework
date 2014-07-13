@@ -44,9 +44,4 @@
 		trigger_error($e->getMessage(), E_USER_ERROR);
 		exit;
 	}
-	
-//	$comm_db = new mysqli(SERVER, USERNAME, PASSWORD, DATABASE);
-//	if ($comm_db->connect_errno) {
-//		echo "Failed to connect to MySQL: (" . $comm_db->connect_errno . ") " . $comm_db->connect_error;
-//		}
 ?>
