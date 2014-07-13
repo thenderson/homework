@@ -67,6 +67,22 @@ margin-left: 0px;
   font-size: 10px;
 }
 
+.flash-green {
+    background-color: green;
+	display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.flash-red {
+    background-color: red;
+	display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 /* 
  * this CSS is not part of the widget, it is here just as an example of the demo page styling.... 
  * 

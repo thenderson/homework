@@ -48,13 +48,13 @@
 						<tr class="ghost">
 						<?
 				} ?>
-					<td headers="unique_id" class="hidden"><?=$commitment['unique_id']?></td>
+					<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
 					<td headers="project_num" contenteditable="false" style="width:8%" class="secondary"><?=$commitment['project_number']?></td>
 					<td headers="project_shortname" contenteditable="false" style="width:12%"><?= $projects[$commitment['project_number']]?></td>
-					<td headers="task_id" style="width:4%" class="secondary" contenteditable="false"><?= $commitment['task_id']?></td>
-					<td headers="description" style="width:30% cursor:pointer;"><?= $commitment['description']?></td>
+					<td headers="task_id" contenteditable="false" style="width:4%" class="secondary"><?= $commitment['task_id']?></td>
+					<td headers="description" contenteditable="true" style="width:30% cursor:pointer;"><?= $commitment['description']?></td>
 
-					<td headers="requester" style="width:12%">
+					<td headers="requester" contenteditable="true" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 							<? foreach ($users as $user) 
@@ -64,7 +64,7 @@
 						</select>
 					</td>
 					
-					<td headers="promiser" style="width:12%">
+					<td headers="promiser" contenteditable="true" style="width:12%">
 						<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 							<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 							<? foreach ($users as $user) 
@@ -74,8 +74,8 @@
 						</select>
 					</td>
 					
-					<td headers="due_by" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
-					<td headers="status" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
+					<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
+					<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
 					<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?= $commitment['metric']?></td>
 				</tr>
 			<?php } ?>
@@ -100,14 +100,47 @@
 			<!-- act on changed data -->
 			$('table td').on('change', function(evt, newValue) {
 				var cell = $(this);
-				var row = cell.parent();
-				var col_num = parseInt(cell.index());
-				var row_num = parseInt(row.index()); 
+				//var row = cell.parent();
+				//var col_num = parseInt(cell.index());
+				//var row_num = parseInt(row.index()); 
 				var header = cell.attr("headers");
 				//var c_class = cell.attr("class");
 				var u_id = cell.siblings().first().text();
+				var value = cell.text();
 					
-				console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " u_id: ", u_id);
+				console.log("change detected at: ", u_id, " => ", value);
+				
+ 				if (cell.attr("contenteditable"))
+				{
+					var response = $.ajax({
+						url: '/includes/change_commitment.php',
+						data: {
+							u_id: u_id,
+							field: header,
+							new_value: value
+						},
+						type: 'POST',
+						dataType: 'text'
+					});
+									
+					response.done(function(result) {
+						if (result=='success') {
+							// flash the changed cell green for 1 second
+							cell.addClass('flash-green').delay(250).fadeOut(fast).removeClass('flash-green');
+							return true;
+						} else {
+							// flash the changed cell red for 1 second & replace value
+							cell.addClass('flash-red').delay(250).fadeOut(fast).removeClass('flash-red');
+							alert("Error: " + result);
+							return false;
+						}
+					});
+						
+					response.fail(function(err) {
+						alert( "Request failed: " + err );
+						return false;
+					});
+				}
 			});
 		});
 	</script>
