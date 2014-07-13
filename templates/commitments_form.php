@@ -126,11 +126,11 @@
 					response.done(function(result) {
 						if (result=='success') {
 							// flash the changed cell green for 1 second
-							cell.addClass('flash-green').delay(250).fadeOut(fast).removeClass('flash-green');
+							cell.addClass('flash-green').delay(250).fadeOut(250).removeClass('flash-green');
 							return true;
 						} else {
 							// flash the changed cell red for 1 second & replace value
-							cell.addClass('flash-red').delay(250).fadeOut(fast).removeClass('flash-red');
+							cell.addClass('flash-red').delay(250).fadeOut(1000).removeClass('flash-red');
 							alert("Error: " + result);
 							return false;
 						}
