@@ -82,31 +82,31 @@
 		<tfoot>
 		</tfoot>
 	</table>
+	
+	<script>
+		$(document).ready(function(){
+		$('#commitments').editableTableWidget();
+		$('#commitments').editableTableWidget({editor: $('<textarea>')});
+		$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
+		
+		<!-- mark invalid data -->
+		//$('table td').on('validate', function(evt, newValue) {
+		//	if (....) { 
+		//		return false; // mark cell as invalid 
+		//	}
+		//});
+
+		<!-- act on changed data -->
+		$('table td').on('change', function(evt, newValue) {
+			var cell = $(this);
+			var col_num = parseInt( $(this).index() );
+			var row_num = parseInt( $(this).parent().index() ); 
+
+			var header = cell.attr(headers);
+			var c_class = cell.attr(className);
+				
+			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
+		});
+		)};
+	</script>
 </div> <!-- close container -->
-	
-<script>
-	$(document).ready(function(){
-	$('#commitments').editableTableWidget();
-	$('#commitments').editableTableWidget({editor: $('<textarea>')});
-	$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
-	
-	<!-- mark invalid data -->
-	//$('table td').on('validate', function(evt, newValue) {
-	//	if (....) { 
-	//		return false; // mark cell as invalid 
-	//	}
-	//});
-
-	<!-- act on changed data -->
-	$('table td').on('change', function(evt, newValue) {
-		var cell = $(this);
-		var col_num = parseInt( $(this).index() );
-		var row_num = parseInt( $(this).parent().index() ); 
-
-		var header = cell.attr(headers);
-		var c_class = cell.attr(className);
-			
-		console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
-	});
-	)};
-</script>
