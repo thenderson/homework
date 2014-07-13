@@ -116,12 +116,13 @@
 			
 			if (!cell.headers)
 			{
-				cell.headers = "trout";
+				console.log("headers is empty");
 			}
 			
-			var header = cell.headers;
+			var header = cell.getAttribute("headers");
+			var c_class = cell.className;
 				
-			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header);
+			console.log("change detected at: C:", col_num, " R:", row_num, " H:", header, " cl: ", c_class);
 		});
     </script>
 </div>
