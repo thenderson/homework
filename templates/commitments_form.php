@@ -126,13 +126,13 @@
 					response.done(function(result) {
 						if (result=='success') {
 							// flash the changed cell green for 1 second
-							cell.attr('background-color','green')
+							cell.attr('background-color','green !important')
 							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
 							console.log(result);
 							return true;
 						} else {
 							// flash the changed cell red for 1 second & replace value
-							cell.attr('background-color', 'red')
+							cell.attr('background-color', 'red !important')
 							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
 							alert("Error: " + result);
 							console.log(result);
