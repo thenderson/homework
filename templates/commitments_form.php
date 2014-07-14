@@ -108,7 +108,7 @@
 				var u_id = cell.siblings().first().text();
 				var value = cell.text();
 					
-				console.log("change detected at: ", u_id, " => ", value);
+				console.log("change detected at: ", u_id, ": ", header, " => ", value);
 				
  				if (cell.attr("contenteditable"))
 				{
@@ -126,9 +126,9 @@
 					response.done(function(result) {
 						if (result=='success') {
 							// flash the changed cell green for 1 second
-							cell.attr('background-color','green !important')
-							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
-							console.log(result);
+							cell.addClass('flash-green')
+							var delay = setTimeout(function(){cell.removeClass('flash-green')}, 500);
+							console.log(result + ' Ootini!');
 							return true;
 						} else {
 							// flash the changed cell red for 1 second & replace value
