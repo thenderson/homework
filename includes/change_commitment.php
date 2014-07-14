@@ -30,7 +30,7 @@
 			case "date_due":
 				$qry = "UPDATE commitments SET date_due = ? WHERE unique_id = ?;";
 				break;
-			cade default:
+			default:
 				echo 'read-only';
 				exit;
 		}
