@@ -16,19 +16,19 @@
 		switch ($_POST['field'])
 		{
 			case "description":
-				$qry = "UPDATE commitments WHERE unique_id = ? SET description = ?;";
+				$qry = "UPDATE commitments SET description = ? WHERE unique_id = ?;";
 				break;
 			case "requester":
-				$qry = "UPDATE commitments WHERE unique_id = ? SET requester = ?;";
+				$qry = "UPDATE commitments SET requester = ? WHERE unique_id = ?;";
 				break;
 			case "promiser":
-				$qry = "UPDATE commitments WHERE unique_id = ? SET promiser = ?;";
+				$qry = "UPDATE commitments SET promiser = ? WHERE unique_id = ?;";
 				break;
 			case "status":
-				$qry = "UPDATE commitments WHERE unique_id = ? SET status = ?;";
+				$qry = "UPDATE commitments SET status = ? WHERE unique_id = ?;";
 				break;
 			case "date_due":
-				$qry = "UPDATE commitments WHERE unique_id = ? SET date_due = ?;";
+				$qry = "UPDATE commitments SET date_due = ? WHERE unique_id = ?;";
 				break;
 		}
 		
@@ -46,8 +46,7 @@
 		try 
 		{
 			$stmt->bindParam(1, $_POST["u_id"], PDO::PARAM_INT);
-			$stmt->bindParam(2, $_POST["field"], PDO::PARAM_STR);
-			$stmt->bindParam(3, $_POST["new_value"], PDO::PARAM_STR);
+			$stmt->bindParam(2, $_POST["new_value"], PDO::PARAM_STR);
 			$stmt->execute();		
 			//$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} 
