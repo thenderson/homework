@@ -45,15 +45,20 @@
 		
 		try 
 		{
-			$stmt->bindParam(1, $_POST["u_id"], PDO::PARAM_INT);
-			$stmt->bindParam(2, $_POST["new_value"], PDO::PARAM_STR);
-			$stmt->execute();		
-			//$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->bindParam(1, $_POST["new_value"], PDO::PARAM_STR);
+			$stmt->bindParam(2, $_POST["u_id"], PDO::PARAM_INT);
+			$res = $stmt->execute();		
 		} 
 		catch(PDOException $e) 
 		{
 			echo 'Error: ' . $e->getMessage(), E_USER_ERROR;
-			//trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+			exit;
+		}
+		
+		if (!$res)
+		{
+			echo 'Something went wrong; change failed.';
+			exit;
 		}
 		
 		echo 'success';
