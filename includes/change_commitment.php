@@ -31,7 +31,7 @@
 				$qry = "UPDATE commitments SET date_due = ? WHERE unique_id = ?;";
 				break;
 			default:
-				echo 'read-only';
+				echo 'fail: read-only value';
 				exit;
 		}
 		
@@ -42,7 +42,7 @@
 		
 		catch(PDOException $e)
 		{
-			echo "statement failed:\n". $e->getMessage(), E_USER_ERROR;
+			echo "fail:\n". $e->getMessage(), E_USER_ERROR;
 			exit;
 		}
 		
@@ -54,13 +54,13 @@
 		} 
 		catch(PDOException $e) 
 		{
-			echo 'Error: ' . $e->getMessage(), E_USER_ERROR;
+			echo 'fail:\n' . $e->getMessage(), E_USER_ERROR;
 			exit;
 		}
 		
 		if (!$res)
 		{
-			echo 'Something went wrong; change failed.';
+			echo 'fail: something went wrong. :-/';
 			exit;
 		}
 		

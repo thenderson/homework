@@ -1,5 +1,16 @@
 /* custom CSS stylesheet for reliable commitment mgr */
+/* colors from MS Office Median color scheme: 
 
+		accent 1 / ice blue		rgb(148, 182, 210)
+		accent 2 / orange		rgb(221, 128, 71)
+		accent 3 / olive green	rgb(165, 171, 129)
+		accent 4 / gold			rgb(216, 178, 92)
+		accent 5 / green		rgb(123, 167, 157)
+		accent 6 / grey 50%		rgb(150, 140, 140)
+		background / dark 2		rgb(119, 95, 85)
+		background / light 2	rgb(235, 221, 195)
+		dark red				rgb(192, 0, 0)
+*/
 h1,
 .h1 { /* I just want text a bit smaller than default */
   font-size: 24px;
@@ -67,12 +78,12 @@ margin-left: 0px;
   font-size: 10px;
 }
 
-.flash-green {
-    background-color: green !important;
+.flash-ok {
+    border: 2px solid rgb(165,171,129); /*median: green*/
 }
 
-.flash-red {
-    background-color: red !important;
+.flash-error {
+    border: 2px solid rgb(192, 0, 0); /*median: dark red*/
 }
 
 /* 

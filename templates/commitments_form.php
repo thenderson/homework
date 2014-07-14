@@ -91,11 +91,13 @@
 			$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
 			
 			<!-- mark invalid data -->
-			//$('table td').on('validate', function(evt, newValue) {
-			//	if (....) { 
-			//		return false; // mark cell as invalid 
-			//	}
-			//});
+			$('table td').on('validate', function(evt, newValue) {
+				var cell = $(this);
+				var header = cell.attr("headers");
+				if (header == "unique_id" || header == "project_num" || header == "project_shortname" || header == 'task_id' || header == 'metric') { 
+					return false; // mark cell as invalid 
+				}
+			});
 
 			<!-- act on changed data -->
 			$('table td').on('change', function(evt, newValue) {
@@ -108,7 +110,7 @@
 				var u_id = cell.siblings().first().text();
 				var value = cell.text();
 					
-				console.log("change detected at: ", u_id, ": ", header, " => ", value);
+				//console.log("change detected at: ", u_id, ": ", header, " => ", value);
 				
  				if (cell.attr("contenteditable"))
 				{
@@ -126,22 +128,21 @@
 					response.done(function(result) {
 						if (result=='success') {
 							// flash the changed cell green for 1 second
-							cell.addClass('flash-green')
-							var delay = setTimeout(function(){cell.removeClass('flash-green')}, 500);
-							console.log(result + ' Ootini!');
+							cell.addClass('flash-ok');
+							var delay = setTimeout(function(){cell.removeClass('flash-ok')}, 500);
 							return true;
 						} else {
 							// flash the changed cell red for 1 second & replace value
-							cell.attr('background-color', 'red !important')
-							var delay = setTimeout(function(){cell.attr('background-color', 'initial')}, 300);
-							alert("Error: " + result);
+							cell.addClass('flash-error');
+							var delay = setTimeout(function(){cell.removeClass('flash-error')}, 800);
+
 							console.log(result);
 							return false;
 						}
 					});
 						
 					response.fail(function(err) {
-						alert( "Request failed: " + err );
+						console.log( "Request failed: " + err );
 						return false;
 					});
 				}
