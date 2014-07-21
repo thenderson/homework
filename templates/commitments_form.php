@@ -13,19 +13,19 @@
 		
 		if ($i == 0 || $commitment['project_number'] != $next_comm['project_number']) //start a new table
 		{ ?>
-			<div><h4><b><?=$commitment['project_number']."    |    ".$projects[$commitment['project_number']]?></b></h4></div>
+			<div><h4><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h4></div>
 			<table class="table table-striped table-hover commitments">
 				<thead>
 					<tr>
 						<th id="unique_id" class="hidden">u_id</th>
-						<th id="task_id">id #</th>
-						<th id="description">commitment</th>
-						<th id="promiser">promiser</th>
-						<th id="requester">requester</th>
-						<th id="due_by" class="text-center">due by</th>
-						<th id="status" class="text-center">status</th>
-						<th id="metric" class="text-right">metric</th>
-					</th>
+						<th id="task_id" style="width:5%">id #</th>
+						<th id="description" style="width:45%">commitment</th>
+						<th id="promiser" style="width:14%">promiser</th>
+						<th id="requester" style="width:14%">requester</th>
+						<th id="due_by" class="text-center" style="width:12%">due by</th>
+						<th id="status" class="text-center" style="width:5%">status</th>
+						<th id="metric" class="text-right" style="width:5%">metric</th>
+					</tr>
 				</thead> 
 				<tbody><?php
 		}
@@ -44,10 +44,10 @@
 				echo('<tr class="ghost">');
 		} ?>
 			<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
-			<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
-			<td headers="description" contenteditable="true" style="width:45% cursor:pointer;"><?= $commitment['description']?></td>
+			<td headers="task_id" contenteditable="false"><?= $commitment['task_id']?></td>
+			<td headers="description" contenteditable="true" style="cursor:pointer;"><?= $commitment['description']?></td>
 
-			<td headers="requester" contenteditable="true" style="width:14%">
+			<td headers="requester" contenteditable="true">
 				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 					<?php 
@@ -58,7 +58,7 @@
 				</select>
 			</td>
 				
-			<td headers="promiser" contenteditable="true" style="width:14%">
+			<td headers="promiser" contenteditable="true">
 				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 					<?php 
@@ -69,12 +69,12 @@
 				</select>
 			</td>
 				
-			<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
-			<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
-			<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?=$commitment['metric']?></td>
+			<td headers="due_by" contenteditable="true" style="cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
+			<td headers="status" contenteditable="true" style="cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
+			<td headers="metric" contenteditable="false" class="text-right"><?=$commitment['metric']?></td>
 		</tr> <?php
 		
-		if ($next_comm == null || $commitment['project_number'] != $next_comm['project_number']) //end table at end of data or different project number
+		if ($commitment['project_number'] != $next_comm['project_number']) //end table at end of data or different project number
 		{ ?>
 			</tbody>
 			<tfoot>
