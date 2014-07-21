@@ -44,8 +44,8 @@
 						<th id="status" class="text-center">status</th>
 						<th id="metric" class="text-right">metric</th>
 					</th>
-				</thead>
-		<?php} ?>
+				</thead> <?php
+		} ?>
 	
 		<tbody>
 			<?php
@@ -54,19 +54,13 @@
 			switch($days_til_due) //choose row formatting by task due date proximity
 			{
 				case($days_til_due < 0):
-					?>
-					<tr class="danger">
-					<?php
+					echo('<tr class="danger">');
 					break;
 				case($days_til_due < 8):
-					?>
-					<tr>
-					<?php
+					echo('<tr>');
 					break;
 				default: //more than one week out
-					?>
-					<tr class="ghost">
-					<?php
+					echo('<tr class="ghost">');
 			} ?>
 				<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
 				<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
@@ -75,7 +69,8 @@
 				<td headers="requester" contenteditable="true" style="width:14%">
 					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 						<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
-						<?php foreach ($users as $user) 
+						<?php 
+						foreach ($users as $user) 
 						{
 							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
 						} ?>
@@ -85,16 +80,17 @@
 				<td headers="promiser" contenteditable="true" style="width:14%">
 					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 						<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
-						<?php foreach ($users as $user) 
+						<?php 
+						foreach ($users as $user) 
 						{
 							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
 						} ?>
 					</select>
 				</td>
 					
-				<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?= $commitment['due_by']?></td>
-				<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?= $commitment['status']?></td>
-				<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?= $commitment['metric']?></td>
+				<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
+				<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
+				<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?=$commitment['metric']?></td>
 			</tr>
 <?php } ?>
 		</tbody> <!-- close last body -->
