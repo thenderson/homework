@@ -6,10 +6,10 @@
 	$now = new DateTime();
 	$comm_count = count($commitments);
 	
-	for ($i=0; $i<comm_count; $i++)
+	for ($i=0; $i<$comm_count; $i++)
 	{
 		$commitment = $commitments[$i];
-		$next_comm = ($i == comm_count-1) ? null : $commitments[$i+1];
+		$next_comm = ($i == $comm_count-1) ? null : $commitments[$i+1];
 		
 		if ($i == 0 || $commitment['project_number'] != $next_comm['project_number']) //start a new table
 		{ ?>
