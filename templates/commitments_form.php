@@ -2,16 +2,6 @@
 
 	<h3 class="padding-8px"><b>C O M M I T M E N T S</b></h3>
 
-	<div class="alert alert-error hide">
-		That would cost too much
-	</div>
-
-	
-<th id="project_num">project #</th>
-<th id="project_shortname">project</th>
-<td headers="project_num" contenteditable="false" style="width:8%" class="secondary">
-<td headers="project_shortname" contenteditable="false" style="width:12%"><?= ?></td>
-
 	<?php
 	$now = new DateTime();
 	$p_num_last = -1;
