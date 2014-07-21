@@ -15,7 +15,7 @@
 		SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, requested_on, status, type, metric 
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
-		ORDER BY promiser, project_number, due_by");
+		ORDER BY project_number, promiser, due_by");
 	
 	if (!$stmt)
 	{
