@@ -4,34 +4,16 @@
 
 	<?php
 	$now = new DateTime();
-	$p_num_last = -1;
+	$comm_count = count($commitments);
 	
-	foreach ($commitments as $commitment)
+	for ($i=0; $i<comm_count; $i++)
 	{
-		if ($commitment['project_number'] != $p_num_last) //start a new table
-		{ 
-			if($p_num_last != -1) //that is, this isn't the first line of data, close-out the previous open table
-			{
-				?>
-				<tfoot>
-					<tr>
-						<td style="width:5%">total</td>
-						<td style="width:45%"></td>
-						<td style="width:14%">ppc</td>
-						<td style="width:14%">ta</td>
-						<td style="width:12%"></td>
-						<td style="width:5%"></td>
-						<td style="width:5%"></td>
-					</tr>
-				</tfoot>
-				</tbody>
-				</table><?php
-			}
-			
-			$p_num_last = $commitment['project_number'];?>
-			
-			<br>
-			<div><h2><?=$commitment['project_number']."  |  ".$projects[$commitment['project_number']]?></h2></div>
+		$commitment = $commitments[$i];
+		$next_comm = ($i == comm_count-1) ? null : $commitments[$i+1];
+		
+		if ($i == 0 || $commitment['project_number'] != $next_comm['project_number']) //start a new table
+		{ ?>
+			<div><h4><b><?=$commitment['project_number']."    |    ".$projects[$commitment['project_number']]?></b></h4></div>
 			<table class="table table-striped table-hover commitments">
 				<thead>
 					<tr>
@@ -44,57 +26,68 @@
 						<th id="status" class="text-center">status</th>
 						<th id="metric" class="text-right">metric</th>
 					</th>
-				</thead> <?php
-		} ?>
-	
-		<tbody>
-			<?php
-			$days_til_due = date_diff(new DateTime($commitment['due_by']), $now)->days;
+				</thead> 
+				<tbody><?php
+		}
 			
-			switch($days_til_due) //choose row formatting by task due date proximity
-			{
-				case($days_til_due < 0):
-					echo('<tr class="danger">');
-					break;
-				case($days_til_due < 8):
-					echo('<tr>');
-					break;
-				default: //more than one week out
-					echo('<tr class="ghost">');
-			} ?>
-				<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
-				<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
-				<td headers="description" contenteditable="true" style="width:45% cursor:pointer;"><?= $commitment['description']?></td>
+		$days_til_due = date_diff(new DateTime($commitment['due_by']), $now)->days;
+			
+		switch($days_til_due) //choose row formatting by task due date proximity
+		{
+			case($days_til_due < 0):
+				echo('<tr class="danger">');
+				break;
+			case($days_til_due < 8):
+				echo('<tr>');
+				break;
+			default: //more than one week out
+				echo('<tr class="ghost">');
+		} ?>
+			<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
+			<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
+			<td headers="description" contenteditable="true" style="width:45% cursor:pointer;"><?= $commitment['description']?></td>
 
-				<td headers="requester" contenteditable="true" style="width:14%">
-					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
-						<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
-						<?php 
-						foreach ($users as $user) 
-						{
-							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
-						} ?>
-					</select>
-				</td>
-					
-				<td headers="promiser" contenteditable="true" style="width:14%">
-					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
-						<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
-						<?php 
-						foreach ($users as $user) 
-						{
-							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
-						} ?>
-					</select>
-				</td>
-					
-				<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
-				<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
-				<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?=$commitment['metric']?></td>
-			</tr>
-<?php } ?>
-		</tbody> <!-- close last body -->
-	</table>  <!-- close last table -->
+			<td headers="requester" contenteditable="true" style="width:14%">
+				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+					<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
+					<?php 
+					foreach ($users as $user) 
+					{
+						echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
+					} ?>
+				</select>
+			</td>
+				
+			<td headers="promiser" contenteditable="true" style="width:14%">
+				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+					<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
+					<?php 
+					foreach ($users as $user) 
+					{
+						echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
+					} ?>
+				</select>
+			</td>
+				
+			<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
+			<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
+			<td headers="metric" contenteditable="false" style="width:5%" class="text-right"><?=$commitment['metric']?></td>
+		</tr> <?php
+		
+		if ($next_comm == null || $commitment['project_number'] != $next_comm['project_number']) //end table at end of data or different project number
+		{ ?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td style="width:10%">total</td>
+					<td style="width:10%">ppc</td>
+					<td style="width:10%">ta</td>
+					<td style="width:70%"></td>
+				</tr>
+			</tfoot>
+		</table><?php
+		}
+	} ?>
 	
 	<script>
 		$(document).ready(function(){
