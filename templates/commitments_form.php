@@ -13,9 +13,9 @@
 		
 		if ($i == 0 || $commitment['project_number'] != $next_comm['project_number']) //start a new table
 		{ ?>
-			<div><h4><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h4></div>
 			<table class="table table-striped table-hover commitments">
 				<thead>
+					<tr><h4><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h4></tr>
 					<tr>
 						<th id="unique_id" class="hidden">u_id</th>
 						<th id="task_id" style="width:5%">id #</th>
