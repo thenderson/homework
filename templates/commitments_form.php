@@ -75,7 +75,7 @@
 				<td headers="requester" contenteditable="true" style="width:14%">
 					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 						<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
-						<? foreach ($users as $user) 
+						<?php foreach ($users as $user) 
 						{
 							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
 						} ?>
@@ -85,7 +85,7 @@
 				<td headers="promiser" contenteditable="true" style="width:14%">
 					<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 						<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
-						<? foreach ($users as $user) 
+						<?php foreach ($users as $user) 
 						{
 							echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
 						} ?>
