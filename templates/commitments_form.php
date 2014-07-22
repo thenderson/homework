@@ -26,7 +26,7 @@
 					<col class="text-right" style="width:5%" class="text-right">
 				</colgroup>
 				<thead>
-					<tr><h4><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h4></tr>
+					<tr><h3 class="padding-8px"><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h3></tr>
 					<tr>
 						<th id="unique_id">u_id</th>
 						<th id="task_id">id #</th>
