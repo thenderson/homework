@@ -15,17 +15,27 @@
 		if ($i == 0 || $commitment['project_number'] != $last_pnum) //start a new table
 		{ ?>
 			<table class="table table-striped table-hover commitments">
+				<colgroup>
+					<col class="hidden">
+					<col style="width:5%">
+					<col style="width:45%">
+					<col style="width:14%">
+					<col style="width:14%">
+					<col class="text-center" style="width:12%" class="text-center">
+					<col class="text-center" style="width:5%" class="text-center">
+					<col class="text-right" style="width:5%" class="text-right">
+				</colgroup>
 				<thead>
 					<tr><h4><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h4></tr>
 					<tr>
-						<th id="unique_id" class="hidden">u_id</th>
-						<th id="task_id" style="width:5%">id #</th>
-						<th id="description" style="width:45%">commitment</th>
-						<th id="promiser" style="width:14%">promiser</th>
-						<th id="requester" style="width:14%">requester</th>
-						<th id="due_by" class="text-center" style="width:12%">due by</th>
-						<th id="status" class="text-center" style="width:5%">status</th>
-						<th id="metric" class="text-right" style="width:5%">metric</th>
+						<th id="unique_id">u_id</th>
+						<th id="task_id">id #</th>
+						<th id="description">commitment</th>
+						<th id="promiser">promiser</th>
+						<th id="requester">requester</th>
+						<th id="due_by">due by</th>
+						<th id="status">status</th>
+						<th id="metric">metric</th>
 					</tr>
 				</thead> 
 				<tbody><?php
@@ -44,12 +54,12 @@
 			default: //more than one week out
 				echo('<tr class="ghost">');
 		} ?>
-			<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
-			<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
-			<td headers="description" contenteditable="true" style="width:45%;cursor:pointer;"><?= $commitment['description']?></td>
+			<td headers="unique_id" contenteditable="false"><?=$commitment['unique_id']?></td>
+			<td headers="task_id" contenteditable="false"><?= $commitment['task_id']?></td>
+			<td headers="description" contenteditable="true"><?= $commitment['description']?></td>
 
 			<td headers="requester" contenteditable="true">
-				<select style="width:14%;cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 					<?php 
 					foreach ($users as $user) 
@@ -60,7 +70,7 @@
 			</td>
 				
 			<td headers="promiser" contenteditable="true">
-				<select style="width:14%;cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 					<?php 
 					foreach ($users as $user) 
@@ -70,20 +80,25 @@
 				</select>
 			</td>
 				
-			<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
-			<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
-			<td headers="metric" contenteditable="false" class="width:5%;text-right"><?=$commitment['metric']?></td>
+			<td headers="due_by" contenteditable="true"><?=$commitment['due_by']?></td>
+			<td headers="status" contenteditable="true"><?=$commitment['status']?></td>
+			<td headers="metric" contenteditable="false"><?=$commitment['metric']?></td>
 		</tr> <?php
 		
 		if ($commitment['project_number'] != $next_pnum) //end table at end of data or different project number
 		{ ?>
 			</tbody>
 			<tfoot>
-				<tr>
-					<td style="width:10%">total</td>
-					<td style="width:10%">ppc</td>
-					<td style="width:10%">ta</td>
-				</tr>
+				<table>
+					<tr>
+						<td style="width:10%">prom: __</td>
+						<td style="width:10%">comp: __</td>
+						<td style="width:10%">ant: __</td>
+						<td style="width:10%">imp: __</td>
+						<td style="width:10%">PPC: __%</td>
+						<td style="width:10%">TA: __%</td>
+					</tr>
+				</table>
 			</tfoot>
 		</table><?php
 		}
