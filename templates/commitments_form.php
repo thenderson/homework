@@ -54,7 +54,7 @@
 			default: //more than one week out
 				echo('<tr class="ghost">');
 		} ?>
-			<td headers="unique_id" contenteditable="false"><?=$commitment['unique_id']?></td>
+			<td class="hidden" headers="unique_id" contenteditable="false"><?=$commitment['unique_id']?></td>
 			<td headers="task_id" contenteditable="false"><?= $commitment['task_id']?></td>
 			<td headers="description" contenteditable="true"><?= $commitment['description']?></td>
 
