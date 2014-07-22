@@ -12,12 +12,6 @@
 		$commitment = $commitments[$i];
 		$next_pnum = ($i == $comm_count-1) ? null : $commitments[$i+1]['project_number'];
 		
-		//debug('$commitment: ', $commitment);
-		//debug('$next_comm: ', $next_comm);
-		//debug('$comm_count: ', $comm_count);
-		//debug('$i: ', $i);
-		//echo debug('print');
-		
 		if ($i == 0 || $commitment['project_number'] != $last_pnum) //start a new table
 		{ ?>
 			<table class="table table-striped table-hover commitments">
@@ -51,11 +45,11 @@
 				echo('<tr class="ghost">');
 		} ?>
 			<td headers="unique_id" contenteditable="false" class="hidden"><?=$commitment['unique_id']?></td>
-			<td headers="task_id" contenteditable="false"><?= $commitment['task_id']?></td>
-			<td headers="description" contenteditable="true" style="cursor:pointer;"><?= $commitment['description']?></td>
+			<td headers="task_id" contenteditable="false" style="width:5%"><?= $commitment['task_id']?></td>
+			<td headers="description" contenteditable="true" style="width:45%;cursor:pointer;"><?= $commitment['description']?></td>
 
 			<td headers="requester" contenteditable="true">
-				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+				<select style="width:14%;cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
 					<?php 
 					foreach ($users as $user) 
@@ -66,7 +60,7 @@
 			</td>
 				
 			<td headers="promiser" contenteditable="true">
-				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
+				<select style="width:14%;cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
 					<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
 					<?php 
 					foreach ($users as $user) 
@@ -76,9 +70,9 @@
 				</select>
 			</td>
 				
-			<td headers="due_by" contenteditable="true" style="cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
-			<td headers="status" contenteditable="true" style="cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
-			<td headers="metric" contenteditable="false" class="text-right"><?=$commitment['metric']?></td>
+			<td headers="due_by" contenteditable="true" style="width:12%;cursor:pointer;" class="text-center"><?=$commitment['due_by']?></td>
+			<td headers="status" contenteditable="true" style="width:5%;cursor:pointer;" class="text-center"><?=$commitment['status']?></td>
+			<td headers="metric" contenteditable="false" class="width:5%;text-right"><?=$commitment['metric']?></td>
 		</tr> <?php
 		
 		if ($commitment['project_number'] != $next_pnum) //end table at end of data or different project number
@@ -89,7 +83,6 @@
 					<td style="width:10%">total</td>
 					<td style="width:10%">ppc</td>
 					<td style="width:10%">ta</td>
-					<td style="width:70%"></td>
 				</tr>
 			</tfoot>
 		</table><?php
