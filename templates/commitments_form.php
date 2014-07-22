@@ -5,13 +5,20 @@
 	<?php
 	$now = new DateTime();
 	$comm_count = count($commitments);
+	$last_pnum = null;
 	
 	for ($i=0; $i<$comm_count; $i++)
 	{
 		$commitment = $commitments[$i];
-		$next_comm = ($i == $comm_count-1) ? null : $commitments[$i+1];
+		$next_pnum = ($i == $comm_count-1) ? null : $commitments[$i+1]['project_number'];
 		
-		if ($i == 0 || $commitment['project_number'] != $next_comm['project_number']) //start a new table
+		//debug('$commitment: ', $commitment);
+		//debug('$next_comm: ', $next_comm);
+		//debug('$comm_count: ', $comm_count);
+		//debug('$i: ', $i);
+		//echo debug('print');
+		
+		if ($i == 0 || $commitment['project_number'] != $last_pnum) //start a new table
 		{ ?>
 			<table class="table table-striped table-hover commitments">
 				<thead>
@@ -74,7 +81,7 @@
 			<td headers="metric" contenteditable="false" class="text-right"><?=$commitment['metric']?></td>
 		</tr> <?php
 		
-		if ($commitment['project_number'] != $next_comm['project_number']) //end table at end of data or different project number
+		if ($commitment['project_number'] != $next_pnum) //end table at end of data or different project number
 		{ ?>
 			</tbody>
 			<tfoot>
@@ -87,7 +94,8 @@
 			</tfoot>
 		</table><?php
 		}
-	} ?>
+	$last_pnum = $commitment['project_number'];
+	} ?> <!-- close for loop -->
 	
 	<script>
 		$(document).ready(function(){
