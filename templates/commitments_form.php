@@ -21,14 +21,14 @@
 					<col style="width:45%">
 					<col style="width:14%">
 					<col style="width:14%">
-					<col class="text-center" style="width:12%" class="text-center">
-					<col class="text-center" style="width:5%" class="text-center">
-					<col class="text-right" style="width:5%" class="text-right">
+					<col class="text-center" style="width:12%">
+					<col class="text-center" style="width:5%">
+					<col class="text-right" style="width:5%">
 				</colgroup>
 				<thead>
 					<tr><h3 class="padding-8px"><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h3></tr>
 					<tr>
-						<th id="unique_id">u_id</th>
+						<th class="hidden" id="unique_id">u_id</th>
 						<th id="task_id">id #</th>
 						<th id="description">commitment</th>
 						<th id="promiser">promiser</th>
@@ -91,12 +91,8 @@
 			<tfoot>
 				<table>
 					<tr>
-						<td style="width:10%">prom: __</td>
-						<td style="width:10%">comp: __</td>
-						<td style="width:10%">ant: __</td>
-						<td style="width:10%">imp: __</td>
-						<td style="width:10%">PPC: __%</td>
-						<td style="width:10%">TA: __%</td>
+						<td style="width:15%">completed __ of __ = __% PPC</td>
+						<td style="width:15%">anticipated __ of __ = __% TA</td>
 					</tr>
 				</table>
 			</tfoot>
