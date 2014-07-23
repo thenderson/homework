@@ -71,6 +71,11 @@ margin-left: 0px;
   color: #848484;
 }
 
+.comm_table_title,
+.comm_table_foot {
+  background-color: rgb(165, 171, 129)
+}
+
 .secondary /* for 'secondary' table rows where two rows are stacked in a cell */
 {
   padding: 0px;

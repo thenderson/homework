@@ -26,7 +26,7 @@
 					<col class="text-right" style="width:5%">
 				</colgroup>
 				<thead>
-					<tr><h3 class="padding-8px"><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h3></tr>
+					<tr><h3 class="padding-8px comm_table_title"><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h3></tr>
 					<tr>
 						<th class="hidden" id="unique_id">u_id</th>
 						<th id="task_id">id #</th>
@@ -90,9 +90,15 @@
 			</tbody>
 			<tfoot>
 				<table>
-					<tr>
-						<td style="width:15%">completed __ of __ = __% PPC</td>
-						<td style="width:15%">anticipated __ of __ = __% TA</td>
+					<tr class="comm_table_foot">
+						<td style="width:7%">P: __</td>
+						<td style="width:7%">C: __</td>
+						<td style="width:7%">A: __</td>
+						<td style="width:7%">I: __</td>
+						<td style="width:8%"></td>
+						<td style="width:7%">PPC: __</td>
+						<td style="width:7%">TA: __</td>
+						<td style="width:50%"></td>
 					</tr>
 				</table>
 			</tfoot>
