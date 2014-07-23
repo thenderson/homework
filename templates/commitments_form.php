@@ -1,5 +1,14 @@
 <div class="container">
 
+<!-- TODO
+		adjustable column widths
+		collapse projects
+		date picker
+		editable v. not
+		sort, filter
+		individual view (across projects)
+-->
+
 	<h3 class="padding-8px"><b>C O M M I T M E N T S</b></h3>
 
 	<?php
@@ -14,7 +23,7 @@
 		
 		if ($i == 0 || $commitment['project_number'] != $last_pnum) //start a new table
 		{ ?>
-			<table class="table table-striped table-hover commitments">
+			<table class="table table-condensed table-striped table-hover commitments">
 				<colgroup>
 					<col class="hidden">
 					<col style="width:5%">
@@ -80,7 +89,7 @@
 				</select>
 			</td>
 				
-			<td headers="due_by" contenteditable="true"><?=$commitment['due_by']?></td>
+			<td headers="due_by" contenteditable="true" id="datepicker"><?=$commitment['due_by']?></td>
 			<td headers="status" contenteditable="true"><?=$commitment['status']?></td>
 			<td headers="metric" contenteditable="false"><?=$commitment['metric']?></td>
 		</tr> <?php
@@ -90,15 +99,15 @@
 			</tbody>
 			<tfoot>
 				<table>
-					<tr class="comm_table_foot">
+					<tr class="table comm_table_foot">
 						<td style="width:7%">P: __</td>
 						<td style="width:7%">C: __</td>
 						<td style="width:7%">A: __</td>
 						<td style="width:7%">I: __</td>
-						<td style="width:8%"></td>
-						<td style="width:7%">PPC: __</td>
-						<td style="width:7%">TA: __</td>
-						<td style="width:50%"></td>
+						<td style="width:9%"></td>
+						<td style="width:9%">PPC: __</td>
+						<td style="width:9%">TA: __</td>
+						<td style="width:47%"></td>
 					</tr>
 				</table>
 			</tfoot>
@@ -107,8 +116,12 @@
 	$last_pnum = $commitment['project_number'];
 	} ?> <!-- close for loop -->
 	
-	<script>
+	<script>	
 		$(document).ready(function(){
+			$(function() {
+				$( "#datepicker" ).datepicker();
+			});
+			
 			$('#commitments').editableTableWidget();
 			$('#commitments').editableTableWidget({editor: $('<textarea>')});
 			$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});

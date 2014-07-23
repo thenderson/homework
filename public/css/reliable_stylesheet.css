@@ -76,6 +76,22 @@ margin-left: 0px;
   background-color: rgb(165, 171, 129)
 }
 
+.commitments {
+margin-bottom: 4px; 
+}
+
+/*  .commitments>thead>tr>th, 
+.commitments>tbody>tr>th,
+.commitments>tfoot>tr>th,
+.commitments>thead>tr>td,
+.commitments>tbody>tr>td,
+.commitments>tfoot>tr>td {
+padding: 4px;
+line-height: 1.2;
+border-bottom: 0px; 
+border-top: 0px;  */
+}
+
 .secondary /* for 'secondary' table rows where two rows are stacked in a cell */
 {
   padding: 0px;
