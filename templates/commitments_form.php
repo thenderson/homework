@@ -9,8 +9,6 @@
 		individual view (across projects)
 -->
 
-	<h3 class="padding-8px"><b>C O M M I T M E N T S</b></h3>
-
 	<?php
 	$now = new DateTime();
 	$comm_count = count($commitments);
@@ -98,8 +96,8 @@
 		{ ?>
 			</tbody>
 			<tfoot>
-				<table>
-					<tr class="table comm_table_foot">
+				<table class="table comm_table_foot">
+					<tr>
 						<td style="width:7%">P: __</td>
 						<td style="width:7%">C: __</td>
 						<td style="width:7%">A: __</td>
@@ -117,11 +115,6 @@
 	} ?> <!-- close for loop -->
 	
 	<script>	
-		$(document).ready(function(){
-			$(function() {
-				$( "#datepicker" ).datepicker();
-			});
-			
 			$('#commitments').editableTableWidget();
 			$('#commitments').editableTableWidget({editor: $('<textarea>')});
 			$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
