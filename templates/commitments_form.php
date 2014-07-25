@@ -10,6 +10,18 @@
 -->
 
 	<?php
+	
+	// create grid and declare its columns
+	$grid = new EditableGrid();
+	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
+	$grid->addColumn('description', 'COMMITMENT', 'string');
+	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
+	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
+	$grid->addColumn('due_by','DUE BY','date');
+	$grid->addColumn('status','STATUS','string');
+	$grid->addColumn('metric','METRIC','string', NULL, false);
+	
 	$now = new DateTime();
 	$comm_count = count($commitments);
 	$last_pnum = null;
@@ -113,6 +125,25 @@
 		}
 	$last_pnum = $commitment['project_number'];
 	} ?> <!-- close for loop -->
+	
+	
+	
+<?PHP	
+	// create grid and declare its columns
+	$grid = new EditableGrid();
+	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
+	$grid->addColumn('description', 'COMMITMENT', 'string');
+	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
+	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
+	$grid->addColumn('due_by','DUE BY','date');
+	$grid->addColumn('status','STATUS','string');
+	$grid->addColumn('metric','METRIC','string', NULL, false);
+
+	
+	
+	
+	
 	
 	<script>	
 			$('#commitments').editableTableWidget();

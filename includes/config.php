@@ -14,8 +14,9 @@
 	date_default_timezone_set('America/Los_Angeles');
 	
     // requirements
-    require("constants.php");
-    require("functions.php");
+    require_once("constants.php");
+    require_once("functions.php");
+	require_once("EditableGrid.php");
 
     // enable sessions
     session_start();
