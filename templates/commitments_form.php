@@ -1,19 +1,22 @@
 <div class="container">
 
 <!-- TODO
-		adjustable column widths
-		collapse projects
-		date picker
-		editable v. not
-		sort, filter
-		individual view (across projects)
+	adjustable column widths
+	collapse projects
+	date picker
+	editable v. not
+	sort, filter
+	individual view (across projects)
 -->
 
 	<?php
 	
-	// create grid and declare its columns
+	// create grid
 	$grid = new EditableGrid();
+	
+	//declare grid columns
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
+	$grid->addColumn('project_number', 'PROJECT #', 'double');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
@@ -21,192 +24,59 @@
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
+	$grid->addColumn('edit','EDIT','string');
 	
-	$now = new DateTime();
-	$comm_count = count($commitments);
-	$last_pnum = null;
+	//render grid
+	$grid->renderJSON($commitments);
 	
-	for ($i=0; $i<$comm_count; $i++)
-	{
-		$commitment = $commitments[$i];
-		$next_pnum = ($i == $comm_count-1) ? null : $commitments[$i+1]['project_number'];
+?>
+
+	<div id="wrap">
+	<h1>EditableGrid Demo - Grid with pagination<a href="../index.html">Back to menu</a></h1> 
+	
+		<!-- Feedback message zone -->
+		<div id="message"></div>
+
+		<!--  Number of rows per page and bars in chart -->
+		<div id="pagecontrol">
+			<label for="pagecontrol">Rows per page: </label>
+			<select id="pagesize" name="pagesize">
+				<option value="8">8</option>
+				<option value="16">16</option>
+				<option value="32">32</option>
+				<option value="64">64</option>
+				<option value="128">128</option>
+			</select>
+			&nbsp;&nbsp;
+			<label for="barcount">Bars in chart: </label>
+			<select id="barcount" name="barcount">
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+			</select>	
+		</div>
+	
+		<!-- Grid filter -->
+		<label for="filter">Filter :</label>
+		<input type="text" id="filter"/>
+	
+		<!-- Grid contents -->
+		<div id="tablecontent"></div>
+	
+		<!-- Paginator control -->
+		<div id="paginator"></div>
+	
+		<!-- Edition zone (to demonstrate the "fixed" editor mode) -->
+		<div id="edition"></div>
 		
-		if ($i == 0 || $commitment['project_number'] != $last_pnum) //start a new table
-		{ ?>
-			<table class="table table-condensed table-striped table-hover commitments">
-				<colgroup>
-					<col class="hidden">
-					<col style="width:5%">
-					<col style="width:45%">
-					<col style="width:14%">
-					<col style="width:14%">
-					<col class="text-center" style="width:12%">
-					<col class="text-center" style="width:5%">
-					<col class="text-right" style="width:5%">
-				</colgroup>
-				<thead>
-					<tr><h3 class="padding-8px comm_table_title"><b><?=$commitment['project_number']." | ".$projects[$commitment['project_number']]?></b></h3></tr>
-					<tr>
-						<th class="hidden" id="unique_id">u_id</th>
-						<th id="task_id">id #</th>
-						<th id="description">commitment</th>
-						<th id="promiser">promiser</th>
-						<th id="requester">requester</th>
-						<th id="due_by">due by</th>
-						<th id="status">status</th>
-						<th id="metric">metric</th>
-					</tr>
-				</thead> 
-				<tbody><?php
-		}
-			
-		$days_til_due = date_diff(new DateTime($commitment['due_by']), $now)->days;
-			
-		switch($days_til_due) //choose row formatting by task due date proximity
-		{
-			case($days_til_due < 0):
-				echo('<tr class="danger">');
-				break;
-			case($days_til_due < 8):
-				echo('<tr>');
-				break;
-			default: //more than one week out
-				echo('<tr class="ghost">');
-		} ?>
-			<td class="hidden" headers="unique_id" contenteditable="false"><?=$commitment['unique_id']?></td>
-			<td headers="task_id" contenteditable="false"><?= $commitment['task_id']?></td>
-			<td headers="description" contenteditable="true"><?= $commitment['description']?></td>
-
-			<td headers="requester" contenteditable="true">
-				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
-					<option selected='selected' value="<?=$commitment['requester'].'">'.$username_lookup[$commitment['requester']]?></option>
-					<?php 
-					foreach ($users as $user) 
-					{
-						echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
-					} ?>
-				</select>
-			</td>
-				
-			<td headers="promiser" contenteditable="true">
-				<select style="cursor:pointer;text-overflow:ellipsis;" class="form-control input-sm">
-					<option selected='selected' value="<?=$commitment['promiser'].'">'.$username_lookup[$commitment['promiser']]?></option>
-					<?php 
-					foreach ($users as $user) 
-					{
-						echo('<option value="' . $user['user_id'] . '">' . $user['name'] . '</option>');
-					} ?>
-				</select>
-			</td>
-				
-			<td headers="due_by" contenteditable="true" id="datepicker"><?=$commitment['due_by']?></td>
-			<td headers="status" contenteditable="true"><?=$commitment['status']?></td>
-			<td headers="metric" contenteditable="false"><?=$commitment['metric']?></td>
-		</tr> <?php
+		<!-- Charts zone -->
+		<div id="barchartcontent"></div>
+		<div id="piechartcontent"></div>
 		
-		if ($commitment['project_number'] != $next_pnum) //end table at end of data or different project number
-		{ ?>
-			</tbody>
-			<tfoot>
-				<table class="table comm_table_foot">
-					<tr>
-						<td style="width:7%">P: __</td>
-						<td style="width:7%">C: __</td>
-						<td style="width:7%">A: __</td>
-						<td style="width:7%">I: __</td>
-						<td style="width:9%"></td>
-						<td style="width:9%">PPC: __</td>
-						<td style="width:9%">TA: __</td>
-						<td style="width:47%"></td>
-					</tr>
-				</table>
-			</tfoot>
-		</table><?php
-		}
-	$last_pnum = $commitment['project_number'];
-	} ?> <!-- close for loop -->
-	
-	
-	
-<?PHP	
-	// create grid and declare its columns
-	$grid = new EditableGrid();
-	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
-	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
-	$grid->addColumn('description', 'COMMITMENT', 'string');
-	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
-	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
-	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('status','STATUS','string');
-	$grid->addColumn('metric','METRIC','string', NULL, false);
-
-	
-	
-	
-	
-	
-	<script>	
-			$('#commitments').editableTableWidget();
-			$('#commitments').editableTableWidget({editor: $('<textarea>')});
-			$('#commitments').editableTableWidget({cloneProperties: ['background', 'border', 'outline']});
-			
-			<!-- mark invalid data -->
-			$('table td').on('validate', function(evt, newValue) {
-				var cell = $(this);
-				var header = cell.attr("headers");
-				if (header == "unique_id" || header == "project_num" || header == "project_shortname" || header == 'task_id' || header == 'metric') { 
-					return false; // mark cell as invalid 
-				}
-			});
-
-			<!-- act on changed data -->
-			$('table td').on('change', function(evt, newValue) {
-				var cell = $(this);
-				//var row = cell.parent();
-				//var col_num = parseInt(cell.index());
-				//var row_num = parseInt(row.index()); 
-				var header = cell.attr("headers");
-				//var c_class = cell.attr("class");
-				var u_id = cell.siblings().first().text();
-				var value = cell.text();
-					
-				//console.log("change detected at: ", u_id, ": ", header, " => ", value);
-				
- 				if (cell.attr("contenteditable"))
-				{
-					var response = $.ajax({
-						url: '/commgr/includes/change_commitment.php',
-						data: {
-							u_id: u_id,
-							field: header,
-							new_value: value
-						},
-						type: 'POST',
-						dataType: 'html'
-					});
-									
-					response.done(function(result) {
-						if (result=='success') {
-							// flash the changed cell green for 1 second
-							cell.addClass('flash-ok');
-							var delay = setTimeout(function(){cell.removeClass('flash-ok')}, 500);
-							return true;
-						} else {
-							// flash the changed cell red for 1 second & replace value
-							cell.addClass('flash-error');
-							var delay = setTimeout(function(){cell.removeClass('flash-error')}, 800);
-
-							console.log(result);
-							return false;
-						}
-					});
-						
-					response.fail(function(err) {
-						console.log( "Request failed: " + err );
-						return false;
-					});
-				}
-			});
-		});
-	</script>
-</div> <!-- close container -->
+	</div>
+</body>
