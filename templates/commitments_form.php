@@ -10,7 +10,7 @@
 -->
 
 	<?php
-	
+	require("EditableGrid.php");
 	// create grid
 	$grid = new EditableGrid();
 	
