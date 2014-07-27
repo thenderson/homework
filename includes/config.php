@@ -16,7 +16,7 @@
     // requirements
     require("constants.php");
     require("functions.php");
-	require("EditableGrid.php");
+	//require("EditableGrid.php");
 
     // enable sessions
     session_start();
