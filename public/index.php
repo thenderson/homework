@@ -1,5 +1,4 @@
 <?php
-	echo("index!");
     // configuration
     require("../includes/config.php");
 

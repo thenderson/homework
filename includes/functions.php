@@ -22,9 +22,7 @@
 	
 
 /** from http://www.php.net/manual/en/debugger.php
-* dbug (mixed $expression [, mixed $expression [, $... ]])
 * Author : dcz
-* Feel free to use as you wish at your own risk ;-)
 * usage :
 * dbug($scalar, $array, $object, $resource, CONSTANT);
 * //.. 
