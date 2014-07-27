@@ -32,7 +32,6 @@
 ?>
 
 	<div id="wrap">
-	<h1>EditableGrid Demo - Grid with pagination<a href="../index.html">Back to menu</a></h1> 
 	
 		<!-- Feedback message zone -->
 		<div id="message"></div>
