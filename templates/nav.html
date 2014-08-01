@@ -1,0 +1,34 @@
+<header class="navbar navbar-default" id="top" role="navigation">
+	<div class="container">
+		<div class="navbar-header margin-8px">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="../" class="navbar-brand">r e l i a b l e</a>
+		</div>
+		<nav class="collapse navbar-collapse margin-8px" id="collapse" role="navigation">
+			<ul class="nav navbar-nav">
+				<li></li>
+				<li><a href="index.php">home</a></li>
+				<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
+				<li><a href="logout.php">logout</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<?php
+				if (empty($_POST["username"]))
+				{ ?>
+					<li class="navbar-text navbar-right">guest</li>
+				<?php
+				}
+				else
+				{ ?>
+					<li class="navbar-text navbar-right"><?=$_POST["username"]?></li>
+				<?php
+				} ?>
+			</ul>
+		</nav>
+	</div>
+</header>

@@ -57,4 +57,6 @@
 //	dbug('$projects', $projects); 
 //	echo dbug('print');
 
-	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
+//	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
+
+	require("../templates/commitments_form.php");
