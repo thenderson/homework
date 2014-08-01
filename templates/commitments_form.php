@@ -38,7 +38,7 @@
 		<script type="text/javascript">
 			window.onload = function() { 
 				// you can use "datasource/demo.php" if you have PHP installed, to get live data from the demo.csv file
-				editableGrid.onloadJSON("datasource/demo.php"); 
+				editableGrid.onloadJSON("x"); 
 			}; 
 		</script>
     </head>
@@ -46,7 +46,8 @@
     <body>
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 		
-		<?php require("nav.html");?> <!-- add navbar -->
+		<!-- add navbar -->
+		<?php require("nav.html");?> 
 
 		<div class="container">
 
@@ -100,10 +101,7 @@
 					<label for="barcount">Bars in chart: </label>
 					<select id="barcount" name="barcount">
 						<option value="10">10</option>
-						<option value="15">15</option>
 						<option value="20">20</option>
-						<option value="25">25</option>
-						<option value="30">30</option>
 						<option value="40">40</option>
 						<option value="50">50</option>
 					</select>	
