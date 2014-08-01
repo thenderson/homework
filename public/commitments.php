@@ -59,4 +59,4 @@
 
 //	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
 
-	redirect("../templates/commitments_form.php");
+	render("../templates/commitments_form.php");
