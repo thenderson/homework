@@ -154,6 +154,7 @@ function dbug() {
         if (preg_match("/^https?:\/\//", $destination))
         {
             header("Location: " . $destination);
+			header("Content-Type: text/html; charset=utf-8");
         }
 
         // handle absolute path
@@ -162,6 +163,7 @@ function dbug() {
             $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
             $host = $_SERVER["HTTP_HOST"];
             header("Location: $protocol://$host$destination");
+			header("Content-Type: text/html; charset=utf-8");
         }
 
         // handle relative path
@@ -172,6 +174,7 @@ function dbug() {
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             header("Location: $protocol://$host$path/$destination");
+			header("Content-Type: text/html; charset=utf-8");
         }
 
         // exit immediately since we're redirecting anyway
