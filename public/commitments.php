@@ -57,9 +57,12 @@
 //	dbug('$projects', $projects); 
 //	echo dbug('print');
 
-//	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
+	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
 
 	//redirect("../templates/commitments_form.php");
 	//header('location: /commgr/templates/commitments_form.php');
-	require('../templates/commitments_form.php');
+	//header('Content-Type: text/html; charset=UTF-8');
+	//header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
+	//header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+	//require('../templates/commitments_form.php');
 	exit;
