@@ -22,21 +22,20 @@
 		<link rel="stylesheet" href="/commgr/public/css/editablegrid.css" type="text/css" media="screen">
 
 		<!-- include javascript and css files for jQuery, needed for the datepicker and autocomplete extensions -->
-		<!-- <script src="/commgr/public/extensions/jquery/jquery-1.6.4.min.js" ></script> -->
+		<script src="/commgr/public/extensions/jquery/jquery-1.6.4.min.js" ></script>
 		<script src="/commgr/public/extensions/jquery/jquery-ui-1.8.16.custom.min.js" ></script>
 		<link rel="stylesheet" href="/commgr/public/extensions/jquery/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
 		
 		<!-- include javascript and css files for the autocomplete extension -->
 		<script src="/commgr/public/extensions/autocomplete/autocomplete.js" ></script>
 		<link rel="stylesheet" href="/commgr/public/extensions/autocomplete/autocomplete.css" type="text/css" media="screen">
+		
+		<script src="/commgr/public/js/bootstrap.min.js"></script>
 
         <title>reliable</title>
     </head>
 
-    <body>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="/commgr/public/js/bootstrap.min.js"></script>
-		
+    <body>		
 		<header class="navbar navbar-default" id="top" role="navigation">
 			<div class="container">
 				<div class="navbar-header margin-8px">
