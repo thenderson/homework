@@ -60,6 +60,6 @@
 //	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
 
 	//redirect("../templates/commitments_form.php");
-	http_response_code(302);
-	header('location: /commgr/templates/commitments_form.php');
+	//header('location: /commgr/templates/commitments_form.php');
+	require('/commgr/templates/commitments_form.php');
 	exit;
