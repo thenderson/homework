@@ -172,13 +172,12 @@ function dbug() {
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
-
         }
-
-		header('Content-Type: text/javascript; charset=UTF-8');
+		
+		header($location);
+		header('Content-Type: text/html; charset=UTF-8');
 		header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
 		header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-		header($location);
 		
         // exit immediately since we're redirecting anyway
         exit;
