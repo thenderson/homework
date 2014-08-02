@@ -61,5 +61,5 @@
 
 	//redirect("../templates/commitments_form.php");
 	http_response_code(302);
-	header('location: /commgr/templates/register_form.php');
+	header('location: /commgr/templates/login_form.php');
 	exit;
