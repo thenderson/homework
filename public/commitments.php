@@ -61,5 +61,5 @@
 
 	//redirect("../templates/commitments_form.php");
 	//header('location: /commgr/templates/commitments_form.php');
-	require('/commgr/templates/commitments_form.php');
+	require('../templates/commitments_form.php');
 	exit;
