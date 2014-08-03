@@ -86,6 +86,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('unique_id');
 		}
+	}));
 
 	//renderer for the project_number column
 	grid.setCellRenderer('project_number', new CellRenderer({
