@@ -2,5 +2,5 @@
     // configuration
     require("../includes/config.php");
 
-    redirect("commitments.php");
+    render("commitments_form.html");
 ?>

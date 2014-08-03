@@ -196,7 +196,7 @@ function dbug() {
             extract($values);
 
             // render header
-            //require("../templates/header.php");
+            require("../templates/header.html");
 
             // render template
             require("../templates/$template");

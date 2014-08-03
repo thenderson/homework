@@ -1,0 +1,77 @@
+		<div class="container" id="wrap">
+
+			<!-- TODO
+			adjustable column widths
+			collapse projects
+			date picker
+			editable v. not
+			sort, filter
+			individual view (across projects)
+			-->
+			
+			<div id="wrap">
+			
+				<!-- Feedback message zone -->
+				<div id="message"></div>
+
+				<div id="toolbar">
+				  <input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
+				  <a id="showaddformbutton" class="button">Add new row</a>
+				</div>
+				
+				<!-- Grid contents -->
+				<div id="tablecontent"></div>
+			
+				<!-- Paginator control -->
+				<div id="paginator"></div>
+				
+				<script src="commgr/public/js/editablegrid-2.1.0-b13.js"></script>   
+				<script src="commgr/public/js/reliable.js" ></script>
+
+				<script type="text/javascript">
+		
+					var datagrid = new DatabaseGrid();
+					window.onload = function() { 
+
+						// key typed in the filter field
+						$("#filter").keyup(function() {
+							datagrid.editableGrid.filter( $(this).val());
+
+							// To filter on some columns, you can set an array of column index 
+							//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+						  });
+
+						$("#showaddformbutton").click( function()  {
+						  showAddForm();
+						});
+						$("#cancelbutton").click( function() {
+						  showAddForm();
+						});
+
+						$("#addbutton").click(function() {
+						  datagrid.addRow();
+						});
+
+				
+					}; 
+				</script>
+
+				<!-- simple form, used to add a new row -->
+				<div id="addform">
+
+					<div class="row">
+						<input type="text" id="name" name="name" placeholder="name" />
+					</div>
+
+					 <div class="row">
+						<input type="text" id="firstname" name="firstname" placeholder="firstname" />
+					</div>
+
+					<div class="row tright">
+					  <a id="addbutton" class="button">Apply</a>
+					  <a id="cancelbutton" class="button">Cancel</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
