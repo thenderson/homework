@@ -61,7 +61,7 @@
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
-	$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
+	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');  
 	
 	//render grid
 	$grid->renderXML($commitments);
