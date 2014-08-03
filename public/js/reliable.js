@@ -73,7 +73,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
 	
-	//renderer for the unique_id column & header
+	//renderers for the unique_id column
 	grid.setCellRenderer('unique_id', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
@@ -88,71 +88,127 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 
-	//renderer for the project_number column
+	//renderers for the project_number column
 	grid.setCellRenderer('project_number', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('project_number');
 		}
 	}));
-	
-	//renderer for the task_id column
+		
+	grid.setHeaderRenderer('project_number', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('project_number');
+		}
+	}));
+
+	//renderers for the task_id column
 	grid.setCellRenderer('task_id', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('task_id');
 		}
 	}));
-	
-	//renderer for the description column
+		
+	grid.setHeaderRenderer('task_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('task_id');
+		}
+	}));
+
+	//renderers for the description column
 	grid.setCellRenderer('description', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('description');
 		}
 	}));
-	
-	//renderer for the promiser column
+		
+	grid.setHeaderRenderer('description', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('description');
+		}
+	}));
+
+	//renderers for the promiser column
 	grid.setCellRenderer('promiser', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('promiser');
 		}
 	}));
-	
-	//renderer for the requester column
+		
+	grid.setHeaderRenderer('promiser', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('promiser');
+		}
+	}));
+
+	//renderers for the requester column
 	grid.setCellRenderer('requester', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('requester');
 		}
 	}));
-	
-	//renderer for the due_by column
+		
+	grid.setHeaderRenderer('requester', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('requester');
+		}
+	}));
+
+	//renderers for the due_by column
 	grid.setCellRenderer('due_by', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('due_by');
 		}
 	}));
-	
-	//renderer for the status column
+		
+	grid.setHeaderRenderer('due_by', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('due_by');
+		}
+	}));
+
+	//renderers for the status column
 	grid.setCellRenderer('status', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('status');
 		}
 	}));
-	
-	//renderer for the metric column
+		
+	grid.setHeaderRenderer('status', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('status');
+		}
+	}));
+
+	//renderers for the metric column
 	grid.setCellRenderer('metric', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('metric');
 		}
 	}));
+	
+	grid.setHeaderRenderer('metric', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('metric');
+		}
+	}));
 
-	// renderer for the action column
+	// renderers for the action column
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) {                 
 		     cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
@@ -160,7 +216,14 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			//$(cell).addClass('metric');
 		}
 	})); 
-	
+		
+	grid.setHeaderRenderer('actions', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('actions');
+		}
+	}));
+
 	grid.renderGrid("tablecontent", "commitments");
 }
 
