@@ -32,7 +32,7 @@ CellRenderer.prototype._render = function(rowIndex, columnIndex, element, value)
 	if (this.column.datatype == 'boolean') EditableGrid.prototype.addClassName(element, "boolean");
 		
 	// call the specialized render method
-	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, '&nbsp; ')) : value);
+	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, ' &nbsp;')) : value);
 };
 
 CellRenderer.prototype.render = function(element, value) 
@@ -207,6 +207,7 @@ DateCellRenderer.prototype.render = function(cell, value)
 	var date = this.editablegrid.checkDate(value);
 	if (typeof date == "object") cell.innerHTML = date.formattedDate;
 	else cell.innerHTML = value;
+	cell.style.whiteSpace = 'nowrap';
 };
 
 /**
