@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php $x=null ?>
 <html>
     <head>
 		<meta charset="utf-8">
