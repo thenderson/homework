@@ -276,7 +276,7 @@ SortHeaderRenderer.prototype.render = function(cell, value)
 	}
 };
 
-grid.setCellRenderer('description', new CellRenderer({
+grid.setCellRenderer('COMMITMENT', new CellRenderer({
     render: function(cell, value) {
         CellRenderer.prototype.render.call(this, cell, value);
         $(cell).addClass('description');
