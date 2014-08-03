@@ -275,3 +275,10 @@ SortHeaderRenderer.prototype.render = function(cell, value)
 		if (this.cellRenderer) this.cellRenderer.render(cell, value);
 	}
 };
+
+grid.setCellRenderer('description', new CellRenderer({
+    render: function(cell, value) {
+        CellRenderer.prototype.render.call(this, cell, value);
+        $(cell).addClass('description');
+    }
+}));
