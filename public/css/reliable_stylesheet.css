@@ -207,7 +207,7 @@ th.boolean {
 	text-align: center;
 }
 
-/*
+
 th.unique_id,
 td.unique_id {
 	display: none;
@@ -261,11 +261,11 @@ td.metric {
 	width: 5%;
 }
 
-th.action,
-td.action {
+th.actions,
+td.actions {
 	text-align: right;
 	width: 5%;
-}*/
+}
 
 table.commitments { 
 	border-collapse: collapse; 
