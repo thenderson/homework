@@ -81,7 +81,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer('unique_id', new new CellRenderer({
+	grid.setHeaderRenderer('unique_id', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('unique_id');
