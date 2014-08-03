@@ -58,6 +58,13 @@
 
 			
 				}; 
+				
+				grid.setCellRenderer('COMMITMENT', new CellRenderer({
+					render: function(cell, value) {
+						CellRenderer.prototype.render.call(this, cell, value);
+						$(cell).addClass('description');
+					}
+				}));
 			</script>
 
 			<!-- simple form, used to add a new row -->
