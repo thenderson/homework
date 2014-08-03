@@ -59,7 +59,7 @@
 			
 				}; 
 				
-				datagrid.CellRenderer('COMMITMENT', new CellRenderer({
+				datagrid.setCellRenderer('COMMITMENT', new CellRenderer({
 					render: function(cell, value) {
 						CellRenderer.prototype.render.call(this, cell, value);
 						$(cell).addClass('description');
