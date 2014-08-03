@@ -153,6 +153,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('metric');
 		}
 	})); 
+}
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
