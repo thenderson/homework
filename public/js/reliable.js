@@ -22,7 +22,7 @@ function highlight(div_id, style) {
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {      
 	$.ajax({
-		url: 'commitment_update.php',
+		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -145,14 +145,14 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		// }
 	// }));
 
-	// // renderer for the action column
-	// grid.setCellRenderer('action', new CellRenderer({ 
-		// render: function(cell, id) {                 
-		     // cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-			// // CellRenderer.prototype.render.call(this, cell, value);
-			// //$(cell).addClass('metric');
-		// }
-	// })); 
+	// renderer for the action column
+	grid.setCellRenderer('action', new CellRenderer({ 
+		render: function(cell, id) {                 
+		     cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+			// CellRenderer.prototype.render.call(this, cell, value);
+			//$(cell).addClass('metric');
+		}
+	})); 
 }
 
 DatabaseGrid.prototype.deleteRow = function(id) 
@@ -163,7 +163,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   if ( confirm('Confirm deletion of row id ' + id )  ) {
 
         $.ajax({
-		url: 'commitment_delete.php',
+		url: '../includes/commitment_delete.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -191,7 +191,7 @@ DatabaseGrid.prototype.addRow = function(id)
   var self = this;
 
         $.ajax({
-		url: 'commitment_add.php',
+		url: '../includes/commitment_add.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
