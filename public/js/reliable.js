@@ -145,14 +145,14 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		// }
 	// }));
 
-	// renderer for the action column
-	grid.setCellRenderer('action', new CellRenderer({ 
-		render: function(cell, id) {                 
-		     cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-			// CellRenderer.prototype.render.call(this, cell, value);
-			//$(cell).addClass('metric');
-		}
-	})); 
+	// // renderer for the action column
+	// grid.setCellRenderer('action', new CellRenderer({ 
+		// render: function(cell, id) {                 
+		     // cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+			// // CellRenderer.prototype.render.call(this, cell, value);
+			// //$(cell).addClass('metric');
+		// }
+	// })); 
 }
 
 DatabaseGrid.prototype.deleteRow = function(id) 

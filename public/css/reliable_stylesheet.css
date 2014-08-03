@@ -94,13 +94,6 @@ border-bottom: 0px;
 border-top: 0px;
 }
 
-.secondary /* for 'secondary' table rows where two rows are stacked in a cell */
-{
-  padding: 0px;
-  line-height: 1.0;
-  font-size: 10px;
-}
-
 .flash-ok {
     border: 2px solid rgb(165,171,129); /*median: green*/
 }
@@ -218,7 +211,7 @@ th.boolean {
 th.unique_id,
 td.unique_id {
 	display: none;
-}*/
+}
 
 th.project_number,
 td.project_number {
@@ -272,7 +265,7 @@ th.action,
 td.action {
 	text-align: right;
 	width: 5%;
-}
+}*/
 
 table.commitments { 
 	border-collapse: collapse; 
