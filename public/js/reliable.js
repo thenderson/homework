@@ -73,13 +73,20 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
 
-// render for the action column
+	// render for the action column
 	grid.setCellRenderer("action", new CellRenderer({ 
 		render: function(cell, id) {                 
 		      cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
 		}
 	})); 
-
+	
+	//renderer for the commitments column
+	grid.setCellRenderer('description', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('description');
+		}
+	}));
 
 	grid.renderGrid("tablecontent", "commitments");
 };    
@@ -89,7 +96,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 
   var self = this;
 
-  if ( confirm('Are you sur you want to delete the row id ' + id )  ) {
+  if ( confirm('Confirm deletion of row id ' + id )  ) {
 
         $.ajax({
 		url: 'commitment_delete.php',
@@ -145,10 +152,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
-	});
-
-        
-			
+	});		
 }; 
 
 
@@ -208,7 +212,10 @@ function showAddForm() {
 
         
 
-   
+// helper function to display a message
+function displayMessage(text, style) { 
+	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
+} 
 
 
 
