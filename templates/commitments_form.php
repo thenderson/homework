@@ -44,5 +44,20 @@
     </head>
 
     <body>
-	
+		<script src="/commgr/public/js/bootstrap.min.js"></script>
+		
+		<!-- add navbar -->
+		<?php require("nav.html");?> 
+
+		<div class="container">
+
+		<!-- TODO
+			adjustable column widths
+			collapse projects
+			date picker
+			editable v. not
+			sort, filter
+			individual view (across projects)
+		-->
+		</div>
 	</body>
