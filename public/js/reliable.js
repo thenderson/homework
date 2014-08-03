@@ -73,13 +73,19 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
 	
-	//renderer for the unique_id column
+	//renderer for the unique_id column & header
 	grid.setCellRenderer('unique_id', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('unique_id');
 		}
 	}));
+	
+	grid.setHeaderRenderer('unique_id', new new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('unique_id');
+		}
 
 	//renderer for the project_number column
 	grid.setCellRenderer('project_number', new CellRenderer({
@@ -169,7 +175,6 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			tablename : self.editableGrid.name,
 			id: id 
 		},
 		success: function (response) 
