@@ -211,9 +211,9 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	// renderers for the action column
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) {                 
-		     cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-			// CellRenderer.prototype.render.call(this, cell, value);
-			//$(cell).addClass('metric');
+		    cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('actions');
 		}
 	})); 
 		

@@ -188,6 +188,7 @@ input.invalid {
 	width: 100%;
 }  
 
+/*
 th.number {
 	text-align: right;
 	padding-right: 5px;
@@ -206,7 +207,7 @@ td.boolean {
 th.boolean {
 	text-align: center;
 }
-
+*/
 
 th.unique_id,
 td.unique_id {
@@ -288,7 +289,6 @@ table.commitments>tbody tr:hover a {
 table.commitments th {
 	background: #E5E5E5;
 	color: #555;
-	text-align: center;
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-top: 4px;
