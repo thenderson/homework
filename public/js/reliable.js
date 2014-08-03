@@ -72,24 +72,87 @@ DatabaseGrid.prototype.fetchGrid = function()  {
 DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
-
-	// render for the action column
-	grid.setCellRenderer("action", new CellRenderer({ 
-		render: function(cell, id) {                 
-		      cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-		}
-	})); 
 	
-	//renderer for the commitments column
+	//renderer for the unique_id column
+	grid.setCellRenderer('unique_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('unique_id');
+		}
+	}));
+
+	//renderer for the project_number column
+	grid.setCellRenderer('project_number', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('project_number');
+		}
+	}));
+	
+	//renderer for the task_id column
+	grid.setCellRenderer('task_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('task_id');
+		}
+	}));
+	
+	//renderer for the description column
 	grid.setCellRenderer('description', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('description');
 		}
 	}));
+	
+	//renderer for the promiser column
+	grid.setCellRenderer('promiser', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('promiser');
+		}
+	}));
+	
+	//renderer for the requester column
+	grid.setCellRenderer('requester', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('requester');
+		}
+	}));
+	
+	//renderer for the due_by column
+	grid.setCellRenderer('due_by', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('due_by');
+		}
+	}));
+	
+	//renderer for the status column
+	grid.setCellRenderer('status', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('status');
+		}
+	}));
+	
+	//renderer for the metric column
+	grid.setCellRenderer('metric', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('metric');
+		}
+	}));
 
-	grid.renderGrid("tablecontent", "commitments");
-};    
+	// render for the action column
+	grid.setCellRenderer(action', new CellRenderer({ 
+		render: function(cell, id) {                 
+		     cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+			 CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('metric');
+		}
+	})); 
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {

@@ -214,10 +214,63 @@ th.boolean {
 	text-align: center;
 }
 
+th.unique_id,
+td.unique_id {
+	display: none;
+}
+
+th.project_number,
+td.project_number {
+	text-align: left;
+	width: 10%;
+}
+
+th.task_id,
+td.task_id {
+	text-align: left;
+	width: 10%;
+}
+
 th.description,
 td.description {
 	text-align: left;
-	width: 33%;
+	width: 35%;
+}
+
+th.promiser,
+td.promiser {
+	text-align: center;
+	width: 10%;
+}
+
+th.requester,
+td.requester {
+	text-align: center;
+	width: 10%;
+}
+
+th.due_by,
+td.due_by {
+	text-align: center;
+	width: 10%;
+}
+
+th.status,
+td.status {
+	text-align: center;
+	width: 5%;
+}
+
+th.metric,
+td.metric {
+	text-align: center;
+	width: 5%;
+}
+
+th.action,
+td.action {
+	text-align: right;
+	width: 5%;
 }
 
 table.commitments { 
