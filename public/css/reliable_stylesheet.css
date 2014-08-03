@@ -214,10 +214,11 @@ th.boolean {
 	text-align: center;
 }
 
+/*
 th.unique_id,
 td.unique_id {
 	display: none;
-}
+}*/
 
 th.project_number,
 td.project_number {
