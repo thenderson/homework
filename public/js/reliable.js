@@ -218,7 +218,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	}));
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
-		render: function(cell, id) {                 
+		render: function(cell, id) { 
 		    cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
 		}
 	})); 
@@ -237,15 +237,17 @@ DatabaseGrid.prototype.deleteRow = function(id)
 {
 
   var self = this;
+  var taskId = self.editableGrid.getValueAt(id, 2);
+  var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if ( confirm('Confirm deletion of row id ' + id )  ) {
+  if ( confirm('Confirm deletion of row id ' + taskId )  ) {
 
         $.ajax({
 		url: '../includes/commitment_delete.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			id: id 
+			unique_id: uniqueId; 
 		},
 		success: function (response) 
 		{ 

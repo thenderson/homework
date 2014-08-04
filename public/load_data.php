@@ -51,9 +51,9 @@
 	// create grid
 	$grid = new EditableGrid();
 	
-	//declare grid columns
+	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
-	$grid->addColumn('project_number', 'PROJECT #', 'double');
+	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
