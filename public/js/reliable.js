@@ -247,7 +247,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			unique_id: uniqueId; 
+			unique_id: uniqueId 
 		},
 		success: function (response) 
 		{ 
