@@ -65,6 +65,6 @@
 	
 	dbug($commitments);
 	echo dbug('print');
-	
+	apologize($commitments);
 	//render grid
 	//$grid->renderXML($commitments);
