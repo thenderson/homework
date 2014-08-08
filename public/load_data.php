@@ -63,5 +63,8 @@
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');  
 	
+	dbug($commitments);
+	echo dbug('print');
+	
 	//render grid
 	$grid->renderXML($commitments);
