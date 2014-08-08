@@ -256,17 +256,13 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
-	});
-
-        
+	});     
   }
-			
 }; 
 
 
 DatabaseGrid.prototype.addRow = function(id) 
 {
-
   var self = this;
 
         $.ajax({
@@ -353,17 +349,8 @@ function showAddForm() {
       $("#addform").show();
 }
 
-        
 
 // helper function to display a message
 function displayMessage(text, style) { 
 	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
 } 
-
-
-
-
-  
-
-
-
