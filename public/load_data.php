@@ -67,4 +67,4 @@
 	echo dbug('print');
 	
 	//render grid
-	$grid->renderXML($commitments);
+	//$grid->renderXML($commitments);
