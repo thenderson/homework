@@ -64,7 +64,11 @@
 	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');  
 	
 	dbug($commitments);
-	echo dbug('print');
-	echo "<script type='text/javascript'>alert($commitments);</script>";
+echo ‘<pre>’;
+var_dump($oTrends);
+echo ‘</pre>’;
+
+while true {}
+
 	//render grid
-	$grid->renderXML($commitments);
+//	$grid->renderXML($commitments);

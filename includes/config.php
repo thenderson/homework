@@ -7,7 +7,7 @@
      */
 
     // display errors, warnings, and notices
-    ini_set("display_errors", true);
+	ini_set('display_errors', 'On');
     error_reporting(E_ALL);
 
 	// set timezone to US PST
