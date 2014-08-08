@@ -67,10 +67,10 @@
 echo ‘<pre>’;
 var_dump($commitments);
 echo ‘</pre>’;
-
-while (x<1000000000)
+$x=0
+while ($x<1000000000)
 {
-x++;
+$x++;
 }
 
 	//render grid
