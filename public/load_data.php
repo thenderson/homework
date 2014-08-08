@@ -67,11 +67,8 @@
 echo ‘<pre>’;
 var_dump($commitments);
 echo ‘</pre>’;
-$x=0
-while ($x<1000000000)
-{
-$x++;
-}
+die();
+
 
 	//render grid
 //	$grid->renderXML($commitments);
