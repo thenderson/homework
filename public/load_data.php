@@ -62,13 +62,12 @@
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');  
-	
-	dbug($commitments);
-echo ‘<pre>’;
-var_dump($commitments);
-echo ‘</pre>’;
-die();
 
+	ob_start();
+	var_dump($commitments);
+	$contents = ob_get_contents();
+	ob_end_clean();
+	error_log($contents);
 
 	//render grid
-//	$grid->renderXML($commitments);
+	$grid->renderXML($commitments);
