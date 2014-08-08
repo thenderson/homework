@@ -65,10 +65,13 @@
 	
 	dbug($commitments);
 echo ‘<pre>’;
-var_dump($oTrends);
+var_dump($commitments);
 echo ‘</pre>’;
 
-while true {}
+while (x<1000000000)
+{
+x++;
+}
 
 	//render grid
 //	$grid->renderXML($commitments);
