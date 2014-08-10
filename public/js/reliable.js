@@ -74,148 +74,148 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
   var self = this;
 	
 	//renderers for the unique_id column
-	// grid.setCellRenderer('unique_id', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('unique_id');
-		// }
-	// }));
+	grid.setCellRenderer('unique_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('unique_id');
+		}
+	}));
 	
-	// grid.setHeaderRenderer('unique_id', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('unique_id');
-		// }
-	// }));
+	grid.setHeaderRenderer('unique_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('unique_id');
+		}
+	}));
 
-	// //renderers for the project_number column
-	// grid.setCellRenderer('project_number', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('project_number');
-		// }
-	// }));
+	//renderers for the project_number column
+	grid.setCellRenderer('project_number', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('project_number');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('project_number', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('project_number');
-		// }
-	// }));
+	grid.setHeaderRenderer('project_number', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('project_number');
+		}
+	}));
 
-	// //renderers for the task_id column
-	// grid.setCellRenderer('task_id', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('task_id');
-		// }
-	// }));
+	//renderers for the task_id column
+	grid.setCellRenderer('task_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('task_id');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('task_id', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('task_id');
-		// }
-	// }));
+	grid.setHeaderRenderer('task_id', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('task_id');
+		}
+	}));
 
-	// //renderers for the description column
-	// grid.setCellRenderer('description', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('description');
-		// }
-	// }));
+	//renderers for the description column
+	grid.setCellRenderer('description', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('description');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('description', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('description');
-		// }
-	// }));
+	grid.setHeaderRenderer('description', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('description');
+		}
+	}));
 
-	// //renderers for the promiser column
-	// grid.setCellRenderer('promiser', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('promiser');
-		// }
-	// }));
+	//renderers for the promiser column
+	grid.setCellRenderer('promiser', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('promiser');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('promiser', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('promiser');
-		// }
-	// }));
+	grid.setHeaderRenderer('promiser', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('promiser');
+		}
+	}));
 
-	// //renderers for the requester column
-	// grid.setCellRenderer('requester', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('requester');
-		// }
-	// }));
+	//renderers for the requester column
+	grid.setCellRenderer('requester', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('requester');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('requester', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('requester');
-		// }
-	// }));
+	grid.setHeaderRenderer('requester', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('requester');
+		}
+	}));
 
-	// //renderers for the due_by column
-	// grid.setCellRenderer('due_by', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('due_by');
-		// }
-	// }));
+	//renderers for the due_by column
+	grid.setCellRenderer('due_by', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('due_by');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('due_by', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('due_by');
-		// }
-	// }));
+	grid.setHeaderRenderer('due_by', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('due_by');
+		}
+	}));
 
-	// //renderers for the status column
-	// grid.setCellRenderer('status', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('status');
-		// }
-	// }));
+	//renderers for the status column
+	grid.setCellRenderer('status', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('status');
+		}
+	}));
 		
-	// grid.setHeaderRenderer('status', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('status');
-		// }
-	// }));
+	grid.setHeaderRenderer('status', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('status');
+		}
+	}));
 
-	// //renderers for the metric column
-	// grid.setCellRenderer('metric', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('metric');
-		// }
-	// }));
+	//renderers for the metric column
+	grid.setCellRenderer('metric', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('metric');
+		}
+	}));
 	
-	// grid.setHeaderRenderer('metric', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('metric');
-		// }
-	// }));
+	grid.setHeaderRenderer('metric', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('metric');
+		}
+	}));
 
-	// // renderers for the action column
+	// renderers for the action column
 	
-	// grid.setCellRenderer('actions', new CellRenderer({ 
-		// render: function(cell, value) {                 
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('actions');
-		// }
-	// }));
+	grid.setCellRenderer('actions', new CellRenderer({ 
+		render: function(cell, value) {                 
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('actions');
+		}
+	}));
 	
 	// grid.setCellRenderer('actions', new CellRenderer({ 
 		// render: function(cell, id) { 
@@ -223,14 +223,14 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		// }
 	// })); 
 	
-	// grid.setHeaderRenderer('actions', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('actions');
-		// }
-	// }));
+	grid.setHeaderRenderer('actions', new CellRenderer({
+		render: function(cell, value) {
+			CellRenderer.prototype.render.call(this, cell, value);
+			$(cell).addClass('actions');
+		}
+	}));
 
-	grid.renderGrid("tablecontent", "grid");
+	grid.renderGrid('tablecontent', 'grid');
 }
 
 DatabaseGrid.prototype.deleteRow = function(id) 
