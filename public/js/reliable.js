@@ -217,11 +217,11 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setCellRenderer('actions', new CellRenderer({ 
-		render: function(cell, id) { 
-		    cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-		}
-	})); 
+	// grid.setCellRenderer('actions', new CellRenderer({ 
+		// render: function(cell, id) { 
+		    // cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+		// }
+	// })); 
 	
 	grid.setHeaderRenderer('actions', new CellRenderer({
 		render: function(cell, value) {
