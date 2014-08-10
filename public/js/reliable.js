@@ -227,7 +227,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 
-	grid.renderGrid('tablecontent', 'grid');
+	grid.renderGrid('tablecontent', 'commitments', 'thirdparameter');
 }
 
 DatabaseGrid.prototype.deleteRow = function(id) 
@@ -351,3 +351,18 @@ function showAddForm() {
 function displayMessage(text, style) { 
 	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
 } 
+
+
+DatabaseGrid.prototype.duplicate = function(rowIndex) 
+{
+	// copy values from given row
+	var values = this.getRowValues(rowIndex);
+	values['name'] = values['name'] + ' (copy)';
+
+	// get id for new row (max id + 1)
+	var newRowId = 0;
+	for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+	
+	// add new row
+	this.insertAfter(rowIndex, newRowId, values); 
+};
