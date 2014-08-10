@@ -35,16 +35,14 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 		success: function (response) 
 		{ 
 			// reset old value if failed then highlight row
-			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a sucessfull reponse can be "ok" or a database id 
+			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
 			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
 		    highlight(row.id, success ? "ok" : "error"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
 	});
-   
 }
-   
 
 
 function DatabaseGrid() 
@@ -60,8 +58,7 @@ function DatabaseGrid()
    	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
        	}
  	});
-	this.fetchGrid(); 
-	
+	this.fetchGrid();
 }
 
 DatabaseGrid.prototype.fetchGrid = function()  {
