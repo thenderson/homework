@@ -230,7 +230,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		// }
 	// }));
 
-	grid.renderGrid("tablecontent", "commitments");
+	grid.renderGrid("tablecontent", "grid");
 }
 
 DatabaseGrid.prototype.deleteRow = function(id) 
