@@ -207,17 +207,19 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 
 	// renderers for the action column
 	
-	grid.setCellRenderer('actions', new CellRenderer({ 
-		render: function(cell, value) {                 
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('actions');
-		}
-	}));
+	// grid.setCellRenderer('actions', new CellRenderer({ 
+		// render: function(cell, value) {                 
+			// CellRenderer.prototype.render.call(this, cell, value);
+			// $(cell).addClass('actions');
+		// }
+	// }));
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
-		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' ></i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+		    cell.innerHTML+= "<div class="dupicon"><i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' ></i></div>&nbsp;&nbsp;";
+			cell.innerHTML+= "<div class="delicon"><i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i></div>";
+			CellRenderer.prototype.render.call(this, cell, id);
+			$(cell).addClass('actions');
 		}
 	})); 
 	
@@ -237,7 +239,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   var taskId = self.editableGrid.getValueAt(id, 2);
   var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if ( confirm('Confirm deletion of row id ' + taskId )  ) {
+  if (confirm('Confirm deletion of row id ' + taskId )) {
 
         $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -356,7 +358,7 @@ DatabaseGrid.prototype.duplicateRow = function(rowIndex)
 {
 	// copy values from given row
 	var values = this.getRowValues(rowIndex);
-	values['name'] = values['name'] + ' (copy)';
+	//values['name'] = values['name'] + ' (copy)';
 
 	// get id for new row (max id + 1)
 	var newRowId = 0;

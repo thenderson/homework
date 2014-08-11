@@ -1,7 +1,7 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 /* colors from MS Office Median color scheme: 
 
-		accent 1 / ice blue		rgb(148, 182, 210)
+		accent 1 / ice blue		rgb(148, 182, 210)		dupicon
 		accent 2 / orange		rgb(221, 128, 71)
 		accent 3 / olive green 4	rgb(165, 171, 129)
 		accent 3 / olive green 3	rgb(200, 204, 179)   row hover
@@ -10,7 +10,7 @@
 		accent 6 / grey 50%		rgb(150, 140, 140)
 		background / dark 2		rgb(119, 95, 85)
 		background / light 2	rgb(235, 221, 195)
-		dark red				rgb(192, 0, 0)
+		dark red				rgb(192, 0, 0)			delicon
 */
 h1,
 .h1 { /* I just want text a bit smaller than default */
@@ -268,6 +268,14 @@ td.actions {
 	width: 5%;
 }
 
+.dupicon {
+	color: rgb(148, 182, 210);
+}
+
+.delicon {
+	color: rgb(192, 0, 0);
+}
+
 table.commitments { 
 	border-collapse: collapse; 
 	width: 100%;
@@ -298,7 +306,7 @@ table.commitments td {
 	padding: 3px;
 }
 table.commitments i {
-  font-size: 1.5em;
+  font-size: 1.0em;
   cursor: pointer;
 }
 img.icon {
