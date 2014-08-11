@@ -61,7 +61,9 @@
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
-	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');  
+	$grid->addColumn('actions', 'ACTIONS', 'html', NULL, false, 'id');
+//	$grid->addColumn('duplicate', 'ACTIONS', 'html', NULL, false, 'id');
+
 
 	// ob_start();
 	// var_dump($commitments);

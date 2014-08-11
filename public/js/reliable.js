@@ -214,11 +214,12 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	// grid.setCellRenderer('actions', new CellRenderer({ 
-		// render: function(cell, id) { 
-		    // cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
-		// }
-	// })); 
+	grid.setCellRenderer('actions', new CellRenderer({ 
+		render: function(cell, id) { 
+		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' ></i>";
+			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+		}
+	})); 
 	
 	grid.setHeaderRenderer('actions', new CellRenderer({
 		render: function(cell, value) {
@@ -232,7 +233,6 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
-
   var self = this;
   var taskId = self.editableGrid.getValueAt(id, 2);
   var uniqueId = self.editableGrid.getValueAt(id, 0);
@@ -290,7 +290,6 @@ DatabaseGrid.prototype.addRow = function(id)
 		async: true
 	});		
 }; 
-
 
 
 
@@ -353,7 +352,7 @@ function displayMessage(text, style) {
 } 
 
 
-DatabaseGrid.prototype.duplicate = function(rowIndex) 
+DatabaseGrid.prototype.duplicateRow = function(rowIndex) 
 {
 	// copy values from given row
 	var values = this.getRowValues(rowIndex);
