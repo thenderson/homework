@@ -390,3 +390,9 @@ InfoHeaderRenderer.prototype.render = function(cell, value)
 		cell.appendChild(link);
 	}
 };
+
+
+// helper function to get path of a demo image
+function image(relativePath) {
+	return "images/" + relativePath;
+}
