@@ -177,6 +177,13 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('due_by');
 		}
 	}));
+	
+	addCellValidator('due_by', new CellValidator({ 
+		isValid: function(value) { 
+			today = new Date();
+			d = new Date(value);
+			return d >= today; }
+	}));
 
 	//renderers for the status column
 	grid.setCellRenderer('status', new CellRenderer({
@@ -207,19 +214,10 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('metric');
 		}
 	}));
-
-	// renderers for the action column
-	
-	// grid.setCellRenderer('actions', new CellRenderer({ 
-		// render: function(cell, value) {                 
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('actions');
-		// }
-	// }));
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
-		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' >&nbsp;</i>";
+		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' >&nbsp;&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
 			//CellRenderer.prototype.render.call(this, cell, id);
 			$(cell).addClass('actions');
@@ -394,5 +392,5 @@ InfoHeaderRenderer.prototype.render = function(cell, value)
 
 // helper function to get path of a demo image
 function image(relativePath) {
-	return "images/" + relativePath;
+	return "img/" + relativePath;
 }

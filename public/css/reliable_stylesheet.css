@@ -229,7 +229,7 @@ td.task_id {
 th.description,
 td.description {
 	text-align: left;
-	width: 35%;
+	width: 37%;
 }
 
 th.promiser,
@@ -264,15 +264,15 @@ td.metric {
 
 th.actions,
 td.actions {
-	text-align: right;
-	width: 5%;
+	text-align: center;
+	width: 3%;
 }
 
-.dupicon {
+.fa-plus-square {
 	color: rgb(148, 182, 210);
 }
 
-.delicon {
+.fa-trash-0 {
 	color: rgb(192, 0, 0);
 }
 
