@@ -202,7 +202,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	
 	grid.setEnumProvider('status', new EnumProvider({ 
 		getOptionValuesForEdit: function (grid, column, rowIndex) {	
-			return { 'open', 'closed', 'in progress', 'deferred', 'unknown', 'n/a' };
+			return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
 		}
 
 		// the function getOptionValuesForEdit is called each time the cell is edited
