@@ -20,7 +20,8 @@ function highlight(div_id, style) {
    updateCellValue calls the PHP script that will update the database. 
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
-{      
+{     
+	console.log(editableGrid.name, editableGrid.getRowId(rowIndex), editableGrid.getColumnType(columnIndex) == "boolean" ? (newValue ? 1 : 0) : newValue, editableGrid.getColumnName(columnIndex), editableGrid.getColumnType(columnIndex));
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
@@ -84,7 +85,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('unique_id');
 		}
 	}));
-
+	
 	//renderers for the project_number column
 	grid.setCellRenderer('project_number', new CellRenderer({
 		render: function(cell, value) {
@@ -129,6 +130,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('description');
 		}
 	}));
+	
+	grid.setHeaderRenderer("description", new InfoHeaderRenderer("The specific work being requested. Must include what outputs shall be given to whom in what form & at what level of completion, quality, etc."));
 
 	//renderers for the promiser column
 	grid.setCellRenderer('promiser', new CellRenderer({
@@ -366,4 +369,24 @@ DatabaseGrid.prototype.duplicateRow = function(rowIndex)
 	
 	// add new row
 	this.insertAfter(rowIndex, newRowId, values); 
+};
+
+// this will be used to render our table headers
+function InfoHeaderRenderer(message) { 
+	this.message = message; 
+	this.infoImage = new Image();
+	this.infoImage.src = image("information.png");
+};
+
+InfoHeaderRenderer.prototype = new CellRenderer();
+InfoHeaderRenderer.prototype.render = function(cell, value) 
+{
+	if (value) {
+		// here we don't use cell.innerHTML = "..." in order not to break the sorting header that has been created for us (cf. option enableSort: true)
+		var link = document.createElement("a");
+		link.href = "javascript:alert('" + this.message + "');";
+		link.appendChild(this.infoImage);
+		cell.appendChild(document.createTextNode("\u00a0\u00a0"));
+		cell.appendChild(link);
+	}
 };
