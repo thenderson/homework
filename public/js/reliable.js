@@ -178,7 +178,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	addCellValidator('due_by', new CellValidator({ 
+	grid.addCellValidator('due_by', new CellValidator({ 
 		isValid: function(value) { 
 			today = new Date();
 			d = new Date(value);
@@ -199,6 +199,23 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('status');
 		}
 	}));
+	
+	grid.setEnumProvider('status', new EnumProvider({ 
+		getOptionValuesForEdit: function (grid, column, rowIndex) {	
+			return { 'open', 'closed', 'in progress', 'deferred', 'unknown', 'n/a' };
+		}
+
+		// the function getOptionValuesForEdit is called each time the cell is edited
+				// here we do only client-side processing, but you could use Ajax here to talk with your server
+				// if you do, then don't forget to use Ajax in synchronous mode 
+				// getOptionValuesForEdit: function (grid, column, rowIndex) {
+					// var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
+					// if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
+					// else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
+					// else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
+					// return null;
+				// }
+			}));
 
 	//renderers for the metric column
 	grid.setCellRenderer('metric', new CellRenderer({
