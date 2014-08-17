@@ -131,7 +131,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer('description', new InfoHeaderRenderer('Descibe what work products  
+	grid.setHeaderRenderer('description', new InfoHeaderRenderer('Descibe what work products \
 		shall be handed-off to whom in what form, via what method & at what level of completion.'));
 
 	//renderers for the promiser column
@@ -166,8 +166,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer('requester', new InfoHeaderRenderer('Select the person who is asking 
-		for the work described. If the promiser = the requester, this will be considered a 
+	grid.setHeaderRenderer('requester', new InfoHeaderRenderer('Select the person who is asking \
+		for the work described. If the promiser = the requester, this will be considered a \
 		personal workplan item and may not appear on the team workplan.'));
 
 	//renderers for the due_by column
@@ -209,10 +209,11 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer('status', new InfoHeaderRenderer('Open: Commitment is not complete. 
-		Closed: The requester is satisfied that the promiser has met the commitment described. 
-		In Progress: Work on the request has begun but is incomplete. Deferred: The request is 
-		set aside indefinitely. Unknown: The promiser and/or requester are not available to status the commitment.'));
+	grid.setHeaderRenderer('status', new InfoHeaderRenderer('Open: Commitment is not complete. \n\
+		Closed: The requester is satisfied that the promiser has met the commitment described. \n\
+		In Progress: Work on the request has begun but is incomplete. \n\
+		Deferred: The request is set aside indefinitely. \n\
+		Unknown: The promiser and/or requester are not available to status the commitment.'));
 	
 	grid.setEnumProvider('status', new EnumProvider({ 
 		getOptionValuesForEdit: function (grid, column, rowIndex) {	
@@ -264,7 +265,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: 
+	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: \
 		Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'));
 
 	grid.renderGrid('tablecontent', 'commitments', 'thirdparameter');
