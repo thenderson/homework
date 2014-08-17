@@ -131,7 +131,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	grid.setHeaderRenderer("description", new InfoHeaderRenderer("The specific work being requested. Must include what outputs shall be given to whom in what form & at what level of completion, quality, etc."));
+	grid.setHeaderRenderer('description', new InfoHeaderRenderer('Descibe what work products  
+		shall be handed-off to whom in what form, via what method & at what level of completion.'));
 
 	//renderers for the promiser column
 	grid.setCellRenderer('promiser', new CellRenderer({
@@ -147,6 +148,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('promiser');
 		}
 	}));
+	
+	grid.setHeaderRenderer('promiser', new InfoHeaderRenderer('Select the person who is promising the work described.'));
 
 	//renderers for the requester column
 	grid.setCellRenderer('requester', new CellRenderer({
@@ -162,6 +165,10 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('requester');
 		}
 	}));
+	
+	grid.setHeaderRenderer('requester', new InfoHeaderRenderer('Select the person who is asking 
+		for the work described. If the promiser = the requester, this will be considered a 
+		personal workplan item and may not appear on the team workplan.'));
 
 	//renderers for the due_by column
 	grid.setCellRenderer('due_by', new CellRenderer({
@@ -177,6 +184,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('due_by');
 		}
 	}));
+	
+	grid.setHeaderRenderer('due_by', new InfoHeaderRenderer('Select the date when the work product described be handed-off.'));
 	
 	grid.addCellValidator('due_by', new CellValidator({ 
 		isValid: function(value) { 
@@ -199,6 +208,11 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('status');
 		}
 	}));
+	
+	grid.setHeaderRenderer('status', new InfoHeaderRenderer('Open: Commitment is not complete. 
+		Closed: The requester is satisfied that the promiser has met the commitment described. 
+		In Progress: Work on the request has begun but is incomplete. Deferred: The request is 
+		set aside indefinitely. Unknown: The promiser and/or requester are not available to status the commitment.'));
 	
 	grid.setEnumProvider('status', new EnumProvider({ 
 		getOptionValuesForEdit: function (grid, column, rowIndex) {	
@@ -232,6 +246,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
+	grid.setHeaderRenderer('metric', new InfoHeaderRenderer('Overdue, complete, anticipated, improvised.'));
+	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
 		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' >&nbsp;&nbsp;</i>";
@@ -247,6 +263,9 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('actions');
 		}
 	}));
+	
+	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: 
+		Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'));
 
 	grid.renderGrid('tablecontent', 'commitments', 'thirdparameter');
 }
@@ -405,7 +424,6 @@ InfoHeaderRenderer.prototype.render = function(cell, value)
 		cell.appendChild(link);
 	}
 };
-
 
 // helper function to get path of a demo image
 function image(relativePath) {

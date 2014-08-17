@@ -229,7 +229,7 @@ td.task_id {
 th.description,
 td.description {
 	text-align: left;
-	width: 37%;
+	width: 35%;
 }
 
 th.promiser,
@@ -265,7 +265,7 @@ td.metric {
 th.actions,
 td.actions {
 	text-align: center;
-	width: 3%;
+	width: 5%;
 }
 
 .fa-plus-square {
