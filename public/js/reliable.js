@@ -253,8 +253,9 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
-		    cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-plus-square' >&nbsp;&nbsp;</i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o' ></i>";
+		    cell.innerHTML+= "<i onclick=\"datagrid.addRow("+id+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
+			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-files-o' >&nbsp;</i>";
+			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-eraser' ></i>";
 			//CellRenderer.prototype.render.call(this, cell, id);
 			$(cell).addClass('actions');
 		}
