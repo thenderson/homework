@@ -115,6 +115,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('task_id');
 		}
 	}));
+	
+	grid.setHeaderRenderer('task_id', new InfoHeaderRenderer('Unique ID for the request.'));
 
 	//renderers for the description column
 	grid.setCellRenderer('description', new CellRenderer({
