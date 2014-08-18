@@ -21,13 +21,13 @@ function highlight(div_id, style) {
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
-	console.log(getValueAt(rowIndex, 0), newValue, editableGrid.getColumnName(columnIndex));
+	console.log(editableGrid.getValueAt(rowIndex, 0), newValue, editableGrid.getColumnName(columnIndex));
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: getValueAt(rowIndex, 0), 
+			uniqueid: editableGrid.getValueAt(rowIndex, 0), 
 			newvalue: newValue, 
 			colname: editableGrid.getColumnName(columnIndex),
 			coltype: editableGrid.getColumnType(columnIndex)

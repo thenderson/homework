@@ -307,7 +307,10 @@ table.commitments th {
 }
 
 table.commitments td {
-	padding: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 1px;
+	padding-left: 1px;
 }
 table.commitments i { /* fontawesome icons */
   font-size: 0.85em;
