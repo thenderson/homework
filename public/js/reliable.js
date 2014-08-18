@@ -99,6 +99,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('project_number');
 		}
 	}));
+	
+	grid.setHeaderRenderer('projec_number', new InfoHeaderRenderer('Project that the work is part of.'));
 
 	//renderers for the task_id column
 	grid.setCellRenderer('task_id', new CellRenderer({
