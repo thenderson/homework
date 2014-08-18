@@ -21,17 +21,15 @@ function highlight(div_id, style) {
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
-	console.log(editableGrid.name, editableGrid.getRowId(rowIndex), editableGrid.getColumnType(columnIndex) == "boolean" ? (newValue ? 1 : 0) : newValue, editableGrid.getColumnName(columnIndex), editableGrid.getColumnType(columnIndex));
+	console.log(row[0], editableGrid.getRowId(rowIndex), newValue, editableGrid.getColumnName(columnIndex));
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			tablename : editableGrid.name,
 			id: editableGrid.getRowId(rowIndex), 
-			newvalue: editableGrid.getColumnType(columnIndex) == "boolean" ? (newValue ? 1 : 0) : newValue, 
-			colname: editableGrid.getColumnName(columnIndex),
-			coltype: editableGrid.getColumnType(columnIndex)			
+			newvalue: newValue, 
+			colname: editableGrid.getColumnName(columnIndex)			
 		},
 		success: function (response) 
 		{ 
@@ -255,7 +253,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		render: function(cell, id) { 
 		    cell.innerHTML+= "<i onclick=\"datagrid.addRow("+id+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+id+");\" class='fa fa-files-o' >&nbsp;</i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-eraser' ></i>";
+			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-minus-square-o' ></i>";
 			//CellRenderer.prototype.render.call(this, cell, id);
 			$(cell).addClass('actions');
 		}

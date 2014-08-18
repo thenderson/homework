@@ -1,11 +1,11 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 /* colors from MS Office Median color scheme: 
 
-		accent 1 / ice blue		rgb(148, 182, 210)		insert or duplicate commitment
+		accent 1 / ice blue		rgb(148, 182, 210)		insert commitment
 		accent 2 / orange		rgb(221, 128, 71)
 		accent 3 / olive green 4	rgb(165, 171, 129)
 		accent 3 / olive green 3	rgb(200, 204, 179)   row hover
-		accent 4 / gold			rgb(216, 178, 92)
+		accent 4 / gold			rgb(216, 178, 92)		duplicate commitment
 		accent 5 / green		rgb(123, 167, 157)
 		accent 6 / grey 50%		rgb(150, 140, 140)
 		background / dark 2		rgb(119, 95, 85)
@@ -268,16 +268,16 @@ td.actions {
 	width: 5%;
 }
 
-.fa-plus-square-o {
+.fa-plus-square-o { /* insert */
 	color: rgb(148, 182, 210);
 }
 
-.fa-eraser {
+.fa-minus-square-o { /* delete */
 	color: rgb(192, 0, 0);
 }
 
-.fa-files-o {
-	color: rgb(148, 182, 210);
+.fa-files-o { /* duplicate */
+	color: rgb(216, 178, 92);
 }
 
 table.commitments { 
@@ -309,8 +309,8 @@ table.commitments th {
 table.commitments td {
 	padding: 3px;
 }
-table.commitments i {
-  font-size: 1.0em;
+table.commitments i { /* fontawesome icons */
+  font-size: 0.85em;
   cursor: pointer;
 }
 img.icon {
