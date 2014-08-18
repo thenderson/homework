@@ -9,10 +9,10 @@
 require_once('config.php');         
                       
 // Get all parameters provided by the javascript
-$unique_id = $comm_db->real_escape_string(strip_tags($_POST['uniqueid']));
-$new_value = $comm_db->real_escape_string(strip_tags($_POST['newvalue']));
-$column_name = $comm_db->real_escape_string(strip_tags($_POST['colname']));
-$column_type = $comm_db->real_escape_string(strip_tags($_POST['coltype']));
+$unique_id = strip_tags($_POST['uniqueid']);
+$new_value = strip_tags($_POST['newvalue']);
+$column_name = strip_tags($_POST['colname']);
+$column_type = strip_tags($_POST['coltype']);
                                                 
 // spruce-up the date format
 if ($column_type == 'date') {
