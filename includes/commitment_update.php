@@ -38,11 +38,9 @@ if (!$stmt)
 
 try
 {
-	//$stmt->bindParam(1, $column_name, PDO::PARAM_STR);
 	$stmt->bindParam(1, $new_value, PDO::PARAM_STR);
 	$stmt->bindParam(2, $unique_id, PDO::PARAM_INT);
 	$stmt->execute();
-	$stmt->close();
 }             
 
 catch(PDOException $e) 
