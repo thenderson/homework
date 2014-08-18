@@ -1,44 +1,54 @@
 <?php
  
 /*
- * 
  * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Copyright (c) 2011 Webismymind SPRL Dual licensed under the MIT or GPL Version 2 licenses.
  * http://editablegrid.net/license
  */
       
 require_once('config.php');         
                       
 // Get all parameters provided by the javascript
-$colname = $mysqli->real_escape_string(strip_tags($_POST['colname']));
-$id = $mysqli->real_escape_string(strip_tags($_POST['id']));
-$coltype = $mysqli->real_escape_string(strip_tags($_POST['coltype']));
-$value = $mysqli->real_escape_string(strip_tags($_POST['newvalue']));
-$tablename = $mysqli->real_escape_string(strip_tags($_POST['tablename']));
+$unique_id = $mysqli->real_escape_string(strip_tags($_POST['uniqueid']));
+$new_value = $mysqli->real_escape_string(strip_tags($_POST['newvalue']));
+$column_name = $mysqli->real_escape_string(strip_tags($_POST['colname']));
+$column_type = $mysqli->real_escape_string(strip_tags($_POST['coltype']));
                                                 
-// Here, this is a little tips to manage date format before update the table
-if ($coltype == 'date') {
-   if ($value === "") 
-  	 $value = NULL;
+// spruce-up the date format
+if ($column_type == 'date') {
+   if ($new_value === "") 
+  	 $new_value = NULL;
    else {
       $date_info = date_parse_from_format('d/m/Y', $value);
-      $value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+      $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
    }
-}                      
+}
+                      
+// TODO: other input validation needs to go here.
 
-// This very generic. So this script can be used to update several tables.
-$return=false;
-if ( $stmt = $mysqli->prepare("UPDATE ".$tablename." SET ".$colname." = ? WHERE id = ?")) {
-	$stmt->bind_param("si",$value, $id);
-	$return = $stmt->execute();
+// Update database
+$stmt = $comm_db->prepare("UPDATE commitments SET ".$colname." = ? WHERE unique_id = ?");
+
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
+
+try
+{
+	$stmt->bind_param(1, $new_value, $column_name, PDO::PARAM_STR);
+	$stmt->bind_param(2, $new_value, $unique_id, PDO::PARAM_INT);
+	$stmt->execute();
 	$stmt->close();
-	
 }             
-$mysqli->close();        
 
-echo $return ? "ok" : "error";
+catch(PDOException $e) 
+{
+	trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	echo 'error';
+	exit;
+}      
 
-      
+echo 'ok';
