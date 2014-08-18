@@ -62,8 +62,6 @@
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
-//	$grid->addColumn('duplicate', 'ACTIONS', 'html', NULL, false, 'id');
-
 
 	// ob_start();
 	// var_dump($commitments);
