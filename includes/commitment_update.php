@@ -27,7 +27,7 @@ if ($column_type == 'date') {
 // TODO: other input validation needs to go here.
 
 // Update database
-$stmt = $comm_db->prepare("UPDATE commitments SET ? = ? WHERE unique_id = ?");
+$stmt = $comm_db->prepare("UPDATE commitments SET description = ? WHERE unique_id = ?");
 
 if (!$stmt)
 {
@@ -38,9 +38,9 @@ if (!$stmt)
 
 try
 {
-	$stmt->bind_param(1, $column_name, PDO::PARAM_STR);
-	$stmt->bind_param(2, $new_value, PDO::PARAM_STR);
-	$stmt->bind_param(3, $unique_id, PDO::PARAM_INT);
+	//$stmt->bind_param(1, $column_name, PDO::PARAM_STR);
+	$stmt->bind_param(1, $new_value, PDO::PARAM_STR);
+	$stmt->bind_param(2, $unique_id, PDO::PARAM_INT);
 	$stmt->execute();
 	$stmt->close();
 }             
