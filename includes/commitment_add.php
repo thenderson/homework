@@ -1,31 +1,52 @@
 <?php
- 
-/*
- * adapted from ...
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
       
 require_once('config.php');         
+                      
+// Get POST data
+$unique_id = strip_tags($_POST['uniqueid']);
+$project_number = strip_tags($_POST['projectnumber']);
 
-// Get all parameter provided by the javascript
-$name = $mysqli->real_escape_string(strip_tags($_POST['name']));
-$firstname = $mysqli->real_escape_string(strip_tags($_POST['firstname']));
-$tablename = $mysqli->real_escape_string(strip_tags($_POST['tablename']));
+if ($unique_id == null) //insert new commitment matching the project number of the one above it
+{
+	$q='INSERT INTO commitments (project_number, status) VALUES (?, 'OPEN')';
+}
+else // duplicate a commitment
+{
+	$q='CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY
+		SELECT * FROM commitments WHERE unique_id=?;
+		UPDATE temp_table SET unique_id=NULL;
+		INSERT INTO commitments SELECT * FROM temp_table;
+		DROP TABLE temp_table';
+}
 
-$return=false;
-if ( $stmt = $mysqli->prepare("INSERT INTO commitments (name, firstname) VALUES (  ?, ?)")) {
+$stmt = $comm_db->prepare($q);
 
-	$stmt->bind_param("ss", $name, $firstname);
-    $return = $stmt->execute();
-	$stmt->close();
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
+
+try
+{
+	if ($unique_id == null)
+	{
+		$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
+		$stmt->bindParam(2, $status, PDO::PARAM_STR);
+	}
+	else
+	{
+		$stmt->bindParam(1, $unique_id, PDO::PARAM_INT);
+	}
+	$stmt->execute();
 }             
-$mysqli->close();        
 
-echo $return ? "ok" : "error";
+catch(PDOException $e) 
+{
+	trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	echo 'error';
+	exit;
+}      
 
-      
-
+echo 'ok';

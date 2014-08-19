@@ -1,29 +1,30 @@
 <?php
- 
-/*
- * adapted from ...
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
       
 require_once('config.php');         
+                      
+// Get POST data
+$unique_id = strip_tags($_POST['uniqueid']);
 
-// Get all parameter provided by the javascript
-$id = $mysqli->real_escape_string(strip_tags($_POST['unique_id']));
+$stmt = $comm_db->prepare('DELETE FROM commitments WHERE unique_id = ?');
 
-// This very generic. So this script can be used to update several tables.
-$return=false;
-if ( $stmt = $mysqli->prepare("DELETE FROM commitments WHERE unique_id = ?")) {
-	$stmt->bind_param("i", $unique_id);
-	$return = $stmt->execute();
-	$stmt->close();
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
+
+try
+{
+	$stmt->bindParam(1, $unique_id, PDO::PARAM_INT);
+	$stmt->execute();
 }             
-$mysqli->close();        
 
-echo $return ? "ok" : "error";
+catch(PDOException $e) 
+{
+	trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	echo 'error';
+	exit;
+}      
 
-      
-
+echo 'ok';

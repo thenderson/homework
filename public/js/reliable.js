@@ -30,7 +30,6 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			uniqueid: editableGrid.getValueAt(rowIndex, 0), 
 			newvalue: newValue, 
 			colname: editableGrid.getColumnName(columnIndex),
-			coltype: editableGrid.getColumnType(columnIndex)
 		},
 		success: function (response) 
 		{ 
@@ -278,10 +277,10 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
   var self = this;
-  var taskId = self.editableGrid.getValueAt(id, 2);
-  var uniqueId = self.editableGrid.getValueAt(id, 0);
+  var taskid = self.editableGrid.getValueAt(id, 2);
+  var uniqueid = self.editableGrid.getValueAt(id, 0);
 
-  if (confirm('Confirm deletion of row id ' + taskId )) {
+  if (confirm('Confirm deletion of task id #' + taskId )) {
 
         $.ajax({
 		url: '../includes/commitment_delete.php',
