@@ -6,7 +6,7 @@ require_once('config.php');
 $unique_id = strip_tags($_POST['uniqueid']);
 $project_number = strip_tags($_POST['projectnumber']);
 
-if ($unique_id === null) //insert new commitment matching the project number of the one clicked on
+if ($unique_id == -1) //insert new commitment matching the project number of the one clicked on
 {
 	$q="INSERT INTO commitments (project_number, status) VALUES (?, 'OPEN')";
 }
@@ -30,10 +30,9 @@ if (!$stmt)
 
 try
 {
-	if ($unique_id == null)
+	if ($unique_id == -1)
 	{
 		$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
-		$stmt->bindParam(2, $status, PDO::PARAM_STR);
 	}
 	else
 	{

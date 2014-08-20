@@ -315,7 +315,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: null,
+			uniqueid: -1,
 			projectnumber: projectNumber
 		},
 		success: function (response) 
