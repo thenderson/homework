@@ -6,9 +6,9 @@ require_once('config.php');
 $unique_id = strip_tags($_POST['uniqueid']);
 $project_number = strip_tags($_POST['projectnumber']);
 
-if ($unique_id === null) //insert new commitment matching the project number of the one above it
+if ($unique_id === null) //insert new commitment matching the project number of the one clicked on
 {
-	$q='INSERT INTO commitments (project_number, status) VALUES (?, 'OPEN')';
+	$q="INSERT INTO commitments (project_number, status) VALUES (?, 'OPEN')";
 }
 else // duplicate a commitment
 {

@@ -308,15 +308,15 @@ DatabaseGrid.prototype.addRow = function(id)
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
 	var projectNumber = self.editableGrid.getValueAt(id, 1);
 	
-	console.log(self, id, uniqueId, projectNumber);  
+	console.log(id, uniqueId, projectNumber);  
 
         $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: uniqueId,
-			projetnumber: projectNumber
+			uniqueid: null,
+			projectnumber: projectNumber
 		},
 		success: function (response) 
 		{ 
@@ -338,6 +338,20 @@ DatabaseGrid.prototype.addRow = function(id)
 	});		
 }; 
 
+
+DatabaseGrid.prototype.duplicateRow = function(rowIndex) 
+{
+	// copy values from given row
+	var values = this.getRowValues(rowIndex);
+	//values['name'] = values['name'] + ' (copy)';
+
+	// get id for new row (max id + 1)
+	var newRowId = 0;
+	for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+	
+	// add new row
+	this.insertAfter(rowIndex, newRowId, values); 
+};
 
 
 function updatePaginator(grid, divId)
@@ -399,26 +413,13 @@ function displayMessage(text, style) {
 } 
 
 
-DatabaseGrid.prototype.duplicateRow = function(rowIndex) 
-{
-	// copy values from given row
-	var values = this.getRowValues(rowIndex);
-	//values['name'] = values['name'] + ' (copy)';
-
-	// get id for new row (max id + 1)
-	var newRowId = 0;
-	for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
-	
-	// add new row
-	this.insertAfter(rowIndex, newRowId, values); 
-};
-
 // this will be used to render our table headers
 function InfoHeaderRenderer(message) { 
 	this.message = message; 
 	this.infoImage = new Image();
 	this.infoImage.src = image("information.png");
 };
+
 
 InfoHeaderRenderer.prototype = new CellRenderer();
 InfoHeaderRenderer.prototype.render = function(cell, value) 
@@ -432,6 +433,7 @@ InfoHeaderRenderer.prototype.render = function(cell, value)
 		cell.appendChild(link);
 	}
 };
+
 
 // helper function to get path of a demo image
 function image(relativePath) {
