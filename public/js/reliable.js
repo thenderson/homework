@@ -16,33 +16,6 @@ function highlight(div_id, style) {
 	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
 }
         
-/**
-   updateCellValue calls the PHP script that will update the database. 
- */
-function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
-{     
-	console.log(editableGrid.getValueAt(rowIndex, 0), newValue, editableGrid.getColumnName(columnIndex), editableGrid.getColumnType(columnIndex));
-	$.ajax({
-		url: '../includes/commitment_update.php',
-		type: 'POST',
-		dataType: "html",
-		data: {
-			uniqueid: editableGrid.getValueAt(rowIndex, 0), 
-			newvalue: newValue, 
-			colname: editableGrid.getColumnName(columnIndex),
-		},
-		success: function (response) 
-		{ 
-			// reset old value if failed then highlight row
-			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
-			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
-		    highlight(row.id, success ? "ok" : "error"); 
-		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
-		async: true
-	});
-}
-
 
 function DatabaseGrid() 
 { 
@@ -274,11 +247,39 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	grid.renderGrid('tablecontent', 'commitments', 'thirdparameter');
 }
 
+
+/**
+   updateCellValue calls the PHP script that will update the database. 
+ */
+function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
+{     
+	//console.log(editableGrid.getValueAt(rowIndex, 0), newValue, editableGrid.getColumnName(columnIndex), editableGrid.getColumnType(columnIndex));
+	$.ajax({
+		url: '../includes/commitment_update.php',
+		type: 'POST',
+		dataType: "html",
+		data: {
+			uniqueid: editableGrid.getValueAt(rowIndex, 0), 
+			newvalue: newValue, 
+			colname: editableGrid.getColumnName(columnIndex),
+		},
+		success: function (response) 
+		{ 
+			// reset old value if failed then highlight row
+			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
+			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+		    highlight(row.id, success ? "ok" : "error"); 
+		},
+		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		async: true
+	});
+}
+
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
   var self = this;
-  var taskid = self.editableGrid.getValueAt(id, 2);
-  var uniqueid = self.editableGrid.getValueAt(id, 0);
+  var taskId = self.editableGrid.getValueAt(id, 2);
+  var uniqueId = self.editableGrid.getValueAt(id, 0);
 
   if (confirm('Confirm deletion of task id #' + taskId )) {
 
@@ -287,7 +288,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			unique_id: uniqueId 
+			uniqueid: uniqueId 
 		},
 		success: function (response) 
 		{ 
@@ -304,15 +305,16 @@ DatabaseGrid.prototype.deleteRow = function(id)
 DatabaseGrid.prototype.addRow = function(id) 
 {
   var self = this;
+  var uniqueId = self.editableGrid.getValueAt(id, 0);
+  var projectNumber = self.editableGrid.getValueAt(id, 1);
 
         $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			tablename : self.editableGrid.name,
-			name:  $("#name").val(),
-			firstname:  $("#firstname").val()
+			uniqueid: uniqueId,
+			projetnumber: projectNumber
 		},
 		success: function (response) 
 		{ 
@@ -320,8 +322,8 @@ DatabaseGrid.prototype.addRow = function(id)
    
                 // hide form
                 showAddForm();   
-        		$("#name").val('');
-                $("#firstname").val('');
+        		//$("#name").val('');
+                //$("#firstname").val('');
 			    
                 alert("Row added : reload model");
                 self.fetchGrid();

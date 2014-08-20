@@ -48,7 +48,14 @@ switch ($column_name) {
 		// todo: better error handling
 		echo 'error';
 		exit;
-		
+	}
+	
+	// ob_start();
+	// var_dump($commitments);
+	// $contents = ob_get_contents();
+	// ob_end_clean();
+	// error_log($contents);		
+	
 $stmt = $comm_db->prepare($q);
 
 if (!$stmt)
@@ -73,3 +80,4 @@ catch(PDOException $e)
 }      
 
 echo 'ok';
+exit;
