@@ -304,9 +304,11 @@ DatabaseGrid.prototype.deleteRow = function(id)
 
 DatabaseGrid.prototype.addRow = function(id) 
 {
-  var self = this;
-  var uniqueId = self.editableGrid.getValueAt(id, 0);
-  var projectNumber = self.editableGrid.getValueAt(id, 1);
+	var self = this;
+	var uniqueId = self.editableGrid.getValueAt(id, 0);
+	var projectNumber = self.editableGrid.getValueAt(id, 1);
+	
+	console.log(self, id, uniqueId, projectNumber);  
 
         $.ajax({
 		url: '../includes/commitment_add.php',
