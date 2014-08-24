@@ -41,33 +41,8 @@ DatabaseGrid.prototype.fetchGrid = function()  {
 DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
-	
-	//renderers for the unique_id column
-	
-	//renderers for the project_number column
-
-	//renderers for the task_id column
-	
-	grid.setHeaderRenderer('task_id', new InfoHeaderRenderer('Unique ID for the request.'));
-
-	//renderers for the description column
-
-	grid.setHeaderRenderer('description', new InfoHeaderRenderer('Descibe what work products \
-		shall be handed-off to whom in what form, via what method & at what level of completion.'));
-
-	//renderers for the promiser column
-	
-	grid.setHeaderRenderer('promiser', new InfoHeaderRenderer('Select the person who is promising the work described.'));
-
-	//renderers for the requester column
-
-	grid.setHeaderRenderer('requester', new InfoHeaderRenderer('Select the person who is asking \
-		for the work described. If the promiser = the requester, this will be considered a \
-		personal workplan item and may not appear on the team workplan.'));
 
 	//renderers for the due_by column
-	
-	grid.setHeaderRenderer('due_by', new InfoHeaderRenderer('Select the date when the work product described be handed-off.'));
 	
 	grid.addCellValidator('due_by', new CellValidator({ 
 		isValid: function(value) { 
@@ -77,12 +52,6 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	}));
 
 	//renderers for the status column
-	
-	grid.setHeaderRenderer('status', new InfoHeaderRenderer('Open: Commitment is not complete. \n\
-		Closed: The requester is satisfied that the promiser has met the commitment described. \n\
-		In Progress: Work on the request has begun but is incomplete. \n\
-		Deferred: The request is set aside indefinitely. \n\
-		Unknown: The promiser and/or requester are not available to status the commitment.'));
 	
 	grid.setEnumProvider('status', new EnumProvider({ 
 		getOptionValuesForEdit: function (grid, column, rowIndex) {	
@@ -101,9 +70,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 				// }
 			}));
 
-	//renderers for the metric column
-
-	grid.setHeaderRenderer('metric', new InfoHeaderRenderer('Overdue, complete, anticipated, improvised.'));
+	//renderers for the actions column
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
@@ -113,10 +80,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			//CellRenderer.prototype.render.call(this, cell, id);
 			$(cell).addClass('actions');
 		}
-	})); 
-		
-	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: \
-		Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'));
+	}));
 
 	grid.renderGrid('tablecontent', 'table-striped', 'commitments');
 }
