@@ -86,7 +86,10 @@ margin-right: 15px;
 }
 
 #commitments {
-margin-bottom: 4px; 
+	margin-bottom: 4px; 
+	border-collapse: collapse; 
+	width: 100%;
+	font-size: 14px;
 }
 
 #commitments>thead>tr>th, 
@@ -279,23 +282,14 @@ td.actions {
 	color: rgb(216, 178, 92);
 }
 
-#commitments.table { 
-	border-collapse: collapse; 
-	width: 100%;
-	font-size: 14px;
-}
-
-#commitments.table tr {
-}
-
-#commitments .table>tbody tr:hover {
+#commitments>tbody tr:hover {
 	background-color: rgb(200, 204, 179);
 }
 
-#commitments .table>tbody tr:hover a {
+#commitments>tbody tr:hover a {
 }
 
-#commitments .table th {
+#commitments th {
 	background: #E5E5E5;
 	color: #555;
 	padding-left: 5px;
@@ -305,13 +299,13 @@ td.actions {
 	white-space: nowrap; 
 }
 
-#commitments .table td {
+#commitments td {
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-right: 1px;
 	padding-left: 1px;
 }
-#commitments .table i { /* fontawesome icons */
+#commitments i { /* fontawesome icons */
   font-size: 0.85em;
   cursor: pointer;
 }
