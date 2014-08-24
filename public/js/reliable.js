@@ -69,8 +69,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	grid.setHeaderRenderer('project_number', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('project_number tooltip');
-			$(cell).prop('title', 'Project that the work is part of.');
+			$(cell).addClass('project_number');
+			//$(cell).prop('title', 'Project that the work is part of.');
 		}
 	}));
 	

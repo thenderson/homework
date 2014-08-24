@@ -55,7 +55,10 @@
 		
 		<script> // activate tooltip
 			$(document).ready(function() {
-				$('.tooltip').tooltipster();
-			});
+				//$('.tooltip').tooltipster();
+				$('.project_number').tooltipster({
+                content: $('The specific project that the work contributes to.')
+			})
+			};
 		</script>
 	</head>
