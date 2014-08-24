@@ -22,7 +22,7 @@ function DatabaseGrid()
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
 	    // define the number of row visible by page
-      	pageSize: 10,
+      	pageSize: 20,
       // Once the table is displayed, we update the paginator state
         tableRendered:  function() {  updatePaginator(this); },
    	    tableLoaded: function() { datagrid.initializeGrid(this); },
@@ -66,6 +66,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 		
+	grid.setHeaderRenderer('project_number');
+		
 	grid.setHeaderRenderer('project_number', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
@@ -74,7 +76,6 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	//grid.setHeaderRenderer('project_number');
 
 	//renderers for the task_id column
 	grid.setCellRenderer('task_id', new CellRenderer({
