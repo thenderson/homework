@@ -62,17 +62,19 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
 			$(cell).addClass('project_number');
+
 		}
 	}));
 		
 	grid.setHeaderRenderer('project_number', new CellRenderer({
 		render: function(cell, value) {
 			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('project_number');
+			$(cell).addClass('project_number tooltip');
+			$(cell).addTitle('Project that the work is part of.');
 		}
 	}));
 	
-	grid.setHeaderRenderer('project_number', new InfoHeaderRenderer('Project that the work is part of.'));
+	//grid.setHeaderRenderer('project_number', new InfoHeaderRenderer('Project that the work is part of.'));
 
 	//renderers for the task_id column
 	grid.setCellRenderer('task_id', new CellRenderer({
@@ -244,7 +246,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: \
 		Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'));
 
-	grid.renderGrid('tablecontent', 'commitments', 'thirdparameter');
+	grid.renderGrid('tablecontent', 'table-striped', 'commitments');
 }
 
 

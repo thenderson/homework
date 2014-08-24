@@ -6,7 +6,7 @@
 		accent 3 / olive green 4	rgb(165, 171, 129)
 		accent 3 / olive green 3	rgb(200, 204, 179)   row hover
 		accent 4 / gold			rgb(216, 178, 92)		duplicate commitment
-		accent 5 / green		rgb(123, 167, 157)
+		accent 5 / green		rgb(123, 167, 157)		column headers
 		accent 6 / grey 50%		rgb(150, 140, 140)
 		background / dark 2		rgb(119, 95, 85)
 		background / light 2	rgb(235, 221, 195)
@@ -80,16 +80,16 @@ margin-left: 0px;
   background-color: rgb(200, 204, 179); /* olive 3 */
 }
 
-.commitments {
+#commitments {
 margin-bottom: 4px; 
 }
 
-.commitments>thead>tr>th, 
-.commitments>tbody>tr>th,
-.commitments>tfoot>tr>th,
-.commitments>thead>tr>td,
-.commitments>tbody>tr>td,
-.commitments>tfoot>tr>td {
+#commitments>thead>tr>th, 
+#commitments>tbody>tr>th,
+#commitments>tfoot>tr>th,
+#commitments>thead>tr>td,
+#commitments>tbody>tr>td,
+#commitments>tfoot>tr>td {
 border-bottom: 0px; 
 border-top: 0px;
 }
@@ -99,16 +99,10 @@ border-top: 0px;
 }
 
 .flash-error {
-    border: 2px solid rgb(192, 0, 0); /*median: dark red*/
+    border: 2px solid rgb(192, 0, 0);   /*median: dark red*/
 }
 
-/* 
- * this CSS is not part of the widget, it is here just as an example of the demo page styling.... 
- * 
- * Don't copy this one, roll your own. One of the key things about the widget is that 
- * it allows you to do your own styling!
- *
- */
+
 td:focus {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
@@ -155,8 +149,8 @@ body {
 }
 
 
-a { 
-	color: #548dc4;
+th.a { /*column headers*/
+	color: rgb(123, 167, 157);
 	text-decoration: none;
 }
 
