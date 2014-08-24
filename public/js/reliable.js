@@ -74,7 +74,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 	
-	//grid.setHeaderRenderer('project_number', new InfoHeaderRenderer('Project that the work is part of.'));
+	grid.setHeaderRenderer('project_number');
 
 	//renderers for the task_id column
 	grid.setCellRenderer('task_id', new CellRenderer({
