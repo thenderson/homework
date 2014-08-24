@@ -66,15 +66,15 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 	}));
 		
-	grid.setHeaderRenderer('project_number');
+	//grid.setHeaderRenderer('project_number');
 		
-	grid.setHeaderRenderer('project_number', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('project_number');
-			//$(cell).prop('title', 'Project that the work is part of.');
-		}
-	}));
+	// grid.setHeaderRenderer('project_number', new CellRenderer({
+		// render: function(cell, value) {
+			// CellRenderer.prototype.render.call(this, cell, value);
+			// $(cell).addClass('project_number');
+			////$(cell).prop('title', 'Project that the work is part of.');
+		// }
+	// }));
 	
 
 	//renderers for the task_id column
