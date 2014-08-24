@@ -43,125 +43,29 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
   var self = this;
 	
 	//renderers for the unique_id column
-	grid.setCellRenderer('unique_id', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('unique_id');
-		}
-	}));
-	
-	grid.setHeaderRenderer('unique_id', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('unique_id');
-		}
-	}));
 	
 	//renderers for the project_number column
-	grid.setCellRenderer('project_number', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('project_number');
-
-		}
-	}));
-		
-	//grid.setHeaderRenderer('project_number');
-		
-	// grid.setHeaderRenderer('project_number', new CellRenderer({
-		// render: function(cell, value) {
-			// CellRenderer.prototype.render.call(this, cell, value);
-			// $(cell).addClass('project_number');
-			////$(cell).prop('title', 'Project that the work is part of.');
-		// }
-	// }));
-	
 
 	//renderers for the task_id column
-	grid.setCellRenderer('task_id', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('task_id');
-		}
-	}));
-		
-	grid.setHeaderRenderer('task_id', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('task_id');
-		}
-	}));
 	
 	grid.setHeaderRenderer('task_id', new InfoHeaderRenderer('Unique ID for the request.'));
 
 	//renderers for the description column
-	grid.setCellRenderer('description', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('description');
-		}
-	}));
-		
-	grid.setHeaderRenderer('description', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('description');
-		}
-	}));
-	
+
 	grid.setHeaderRenderer('description', new InfoHeaderRenderer('Descibe what work products \
 		shall be handed-off to whom in what form, via what method & at what level of completion.'));
 
 	//renderers for the promiser column
-	grid.setCellRenderer('promiser', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('promiser');
-		}
-	}));
-		
-	grid.setHeaderRenderer('promiser', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('promiser');
-		}
-	}));
 	
 	grid.setHeaderRenderer('promiser', new InfoHeaderRenderer('Select the person who is promising the work described.'));
 
 	//renderers for the requester column
-	grid.setCellRenderer('requester', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('requester');
-		}
-	}));
-		
-	grid.setHeaderRenderer('requester', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('requester');
-		}
-	}));
-	
+
 	grid.setHeaderRenderer('requester', new InfoHeaderRenderer('Select the person who is asking \
 		for the work described. If the promiser = the requester, this will be considered a \
 		personal workplan item and may not appear on the team workplan.'));
 
 	//renderers for the due_by column
-	grid.setCellRenderer('due_by', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('due_by');
-		}
-	}));
-		
-	grid.setHeaderRenderer('due_by', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('due_by');
-		}
-	}));
 	
 	grid.setHeaderRenderer('due_by', new InfoHeaderRenderer('Select the date when the work product described be handed-off.'));
 	
@@ -173,19 +77,6 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	}));
 
 	//renderers for the status column
-	grid.setCellRenderer('status', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('status');
-		}
-	}));
-		
-	grid.setHeaderRenderer('status', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('status');
-		}
-	}));
 	
 	grid.setHeaderRenderer('status', new InfoHeaderRenderer('Open: Commitment is not complete. \n\
 		Closed: The requester is satisfied that the promiser has met the commitment described. \n\
@@ -211,20 +102,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			}));
 
 	//renderers for the metric column
-	grid.setCellRenderer('metric', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('metric');
-		}
-	}));
-	
-	grid.setHeaderRenderer('metric', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('metric');
-		}
-	}));
-	
+
 	grid.setHeaderRenderer('metric', new InfoHeaderRenderer('Overdue, complete, anticipated, improvised.'));
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
@@ -236,14 +114,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 			$(cell).addClass('actions');
 		}
 	})); 
-	
-	grid.setHeaderRenderer('actions', new CellRenderer({
-		render: function(cell, value) {
-			CellRenderer.prototype.render.call(this, cell, value);
-			$(cell).addClass('actions');
-		}
-	}));
-	
+		
 	grid.setHeaderRenderer('actions', new InfoHeaderRenderer('Delete or duplicate. Note: \
 		Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'));
 
