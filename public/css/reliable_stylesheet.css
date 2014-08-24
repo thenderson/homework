@@ -274,23 +274,23 @@ td.actions {
 	color: rgb(216, 178, 92);
 }
 
-table.commitments { 
+#commitments.table { 
 	border-collapse: collapse; 
 	width: 100%;
 	font-size: 14px;
 }
 
-table.commitments tr {
+#commitments.table tr {
 }
 
-table.commitments>tbody tr:hover {
+#commitments.table>tbody tr:hover {
 	background-color: rgb(200, 204, 179);
 }
 
-table.commitments>tbody tr:hover a {
+#commitments.table>tbody tr:hover a {
 }
 
-table.commitments th {
+#commitments.table th {
 	background: #E5E5E5;
 	color: #555;
 	padding-left: 5px;
@@ -300,13 +300,13 @@ table.commitments th {
 	white-space: nowrap; 
 }
 
-table.commitments td {
+#commitments.table td {
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-right: 1px;
 	padding-left: 1px;
 }
-table.commitments i { /* fontawesome icons */
+#commitments.table i { /* fontawesome icons */
   font-size: 0.85em;
   cursor: pointer;
 }
