@@ -80,10 +80,13 @@ margin-left: 0px;
   background-color: rgb(200, 204, 179); /* olive 3 */
 }
 
-#commitments {
-margin-bottom: 4px; 
+#wrap { /*overall div containing commitment table, paginator, ect. */
 margin-left: 15px;
 margin-right: 15px;
+}
+
+#commitments {
+margin-bottom: 4px; 
 }
 
 #commitments>thead>tr>th, 
@@ -276,7 +279,7 @@ td.actions {
 	color: rgb(216, 178, 92);
 }
 
-#commitments .table { 
+.table #commitments { 
 	border-collapse: collapse; 
 	width: 100%;
 	font-size: 14px;
