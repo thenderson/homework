@@ -9,7 +9,7 @@ $stmt = $comm_db->prepare('CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY
 						SELECT * FROM commitments WHERE unique_id=?;
 						UPDATE temp_table SET unique_id=NULL, status=OPEN, metric=NULL;
 						INSERT INTO commitments SELECT * FROM temp_table;
-						DROP TABLE temp_table';);
+						DROP TABLE temp_table');
 
 if (!$stmt)
 {

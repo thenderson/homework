@@ -130,6 +130,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		{ 
 			if (response == "ok" )
 		        self.editableGrid.removeRow(id);
+				self.editableGrid.refreshGrid();
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
@@ -154,8 +155,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                alert("Row added : reload model");
-                self.fetchGrid();
+                self.editableGrid.refreshGrid();
            	}
             else 
               alert("error");
@@ -182,8 +182,8 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                alert("Row added : reload model");
-                self.fetchGrid();
+                self.editableGrid.refreshGrid();
+				//this.insertAfter(id, newRowId, values); 
            	}
             else 
               alert("error");
