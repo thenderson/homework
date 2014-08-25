@@ -59,16 +59,16 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		}
 
 		// the function getOptionValuesForEdit is called each time the cell is edited
-				// here we do only client-side processing, but you could use Ajax here to talk with your server
-				// if you do, then don't forget to use Ajax in synchronous mode 
-				// getOptionValuesForEdit: function (grid, column, rowIndex) {
-					// var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
-					// if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
-					// else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
-					// else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
-					// return null;
-				// }
-			}));
+		// here we do only client-side processing, but you could use Ajax here to talk with your server
+		// if you do, then don't forget to use Ajax in synchronous mode 
+		// getOptionValuesForEdit: function (grid, column, rowIndex) {
+			// var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
+			// if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
+			// else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
+			// else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
+			// return null;
+		// }
+	}));
 
 	//renderers for the actions column
 	
@@ -77,12 +77,10 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		    cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-			//CellRenderer.prototype.render.call(this, cell, id);
-			$(cell).addClass('actions');
 		}
 	}));
 
-	grid.renderGrid('tablecontent', 'table-striped', 'commitments');
+	grid.renderGrid('tablecontent', 'table table-striped', 'commitments');
 }
 
 

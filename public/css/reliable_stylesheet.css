@@ -78,12 +78,8 @@ margin-left: 0px;
 }
 
 #wrap { /*overall div containing commitment table, paginator, ect. */
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-#commitments>tbody tr:hover {
-	background-color: rgb(200, 204, 179);
+	margin-left: 2.5%;
+	margin-right: 2.5%;
 }
 
 #commitments th {
@@ -101,14 +97,21 @@ margin-left: 0px;
 	padding-bottom: 3px;
 	padding-right: 1px;
 	padding-left: 1px;
-	background-color: rgb(228, 228, 228);
+}
+
+#commitments>tbody tr:hover>td {
+	background-color: rgb(200, 204, 179);
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td {  /* table stripes */
 	background-color: rgb(217, 217, 217);
 }
 
-.ghost /* for table rows > one week out */
+.table-striped>tbody>tr:nth-child(even)>td {  /* table stripes */
+	background-color: rgb(228, 228, 228);
+}
+
+.ghost>td /* for table rows > one week out */
 {
   background-color: #FFFFFF;
   color: #848484;
