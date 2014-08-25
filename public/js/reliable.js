@@ -119,7 +119,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 
   if (confirm('Confirm deletion of task id #' + taskId )) {
 
-        $.ajax({
+    $.ajax({
 		url: '../includes/commitment_delete.php',
 		type: 'POST',
 		dataType: "html",
@@ -140,29 +140,20 @@ DatabaseGrid.prototype.deleteRow = function(id)
 
 DatabaseGrid.prototype.addRow = function(id) 
 {
-	var self = this;
-	var uniqueId = self.editableGrid.getValueAt(id, 0);
-	var projectNumber = self.editableGrid.getValueAt(id, 1);
+	var projectNumber = this.editableGrid.getValueAt(id, 1);
 	
-	console.log(id, uniqueId, projectNumber);  
+	console.log(id, projectNumber);  
 
-        $.ajax({
+    $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: -1,
 			projectnumber: projectNumber
 		},
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-   
-                // hide form
-                showAddForm();   
-        		//$("#name").val('');
-                //$("#firstname").val('');
-			    
                 alert("Row added : reload model");
                 self.fetchGrid();
            	}
@@ -175,18 +166,31 @@ DatabaseGrid.prototype.addRow = function(id)
 }; 
 
 
-DatabaseGrid.prototype.duplicateRow = function(rowIndex) 
+DatabaseGrid.prototype.duplicateRow = function(id) 
 {
-	// copy values from given row
-	var values = this.getRowValues(rowIndex);
-	//values['name'] = values['name'] + ' (copy)';
-
-	// get id for new row (max id + 1)
-	var newRowId = 0;
-	for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+	var uniqueid = this.editableGrid.getValueAt(id, 0);
 	
-	// add new row
-	this.insertAfter(rowIndex, newRowId, values); 
+	console.log(id, uniqueid);  
+
+    $.ajax({
+		url: '../includes/commitment_duplicate.php',
+		type: 'POST',
+		dataType: "html",
+		data: {
+			uniqueId: uniqueid
+		},
+		success: function (response) 
+		{ 
+			if (response == "ok" ) {
+                alert("Row added : reload model");
+                self.fetchGrid();
+           	}
+            else 
+              alert("error");
+		},
+		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		async: true
+	});
 };
 
 

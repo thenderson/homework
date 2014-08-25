@@ -3,9 +3,13 @@
 require_once('config.php');         
                       
 // Get POST data
-$project_number = strip_tags($_POST['projectnumber']);
+$unique_id = strip_tags($_POST['uniqueid']);
 
-$stmt = $comm_db->prepare("INSERT INTO commitments (project_number, status) VALUES (?, 'OPEN')");
+$stmt = $comm_db->prepare('CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY
+						SELECT * FROM commitments WHERE unique_id=?;
+						UPDATE temp_table SET unique_id=NULL, status=OPEN, metric=NULL;
+						INSERT INTO commitments SELECT * FROM temp_table;
+						DROP TABLE temp_table';);
 
 if (!$stmt)
 {
@@ -14,9 +18,9 @@ if (!$stmt)
 	exit;
 }
 
-try
+try 
 {
-	$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
+	$stmt->bindParam(1, $unique_id, PDO::PARAM_INT);
 	$stmt->execute();
 }             
 
