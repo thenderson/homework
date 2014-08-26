@@ -139,23 +139,6 @@ DatabaseGrid.prototype.deleteRow = function(id)
 }; 
 
 
-function delete_confirm() {
-    $( "#delete-confirm" ).dialog({
-      resizable: false,
-      height:140,
-      modal: true,
-      buttons: {
-        "Delete": function() {
-          $( this ).dialog( "close" );
-        },
-        Cancel: function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-  };
-
-
 DatabaseGrid.prototype.addRow = function(id) 
 {
 	var projectNumber = this.editableGrid.getValueAt(id, 1);

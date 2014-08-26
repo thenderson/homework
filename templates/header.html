@@ -59,7 +59,23 @@
 				</nav>
 			</div>
 		</header>
-		
+		<script>
+		$(function delete_confirm() {
+			$( "#delete-confirm" ).dialog({
+				resizable: false,
+				height:140,
+				modal: true,
+				buttons: {
+					"Delete": function() {
+						$( this ).dialog( "close" );
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		});
+		</script>
 		<script> // activate tooltip
 			$(document).ready(function() {
 				//$('.tooltip').tooltipster();
