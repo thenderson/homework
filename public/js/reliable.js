@@ -117,7 +117,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   var taskId = self.editableGrid.getValueAt(id, 2);
   var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if (delete_confirm)) {
+  if (delete_confirm) {
 
     $.ajax({
 		url: '../includes/commitment_delete.php',
