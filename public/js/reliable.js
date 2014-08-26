@@ -22,7 +22,7 @@ function DatabaseGrid()
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
 	    // define the number of row visible by page
-      	pageSize: 20,
+      	pageSize: 10,
       // Once the table is displayed, we update the paginator state
         tableRendered:  function() {  updatePaginator(this); },
    	    tableLoaded: function() { datagrid.initializeGrid(this); },
@@ -117,7 +117,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   var taskId = self.editableGrid.getValueAt(id, 2);
   var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if (confirm('Confirm deletion of task id #' + taskId )) {
+  if (delete_confirm)) {
 
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -139,6 +139,23 @@ DatabaseGrid.prototype.deleteRow = function(id)
 }; 
 
 
+function delete_confirm() {
+    $( "#delete-confirm" ).dialog({
+      resizable: false,
+      height:140,
+      modal: true,
+      buttons: {
+        "Delete": function() {
+          $( this ).dialog( "close" );
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  };
+
+
 DatabaseGrid.prototype.addRow = function(id) 
 {
 	var projectNumber = this.editableGrid.getValueAt(id, 1);
@@ -155,7 +172,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.editableGrid.refreshGrid();
+                self.refreshGrid();
            	}
             else 
               alert("error");
@@ -182,7 +199,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.editableGrid.refreshGrid();
+                self.refreshGrid();
 				//this.insertAfter(id, newRowId, values); 
            	}
             else 

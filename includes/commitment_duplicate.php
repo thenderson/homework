@@ -3,7 +3,7 @@
 require_once('config.php');         
                       
 // Get POST data
-$unique_id = strip_tags($_POST['uniqueid']);
+$unique_id = strip_tags($_POST['uniqueId']);
 
 $stmt = $comm_db->prepare('CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY
 						SELECT * FROM commitments WHERE unique_id=?;
@@ -14,7 +14,7 @@ $stmt = $comm_db->prepare('CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY
 if (!$stmt)
 {
 	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
-	echo 'error';
+	echo 'error - statement failed';
 	exit;
 }
 
@@ -27,7 +27,7 @@ try
 catch(PDOException $e) 
 {
 	trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
-	echo 'error';
+	echo 'error - query failed';
 	exit;
 }      
 
