@@ -59,7 +59,7 @@
 				</nav>
 			</div>
 		</header>
-		<script>
+		<script type="text/javascript">
 		$(function delete_confirm() {
 			$( "#delete-confirm" ).dialog({
 				resizable: false,
@@ -76,9 +76,9 @@
 			});
 		});
 		</script>
-		<script> // activate tooltip
+		<script type="text/javascript"> // activate tooltip
 			$(document).ready(function() {
-				//$('.tooltip').tooltipster();
+				$('.tooltip').tooltipster();
 				$('th.editablegrid-project_number').tooltipster({
                 content: $('<span>The specific project that the work contributes to.</span>')});
 				
