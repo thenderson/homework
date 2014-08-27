@@ -144,13 +144,14 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: uniqueId 
+			uniqueid: uniqueId,
+			id: id
 		},
 		success: function (response) 
 		{ 
 			if (response == "ok" )
 		        self.editableGrid.removeRow(id);
-				self.editableGrid.refreshGrid();
+				//self.editableGrid.refreshGrid();
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
