@@ -41,7 +41,7 @@ DatabaseGrid.prototype.fetchGrid = function()  {
 DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
-
+ 
 	//renderers for the due_by column
 	
 	grid.addCellValidator('due_by', new CellValidator({ 
@@ -110,6 +110,26 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 		async: true
 	});
 }
+
+
+delete_confirm = function() {
+	$(function () {
+		$( "#delete-confirm" ).dialog({
+			resizable: false,
+			height:140,
+			modal: true,
+			buttons: {
+				"Delete": function() {
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+}
+
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
