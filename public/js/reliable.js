@@ -116,6 +116,7 @@ delete_confirm = function() {
 	$(function () {
 		$( "#delete-confirm" ).dialog({
 			resizable: false,
+			autoOpen: false,
 			height:140,
 			modal: true,
 			buttons: {
@@ -137,7 +138,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   var taskId = self.editableGrid.getValueAt(id, 2);
   var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if (delete_confirm) {
+  if (delete_confirm()) {
 
     $.ajax({
 		url: '../includes/commitment_delete.php',
