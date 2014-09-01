@@ -53,25 +53,20 @@
 
 				// To filter on some columns, you can set an array of column index 
 				//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-			  });
-		}; 
-		
-		delete_confirm = function() {
-			$(function () {
-				$( "#delete-confirm" ).dialog({
-					resizable: false,
-					autoOpen: false,
-					height:140,
-					modal: true,
-					buttons: {
-						"Delete": function() {
-							$( this ).dialog( "close" );
-						},
-						Cancel: function() {
-							$( this ).dialog( "close" );
-						}
-					}
-				});
 			});
-		}
+			$( "#delete-confirm" ).dialog({
+				resizable: false,
+				autoOpen: false,
+				height:140,
+				modal: true,
+				buttons: {
+					"Delete": function() {
+						$( this ).dialog( "close" );
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}; 
 	</script>

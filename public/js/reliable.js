@@ -114,11 +114,13 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
-  var self = this;
-  var taskId = self.editableGrid.getValueAt(id, 2);
-  var uniqueId = self.editableGrid.getValueAt(id, 0);
+	var self = this;
+	var taskId = self.editableGrid.getValueAt(id, 2);
+	var uniqueId = self.editableGrid.getValueAt(id, 0);
 
-  if (delete_confirm()) {
+	var result = $( "#delete-confirm" ).dialog("open");
+	conole.log(result);
+	if (result) {
 
     $.ajax({
 		url: '../includes/commitment_delete.php',
