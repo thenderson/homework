@@ -61,11 +61,12 @@
 				modal: true,
 				buttons: {
 					"Delete": function() {
+						console.log("user confirmed delete");
 						$(this).dialog( "close" );
-						DeleteRow($(this).data('id'));
+						callback(DeleteRow($(this).data('id')));
 					},
 					Cancel: function() {
-						$( this ).dialog( "close" );
+						$(this).dialog("close");
 					}
 				}
 			});

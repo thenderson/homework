@@ -114,6 +114,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 DatabaseGrid.ConfirmDeleteRow = function(id) 
 {
+	console.log("confirmdeleterow");
 	$("#delete-confirm")
 		.data("id", id)
 		.dialog("open");
@@ -125,6 +126,8 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 	var taskId = self.editableGrid.getValueAt(id, 2);
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
 
+	console.log("deleterow");
+	
     $.ajax({
 		url: '../includes/commitment_delete.php',
 		type: 'POST',
@@ -136,6 +139,7 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" )
+				console.log("php returns OK for delete");
 		        self.editableGrid.removeRow(id);
 				//self.editableGrid.refreshGrid();
 		},
