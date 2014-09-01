@@ -169,7 +169,7 @@ DatabaseGrid.prototype.addRow = function(id)
 			if (response == "ok" ) {
                 // get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < this.DatabaseGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
 				this.insertAfter(rowIndex, newRowId, values);
@@ -200,7 +200,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 			if (response == "ok" ) {
 				// get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < DatabaseGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
 				this.insertAfter(rowIndex, newRowId, values);
