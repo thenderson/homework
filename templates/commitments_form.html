@@ -33,10 +33,10 @@
 							
 		<div id="delete-confirm" title="Delete commitment?" data-role="dialog">
 			<div data-role="header">
-				<h1>Your Message</h1>
+				<h4>Header!</h4>
 			</div>    
 			<div data-role="content" id="text">
-				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure?</p>
+				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Deleting commitments cannot be undone. Are you sure?</p>
 			</div>
 		</div>
 		
@@ -52,7 +52,7 @@
 				datagrid.editableGrid.filter( $(this).val());
 
 				// To filter on some columns, you can set an array of column index 
-				//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+				// datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
 			});
 			$( "#delete-confirm" ).dialog({
 				resizable: false,
@@ -61,7 +61,8 @@
 				modal: true,
 				buttons: {
 					"Delete": function() {
-						$( this ).dialog( "close" );
+						$(this).dialog( "close" );
+						DeleteRow($(this).data('id'));
 					},
 					Cancel: function() {
 						$( this ).dialog( "close" );

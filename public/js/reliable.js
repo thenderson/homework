@@ -76,7 +76,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		render: function(cell, id) { 
 		    cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+			cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 		}
 	}));
 
@@ -112,15 +112,18 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 }
 
 
-DatabaseGrid.prototype.deleteRow = function(id) 
+DatabaseGrid.ConfirmDeleteRow = function(id) 
+{
+	$("#delete-confirm")
+		.data("id", id)
+		.dialog("open");
+}
+
+DatabaseGrid.prototype.DeleteRow = function(id) 
 {
 	var self = this;
 	var taskId = self.editableGrid.getValueAt(id, 2);
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
-
-	var result = $( "#delete-confirm" ).dialog("open");
-	console.log(result);
-	if (result) {
 
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -139,7 +142,6 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
 	});     
-  }
 }; 
 
 

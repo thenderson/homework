@@ -25,7 +25,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect("login.php");
+            redirect("/commgr/public/login.php");
         }
     }
 	// open connection to sql database via PDO
