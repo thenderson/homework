@@ -137,8 +137,11 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-				highlight(id, "ok"); 
-		        self.editableGrid.removeRow(id);
+				var rowSelector = $("#" + id);
+				rowSelector.css("text-decoration", "line-through");
+				rowSelector.fadeTo("slow", 0, "swing", function() { 
+					self.editableGrid.removeRow(id);
+				});
 			}
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
@@ -166,7 +169,7 @@ DatabaseGrid.prototype.addRow = function(id)
                 self.editableGrid.refreshGrid();
            	}
             else 
-              alert("error");
+              alert("error" + response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true

@@ -13,7 +13,11 @@
 			<div id="message"></div>
 
 			<div id="toolbar tooltip"  title="tooltip test">
-			  <input type="text" id="filter" name="filter" placeholder="filter"  />
+			  <input type="text" id="filter_proj" name="filter" placeholder="filter project #"  />
+			</div>
+			
+			<div id="toolbar tooltip"  title="tooltip test">
+			  <input type="text" id="filter_desc" name="filter" placeholder="filter description"  />
 			</div>
 			
 			<!-- Grid contents -->
@@ -48,8 +52,11 @@
 		window.onload = function() { 
 
 			// key typed in the filter field
-			$("#filter").keyup(function() {
-				datagrid.editableGrid.filter( $(this).val());
+			$("#filter_proj").keyup(function() {
+				datagrid.editableGrid.filter( $(this).val(), 'project_number');
+				
+			$("#filter_desc").keyup(function() {
+				datagrid.editableGrid.filter( $(this).val(), 'description');
 
 				// To filter on some columns, you can set an array of column index 
 				// datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
@@ -57,7 +64,7 @@
 			$( "#delete-confirm" ).dialog({
 				resizable: false,
 				autoOpen: false,
-				height:140,
+				height:180,
 				modal: true,
 				buttons: {
 					"Delete": function() {
