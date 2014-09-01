@@ -184,7 +184,7 @@ DatabaseGrid.prototype.addRow = function(id)
 
 DatabaseGrid.prototype.duplicateRow = function(id) 
 {
-	var uniqueid = this.editableGrid.getValueAt(id, 0);
+	var uniqueid = this.EditableGrid.getValueAt(id, 0);
 	
 	console.log(id, uniqueid);  
 
@@ -200,10 +200,10 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 			if (response == "ok" ) {
 				// get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < this.EditableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
-				this.editableGrid.insertAfter(rowIndex, newRowId, values);
+				this.EditableGrid.insertAfter(rowIndex, newRowId, values);
            	}
             else 
               alert("error" + response);

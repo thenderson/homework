@@ -8,12 +8,6 @@ $unique_id = strip_tags($_POST['uniqueId']);
 $stmt = $comm_db->prepare('INSERT INTO `commitments` ( project_number, task_id, description, requester, promiser, due_by, status, type, metric )
 							SELECT project_number, task_id, description, requester, promiser, due_by, "OPEN", type, NULL
 							FROM `commitments` WHERE `unique_id`=?');
-							
-//						'CREATE TEMPORARY TABLE temp_table ENGINE=MEMORY;
-//						SELECT * FROM commitments WHERE unique_id=?;
-//						UPDATE temp_table SET status="OPEN", metric=NULL;
-//						INSERT INTO commitments SELECT * FROM temp_table;
-//						DROP TABLE temp_table');
 
 if (!$stmt)
 {
