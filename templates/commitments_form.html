@@ -61,7 +61,6 @@
 				modal: true,
 				buttons: {
 					"Delete": function() {
-						console.log("user confirmed delete");
 						$(this).dialog("close");
 						datagrid.DeleteRow($(this).data('id'));
 					},

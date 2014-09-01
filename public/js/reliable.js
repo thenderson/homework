@@ -114,19 +114,17 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 DatabaseGrid.prototype.ConfirmDeleteRow = function(id) 
 {
-	console.log("confirmdeleterow");
 	$("#delete-confirm")
 		.data("id", id)
 		.dialog("open");
 }
+
 
 DatabaseGrid.prototype.DeleteRow = function(id) 
 {
 	var self = this;
 	var taskId = self.editableGrid.getValueAt(id, 2);
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
-
-	console.log("deleterow");
 	
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -138,15 +136,15 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		},
 		success: function (response) 
 		{ 
-			if (response == "ok" )
-				console.log("php returns OK for delete");
+			if (response == "ok" ) {
+				highlight(id, "ok"); 
 		        self.editableGrid.removeRow(id);
-				//self.editableGrid.refreshGrid();
+			}
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
-	});     
-}; 
+	});
+};
 
 
 DatabaseGrid.prototype.addRow = function(id) 
