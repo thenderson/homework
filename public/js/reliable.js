@@ -112,7 +112,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 }
 
 
-DatabaseGrid.ConfirmDeleteRow = function(id) 
+DatabaseGrid.prototype.ConfirmDeleteRow = function(id) 
 {
 	console.log("confirmdeleterow");
 	$("#delete-confirm")
