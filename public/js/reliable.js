@@ -119,7 +119,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
 
 	var result = $( "#delete-confirm" ).dialog("open");
-	conole.log(result);
+	console.log(result);
 	if (result) {
 
     $.ajax({
