@@ -177,7 +177,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.refreshGrid();
+                self.editableGrid.refreshGrid();
            	}
             else 
               alert("error");
