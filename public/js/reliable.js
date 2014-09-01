@@ -193,7 +193,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.refreshGrid();
+                self.editableGrid.refreshGrid();
 				//this.insertAfter(id, newRowId, values); 
            	}
             else 
