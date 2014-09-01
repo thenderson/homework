@@ -123,7 +123,6 @@ DatabaseGrid.prototype.ConfirmDeleteRow = function(id)
 DatabaseGrid.prototype.DeleteRow = function(id) 
 {
 	var self = this;
-	var taskId = self.editableGrid.getValueAt(id, 2);
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
 	
     $.ajax({
@@ -139,7 +138,8 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 			if (response == "ok" ) {
 				var rowSelector = $("#" + id);
 				rowSelector.css("text-decoration", "line-through");
-				rowSelector.fadeTo("slow", 0, "swing", function() { 
+				rowSelector.fadeTo(2000, 0, function() { 
+					console.log("callback activated.");
 					self.editableGrid.removeRow(id);
 				});
 			}
@@ -166,7 +166,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.editableGrid.refreshGrid();
+                dataGrid.refreshGrid();
            	}
             else 
               alert("error" + response);
@@ -193,11 +193,15 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                self.editableGrid.refreshGrid();
-				//this.insertAfter(id, newRowId, values); 
+				// get id for new row (max id + 1)
+				var newRowId = 0;
+				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				
+				// add new row
+				this.insertAfter(rowIndex, newRowId, values);
            	}
             else 
-              alert("error");
+              alert("error" + response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
