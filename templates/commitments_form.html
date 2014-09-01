@@ -54,14 +54,13 @@
 			// key typed in the filter field
 			$("#filter_proj").keyup(function() {
 				datagrid.editableGrid.filter( $(this).val(), 'project_number');
+			});
 				
 			$("#filter_desc").keyup(function() {
 				datagrid.editableGrid.filter( $(this).val(), 'description');
-
-				// To filter on some columns, you can set an array of column index 
-				// datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
 			});
-			$( "#delete-confirm" ).dialog({
+
+			$("#delete-confirm").dialog({
 				resizable: false,
 				autoOpen: false,
 				height:180,
