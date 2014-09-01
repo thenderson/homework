@@ -143,6 +143,7 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 					self.editableGrid.removeRow(id);
 				});
 			}
+			else alert("error: \n" + response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
@@ -154,7 +155,7 @@ DatabaseGrid.prototype.addRow = function(id)
 {
 	var projectNumber = this.editableGrid.getValueAt(id, 1);
 	
-	console.log(id, projectNumber);  
+	console.log("adding row after row id:" + id, projectNumber);  
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -166,10 +167,14 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-                dataGrid.refreshGrid();
+                // get id for new row (max id + 1)
+				var newRowId = 0;
+				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				
+				// add new row
+				this.insertAfter(rowIndex, newRowId, values);
            	}
-            else 
-              alert("error" + response);
+            else alert("error: \n" + response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
