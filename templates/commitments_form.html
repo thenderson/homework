@@ -22,10 +22,6 @@
 			<!-- Paginator control -->
 			<div id="paginator"></div>
 			
-			<div id="delete-confirm" title="Delete commitment?" data-role="dialog">
-				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure?</p>
-			</div>
-			
 			<script src="js/editablegrid-2.1.0-b13.js"></script>
 			<script src="js/editablegrid_renderers.js" ></script>
 			<script src="js/editablegrid_editors.js" ></script>
@@ -33,22 +29,44 @@
 			<script src="js/editablegrid_utils.js" ></script>
 			<script src="js/editablegrid_charts.js" ></script>
 			<script src="js/reliable.js" ></script>
-
-			<script type="text/javascript">
-	
-				var datagrid = new DatabaseGrid();
-				window.onload = function() { 
-
-					// key typed in the filter field
-					$("#filter").keyup(function() {
-						datagrid.editableGrid.filter( $(this).val());
-
-						// To filter on some columns, you can set an array of column index 
-						//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-					  });
-				}; 
-			</script>
-
-			</div>
 		</div>
+							
+		<div id="delete-confirm" title="Delete commitment?" data-role="dialog">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure?</p>
+		</div>
+		
 	</body>
+	
+	<script type="text/javascript">
+	
+		var datagrid = new DatabaseGrid();
+		window.onload = function() { 
+
+			// key typed in the filter field
+			$("#filter").keyup(function() {
+				datagrid.editableGrid.filter( $(this).val());
+
+				// To filter on some columns, you can set an array of column index 
+				//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+			  });
+		}; 
+		
+		delete_confirm = function() {
+			$(function () {
+				$( "#delete-confirm" ).dialog({
+					resizable: false,
+					autoOpen: false,
+					height:140,
+					modal: true,
+					buttons: {
+						"Delete": function() {
+							$( this ).dialog( "close" );
+						},
+						Cancel: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+			});
+		}
+	</script>

@@ -112,26 +112,6 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 }
 
 
-delete_confirm = function() {
-	$(function () {
-		$( "#delete-confirm" ).dialog({
-			resizable: false,
-			autoOpen: false,
-			height:140,
-			modal: true,
-			buttons: {
-				"Delete": function() {
-					$( this ).dialog( "close" );
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-		});
-	});
-}
-
-
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
   var self = this;
