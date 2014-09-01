@@ -169,10 +169,10 @@ DatabaseGrid.prototype.addRow = function(id)
 			if (response == "ok" ) {
                 // get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < this.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
-				this.insertAfter(rowIndex, newRowId, values);
+				this.editableGrid.insertAfter(rowIndex, newRowId, values);
            	}
             else alert("error: \n" + response);
 		},
@@ -200,10 +200,10 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 			if (response == "ok" ) {
 				// get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < this.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
-				this.insertAfter(rowIndex, newRowId, values);
+				this.editableGrid.insertAfter(rowIndex, newRowId, values);
            	}
             else 
               alert("error" + response);
