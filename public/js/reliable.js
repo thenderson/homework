@@ -184,10 +184,10 @@ DatabaseGrid.prototype.addRow = function(id)
 }; 
 
 
-EditableGrid.prototype.duplicateRow = function(id) 
+DatabaseGrid.prototype.duplicateRow = function(id) 
 {
 	var uniqueid = this.editableGrid.getValueAt(id, 0);
-
+	var self = this;
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
 		type: 'POST',
@@ -200,7 +200,7 @@ EditableGrid.prototype.duplicateRow = function(id)
 			if (response == "ok" ) {
 				// get id for new row (max id + 1)
 				var newRowId = 0;
-				var rowcount = this.getRowCount();
+				var rowcount = datagrid.editableGrid.getRowCount();
 				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
