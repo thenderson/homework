@@ -154,29 +154,22 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 DatabaseGrid.prototype.addRow = function(id) 
 {
 	var projectNumber = this.editableGrid.getValueAt(id, 1);
-	
-	console.log("adding row after row id:" + id, projectNumber);  
-	var temp = JSON.stringify(this);
-	console.log("this is: " + temp);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
-		dataType: "html",
+		dataType: "json",
 		data: {
 			projectnumber: projectNumber
 		},
 		success: function (response) 
 		{ 
-			if (response == "ok" ) {
-                // get id for new row (max id + 1)
-				var newRowId = 0;
-				for (var r = 0; r < dataGrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(dataGrid.editableGrid.getRowId(r)) + 1);
-				
-				// add new row
-				this.insertAfter(id, newRowId, values);
-           	}
-            else alert("error: \n" + response);
+			// get id for new row (max id + 1)
+			var newRowId = 0;
+			for (var r = 0; r < dataGrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(dataGrid.editableGrid.getRowId(r)) + 1);
+			
+			// add new row
+			this.insertAfter(id, newRowId, response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true

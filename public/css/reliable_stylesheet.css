@@ -233,7 +233,8 @@ td.editablegrid-unique_id {
 }
 
 th.editablegrid-project_number,
-td.editablegrid-project_number {
+td.editablegrid-project_number 
+.filter_project_number {
 	text-align: left;
 	width: 10%;
 }
@@ -245,19 +246,22 @@ td.editablegrid-task_id {
 }
 
 th.editablegrid-description,
-td.editablegrid-description {
+td.editablegrid-description,
+.filter_description {
 	text-align: left;
 	width: 35%;
 }
 
 th.editablegrid-promiser,
-td.editablegrid-promiser {
+td.editablegrid-promiser,
+.filter_promiser {
 	text-align: center;
 	width: 10%;
 }
 
 th.editablegrid-requester,
-td.editablegrid-requester {
+td.editablegrid-requester,
+.filter_requester {
 	text-align: center;
 	width: 10%;
 }
