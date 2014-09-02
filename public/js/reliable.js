@@ -201,7 +201,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 				// get id for new row (max id + 1)
 				var newRowId = 0;
 				var rowcount = datagrid.editableGrid.getRowCount();
-				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.getRowId(r)) + 1);
+				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
 				
 				// add new row
 				this.insertAfter(rowIndex, newRowId, values);
