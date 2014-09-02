@@ -156,6 +156,7 @@ DatabaseGrid.prototype.addRow = function(id)
 	var projectNumber = this.editableGrid.getValueAt(id, 1);
 	
 	console.log("adding row after row id:" + id, projectNumber);  
+	console.log("this is: " + this);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -169,7 +170,7 @@ DatabaseGrid.prototype.addRow = function(id)
 			if (response == "ok" ) {
                 // get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < this.DatabaseGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < DatabaseGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
 				this.insertAfter(rowIndex, newRowId, values);
@@ -186,7 +187,8 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 {
 	var uniqueid = this.editableGrid.getValueAt(id, 0);
 	
-	console.log(id, uniqueid);  
+	console.log(id, uniqueid);
+	console.log("this is: " + this);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
