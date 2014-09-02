@@ -169,7 +169,7 @@ DatabaseGrid.prototype.addRow = function(id)
 			for (var r = 0; r < datagrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
-			this.insertAfter(id, newRowId, response);
+			datagrid.editableGrid.insertAfter(id, newRowId, response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
@@ -197,7 +197,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 				
 				// add new row
-				this.insertAfter(id, newRowId, values);
+				datagrid.editableGrid.insertAfter(id, newRowId, values);
            	}
             else 
               alert("error" + response);
