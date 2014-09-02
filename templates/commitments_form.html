@@ -15,18 +15,23 @@
 			<table id="filterbar">
 				<tr>
 					<td>
-						<div>
+						<div class="filter filter_project_number">
 						  <input type="text" id="filter_proj" name="filter" placeholder="filter project #"  />
 						</div>
 					</td>
 					<td>
-						<div>
+						<div class="filter filter_description">
 						  <input type="text" id="filter_desc" name="filter" placeholder="filter description"  />
 						</div>
 					</td>
 					<td>
-						<div>
-						  <input type="text" id="filter_people" name="filter" placeholder="filter people"  />
+						<div class="filter filter_requester">
+						  <input type="text" id="filter_req" name="filter" placeholder="filter requester"  />
+						</div>
+					</td>
+					<td>
+						<div class="filter filter_promiser">
+						  <input type="text" id="filter_pro" name="filter" placeholder="filter promiser"  />
 						</div>
 					</td>
 				</tr>
@@ -68,10 +73,14 @@
 				datagrid.editableGrid.filter($(this).val(), [3]);
 			});
 	
-			$("#filter_people").keyup(function() {
-				datagrid.editableGrid.filter($(this).val(), [4, 5]);
+			$("#filter_req").keyup(function() {
+				datagrid.editableGrid.filter($(this).val(), [4]);
 			});
 
+			$("#filter_prom").keyup(function() {
+				datagrid.editableGrid.filter($(this).val(), [5]);
+			});
+			
 			$("#delete-confirm").dialog({
 				resizable: false,
 				autoOpen: false,

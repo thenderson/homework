@@ -171,10 +171,10 @@ DatabaseGrid.prototype.addRow = function(id)
 			if (response == "ok" ) {
                 // get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < grid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				for (var r = 0; r < dataGrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(dataGrid.editableGrid.getRowId(r)) + 1);
 				
 				// add new row
-				this.insertAfter(rowIndex, newRowId, values);
+				this.insertAfter(id, newRowId, values);
            	}
             else alert("error: \n" + response);
 		},
@@ -187,7 +187,7 @@ DatabaseGrid.prototype.addRow = function(id)
 DatabaseGrid.prototype.duplicateRow = function(id) 
 {
 	var uniqueid = this.editableGrid.getValueAt(id, 0);
-	var self = this;
+
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
 		type: 'POST',
@@ -201,10 +201,10 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 				// get id for new row (max id + 1)
 				var newRowId = 0;
 				var rowcount = datagrid.editableGrid.getRowCount();
-				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
+				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 				
 				// add new row
-				this.insertAfter(rowIndex, newRowId, values);
+				this.insertAfter(id, newRowId, values);
            	}
             else 
               alert("error" + response);

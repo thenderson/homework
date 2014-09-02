@@ -27,4 +27,12 @@ catch(PDOException $e)
 	exit;
 }      
 
-echo 'ok';
+$id = $comm_db->lastInsertId('unique_id');
+$new = $comm_db->query("SELECT unique_id, project_number, task_id, description, requester, 
+		promiser, due_by, requested_on, status, type, metric 
+		FROM commitments WHERE unique_id = $id"); 
+
+if (!$new) trigger_error('Statement failed : ' . E_USER_ERROR);
+else $new_comm = $new->fetchAll(PDO::FETCH_ASSOC);
+
+echo json_encode($new_comm);
