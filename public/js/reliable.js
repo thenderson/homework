@@ -166,7 +166,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		{ 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
-			for (var r = 0; r < dataGrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(dataGrid.editableGrid.getRowId(r)) + 1);
+			for (var r = 0; r < datagrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
 			this.insertAfter(id, newRowId, response);
