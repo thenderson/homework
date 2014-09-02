@@ -50,11 +50,11 @@
 
 			// key typed in the filter field
 			$("#filter_proj").keyup(function() {
-				datagrid.editableGrid.filter( $(this).val(), 'project_number');
+				datagrid.editableGrid.filter( $(this).val(), ['project_number']);
 			});
 				
 			$("#filter_desc").keyup(function() {
-				datagrid.editableGrid.filter( $(this).val(), 'description');
+				datagrid.editableGrid.filter( $(this).val(), ['description']);
 			});
 
 			$("#delete-confirm").dialog({
