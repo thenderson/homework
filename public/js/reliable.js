@@ -187,10 +187,6 @@ DatabaseGrid.prototype.addRow = function(id)
 DatabaseGrid.prototype.duplicateRow = function(id) 
 {
 	var uniqueid = this.editableGrid.getValueAt(id, 0);
-	
-	console.log(id, uniqueid);
-	var temp = JSON.stringify(this);
-	console.log("this is: " + temp);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
@@ -204,7 +200,8 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 			if (response == "ok" ) {
 				// get id for new row (max id + 1)
 				var newRowId = 0;
-				for (var r = 0; r < editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+				var rowcount = this.editableGrid.getRowCount();
+				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
 				
 				// add new row
 				this.insertAfter(rowIndex, newRowId, values);
