@@ -170,6 +170,7 @@ DatabaseGrid.prototype.addRow = function(id)
 			
 			// add new row
 			datagrid.editableGrid.insertAfter(id, newRowId, response);
+			console.log(id, newRowId, response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
