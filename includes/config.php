@@ -1,8 +1,7 @@
 <?php
 
     /* config.php
-     * Configures pages.
-     */
+     * Configures pages. */
 
     // display errors, warnings, and notices
 	ini_set('display_errors', 'On');
@@ -26,8 +25,8 @@
             redirect("/commgr/public/login.php");
         }
     }
-	// open connection to sql database via PDO
 	
+	// open connection to sql database via PDO
 	try
 	{
 		// connect to database
