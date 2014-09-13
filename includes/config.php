@@ -1,8 +1,6 @@
 <?php
 
-    /**
-     * config.php
-     *
+    /* config.php
      * Configures pages.
      */
 
@@ -14,8 +12,8 @@
 	date_default_timezone_set('America/Los_Angeles');
 	
     // requirements
-    require("constants.php");
-    require("functions.php");
+    require("/commgr/includes/constants.php");
+    require("/commgr/includes/functions.php");
 
     // enable sessions
     session_start();
