@@ -11,7 +11,7 @@
 	date_default_timezone_set('America/Los_Angeles');
 	
     // requirements
-    require("/commgr/includes/constants.php");
+    require("constants.php");
     require("/commgr/includes/functions.php");
 
     // enable sessions
