@@ -12,7 +12,7 @@
 	
     // requirements
     require("constants.php");
-    require("/commgr/includes/functions.php");
+    require("functions.php");
 
     // enable sessions
     session_start();
