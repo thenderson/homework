@@ -26,16 +26,12 @@
         {
             // first (and only) row
             $row = $rows->fetch(PDO::FETCH_ASSOC);
-			
-			dbug('$rows', $rows, '$row', $row);
-			echo dbug('print');
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
             {
-                // remember that user's now logged in by storing user's ID in session
+                // remember that user is now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["user_id"];
-				//error_log("successful login; session id=".$_SESSION["id"]);
 
                 // Successful login ... redirect to commitment view
                 redirect("/commgr/public/index.php");
