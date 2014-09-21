@@ -17,7 +17,9 @@ if (!$stmt)
 }
 else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error_log($result[0]);
+dbug('$result: ', $result); 
+error_log(dbug('print'));
+
 $new_Id = $result['task_id'] + 1;  //ERROR HERE -- DOESN'T LIKE INDEX.
 
 
