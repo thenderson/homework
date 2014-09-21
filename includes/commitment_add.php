@@ -17,7 +17,7 @@ if (!$stmt)
 }
 else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error_log($result);
+error_log($result[0]);
 $new_Id = $result['task_id'] + 1;  //ERROR HERE -- DOESN'T LIKE INDEX.
 
 
@@ -57,6 +57,6 @@ if (!$stmt)
 	echo 'error';
 	exit;
 }
-else $new_comm = $new->fetchAll(PDO::FETCH_ASSOC);
+else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
