@@ -17,14 +17,11 @@ if (!$stmt)
 }
 else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//dbug('$result: ', $result); 
-//error_log(dbug('print'));
-
 $new_Id = $result[0]['task_id'] + 1; 
 
 
 // Insert new blank commitment into database
-$stmt = $comm_db->prepare("INSERT INTO commitments (project_number, task_id, status) VALUES (?, ?, 'OPEN')");
+$stmt = $comm_db->prepare("INSERT INTO commitments (project_number, task_id, due_by, status) VALUES (?, ?, DATE_ADD(CURDATE(), INTERVAL 14 DAY), 'OPEN')");
 
 if (!$stmt)
 {
