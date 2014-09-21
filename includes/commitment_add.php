@@ -17,10 +17,10 @@ if (!$stmt)
 }
 else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-dbug('$result: ', $result); 
-error_log(dbug('print'));
+//dbug('$result: ', $result); 
+//error_log(dbug('print'));
 
-$new_Id = $result['task_id'] + 1;  //ERROR HERE -- DOESN'T LIKE INDEX.
+$new_Id = $result[0]['task_id'] + 1; 
 
 
 // Insert new blank commitment into database
