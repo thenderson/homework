@@ -170,9 +170,14 @@ DatabaseGrid.prototype.addRow = function(id)
 			
 			// add new row
 			datagrid.editableGrid.insertAfter(id, newRowId, response);
-			console.log(id, newRowId, response);
+			highlight(newRowId, "ok");
+			console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
 		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		error: function(XMLHttpRequest, textStatus, exception) 
+		{ 
+			highlight(id, "error");
+			alert("Ajax failure\n" + XMLHttpRequest + "\n" + textStatus + "\n" + exception); 
+		},
 		async: true
 	});		
 }; 
@@ -198,12 +203,18 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 				
 				// add new row
-				datagrid.editableGrid.insertAfter(id, newRowId, values);
+				datagrid.editableGrid.insertAfter(id, newRowId, response);
+				highlight(newRowId, "ok");
+				console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
            	}
             else 
-              alert("error" + response);
+              alert("error: \n response from php: \n" + response);
 		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		error: function(XMLHttpRequest, textStatus, exception) 
+		{ 
+			highlight(id, "error");
+			alert("Ajax failure\n" + XMLHttpRequest + "\n" + textStatus + "\n" + exception); 
+		},
 		async: true
 	});
 };
