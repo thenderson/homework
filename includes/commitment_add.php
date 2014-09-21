@@ -9,10 +9,16 @@ $project_number = strip_tags($_POST['projectnumber']);
 // Determine task_id for new commitment
 $stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
-if (!$stmt) trigger_error('Statement failed : ' . E_USER_ERROR);
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
 else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$new_Id = $result['task_id'] + 1;
+error_log($result);
+$new_Id = $result['task_id'] + 1;  //ERROR HERE -- DOESN'T LIKE INDEX.
 
 
 // Insert new blank commitment into database
@@ -41,11 +47,16 @@ catch(PDOException $e)
 
 // Retrieve newly created commitment from database and send back to JS
 $id = $comm_db->lastInsertId('unique_id');
-$new = $comm_db->query("SELECT unique_id, project_number, task_id, description, requester, 
+$stmt = $comm_db->query("SELECT unique_id, project_number, task_id, description, requester, 
 		promiser, due_by, requested_on, status, type, metric 
 		FROM commitments WHERE unique_id = $id"); 
 
-if (!$new) trigger_error('Statement failed : ' . E_USER_ERROR);
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
 else $new_comm = $new->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);

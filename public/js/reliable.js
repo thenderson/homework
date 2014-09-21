@@ -177,7 +177,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
 			highlight(id, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n" + textStatus + "\n" + exception); 
+			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
 	});		
