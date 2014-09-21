@@ -170,6 +170,7 @@ DatabaseGrid.prototype.addRow = function(id)
 			
 			// add new row
 			datagrid.editableGrid.insertAfter(id, newRowId, response);
+			datagrid.editableGrid.refreshGrid();
 			highlight(newRowId, "ok");
 			console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
 		},
@@ -190,25 +191,21 @@ DatabaseGrid.prototype.duplicateRow = function(id)
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
 		type: 'POST',
-		dataType: "html",
+		dataType: "json",
 		data: {
 			uniqueId: uniqueid
 		},
 		success: function (response) 
 		{ 
-			if (response == "ok" ) {
-				// get id for new row (max id + 1)
-				var newRowId = 0;
-				var rowcount = datagrid.editableGrid.getRowCount();
-				for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
-				
-				// add new row
-				datagrid.editableGrid.insertAfter(id, newRowId, response);
-				highlight(newRowId, "ok");
-				console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
-           	}
-            else 
-              alert("error: \n response from php: \n" + response);
+			// get id for new row (max id + 1)
+			var newRowId = 0;
+			var rowcount = datagrid.editableGrid.getRowCount();
+			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
+			
+			// add new row
+			datagrid.editableGrid.insertAfter(id, newRowId, response);
+			highlight(newRowId, "ok");
+			console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
