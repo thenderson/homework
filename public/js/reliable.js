@@ -212,7 +212,7 @@ DatabaseGrid.prototype.duplicateRow = function(index)
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
 			setTimeout(self.editableGrid.refreshGrid(), 1000);
-			highlight(newRowId, "ok");
+			setTimeout(function(){highlight(newRowId, "ok");}, 1000);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
