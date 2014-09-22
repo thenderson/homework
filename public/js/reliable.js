@@ -90,7 +90,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
-	var rowId = this.editableGrid.getRowId(rowIndex);
+	var rowId = editableGrid.getRowId(rowIndex);
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
