@@ -135,16 +135,13 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		},
 		success: function (response) 
 		{ 
-			if (response == "ok" ) {
-				var rowSelector = $("#" + id);
-				rowSelector.css("text-decoration", "line-through");
-				rowSelector.fadeTo(2000, 0, function() { 
-					console.log("callback activated.");
-					self.editableGrid.removeRow(id);
-					self.editableGrid.refreshGrid();
-				});
-			}
-			else alert("error: \n" + response);
+			var rowSelector = $("#" + id);
+			rowSelector.css("text-decoration", "line-through");
+			rowSelector.fadeTo(2000, 0, function() { 
+				console.log("callback activated \n" + rowSelector);
+				self.editableGrid.removeRow(id);
+				self.editableGrid.refreshGrid();
+			});
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
