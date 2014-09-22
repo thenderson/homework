@@ -3,7 +3,8 @@
  */
 function highlightRow(rowId, bgColor, after)
 {
-	var rowSelector = $("#" + rowId);
+	console.log('highlightRow selector: #grid_'+rowId);
+	var rowSelector = $("#grid_" + rowId);
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("normal", 0.5, function() { 
 		rowSelector.fadeTo("fast", 1, function() { 
@@ -120,13 +121,11 @@ DatabaseGrid.prototype.ConfirmDeleteRow = function(id)
 }
 
 
-DatabaseGrid.prototype.DeleteRow = function(id) 
+DatabaseGrid.prototype.DeleteRow = function(index) 
 {
 	var self = this;
-	var uniqueId = self.editableGrid.getValueAt(id, 0);
-	var rowId = self.editableGrid.getRowId(id);
-	
-	console.log('index: ' + id + ' id: ' + rowId);
+	var uniqueId = self.editableGrid.getValueAt(index, 0);
+	var rowId = self.editableGrid.getRowId(index);
 	
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -138,17 +137,14 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		success: function (response) 
 		{
 			var rowSelector = $("#grid_" + rowId);
-			console.log('rowSelector: ' + rowSelector);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.fadeTo(2000, 0, function() { 
-				console.log("callback activated \n" + rowSelector);
-				self.editableGrid.remove(id);
-				self.editableGrid.refreshGrid();
+			rowSelector.fadeTo(1000, 20, function() { 
+				self.editableGrid.remove(index);
 			});
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(id, "error");
+			highlight(rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
@@ -156,9 +152,10 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 };
 
 
-DatabaseGrid.prototype.addRow = function(id) 
+DatabaseGrid.prototype.addRow = function(index) 
 {
-	var projectNumber = this.editableGrid.getValueAt(id, 1);
+	var projectNumber = this.editableGrid.getValueAt(index, 1);
+	var rowId = self.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -174,14 +171,15 @@ DatabaseGrid.prototype.addRow = function(id)
 			for (var r = 0; r < datagrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
-			datagrid.editableGrid.insertAfter(id, newRowId, response);
+			datagrid.editableGrid.insertAfter(index, newRowId, response);
 			datagrid.editableGrid.refreshGrid();
+			
 			highlight(newRowId, "ok");
-			console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
+			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(id, "error");
+			highlight(rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
@@ -189,10 +187,11 @@ DatabaseGrid.prototype.addRow = function(id)
 }; 
 
 
-DatabaseGrid.prototype.duplicateRow = function(id) 
+DatabaseGrid.prototype.duplicateRow = function(index) 
 {
-	var uniqueid = this.editableGrid.getValueAt(id, 0);
-	var projectNumber = this.editableGrid.getValueAt(id, 1);
+	var uniqueid = this.editableGrid.getValueAt(index, 0);
+	var projectNumber = this.editableGrid.getValueAt(index, 1);
+	var rowId = self.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
@@ -204,19 +203,19 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		},
 		success: function (response) 
 		{ 
-			// get id for new row (max id + 1)
+			// get index for new row (max index + 1)
 			var newRowId = 0;
 			var rowcount = datagrid.editableGrid.getRowCount();
 			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
-			datagrid.editableGrid.insertAfter(id, newRowId, response);
+			datagrid.editableGrid.insertAfter(index, newRowId, response);
 			highlight(newRowId, "ok");
-			console.log("id: ", id, " newRowId: ", newRowId, " response: ", response);
+			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(id, "error");
+			highlight(rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
