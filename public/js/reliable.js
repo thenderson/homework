@@ -155,8 +155,9 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 
 DatabaseGrid.prototype.addRow = function(index) 
 {
-	var projectNumber = this.editableGrid.getValueAt(index, 1);
-	var rowId = this.editableGrid.getRowId(index);
+	var self = this;
+	var projectNumber = self.editableGrid.getValueAt(index, 1);
+	var rowId = self.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -169,11 +170,11 @@ DatabaseGrid.prototype.addRow = function(index)
 		{ 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
-			for (var r = 0; r < datagrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
+			for (var r = 0; r < self.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
-			datagrid.insertAfter(index, newRowId, response);
-			datagrid.refreshGrid();
+			self.editableGrid.insertAfter(index, newRowId, response);
+			self.editableGrid.refreshGrid();
 			
 			highlight(newRowId, "ok");
 			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
