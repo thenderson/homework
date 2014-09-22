@@ -124,7 +124,7 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 {
 	var self = this;
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
-	var rowId = self.getRowId(id);
+	var rowId = self.editableGrid.getRowId(id);
 	
 	console.log('index: ' + id + ' id: ' + rowId);
 	
