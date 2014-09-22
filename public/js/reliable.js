@@ -192,6 +192,7 @@ DatabaseGrid.prototype.addRow = function(id)
 DatabaseGrid.prototype.duplicateRow = function(id) 
 {
 	var uniqueid = this.editableGrid.getValueAt(id, 0);
+	var projectNumber = this.editableGrid.getValueAt(id, 1);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
@@ -199,6 +200,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		dataType: "json",
 		data: {
 			uniqueId: uniqueid
+			projectnumber: projectNumber
 		},
 		success: function (response) 
 		{ 
@@ -215,7 +217,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
 			highlight(id, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n" + textStatus + "\n" + exception); 
+			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
 	});

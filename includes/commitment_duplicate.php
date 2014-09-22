@@ -4,6 +4,7 @@ require_once('config.php');
                       
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueId']);
+$project_number = strip_tags($_POST['projectnumber']);
 
 // Determine task_id for new commitment
 $stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
