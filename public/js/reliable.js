@@ -124,7 +124,10 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 {
 	var self = this;
 	var uniqueId = self.editableGrid.getValueAt(id, 0);
-	console.log('id: ' + id);
+	var rowId = self.getRowId(id);
+	
+	console.log('index: ' + id + ' id: ' + rowId);
+	
     $.ajax({
 		url: '../includes/commitment_delete.php',
 		type: 'POST',
@@ -134,7 +137,7 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		},
 		success: function (response) 
 		{
-			var rowSelector = $("#" + id.name);
+			var rowSelector = $("#" + rowId);
 			console.log('rowSelector: ' + rowSelector);
 			rowSelector.css("text-decoration", "line-through");
 			rowSelector.fadeTo(2000, 0, function() { 
