@@ -172,8 +172,8 @@ DatabaseGrid.prototype.addRow = function(index)
 			for (var r = 0; r < datagrid.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
-			editableGrid.insertAfter(index, newRowId, response);
-			editableGrid.refreshGrid();
+			datagrid.insertAfter(index, newRowId, response);
+			datagrid.refreshGrid();
 			
 			highlight(newRowId, "ok");
 			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
