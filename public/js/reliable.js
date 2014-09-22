@@ -141,11 +141,16 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 				rowSelector.fadeTo(2000, 0, function() { 
 					console.log("callback activated.");
 					self.editableGrid.removeRow(id);
+					self.editableGrid.refreshGrid();
 				});
 			}
 			else alert("error: \n" + response);
 		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		error: function(XMLHttpRequest, textStatus, exception) 
+		{ 
+			highlight(id, "error");
+			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+		},
 		async: true
 	});
 };
@@ -302,3 +307,4 @@ InfoHeaderRenderer.prototype.render = function(cell, value)
 function image(relativePath) {
 	return "img/" + relativePath;
 }
+
