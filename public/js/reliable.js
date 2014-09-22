@@ -139,7 +139,7 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 		{
 			var rowSelector = $("#grid_" + rowId);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.slideUp(function() { 
+			rowSelector.slideUp(2000, "swing", function() { 
 				self.editableGrid.remove(index);
 			});
 		},
