@@ -139,7 +139,7 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 		{
 			var rowSelector = $("#grid_" + rowId);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.slideUp(2000, "swing", function() { 
+			rowSelector.fadeOut(function() { 
 				self.editableGrid.remove(index);
 			});
 		},
@@ -170,7 +170,7 @@ DatabaseGrid.prototype.addRow = function(index)
 		{ 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
-			for (var r = 0; r < self.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
+			for (var r = 0; r < self.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
@@ -190,9 +190,9 @@ DatabaseGrid.prototype.addRow = function(index)
 DatabaseGrid.prototype.duplicateRow = function(index) 
 {
 	var self = this;
-	var uniqueid = this.editableGrid.getValueAt(index, 0);
-	var projectNumber = this.editableGrid.getValueAt(index, 1);
-	var rowId = this.editableGrid.getRowId(index);
+	var uniqueid = self.editableGrid.getValueAt(index, 0);
+	var projectNumber = self.editableGrid.getValueAt(index, 1);
+	var rowId = self.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
@@ -206,8 +206,8 @@ DatabaseGrid.prototype.duplicateRow = function(index)
 		{ 
 			// get index for new row (max index + 1)
 			var newRowId = 0;
-			var rowcount = datagrid.editableGrid.getRowCount();
-			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(datagrid.editableGrid.getRowId(r)) + 1);
+			var rowcount = self.editableGrid.getRowCount();
+			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
