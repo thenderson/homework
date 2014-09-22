@@ -155,7 +155,7 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 DatabaseGrid.prototype.addRow = function(index) 
 {
 	var projectNumber = this.editableGrid.getValueAt(index, 1);
-	var rowId = self.editableGrid.getRowId(index);
+	var rowId = this.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -191,7 +191,7 @@ DatabaseGrid.prototype.duplicateRow = function(index)
 {
 	var uniqueid = this.editableGrid.getValueAt(index, 0);
 	var projectNumber = this.editableGrid.getValueAt(index, 1);
-	var rowId = self.editableGrid.getRowId(index);
+	var rowId = this.editableGrid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
