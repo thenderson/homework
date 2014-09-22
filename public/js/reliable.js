@@ -130,12 +130,13 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: uniqueId,
-			id: id
+			uniqueid: uniqueId
 		},
 		success: function (response) 
-		{ 
+		{
+			console.log('Server says ' + response);
 			var rowSelector = $("#" + id);
+			console.log('rowSelector: ' + rowSelector);
 			rowSelector.css("text-decoration", "line-through");
 			rowSelector.fadeTo(2000, 0, function() { 
 				console.log("callback activated \n" + rowSelector);
