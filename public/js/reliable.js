@@ -174,8 +174,8 @@ DatabaseGrid.prototype.addRow = function(index)
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
-			setTimeout(function() {self.editableGrid.refreshGrid();}, 1000);
-			setTimeout(function() {highlight(newRowId, "ok");}, 1000);
+			//self.editableGrid.refreshGrid();
+			highlight(newRowId, "ok");
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
