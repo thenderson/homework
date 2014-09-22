@@ -174,7 +174,6 @@ DatabaseGrid.prototype.addRow = function(index)
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
-			//self.editableGrid.refreshGrid();
 			highlight(newRowId, "ok");
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -211,8 +210,8 @@ DatabaseGrid.prototype.duplicateRow = function(index)
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
-			self.editableGrid.refreshGrid();
 			highlight(newRowId, "ok");
+			console.log(response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
