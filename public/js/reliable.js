@@ -139,7 +139,7 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 		{
 			var rowSelector = $("#grid_" + rowId);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.fadeTo(500, 0, function() { 
+			rowSelector.slideup(500, function() { 
 				self.editableGrid.remove(index);
 			});
 		},
@@ -175,9 +175,7 @@ DatabaseGrid.prototype.addRow = function(index)
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
 			self.editableGrid.refreshGrid();
-			
 			highlight(newRowId, "ok");
-			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
@@ -212,8 +210,9 @@ DatabaseGrid.prototype.duplicateRow = function(index)
 			
 			// add new row
 			datagrid.editableGrid.insertAfter(index, newRowId, response);
+			self.editableGrid.refreshGrid();
 			highlight(newRowId, "ok");
-			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
+
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
