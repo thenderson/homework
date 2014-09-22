@@ -137,7 +137,7 @@ DatabaseGrid.prototype.DeleteRow = function(id)
 		},
 		success: function (response) 
 		{
-			var rowSelector = $("#" + rowId);
+			var rowSelector = $("#grid_" + rowId);
 			console.log('rowSelector: ' + rowSelector);
 			rowSelector.css("text-decoration", "line-through");
 			rowSelector.fadeTo(2000, 0, function() { 
