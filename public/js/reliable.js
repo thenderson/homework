@@ -174,7 +174,7 @@ DatabaseGrid.prototype.addRow = function(index)
 			
 			// add new row
 			self.editableGrid.insertAfter(index, newRowId, response);
-			self.DatabaseGrid.refreshGrid();
+			self.editableGrid.refreshGrid();
 			
 			highlight(newRowId, "ok");
 			console.log("index: ", index, " newRowId: ", newRowId, " response: ", response);
