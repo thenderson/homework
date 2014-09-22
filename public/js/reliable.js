@@ -90,7 +90,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
-	//console.log(editableGrid.getValueAt(rowIndex, 0), newValue, editableGrid.getColumnName(columnIndex), editableGrid.getColumnType(columnIndex));
+	var rowId = this.editableGrid.getRowId(rowIndex);
+	
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
@@ -105,7 +106,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			// reset old value if failed then highlight row
 			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
 			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
-		    highlight(row.id, success ? "ok" : "error"); 
+		    highlight(rowId, success ? "ok" : "error"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
 		async: true
