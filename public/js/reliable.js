@@ -199,7 +199,7 @@ DatabaseGrid.prototype.duplicateRow = function(id)
 		type: 'POST',
 		dataType: "json",
 		data: {
-			uniqueId: uniqueid
+			uniqueId: uniqueid,
 			projectnumber: projectNumber
 		},
 		success: function (response) 
