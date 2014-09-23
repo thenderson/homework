@@ -34,7 +34,7 @@ switch ($column_name) {
 	   if ($new_value === "") 
 		 $new_value = NULL;
 	   else {
-		  $date_info = date_parse_from_format('d/m/Y', $value);
+		  $date_info = date_parse_from_format('d/m/Y', $new_value);
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
