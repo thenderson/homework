@@ -7,7 +7,7 @@
 				<img src="/commgr/public/img/BA Logo Blue 100.jpg" alt="BA logo">
 			</div>
 			<div class="col-sm-10">
-				<h2>r e l i a b l e</h2>
+				<h2>reliable promising</h2>
 				<h4>commitment tracking for individuals & teams</h4>
 			</div>
 		</div>

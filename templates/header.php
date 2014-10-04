@@ -4,9 +4,11 @@
     <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="[reliable promising], a web-hosted commitment management system for individuals and teams.">
+		<meta name="description" content="reliable promising, a web-hosted commitment management system for individuals and teams.">
 		<meta name="keywords" content="reliability, promising, lean, last planner system, commitment, project management">
 		<meta name="author" content="Todd Henderson">
+		
+		<link href="/commgr/public/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		
 		<!-- load bootstrap CSS & fontawesome -->
         <link href="/commgr/public/css/bootstrap.min.css" rel="stylesheet"/>
@@ -36,7 +38,7 @@
 		<link href="/commgr/public/css/reliable_stylesheet.css" rel="stylesheet"/>
 		<script src="/commgr/public/js/bootstrap.min.js"></script>
 
-        <title>reliable</title>
+        <title>reliable promising</title>
     </head>
 
     <body>		
@@ -49,7 +51,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="../" class="navbar-brand">r e l i a b l e</a>
+					<a href="../" class="navbar-brand">reliable promising</a>
 				</div>
 				<nav class="collapse navbar-collapse margin-8px" id="collapse" role="navigation">
 					<ul class="nav navbar-nav">

@@ -2,17 +2,17 @@
 /* colors from MS Office Median color scheme: 
 
 		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons
-		accent 2 / orange		rgb(221, 128, 71)		overdue commitments
+		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
 		accent 3 / olive 4		rgb(165, 171, 129)
-		accent 3 / olive 3		rgb(200, 204, 179)   	row hover
-		accent 4 / gold			rgb(216, 178, 92)		
+		accent 3 / olive 3		rgb(200, 204, 179)   	
+		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
 		accent 5 / green		rgb(123, 167, 157)		column headers
 		accent 6 / grey 50%		rgb(150, 140, 140)
 		background / dark 2		rgb(119, 95, 85)
-		background / light 2	rgb(235, 221, 195)
+		background / light 2	rgb(235, 221, 195)		row hover
 		dark red				rgb(192, 0, 0)			delete icon
-		light grey				rgb(228, 228, 228)		table striping (background)
-		med grey				rgb(217, 217, 217)		table striping (stripes)
+		light grey				rgb(228, 228, 228)		commitments due next week
+		med grey				rgb(217, 217, 217)		
 		dark med grey			rgb(190, 190, 190)		table header
 */
 h1,
@@ -105,21 +105,35 @@ margin-left: 0px;
 }
 
 #commitments>tbody tr:hover>td {
-	background-color: rgb(200, 204, 179);
+	background-color: rgb(235, 221, 195);
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td {  /* table stripes */
+/*.table-striped>tbody>tr:nth-child(odd)>td {
 	background-color: rgb(217, 217, 217);
 }
 
-.table-striped>tbody>tr:nth-child(even)>td {  /* table stripes */
+.table-striped>tbody>tr:nth-child(even)>td {
+	background-color: rgb(228, 228, 228);
+}*/
+
+.due_nextweek>td /* for table rows due next week */
+{
 	background-color: rgb(228, 228, 228);
 }
 
-.ghost>td /* for table rows > one week out */
+.due_future>td /* for table rows > one week out */
 {
-  background-color: #FFFFFF;
-  color: #848484;
+	color: rgb(228, 228, 228);
+}
+
+.overdue_1w>td /* for table rows < 2 weeks overdue */
+{
+	background-color: rgb(216, 178, 92);
+}
+
+.overdue_2w>td /* for table rows > 2 weeks overdue */
+{
+	background-color: rgb(221, 128, 71);
 }
 
 #commitments {
@@ -295,7 +309,7 @@ td.editablegrid-actions {
 }
 
 .fa-files-o { /* duplicate */
-	color: rgb(148, 182, 210);
+	color: rgb(0, 0, 0);
 }
 
 .fa-minus-square-o { /* delete */
@@ -311,7 +325,7 @@ img.icon {
   cursor: pointer;
 }
 #paginator .icon {
-  width: 24px;
+  width: 16px;
   margin: 3px;
   vertical-align: middle;
 }

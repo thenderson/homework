@@ -49,6 +49,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		isValid: function(value) { 
 			today = new Date();
 			d = new Date(value);
+			console.log(d >= today);
 			return d >= today; }
 	}));
 
@@ -75,13 +76,13 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	
 	grid.setCellRenderer('actions', new CellRenderer({ 
 		render: function(cell, id) { 
-		    cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
+		    //cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 			cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 		}
 	}));
 
-	grid.renderGrid('tablecontent', 'table table-striped', 'commitments');
+	grid.renderGrid('tablecontent', 'table', 'commitments');
 }
 
 
