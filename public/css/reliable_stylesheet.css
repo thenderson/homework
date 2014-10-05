@@ -149,7 +149,7 @@ margin-left: 0px;
 #commitments>thead>tr>td,
 #commitments>tbody>tr>td,
 #commitments>tfoot>tr>td {
-border-bottom: 0px; 
+border-bottom: 1px solid rgb(192, 192, 192); 
 border-top: 0px;
 }
 
@@ -233,8 +233,7 @@ img {
 }
 
 input.invalid {
-	background: red;
-	color: #FDFDFD;
+	background: rgb(192, 0, 0);
 }
 
 #message {

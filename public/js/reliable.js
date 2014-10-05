@@ -28,6 +28,7 @@ function DatabaseGrid()
 	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
+		dateFormat: "US",
 	    // define the number of row visible by page
       	pageSize: 10,
       // Once the table is displayed, we update the paginator state
