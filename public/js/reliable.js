@@ -56,7 +56,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 		isValid: function(value) { 
 			today = new Date();
 			d = new Date(value);
-			console.log(d >= today);
+			console.log(d);
 			return d >= today; }
 	}));
 

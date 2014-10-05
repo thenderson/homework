@@ -52,11 +52,11 @@
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 	}
 	
-//	dbug('$commitments', $commitments);
+	dbug('$commitments', $commitments);
 //	dbug('$users', $users); 
 //	dbug('$projects', $projects); 
-//	echo dbug('print');
-	var_dump(%commitments);
+	echo dbug('print');
+
 
 	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
 
