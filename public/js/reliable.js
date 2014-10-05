@@ -20,6 +20,12 @@ function highlight(div_id, style) {
 
 function DatabaseGrid() 
 { 
+	$.datepicker.setDefaults({
+		dateFormat: "ISO_8601",
+		numberOfMonths: 2,
+		gotoCurrent: true
+	});
+	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
 	    // define the number of row visible by page
