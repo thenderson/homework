@@ -8,10 +8,10 @@
 	$planning_horizon = 14; // days
 	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%d/%m/%Y'), DATE_FORMAT(requested_on, '%d/%m/%Y'), status, type, metric 
+		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%d/%m/%Y') as due_by_formatted, DATE_FORMAT(requested_on, '%d/%m/%Y') as requested_on_formatted, status, type, metric 
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
-		ORDER BY project_number, promiser, DATE_FORMAT(due_by,'%d/%m/%Y')");
+		ORDER BY project_number, promiser, due_by");
 	
 	if (!$stmt)
 	{
@@ -58,7 +58,7 @@
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
-	$grid->addColumn('due_by','DUE BY','date');
+	$grid->addColumn('due_by_formatted','DUE BY','date');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
