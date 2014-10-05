@@ -12,7 +12,7 @@
 	$planning_horizon = 14; // days
 	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, requested_on, status, type, metric 
+		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%d/%m/%y'), DATE_FORMAT(requested_on, '%d/%m/%y'), status, type, metric 
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
 		ORDER BY project_number, promiser, due_by");
