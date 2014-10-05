@@ -55,7 +55,7 @@
 	dbug('$commitments', $commitments);
 //	dbug('$users', $users); 
 //	dbug('$projects', $projects); 
-	echo dbug('print');
+	error_log(dbug('print'));
 
 
 	render("commitments_form.php", ["commitments"=>$commitments, "users" => $users, "username_lookup"=>$username_lookup, "projects" => $projects]);
