@@ -35,10 +35,14 @@ switch ($column_name) {
 		 $new_value = NULL;
 	   else {
 		  $date_info = date_parse_from_format('m/d/Y', $new_value);
-		  error_log(var_dump('date from POST: ', $new_value));
-		  error_log(var_dump('date_info: ', $date_info));
+		  ob_start();
+		  var_dump('date from POST: ', $new_value);
+		  var_dump('date_info: ', $date_info);
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
-		  error_log(var_dump('formatted date: ', $new_value));
+		  var_dump('formatted date: ', $new_value);
+		  $contents = ob_get_contents();
+			ob_end_clean();
+			error_log($contents);
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
 	   break;
