@@ -21,9 +21,9 @@ function highlight(div_id, style) {
 function DatabaseGrid() 
 { 
 	$.datepicker.setDefaults({
-		dateFormat: "mm/dd/yy",
+		//dateFormat: "mm/dd/yy",
 		numberOfMonths: 2,
-		gotoCurrent: true
+		//gotoCurrent: true
 	});
 	
 	this.editableGrid = new EditableGrid("grid", {
@@ -52,13 +52,13 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
  
 	//renderers for the due_by column
 	
-	grid.addCellValidator('due_by', new CellValidator({ 
-		isValid: function(value) { 
-			today = new Date();
-			d = new Date(value);
-			console.log(d);
-			return d >= today; }
-	}));
+	// grid.addCellValidator('due_by', new CellValidator({ 
+		// isValid: function(value) { 
+			// today = new Date();
+			// d = new Date(value);
+			// console.log(d);
+			// return d >= today; }
+	// }));
 
 	//renderers for the status column
 	
