@@ -21,7 +21,7 @@ function highlight(div_id, style) {
 function DatabaseGrid() 
 { 
 	$.datepicker.setDefaults({
-		dateFormat: "D mm/dd/yy",
+		dateFormat: "mm/dd/yy",
 		numberOfMonths: 2,
 		gotoCurrent: true
 	});
