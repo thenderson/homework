@@ -8,7 +8,7 @@
 		<meta name="keywords" content="reliability, promising, lean, last planner system, commitment, project management">
 		<meta name="author" content="Todd Henderson">
 		
-		<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+		<link href="/commgr/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 		
 		<!-- load bootstrap CSS & fontawesome -->
         <link href="/commgr/public/css/bootstrap.min.css" rel="stylesheet"/>
