@@ -20,7 +20,7 @@ function highlight(div_id, style) {
 function DatabaseGrid() 
 { 
 	var dateFormat = $().datepicker( "option", "dateFormat" );
-	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true));
+	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true)));
 	
 	$.datepicker.setDefaults({
 		dateFormat: "mm/dd/yy",
@@ -29,7 +29,7 @@ function DatabaseGrid()
 	});
 	
 	var dateFormat = $().datepicker( "option", "dateFormat" );
-	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true));
+	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true)));
 	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
