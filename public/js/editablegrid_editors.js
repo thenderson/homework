@@ -388,8 +388,7 @@ DateCellEditor.prototype.displayEditor = function(element, htmlInput)
 	TextCellEditor.prototype.displayEditor.call(this, element, htmlInput);
 
 	jQuery(htmlInput).datepicker({ 
-		dateFormat: this.editablegrid.dateFormat == "EU" ? "dd/mm/yy" : 
-			this.editablegrid.dateFormat == "US" ? "mm/dd/yy" : "yy/mm/dd", //defaults to ISO_8601 format if not EU or US
+		dateFormat: this.editablegrid.dateFormat == "EU" ? "dd/mm/yy" : "mm/dd/yy"; 
 				beforeShow: function() {
 					// the field cannot be blurred until the datepicker has gone away
 					// otherwise we get the "missing instance data" exception

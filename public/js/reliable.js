@@ -19,16 +19,16 @@ function highlight(div_id, style) {
 
 function DatabaseGrid() 
 { 
-	var dateFormat = $().datepicker( "option", "dateFormat" );
+	var dateFormat = $(.).datepicker( "option", "dateFormat" );
 	console.log("before: " + JSON.stringify(dateFormat));
 	
 	$.datepicker.setDefaults({
-		dateFormat: "mm/dd/yy",
+	//	dateFormat: "mm/dd/yy",
 		numberOfMonths: 2,
 		gotoCurrent: true
 	});
 	
-	var dateFormat = $().datepicker( "option", "dateFormat" );
+	var dateFormat = $(.).datepicker( "option", "dateFormat" );
 	console.log("before: " + JSON.stringify(dateFormat));
 	
 	this.editableGrid = new EditableGrid("grid", {
@@ -56,6 +56,14 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
   var self = this;
  
 	//renderers for the due_by column
+	grid.setCellRenderer('due_by', new cellRenderer({
+		render: function(cell, id) {
+			var date = this.editablegrid.checkDate(value);
+			if (typeof date == "object") cell.innerHTML = date.sortDate;
+			else cell.innerHTML = value;
+			cell.style.whiteSpace = 'nowrap';
+			}
+		}));
 	
 	// grid.addCellValidator('due_by', new CellValidator({ 
 		// isValid: function(value) { 
