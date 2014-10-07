@@ -50,7 +50,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
   var self = this;
  
 	//renderers for the due_by column
-	grid.setCellRenderer('due_by', new cellRenderer({
+	grid.setCellRenderer('due_by', new CellRenderer({
 		render: function(cell, id) {
 			var date = this.editablegrid.checkDate(value);
 			if (typeof date == "object") cell.innerHTML = date.sortDate;
