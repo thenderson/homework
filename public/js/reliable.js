@@ -3,7 +3,6 @@
  */
 function highlightRow(rowId, bgColor, after)
 {
-	console.log('highlightRow selector: #grid_'+rowId);
 	var rowSelector = $("#grid_" + rowId);
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("normal", 0.5, function() { 
@@ -21,7 +20,7 @@ function highlight(div_id, style) {
 function DatabaseGrid() 
 { 
 	var dateFormat = $().datepicker( "option", "dateFormat" );
-	console.log("before: " + dateFormat);
+	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true));
 	
 	$.datepicker.setDefaults({
 		dateFormat: "mm/dd/yy",
@@ -30,7 +29,7 @@ function DatabaseGrid()
 	});
 	
 	var dateFormat = $().datepicker( "option", "dateFormat" );
-	console.log("after: " + dateFormat);
+	console.log("before: " + JSON.stringify(JSON.decycle(dateFormat, true));
 	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
