@@ -21,14 +21,14 @@ function highlight(div_id, style) {
 function DatabaseGrid() 
 { 
 	$.datepicker.setDefaults({
-		//dateFormat: "mm/dd/yy",
+		dateFormat: "mm/dd/yy",
 		numberOfMonths: 2,
 		//gotoCurrent: true
 	});
 	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
-		dateFormat: "EU",
+		dateFormat: "US",
 	    // define the number of row visible by page
       	pageSize: 10,
       // Once the table is displayed, we update the paginator state
