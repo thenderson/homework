@@ -52,10 +52,11 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 	//renderers for the due_by column
 	grid.setCellRenderer('due_by', new CellRenderer({
 		render: function(cell, value) {
-			var date = this.editablegrid.checkDate(value);
-			if (typeof date == "object") cell.innerHTML = date.sortDate;
-			else cell.innerHTML = value;
-			cell.style.whiteSpace = 'nowrap';
+			// var date = this.editablegrid.checkDate(value);
+			// if (typeof date == "object") cell.innerHTML = date.sortDate;
+			// else cell.innerHTML = value;
+			// cell.style.whiteSpace = 'nowrap';
+			cell.innerHTML = value;
 			}
 		}));
 	
