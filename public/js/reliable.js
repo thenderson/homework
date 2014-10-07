@@ -29,7 +29,7 @@ function DatabaseGrid()
 	});
 	
 	var dateFormat = $().datepicker( "option", "dateFormat" );
-	console.log("before: " + JSON.stringify(dateFormat);
+	console.log("before: " + JSON.stringify(dateFormat));
 	
 	this.editableGrid = new EditableGrid("grid", {
 		enableSort: true,
