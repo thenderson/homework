@@ -64,11 +64,11 @@
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	ob_start();
-	echo($commitments['due_by_f'][0]);
-	echo($commitments['due_by_f'][1]);
-	echo($commitments['due_by_f'][2]);
+	echo($commitments[0]['due_by_f']);
+	echo($commitments[1]['due_by_f']);
+	echo($commitments[2]['due_by_f']);
 	echo($commitments[3]['due_by_f']);
-	echo($commitments['due_by_f']);
+	echo($commitments[4]['due_by_f']);
 	$contents = ob_get_contents();
 	ob_end_clean();
 	error_log($contents);
