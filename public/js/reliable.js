@@ -20,7 +20,7 @@ function highlight(div_id, style) {
 
 function DatabaseGrid() 
 { 
-	var dateFormat = $.datepicker( "option", "dateFormat" );
+	var dateFormat = $().datepicker( "option", "dateFormat" );
 	console.log("before: " & dateFormat);
 	
 	$.datepicker.setDefaults({
@@ -29,7 +29,7 @@ function DatabaseGrid()
 		gotoCurrent: true
 	});
 	
-	var dateFormat = $.datepicker( "option", "dateFormat" );
+	var dateFormat = $().datepicker( "option", "dateFormat" );
 	console.log("after: " & dateFormat);
 	
 	this.editableGrid = new EditableGrid("grid", {
