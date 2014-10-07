@@ -63,11 +63,15 @@
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
-	// ob_start();
-	// var_dump($commitments);
-	// $contents = ob_get_contents();
-	// ob_end_clean();
-	// error_log($contents);
+	ob_start();
+	var_dump($commitments['due_by_f'][0]);
+	var_dump($commitments['due_by_f'][1]);
+	var_dump($commitments['due_by_f'][2]);
+	var_dump($commitments['due_by_f'][3]);
+	var_dump($commitments['due_by_f'][4]);
+	$contents = ob_get_contents();
+	ob_end_clean();
+	error_log($contents);
 
 	//render grid
 	$grid->renderXML($commitments);
