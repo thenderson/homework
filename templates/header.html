@@ -4,8 +4,8 @@
     <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="[reliable?], a web-hosted reliable promising system for individuals and teams.">
-		<meta name="keywords" content="reliability, promising, lean, last planner system, commitment, project management">
+		<meta name="description" content="[reliablepromising], a web-hosted commitment tracking system for individuals and teams.">
+		<meta name="keywords" content="reliability, promising, lean, last planner system, commitment, project management, team">
 		<meta name="author" content="Todd Henderson">
 		
 		<!-- load CSS files -->
@@ -45,14 +45,14 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<?php
-						if (empty($_POST["username"]))
+						if (empty($_SESSION["username"]))
 						{ ?>
 							<li class="navbar-text navbar-right">guest</li>
 						<?php
 						}
 						else
 						{ ?>
-							<li class="navbar-text navbar-right"><?=$_POST["username"]?></li>
+							<li class="navbar-text navbar-right"><?php=$_SESSION["username"]?></li>
 						<?php
 						} ?>
 					</ul>

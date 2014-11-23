@@ -20,6 +20,7 @@
 
         // query database for user
         $rows = $comm_db->query("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
+		//** wow! this appears ripe for SQL injection attack.
 		
         // if we found user, check password
         if ($rows->rowCount() == 1)
@@ -32,6 +33,7 @@
             {
                 // remember that user is now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["user_id"];
+				$_SESSION["username"] = $row["username"];
 
                 // Successful login ... redirect to commitment view
                 redirect("/commgr/public/index.php");
