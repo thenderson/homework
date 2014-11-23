@@ -52,7 +52,7 @@
 			$.ajax({
 				url: '../includes/load_user_commitments.php',
 				type: 'POST',
-				dataType: "json",
+				dataType: "text",
 				data: {
 					userId: 'not used',
 					horizon: 14
@@ -63,7 +63,7 @@
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
-					alert("Ajax FAIL!\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
 				},
 				async: true
 			});
