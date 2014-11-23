@@ -59,10 +59,11 @@
 				},
 				success: function (response) 
 				{ //do nothing ... handled in PHP.
+					alert("Success. Response: " + response);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
-					alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+					alert("Ajax FAIL!\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 				},
 				async: true
 			});
