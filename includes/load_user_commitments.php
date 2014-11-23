@@ -5,7 +5,6 @@
 	require_once('../includes/EditableGrid.php');     
 	
 	// Get POST data
-	$userID = strip_tags($_POST['userID']);
 	$planning_horizon = strip_tags($_POST['horizon']); // days
 
 	/*	RETRIEVE COMMITMENTS */
@@ -25,7 +24,7 @@
 	try 
 	{
 		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->bindParam(2, $userID, PDO::PARAM_INT);
+		$stmt->bindParam(2, $_SESSION['userID'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
