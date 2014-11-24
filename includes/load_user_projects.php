@@ -9,7 +9,7 @@
 	$stmt = $comm_db->prepare("
 		SELECT project_number, project_name
 		FROM projects
-		NATURAL JOIN user_projects
+		NATURAL JOIN users_projects
 		WHERE user_id = ?
 		ORDER BY project_number");
 	
