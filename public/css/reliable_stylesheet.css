@@ -87,7 +87,31 @@ margin-left: 0px;
 	margin-right: 2.5%;
 }
 
-#commitments th {
+#commitments,
+#projects {
+	margin-bottom: 4px; 
+	border-collapse: collapse; 
+	width: 100%;
+	font-size: 14px;
+}
+
+#commitments>thead>tr>th, 
+#commitments>tbody>tr>th,
+#commitments>tfoot>tr>th,
+#commitments>thead>tr>td,
+#commitments>tbody>tr>td,
+#commitments>tfoot>tr>td,
+#projects>thead>tr>th, 
+#projects>tbody>tr>th,
+#projects>tfoot>tr>th,
+#projects>thead>tr>td,
+#projects>tbody>tr>td,
+#projects>tfoot>tr>td {
+border-bottom: 1px solid rgb(192, 192, 192); 
+border-top: 0px;
+}
+#commitments th,
+#projects th {
 	background: rgb(190, 190, 190);
 	color: #555;
 	padding-left: 1px;
@@ -97,14 +121,16 @@ margin-left: 0px;
 	white-space: nowrap; 
 }
 
-#commitments td {
+#commitments td,
+#projects td {
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-right: 1px;
 	padding-left: 1px;
 }
 
-#commitments>tbody tr:hover>td {
+#commitments>tbody tr:hover>td,
+#projects>tbody tr:hover>td {
 	background-color: rgb(235, 221, 195);
 }
 
@@ -134,23 +160,6 @@ margin-left: 0px;
 .overdue_2w>td /* for table rows > 2 weeks overdue */
 {
 	background-color: rgb(221, 128, 71);
-}
-
-#commitments {
-	margin-bottom: 4px; 
-	border-collapse: collapse; 
-	width: 100%;
-	font-size: 14px;
-}
-
-#commitments>thead>tr>th, 
-#commitments>tbody>tr>th,
-#commitments>tfoot>tr>th,
-#commitments>thead>tr>td,
-#commitments>tbody>tr>td,
-#commitments>tfoot>tr>td {
-border-bottom: 1px solid rgb(192, 192, 192); 
-border-top: 0px;
 }
 
 .flash-ok {
@@ -315,7 +324,8 @@ td.editablegrid-actions {
 	color: rgb(192, 0, 0);
 }
 
-#commitments i { /* fontawesome icons */
+#commitments i,
+#projects i { /* fontawesome icons */
   font-size: 0.85em;
   cursor: pointer;
 }
