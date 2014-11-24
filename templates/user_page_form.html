@@ -58,12 +58,12 @@
 				dataType: "text",
 				data: {
 					userId: 'not used',
-					horizon: 14
+					horizon: 90
 				},
 				success: function (response) 
 				{ //process response as xml, then call tableLoaded
 					user_comm_grid.loadXMLFromString(response); //synchronous function
-					//user_comm_grid.tableLoaded();
+					user_comm_grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
