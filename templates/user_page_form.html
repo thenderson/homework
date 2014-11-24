@@ -64,6 +64,7 @@
 				{ //process response as xml, then call tableLoaded
 					user_comm_grid.loadXMLFromString(response); //synchronous function
 					user_comm_grid.tableLoaded();
+					alert(response);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
