@@ -75,6 +75,6 @@
 	// $contents = ob_get_contents();
 	// ob_end_clean();
 	// error_log($contents);
-
+error_log($_SESSION['userID']);
 	//render grid
 	$grid->renderXML($commitments);
