@@ -12,7 +12,7 @@
 	$stmt = $comm_db->prepare("
 		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by_f, DATE_FORMAT(requested_on, '%m/%d/%Y') as requested_on_f, status, type, metric 
 		FROM commitments 
-		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = 3
+		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = ?
 		ORDER BY due_by, project_number");
 	
 	if (!$stmt)
@@ -24,7 +24,7 @@
 	try 
 	{
 		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		//$stmt->bindParam(2, $_SESSION['userID'], PDO::PARAM_INT);
+		$stmt->bindParam(2, $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
@@ -75,6 +75,6 @@
 	// $contents = ob_get_contents();
 	// ob_end_clean();
 	// error_log($contents);
-error_log($_SESSION['userID']);
+error_log($_SESSION['id']);
 	//render grid
 	$grid->renderXML($commitments);
