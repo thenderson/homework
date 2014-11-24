@@ -5,23 +5,22 @@
 					<img src="/commgr/public/img/Reliable Promising Logo 100px.jpg" alt="RP logo">
 				</div>
 				<div class="col-sm-10">
-					<h2>Welcome, <?php echo $_SESSION["username"];?></h2>
-					<h4>here's your dashboard.</h4>
+					<h2>Here's your dashboard.</h2>
 				</div>
 			</div>
 		</div>
 		<br>
 		<br>
 		<div class="container-fluid" id="wrap"><br>	
-			<div><h3>YOUR CURRENT COMMITMENTS</h3></div>
+			<div><h3><strong>YOUR CURRENT COMMITMENTS</strong></h3></div>
 			<div id="user_commitments"></div>
 			<div id="user_commitments_paginator"></div>
 			<br>
-			<div><h3>YOUR PROJECTS</h3></div>
+			<div><h3><strong>YOUR PROJECTS</strong></h3></div>
 			<div id="user_projects"></div>
 			<div id="user_projects_paginator"></div>
 			<br>
-			<div><h3>ALL PROJECTS</h3></div>
+			<div><h3><strong>ALL PROJECTS</strong></h3></div>
 			<div id="all_projects"></div>
 			<div id="all_projects_paginator"></div>
 			
@@ -38,10 +37,7 @@
 	
 	<script type="text/javascript">
 		window.onload = function() { 
-			//user_proj_grid = new EditableGrid("UserProjects"); 
-			//user_proj_grid.tableLoaded = function() { this.renderGrid("user_projects", 'table', 'user_projects'); };
-			//user_proj_grid.loadXML("load_user_projects.xml");
-			
+			// load commitments belonging to current user
 			user_comm_grid = new EditableGrid("UserCommitments", {
 				enableSort: true,
 				dateFormat: "US",
@@ -57,8 +53,7 @@
 				type: 'POST',
 				dataType: "text",
 				data: {
-					userId: 'not used',
-					horizon: 90
+					horizon: 30
 				},
 				success: function (response) 
 				{ //process response as xml, then call tableLoaded
@@ -71,10 +66,14 @@
 				},
 				async: true
 			});
+			
+			//user_proj_grid = new EditableGrid("UserProjects"); 
+			//user_proj_grid.tableLoaded = function() { this.renderGrid("user_projects", 'table', 'user_projects'); };
+			//user_proj_grid.loadXML("load_user_projects.xml");
 
 			//all_proj_grid = new EditableGrid("AllProjects"); 
 			//all_proj_grid.tableLoaded = function() { this.renderGrid("all_projects", 'table', 'all_projects'); };
-			//all_proj_grid.loadXML("load_user_projects.xml");			
+			//all_proj_grid.loadXML("load_projects.xml");			
 			
 		}; 
 	</script>
