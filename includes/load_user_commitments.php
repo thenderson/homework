@@ -78,4 +78,3 @@
 
 	//render grid
 	$grid->renderXML($commitments);
-	echo 'ok';
