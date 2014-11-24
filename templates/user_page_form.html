@@ -13,12 +13,15 @@
 		<br>
 		<br>
 		<div class="container-fluid" id="wrap"><br>	
-			<div id="user_projects"></div>
-			<div id="user_projects_paginator"></div>
-			<br>
+			<div><h3>YOUR CURRENT COMMITMENTS</h3></div>
 			<div id="user_commitments"></div>
 			<div id="user_commitments_paginator"></div>
 			<br>
+			<div><h3>YOUR PROJECTS</h3></div>
+			<div id="user_projects"></div>
+			<div id="user_projects_paginator"></div>
+			<br>
+			<div><h3>ALL PROJECTS</h3></div>
 			<div id="all_projects"></div>
 			<div id="all_projects_paginator"></div>
 			
@@ -44,7 +47,7 @@
 				dateFormat: "US",
 				pageSize: 5,
 				tableRendered:  function() { updatePaginator(this); },
-				tableLoaded: function() { this.renderGrid('user_commitments', 'table', 'user_commitments'); },
+				tableLoaded: function() { this.renderGrid('user_commitments', 'table', 'user_comm'); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
@@ -61,6 +64,7 @@
 				{ //process response as xml, then call tableLoaded
 					user_comm_grid.loadXMLFromString(response); //synchronous function
 					user_comm_grid.tableLoaded();
+					alert(response);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
