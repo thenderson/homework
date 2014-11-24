@@ -61,7 +61,7 @@
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
-	$grid->addColumn('due_by','DUE BY','date');
+	$grid->addColumn('due_by_f','DUE BY','date');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
@@ -75,6 +75,6 @@
 	// $contents = ob_get_contents();
 	// ob_end_clean();
 	// error_log($contents);
-error_log($_SESSION['id']);
+
 	//render grid
 	$grid->renderXML($commitments);
