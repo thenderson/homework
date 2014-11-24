@@ -63,8 +63,7 @@
 				success: function (response) 
 				{ //process response as xml, then call tableLoaded
 					user_comm_grid.loadXMLFromString(response); //synchronous function
-					user_comm_grid.tableLoaded();
-					alert(response);
+					//user_comm_grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
