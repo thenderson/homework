@@ -58,8 +58,9 @@
 					horizon: 14
 				},
 				success: function (response) 
-				{ //do nothing ... handled in PHP.
-					alert("Success. Response: " + response);
+				{ //process response as xml, then call tableLoaded
+					user_comm_grid.loadXMLFromString(response); //synchronous function
+					user_comm_grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
