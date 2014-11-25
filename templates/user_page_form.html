@@ -31,12 +31,17 @@
 	
 	<script type="text/javascript">
 		window.onload = function() { 
+		
+			// pass to project-specific page
+			goto_project_view = function (p_num) {
+			}
+			
 			// load commitments belonging to current user
 			user_comm_grid = new EditableGrid("UserCommitments", {
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this); },
+				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
 				tableLoaded: function() { this.renderGrid('user_commitments', 'table', 'commitments'); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
@@ -65,8 +70,15 @@
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this); },
-				tableLoaded: function() { this.renderGrid('user_projects', 'table', 'projects'); },
+				tableRendered:  function() { updatePaginator(this, "user_projects_paginator"); },
+				tableLoaded: function() { 
+					grid.setCellRenderer('project_number', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML+= "<i onclick=\"goto_project_view("+value+");\"></i>";
+						}
+					}));
+					this.renderGrid('user_projects', 'table', 'projects'); },
+				readonlyWarning = function(column) {};
 			}); 
 				
 			user_proj_grid.loadXML("../includes/load_user_projects.php");
@@ -75,7 +87,7 @@
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this); },
+				tableRendered:  function() { updatePaginator(this, "all_projects_paginator"); },
 				tableLoaded: function() { this.renderGrid("all_projects", 'table', 'projects'); },
 			});
 
