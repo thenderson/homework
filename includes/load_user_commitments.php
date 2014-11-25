@@ -58,7 +58,7 @@
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string', $projects);
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
-	$grid->addColumn('description', 'COMMITMENT', 'string');
+	$grid->addColumn('description-wide', 'COMMITMENT', 'string');
 	//$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by_f','DUE BY','date');
