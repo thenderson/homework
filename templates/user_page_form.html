@@ -77,9 +77,8 @@
 							cell.innerHTML+= "<i onclick=\"goto_project_view("+value+");\"></i>";
 						}
 					}));
-					this.renderGrid('user_projects', 'table', 'projects'); },
-				readonlyWarning = function(column) {};
-			}); 
+					this.renderGrid('user_projects', 'table', 'projects'); }
+				}); 
 				
 			user_proj_grid.loadXML("../includes/load_user_projects.php");
 
