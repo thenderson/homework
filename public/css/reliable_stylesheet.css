@@ -82,7 +82,8 @@ margin-left: 0px;
 	padding: 4 px;
 }
 
-#wrap { /*overall div containing commitment table, paginator, ect. */
+#wrap ,
+.wrap { /*overall div containing commitment table, paginator, ect. */
 	margin-left: 2.5%;
 	margin-right: 2.5%;
 }
