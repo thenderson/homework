@@ -88,6 +88,11 @@ margin-left: 0px;
 	margin-right: 2.5%;
 }
 
+.nopadding (
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 #commitments,
 #projects {
 	margin-bottom: 4px; 
@@ -273,6 +278,13 @@ td.editablegrid-description,
 .filter_description {
 	text-align: left;
 	width: 35%;
+}
+
+th.editablegrid-description-wide,
+td.editablegrid-description-wide,
+.filter_description-wide {
+	text-align: left;
+	width: 45%;
 }
 
 th.editablegrid-promiser,
