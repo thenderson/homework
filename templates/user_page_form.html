@@ -34,6 +34,7 @@
 		
 			// pass to project-specific page
 			goto_project_view = function (p_num) {
+				console.log(p_num);
 			}
 			
 			// load commitments belonging to current user
@@ -74,7 +75,7 @@
 				tableLoaded: function() { 
 					user_proj_grid.setCellRenderer('project_number', new CellRenderer({ 
 						render: function(cell, value) { 
-							cell.innerHTML= value + " onclick=goto_project_view("+value+");";
+							cell.innerHTML= value + "<element onclick=goto_project_view("+value+")>";
 						}
 					}));
 					this.renderGrid('user_projects', 'table', 'projects'); }
