@@ -74,7 +74,7 @@
 				tableLoaded: function() { 
 					user_proj_grid.setCellRenderer('project_number', new CellRenderer({ 
 						render: function(cell, value) { 
-							cell.innerHTML+= value+"<a onclick=\"goto_project_view("+value+");\"></a>";
+							cell.innerHTML+= "onclick=goto_project_view("+value+");";
 						}
 					}));
 					this.renderGrid('user_projects', 'table', 'projects'); }
