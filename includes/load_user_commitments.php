@@ -49,7 +49,7 @@
 	{
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
-		foreach ($commitments at $commitment) $commitment['project_shortname'] = $projects['project_number'];
+		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects['project_number'];
 	}
 
 	// create grid
