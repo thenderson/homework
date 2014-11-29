@@ -49,6 +49,7 @@
 	{
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
+		foreach ($commitments at $commitment) $commitment['project_shortname'] = $projects['project_number'];
 	}
 
 	// create grid
@@ -57,7 +58,7 @@
 	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string');
-	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', $projects);
+	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	//$grid->addColumn('promiser','PROMISER','string', $username_lookup);
