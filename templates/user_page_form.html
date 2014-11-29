@@ -43,7 +43,13 @@
 				dateFormat: "US",
 				pageSize: 5,
 				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
-				tableLoaded: function() { this.renderGrid('user_commitments', 'table', 'commitments'); },
+				tableLoaded: function() {  
+					user_comm_grid.setCellRenderer('project_number', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+						}
+					}));
+					this.renderGrid('user_commitments', 'table', 'commitments'); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
@@ -79,7 +85,7 @@
 						}
 					}));
 					this.renderGrid('user_projects', 'table', 'projects'); }
-				}); 
+			}); 
 				
 			user_proj_grid.loadXML("../includes/load_user_projects.php");
 
@@ -87,7 +93,13 @@
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this, "all_projects_paginator"); },
+				tableRendered:  function() {  
+					all_proj_grid.setCellRenderer('project_number', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+						}
+					}));
+					updatePaginator(this, "all_projects_paginator"); },
 				tableLoaded: function() { this.renderGrid("all_projects", 'table', 'projects'); },
 			});
 
