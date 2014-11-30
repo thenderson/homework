@@ -59,8 +59,10 @@
 	// ob_end_clean();
 	// error_log($contents);
 	
-	error_log($projects);
-	error_log($commitments);
+	echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
+	var_dump($projects);
+	var_dump($commitments);
+	echo "</pre>\n";
 	
 	// create grid
 	$grid = new EditableGrid();
