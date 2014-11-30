@@ -1,15 +1,9 @@
 <?php
     require("../includes/config.php");
 	
-	if ($_SERVER["REQUEST_METHOD"] == "POST")
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['p']))
     {		
-        // validate submission
-        if (!empty($_POST['p'])) 
-		{
-			error_log("project view ".$_POST['p']);
-			$p_num = $_POST['p'];
-			render('commitments_form.html', [$p_num]);
-			exit;
-		}
+		$p_num = $_POST['p'];
+		render('commitments_form.php', [$p_num]);
 	}
-echo 'fail';
+	else echo 'fail';
