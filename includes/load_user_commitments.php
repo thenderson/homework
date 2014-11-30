@@ -52,12 +52,15 @@
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
 
-	ob_start();
-	echo($projects);
-	echo($commitments);
-	$contents = ob_get_contents();
-	ob_end_clean();
-	error_log($contents);
+	// ob_start();
+	// echo($projects);
+	// echo($commitments);
+	// $contents = ob_get_contents();
+	// ob_end_clean();
+	// error_log($contents);
+	
+	error_log($projects);
+	error_log($commitments);
 	
 	// create grid
 	$grid = new EditableGrid();
