@@ -35,6 +35,7 @@
 			// pass to project-specific page
 			goto_project_view = function (p_num) {
 				console.log(p_num);
+				$.get("load_data.php", {p: p_num});
 			}
 			
 			// load commitments belonging to current user
