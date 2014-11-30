@@ -3,8 +3,7 @@
 	
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['p']))
     {		
-		$p_num = $_POST['p'];
 		echo 'ok';
-		render('commitments_form.html', ["project" => $p_num]);
+		render('commitments_formb.html', ["project" => $_POST['p']]);
 	}
 	else echo 'fail';
