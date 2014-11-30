@@ -5,5 +5,10 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
     {		
         // validate submission
-        if (!empty($_POST['p'])) render('commitments_form.html');
-?>
+        if (!empty($_POST['p'])) 
+		{
+			render('commitments_form.html');
+			exit;
+		}
+	}
+echo 'fail';
