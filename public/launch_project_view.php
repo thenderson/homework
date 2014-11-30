@@ -4,6 +4,6 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['p']))
     {		
 		$p_num = $_POST['p'];
-		render('commitments_form.php', [$p_num]);
+		render('commitments_form.html');
 	}
 	else echo 'fail';
