@@ -52,14 +52,13 @@
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
 
-	// ob_start();
-	// echo($projects);
-	// echo($commitments);
-	// $contents = ob_get_contents();
-	// ob_end_clean();
-	// error_log($contents);
+	 ob_start();
+	 print_r($projects);
+	 print_r($commitments);
+	 $contents = ob_get_contents();
+	 ob_end_clean();
+	 error_log($contents);
 	
-	echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
 	var_dump($projects);
 	var_dump($commitments);
 	echo "</pre>\n";
