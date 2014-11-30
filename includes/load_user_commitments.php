@@ -49,23 +49,16 @@
 	{
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
-		foreach ($commitments as &$commitment) {
-			$commitment['project_shortname'] = $projects[$commitment['project_number']];
-			$commitment['dingle'] = 'berry';
-		}
+		foreach ($commitments as &$commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
 
-	 ob_start();
-	 print_r($projects);
-	 print_r($commitments);
-	 $contents = ob_get_contents();
-	 ob_end_clean();
-	 error_log($contents);
-	
-	var_dump($projects);
-	var_dump($commitments);
-	echo "</pre>\n";
-	
+	 // ob_start();
+	 // print_r($projects);
+	 // print_r($commitments);
+	 // $contents = ob_get_contents();
+	 // ob_end_clean();
+	 // error_log($contents);
+
 	// create grid
 	$grid = new EditableGrid();
 	
