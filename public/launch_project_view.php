@@ -8,7 +8,7 @@
 		{
 			error_log("project view ".$_POST['p']);
 			$p_num = $_POST['p'];
-			render('commitments_form.html', $p_num);
+			render('commitments_form.html', [$p_num]);
 			exit;
 		}
 	}
