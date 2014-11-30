@@ -49,7 +49,10 @@
 	{
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
-		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
+		foreach ($commitments as $commitment) {
+			$commitment['project_shortname'] = $projects[$commitment['project_number']];
+			$commitment['dingle'] = 'berry';
+		}
 	}
 
 	 ob_start();
