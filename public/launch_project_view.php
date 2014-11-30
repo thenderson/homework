@@ -7,7 +7,7 @@
         if (!empty($_POST['p'])) 
 		{
 			error_log("project view ".$_POST['p']);
-			render('commitments_form.html', [project: $_POST['p']]);
+			render('commitments_form.html', ['project': $_POST['p']]);
 			exit;
 		}
 	}
