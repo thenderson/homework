@@ -1,4 +1,4 @@
-<?php require '/templates/header.html'; ?>
+<?php require '/commgr/templates/header.html'; ?>
 
 	<body>
 		<div class="container-fluid wrap">
