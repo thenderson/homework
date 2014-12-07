@@ -89,9 +89,8 @@ margin-left: 0px;
 }
 
 .nopadding {
-	padding-left: 0px;
-	padding-right: 0px;
-	margin: 0px 2px;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 #commitments,

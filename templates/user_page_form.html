@@ -33,7 +33,7 @@
 		window.onload = function() { 
 		
 			// pass to project-specific page
-			goto_project_view = function (p_num) { $.post("launch_project_view.php", {p: p_num});}
+			goto_project_view = function (p_num) { $.get("launch_project_view.php", {p: p_num});}
 			
 			// load commitments belonging to current user
 			user_comm_grid = new EditableGrid("UserCommitments", {
