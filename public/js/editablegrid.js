@@ -24,6 +24,7 @@ function Column(config)
 			thousands_separator: '.',
 			unit_before_number: false,
 			bar: true, // is the column to be displayed in a bar chart ? relevant only for numerical columns 
+			hidden: false, // should the column be hidden by default
 			headerRenderer: null,
 			headerEditor: null,
 			cellRenderer: null,
@@ -369,6 +370,7 @@ EditableGrid.prototype.processXML = function()
 					datatype: (col.getAttribute("datatype") ? col.getAttribute("datatype") : "string"),
 					editable: col.getAttribute("editable") == "true",
 					bar: (col.getAttribute("bar") ? col.getAttribute("bar") == "true" : true),
+					hidden: (col.getAttribute("hidden") ? col.getAttribute("hidden") == "true" : false),
 					optionValuesForRender: optionValuesForRender,
 					optionValues: optionValues
 				}));
@@ -596,6 +598,7 @@ EditableGrid.prototype.processJSON = function(jsonData)
 				datatype: (columndata.datatype ? columndata.datatype : "string"),
 				editable: (columndata.editable ? true : false),
 				bar: (typeof columndata.bar == 'undefined' ? true : (columndata.bar ? true : false)),
+				hidden: (typeof columndata.hidden == 'undefined' ? false : (columndata.hidden ? true : false)),
 				optionValuesForRender: optionValuesForRender,
 				optionValues: optionValues
 			}));
@@ -1093,6 +1096,11 @@ EditableGrid.prototype.getDisplayValueAt = function(rowIndex, columnIndex)
  */
 EditableGrid.prototype.setValueAt = function(rowIndex, columnIndex, value, render)
 {
+	if (typeof this.data[rowIndex] == 'undefined') {
+		console.error('Invalid rowindex ' + rowIndex);
+		return null;
+	}
+
 	if (typeof render == "undefined") render = true;
 	var previousValue = null;;
 
@@ -1178,6 +1186,11 @@ EditableGrid.prototype.getRowIndex = function(rowId)
  */
 EditableGrid.prototype.getRowAttribute = function(rowIndex, attributeName)
 {
+	if (typeof this.data[rowIndex] == 'undefined') {
+		console.error('Invalid rowindex ' + rowIndex);
+		return null;
+	}
+
 	return this.data[rowIndex][attributeName];
 };
 

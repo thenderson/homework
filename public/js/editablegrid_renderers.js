@@ -41,9 +41,10 @@ CellRenderer.prototype._render = function(rowIndex, columnIndex, element, value)
 	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, ' &nbsp;')) : value);
 };
 
-CellRenderer.prototype.render = function(element, value) 
+CellRenderer.prototype.render = function(element, value, escapehtml) 
 {
-	element.innerHTML = value ? value : "";
+	var _value = escapehtml ? (typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/\s\s/g, ' &nbsp;')) : value) : value;
+	element.innerHTML = _value ? _value : "";
 };
 
 CellRenderer.prototype.getDisplayValue = function(rowIndex, value) 

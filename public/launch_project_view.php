@@ -13,3 +13,5 @@
 	}
 	else echo 'fail';
 	error_log("this shouldnt happen");
+	
+	//consider changing request to GET instead of POST.
