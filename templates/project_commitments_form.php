@@ -60,7 +60,7 @@
 				dateFormat: "US",
 				pageSize: 15,
 				tableRendered:  function() { updatePaginator(this, "project_commitments_paginator"); },
-				tableLoaded: function() { this.renderGrid('user_commitments', 'table', 'commitments'); },
+				tableLoaded: function() { this.renderGrid('project_commitments', 'table', 'commitments'); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
