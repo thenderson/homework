@@ -87,7 +87,7 @@
 			*/
 			
 			$.ajax({
-				url: '../includes/load_data.php',
+				url: '../includes/load_project_commitments.php',
 				type: 'POST',
 				dataType: "text",
 				data: {
