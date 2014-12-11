@@ -215,11 +215,7 @@ html>body table.scrollable td, html>body table.scrollable th {
 body {
 }
 
-a { /*link color*/
-	color:  rgb(165, 171, 129);
-}
-
-th.a { /*column headers*/
+th a { /*column headers*/
 	color: rgb(123, 167, 157);
 	text-decoration: none;
 }
@@ -373,7 +369,7 @@ img.icon {
 	border: 0px;	
 }
 
-#paginator {
+.paginator {
   	margin: 15px 0;
 	font-size: 0.9em;
 	text-align: right;
