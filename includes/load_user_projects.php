@@ -33,8 +33,8 @@
 	// create grid
 	$grid = new EditableGrid();
 	
-	//declare grid columns TODO add columns for due/overdue, variance
-	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
+	//declare grid columns TODO add columns for PPC & TA
+	$grid->addColumn('project_number_2', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_name', 'PROJECT NAME', 'string', NULL, false);
 
 	//render grid

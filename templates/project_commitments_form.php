@@ -69,7 +69,7 @@
 			$("#filter_req").keyup(function() { project_comm_grid.filter($(this).val(), [4]); });
 			$("#filter_prom").keyup(function() { project_comm_grid.filter($(this).val(), [5]); });
 			
-			/*$("#delete-confirm").dialog({
+			$("#delete-confirm").dialog({
 				resizable: false,
 				autoOpen: false,
 				height:180,
@@ -84,7 +84,6 @@
 					}
 				}
 			});
-			*/
 			
 			$.ajax({
 				url: '../includes/load_project_commitments.php',

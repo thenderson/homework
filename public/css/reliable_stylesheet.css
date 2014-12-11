@@ -325,6 +325,17 @@ td.editablegrid-actions {
 	width: 5%;
 }
 
+th.editablegrid-project_number_2,
+td.editablegrid-project_number_2  { /* for project lists */
+	text-align: left;
+	width: 20%;
+}
+th.editablegrid-project_name,
+td.editablegrid-project_name { /* for project lists */
+	text-align: center;
+	width: 80%;
+}
+
 .fa-plus-square-o { /* insert */
 	color: rgb(148, 182, 210);
 }
