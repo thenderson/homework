@@ -263,7 +263,7 @@ input.filter_task_id {
 th.editablegrid-description,
 td.editablegrid-description,
 .filter_description,
-input.filter_description {
+input.filter_desc {
 	text-align: left;
 	width: 35%;
 }
