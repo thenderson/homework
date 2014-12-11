@@ -117,8 +117,8 @@ margin-left: 0px;
 border-bottom: 1px solid rgb(192, 192, 192); 
 border-top: 0px;
 }
-#commitments th,
-#projects th { /*table header*/
+#commitments>thead>tr>th,
+#projects>thead>tr>th { /*table header*/
 	background: rgb(200, 204, 179);
 	color: #555;
 	padding-left: 1px;
