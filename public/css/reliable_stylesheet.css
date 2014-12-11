@@ -332,7 +332,7 @@ td.editablegrid-project_number_2  { /* for project lists */
 }
 th.editablegrid-project_name,
 td.editablegrid-project_name { /* for project lists */
-	text-align: center;
+	text-align: left;
 	width: 80%;
 }
 
