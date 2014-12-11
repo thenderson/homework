@@ -1,7 +1,7 @@
 	<body>
 		<div class="container-fluid wrap nopadding">
-			<div class="col-sm-6"><h3><strong>YOUR CURRENT COMMITMENTS</strong></h3></div>
-			<div class="col-sm-6" id="user_commitments_paginator"></div>
+			<div class="col-sm-9"><h3><strong>YOUR CURRENT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-3 paginator" id="user_commitments_paginator"></div>
 		</div>
 		<div class="container-fluid wrap">
 			<div id="user_commitments"></div>
@@ -80,7 +80,7 @@
 				pageSize: 5,
 				tableRendered:  function() { updatePaginator(this, "user_projects_paginator"); },
 				tableLoaded: function() { 
-					user_proj_grid.setCellRenderer('project_number', new CellRenderer({ 
+					user_proj_grid.setCellRenderer('project_number_2', new CellRenderer({ 
 						render: function(cell, value) { 
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
 						}
@@ -95,7 +95,7 @@
 				dateFormat: "US",
 				pageSize: 5,
 				tableRendered:  function() {  
-					all_proj_grid.setCellRenderer('project_number', new CellRenderer({ 
+					all_proj_grid.setCellRenderer('project_number_2', new CellRenderer({ 
 						render: function(cell, value) { 
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
 						}
