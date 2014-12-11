@@ -7,7 +7,7 @@
 	/*	RETRIEVE PROJECT LIST */
 	
 	$stmt = $comm_db->prepare("
-		SELECT project_number_2, project_name
+		SELECT project_number as project_number_2, project_name
 		FROM projects
 		ORDER BY project_number_2");
 	

@@ -386,16 +386,16 @@ img.icon {
 /*rgb(165, 171, 129)
 rgb(200, 204, 179)*/
 
-#paginator a { 
+.nobg a { 
 	color:  rgb(165, 171, 129); 
 	text-decoration: none;
 	line-height: 40px; 
 	padding: 4px 8px; 
 }
 	
-#paginator a:hover { color: #000; }
+.nobg a:hover { color: #000; }
 
-#paginator a:active, #currentpageindex { 
+.nobg a:active, #currentpageindex { 
 	background-color: rgb(165, 171, 129); 
 	color: #fff; 
 	border-radius: 5px;
@@ -403,9 +403,9 @@ rgb(200, 204, 179)*/
 	margin: 0 5;
 }
 	
-#paginator span#currentpageindex { padding: 4px 8px; }
+.nobg span#currentpageindex { padding: 4px 8px; }
 
-#paginator a:focus { outline: 1px; }
+.nobg a:focus { outline: 1px; }
 
 #filter { 
 	width: 250px;
