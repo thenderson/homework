@@ -2,26 +2,28 @@
 
 	<body>
 		<div class="container-fluid wrap">
-			<div class="col-sm-9"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
-			<div class="col-sm-3 paginator" id="user_commitments_paginator"></div>
-
+			<div class="col-sm-9 nopadding"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-3 paginator nopadding" id="user_commitments_paginator"></div>
+		</div>
+		
+		<div class="container-fluid wrap">
 			<table id="filterbar">
 				<tr>
 					<td class="filter filter_project_number"></td>
 					<td class="filter filter_task_id"></td>
 					<td class="filter filter_description">
 						<div>
-						  <input type="text" id="filter_desc" name="filter" placeholder="filter description"  />
+						  <input type="text" id="filter_desc" name="filter" placeholder="filter description" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
 						<div>
-						  <input type="text" id="filter_req" name="filter" placeholder="filter requester"  />
+						  <input type="text" id="filter_req" name="filter" placeholder="filter requester" />
 						</div>
 					</td>
 					<td class="filter filter_promiser">
 						<div>
-						  <input type="text" id="filter_pro" name="filter" placeholder="filter promiser"  />
+						  <input type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
 						</div>
 					</td>
 					<td class="filter filter_due_by"></td>
