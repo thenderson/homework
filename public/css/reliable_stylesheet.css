@@ -367,34 +367,32 @@ img.icon {
 }
 
 .paginator {
-  	margin: 15px 0;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	text-align: right;
-	margin-bottom: 5px;
 }
 
 /*rgb(165, 171, 129)
 rgb(200, 204, 179)*/
 
-.nobg a {  
+a.nobg {  
 	text-decoration: none;
 	line-height: 40px; 
 	padding: 4px 8px; 
 }
 	
-.nobg a:hover { color: #000; }
+a.nobg:hover { color: #000; }
 
-.nobg a:active, #currentpageindex { 
-	background-color: rgb(165, 171, 129); 
+a.nobg:active, #currentpageindex { 
+	background-color: rgb(192,0,0); 
 	color: #fff; 
-	border-radius: 5px;
-	padding: 2 4;
+	border-radius: 1px;
+	padding: 1 3;
 	margin: 0 5;
 }
 	
 .nobg span#currentpageindex { padding: 4px 8px; }
 
-.nobg a:focus { outline: 1px; }
+a.nobg:focus { outline: 1px; }
 
 #filter { 
 	width: 250px;
