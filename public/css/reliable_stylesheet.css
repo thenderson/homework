@@ -140,14 +140,6 @@ border-top: 0px;
 	background-color: rgb(235, 221, 195);
 }
 
-/*.table-striped>tbody>tr:nth-child(odd)>td {
-	background-color: rgb(217, 217, 217);
-}
-
-.table-striped>tbody>tr:nth-child(even)>td {
-	background-color: rgb(228, 228, 228);
-}*/
-
 .due_nextweek>td /* for table rows due next week */
 {
 	background-color: rgb(228, 228, 228);
@@ -222,6 +214,9 @@ html>body table.scrollable td, html>body table.scrollable th {
 body {
 }
 
+a { /*link color*/
+	color:  rgb(165, 171, 129);
+}
 
 th.a { /*column headers*/
 	color: rgb(123, 167, 157);
@@ -387,8 +382,7 @@ img.icon {
 /*rgb(165, 171, 129)
 rgb(200, 204, 179)*/
 
-.nobg a { 
-	color:  rgb(165, 171, 129); 
+.nobg a {  
 	text-decoration: none;
 	line-height: 40px; 
 	padding: 4px 8px; 
