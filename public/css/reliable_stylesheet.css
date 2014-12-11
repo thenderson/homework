@@ -183,13 +183,8 @@ input.error {
 	outline: thin auto red;
 }
 input {
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
-	outline: rgb(91, 157, 217) auto 5px;
-	outline-offset: 0px;
-	border: none;
 }
+
 #mainTable thead th, #mainTable tbody td { 
   width: 25%;
 }
@@ -251,14 +246,16 @@ td.editablegrid-unique_id {
 
 th.editablegrid-project_number,
 td.editablegrid-project_number, 
-.filter_project_number {
+.filter_project_number,
+input.filter_project_number {
 	text-align: left;
 	width: 10%;
 }
 
 th.editablegrid-task_id,
 td.editablegrid-task_id,
-.filter_task_id {
+.filter_task_id,
+input.filter_task_id {
 	text-align: left;
 	width: 10%;
 }
