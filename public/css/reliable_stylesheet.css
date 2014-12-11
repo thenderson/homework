@@ -79,7 +79,7 @@ margin-left: 0px;
 
 .filter {
 	font-size: 14px;
-	padding: 4 px;
+	padding: 4px;
 }
 
 #wrap ,
@@ -268,7 +268,8 @@ td.editablegrid-project_number
 }
 
 th.editablegrid-task_id,
-td.editablegrid-task_id {
+td.editablegrid-task_id,
+.filter_task_id {
 	text-align: left;
 	width: 10%;
 }

@@ -6,18 +6,20 @@
 			
 			<table id="filterbar">
 				<tr>
-					<td>
-						<div class="filter filter_description">
+					<td class="filter filter_project_number"></td>
+					<td class="filter filter_task_id"></td>
+					<td class="filter filter_description">
+						<div>
 						  <input type="text" id="filter_desc" name="filter" placeholder="filter description"  />
 						</div>
 					</td>
-					<td>
-						<div class="filter filter_requester">
+					<td class="filter filter_requester">
+						<div>
 						  <input type="text" id="filter_req" name="filter" placeholder="filter requester"  />
 						</div>
 					</td>
-					<td>
-						<div class="filter filter_promiser">
+					<td class="filter filter_promiser">
+						<div>
 						  <input type="text" id="filter_pro" name="filter" placeholder="filter promiser"  />
 						</div>
 					</td>
