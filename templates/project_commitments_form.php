@@ -13,7 +13,7 @@
 					<td class="filter filter_task_id"></td>
 					<td class="filter filter_description">
 						<div>
-						  <input type="text" id="filter_desc" name="filter-desc" placeholder="filter description" />
+						  <input class="filter_description" type="text" id="filter_desc" name="filter" placeholder="filter description" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
