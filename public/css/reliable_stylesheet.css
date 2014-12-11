@@ -3,8 +3,8 @@
 
 		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons
 		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
-		accent 3 / olive 4		rgb(165, 171, 129)		paginator
-		accent 3 / olive 3		rgb(200, 204, 179)   	paginator
+		accent 3 / olive 4		rgb(165, 171, 129)		
+		accent 3 / olive 3		rgb(200, 204, 179)   	
 		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
 		accent 5 / green		rgb(123, 167, 157)		column headers
 		accent 6 / grey 50%		rgb(150, 140, 140)
@@ -119,7 +119,7 @@ border-top: 0px;
 }
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
-	background: rgb(200, 204, 179);
+	background: rgb(237, 238, 230);
 	color: #555;
 	padding-left: 1px;
 	padding-right: 1px;
@@ -292,25 +292,29 @@ td.editablegrid-requester,
 }
 
 th.editablegrid-due_by,
-td.editablegrid-due_by {
+td.editablegrid-due_by,
+.filter_due_by {
 	text-align: center;
 	width: 10%;
 }
 
 th.editablegrid-status,
-td.editablegrid-status {
+td.editablegrid-status,
+.filter_status {
 	text-align: center;
 	width: 5%;
 }
 
 th.editablegrid-metric,
-td.editablegrid-metric {
+td.editablegrid-metric,
+.filter_metric {
 	text-align: center;
 	width: 5%;
 }
 
 th.editablegrid-actions,
-td.editablegrid-actions {
+td.editablegrid-actions,
+.filter_actions {
 	text-align: center;
 	width: 5%;
 }
@@ -371,13 +375,10 @@ img.icon {
 	text-align: right;
 }
 
-/*rgb(165, 171, 129)
-rgb(200, 204, 179)*/
-
 a.nobg {  
+	color: black;
 	text-decoration: none;
-	line-height: 40px; 
-	padding: 4px 8px; 
+	padding: 0px 2px; 
 }
 	
 a.nobg:hover { color: #000; }
@@ -385,7 +386,7 @@ a.nobg:hover { color: #000; }
 a.nobg:active, #currentpageindex { 
 	background-color: rgb(192,0,0); 
 	color: #fff; 
-	border-radius: 1px;
+	border-radius: 3px;
 	padding: 1 3;
 	margin: 0 5;
 }

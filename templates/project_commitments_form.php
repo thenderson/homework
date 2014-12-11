@@ -2,8 +2,9 @@
 
 	<body>
 		<div class="container-fluid wrap">
-			<div><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
-			
+			<div class="col-sm-9"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-3 paginator" id="user_commitments_paginator"></div>
+
 			<table id="filterbar">
 				<tr>
 					<td class="filter filter_project_number"></td>
@@ -23,11 +24,14 @@
 						  <input type="text" id="filter_pro" name="filter" placeholder="filter promiser"  />
 						</div>
 					</td>
+					<td class="filter filter_due_by"></td>
+					<td class="filter filter_status"></td>
+					<td class="filter filter_metric"></td>
+					<td class="filter filter_actions"></td>
 				</tr>
 			</table>
 			
 			<div id="project_commitments"></div>
-			<div id="project_commitments_paginator"></div>
 		</div>
 			
 		<script src="/commgr/public/js/editablegrid.js"></script>
