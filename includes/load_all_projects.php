@@ -7,9 +7,9 @@
 	/*	RETRIEVE PROJECT LIST */
 	
 	$stmt = $comm_db->prepare("
-		SELECT project_number, project_name
+		SELECT project_number_2, project_name
 		FROM projects
-		ORDER BY project_number");
+		ORDER BY project_number_2");
 	
 	if (!$stmt)
 	{
@@ -27,8 +27,6 @@
 	{
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
-	
-	$project_number_2 = $project_number;
 	
 	// create grid
 	$grid = new EditableGrid();
