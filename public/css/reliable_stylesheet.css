@@ -261,7 +261,7 @@ td.editablegrid-unique_id {
 }
 
 th.editablegrid-project_number,
-td.editablegrid-project_number 
+td.editablegrid-project_number, 
 .filter_project_number {
 	text-align: left;
 	width: 10%;
