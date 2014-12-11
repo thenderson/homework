@@ -118,8 +118,8 @@ border-bottom: 1px solid rgb(192, 192, 192);
 border-top: 0px;
 }
 #commitments th,
-#projects th {
-	background: rgb(190, 190, 190);
+#projects th { /*table header*/
+	background: rgb(200, 204, 179);
 	color: #555;
 	padding-left: 1px;
 	padding-right: 1px;
@@ -212,11 +212,8 @@ html>body table.scrollable td, html>body table.scrollable th {
 	width: 200px
 }
 
-body {
-}
-
 th a { /*column headers*/
-	color: rgb(123, 167, 157);
+	color: rgb(165, 171, 129);
 	text-decoration: none;
 }
 
