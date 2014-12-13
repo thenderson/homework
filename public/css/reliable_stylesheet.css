@@ -15,30 +15,22 @@
 		med grey				rgb(217, 217, 217)		
 		dark med grey			rgb(190, 190, 190)		table header
 */
-h1,
-.h1 { /* I just want text a bit smaller than default */
-  font-size: 24px;
+@media screen {
+	h1, .h1 {font-size: 24px;}
+	h2, .h2 {font-size: 18px;}
+	h3, .h3 {font-size: 14px; margin: 2 0;}
+	h4, .h4 {font-size: 12px;}
+	h5, .h5 {font-size: 11px;}
+	h6, .h6 {font-size: 10px;}
 }
-h2,
-.h2 {
-  font-size: 18px;
-}
-h3,
-.h3 {
-  font-size: 14px;
-  margin: 2 0;
-}
-h4,
-.h4 {
-  font-size: 12px;
-}
-h5,
-.h5 {
-  font-size: 11px;
-}
-h6,
-.h6 {
-  font-size: 10px;
+
+@media handheld {
+	h1, .h1 {font-size: 20px;}
+	h2, .h2 {font-size: 16px;}
+	h3, .h3 {font-size: 12px; margin: 2 0;}
+	h4, .h4 {font-size: 10px;}
+	h5, .h5 {font-size: 9px;}
+	h6, .h6 {font-size: 8px;}
 }
 
 h1.padding-8px,
@@ -252,12 +244,23 @@ input.filter_project_number {
 	width: 10%;
 }
 
+@media screen {
 th.editablegrid-task_id,
 td.editablegrid-task_id,
 .filter_task_id,
 input.filter_task_id {
 	text-align: left;
 	width: 10%;
+}
+}
+
+@media handheld {
+th.editablegrid-task_id,
+td.editablegrid-task_id,
+.filter_task_id,
+input.filter_task_id {
+	display: none;
+}
 }
 
 th.editablegrid-description,
