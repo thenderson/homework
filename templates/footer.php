@@ -1,6 +1,6 @@
 <br>
 <footer class="navbar navbar-default" id="bottom" role="navigation">
-	<div class="container">
+	<div class="container-fluid wrap">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-type="collapse" data-target="#collapse2">
 				<span class="sr-only">toggle navigation</span>
