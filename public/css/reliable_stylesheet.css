@@ -15,7 +15,7 @@
 		med grey				rgb(217, 217, 217)		
 		dark med grey			rgb(190, 190, 190)		table header
 */
-@media screen {
+@media screen and (min-device-width:481px) {
 	h1, .h1 {font-size: 24px;}
 	h2, .h2 {font-size: 18px;}
 	h3, .h3 {font-size: 14px; margin: 2 0;}
@@ -24,7 +24,7 @@
 	h6, .h6 {font-size: 10px;}
 }
 
-@media handheld {
+@media screen and (max-device-width:480px) {
 	h1, .h1 {font-size: 20px;}
 	h2, .h2 {font-size: 16px;}
 	h3, .h3 {font-size: 12px; margin: 2 0;}
@@ -239,7 +239,7 @@ input.filter_project_number {
 	width: 10%;
 }
 
-@media screen {
+@media screen and (min-device-width:481px) {
 th.editablegrid-task_id,
 td.editablegrid-task_id,
 .filter_task_id,
@@ -249,7 +249,7 @@ input.filter_task_id {
 }
 }
 
-@media handheld {
+@media screen and (max-device-width:480px) {
 th.editablegrid-task_id,
 td.editablegrid-task_id,
 .filter_task_id,
