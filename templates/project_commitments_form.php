@@ -73,7 +73,7 @@
 					data: { p: projnum },
 					success: function (response)
 					{
-						$('table_title').html("<h3><strong>PROJECT COMMITMENTS: "+project+" "+response"</strong></h3>");
+						$('table_title').html("<h3><strong>PROJECT COMMITMENTS: look!!!!</strong></h3>");
 					}})};
 			
 			$.datepicker.setDefaults({
