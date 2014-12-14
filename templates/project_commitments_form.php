@@ -13,17 +13,17 @@
 					<td class="filter filter_task_id"></td>
 					<td class="filter filter_description">
 						<div>
-						  <input class="filter_description" type="text" id="filter_desc" name="filter" placeholder="filter description" />
+						  <input class="form-control" type="text" id="filter_desc" name="filter" placeholder="filter description" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
 						<div>
-						  <input type="text" id="filter_req" name="filter" placeholder="filter requester" />
+						  <input class="form-control" type="text" id="filter_req" name="filter" placeholder="filter requester" />
 						</div>
 					</td>
 					<td class="filter filter_promiser">
 						<div>
-						  <input type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
+						  <input class="form-control" type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
 						</div>
 					</td>
 					<td class="filter filter_due_by"></td>
@@ -79,7 +79,7 @@
 					this.setEnumProvider('status', new EnumProvider({
 						getOptionValuesForEdit: function (grid, column, rowIndex) {	
 							return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
-						}
+						}}));
 
 					//this.setCellRenderer('date_due', new CellRenderer({
 					//	render: function(cell, id) {
@@ -89,7 +89,7 @@
 						render: function(cell, id) { 
 							cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 							cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-						}
+						}}));
 						
 					this.renderGrid('project_commitments', 'table', 'commitments'); },
 					
