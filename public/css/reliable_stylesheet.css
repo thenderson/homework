@@ -81,12 +81,24 @@ margin-left: 0px;
 	padding-right: 1px;
 }
 
-#commitments,
-#projects {
-	margin-bottom: 4px; 
-	border-collapse: collapse; 
-	width: 100%;
-	font-size: 14px;
+@media screen and (min-device-width:481px) {
+	#commitments,
+	#projects {
+		margin-bottom: 4px; 
+		border-collapse: collapse; 
+		width: 100%;
+		font-size: 12px;
+}
+}
+
+@media screen and (max-device-width:480px) {
+	#commitments,
+	#projects {
+		margin-bottom: 4px; 
+		border-collapse: collapse; 
+		width: 100%;
+		font-size: 10px;
+}
 }
 
 #commitments>thead>tr>th, 
@@ -231,99 +243,176 @@ td.editablegrid-unique_id {
 	display: none;
 }
 
-th.editablegrid-project_number,
-td.editablegrid-project_number, 
-.filter_project_number,
-input.filter_project_number {
-	text-align: left;
-	width: 10%;
+@media screen and (min-device-width:481px) {
+	th.editablegrid-project_number,
+	td.editablegrid-project_number, 
+	.filter_project_number,
+	input.filter_project_number {
+		text-align: left;
+		width: 10%;
+	}
+
+	th.editablegrid-task_id,
+	td.editablegrid-task_id,
+	.filter_task_id,
+	input.filter_task_id {
+		text-align: left;
+		width: 10%;
+	}
+
+	th.editablegrid-description,
+	td.editablegrid-description,
+	.filter_description,
+	input.filter_description {
+		text-align: left;
+		width: 35%;
+	}
+
+	th.editablegrid-description-wide,
+	td.editablegrid-description-wide,
+	.filter_description-wide {
+		text-align: left;
+		width: 45%;
+	}
+
+	th.editablegrid-promiser,
+	td.editablegrid-promiser,
+	.filter_promiser {
+		text-align: center;
+		width: 10%;
+	}
+
+	th.editablegrid-requester,
+	td.editablegrid-requester,
+	.filter_requester {
+		text-align: center;
+		width: 10%;
+	}
+
+	th.editablegrid-due_by,
+	td.editablegrid-due_by,
+	.filter_due_by {
+		text-align: center;
+		width: 10%;
+	}
+
+	th.editablegrid-status,
+	td.editablegrid-status,
+	.filter_status {
+		text-align: center;
+		width: 5%;
+	}
+
+	th.editablegrid-metric,
+	td.editablegrid-metric,
+	.filter_metric {
+		text-align: center;
+		width: 5%;
+	}
+
+	th.editablegrid-actions,
+	td.editablegrid-actions,
+	.filter_actions {
+		text-align: center;
+		width: 5%;
+	}
+
+	th.editablegrid-project_number_2,
+	td.editablegrid-project_number_2  { /* for project lists */
+		text-align: left;
+		width: 20%;
+	}
+	th.editablegrid-project_name,
+	td.editablegrid-project_name { /* for project lists */
+		text-align: left;
+		width: 80%;
+	}
 }
 
-@media screen and (min-device-width:481px) {
-th.editablegrid-task_id,
-td.editablegrid-task_id,
-.filter_task_id,
-input.filter_task_id {
-	text-align: left;
-	width: 10%;
-}
-}
 
 @media screen and (max-device-width:480px) {
-th.editablegrid-task_id,
-td.editablegrid-task_id,
-.filter_task_id,
-input.filter_task_id {
-	display: none;
-}
-}
+	th.editablegrid-project_number,
+	td.editablegrid-project_number, 
+	.filter_project_number,
+	input.filter_project_number {
+		display: none;
+	}
 
-th.editablegrid-description,
-td.editablegrid-description,
-.filter_description,
-input.filter_description {
-	text-align: left;
-	width: 35%;
-}
+	th.editablegrid-task_id,
+	td.editablegrid-task_id,
+	.filter_task_id,
+	input.filter_task_id {
+		display: none;
+	}
+	}
 
-th.editablegrid-description-wide,
-td.editablegrid-description-wide,
-.filter_description-wide {
-	text-align: left;
-	width: 45%;
-}
+	th.editablegrid-description,
+	td.editablegrid-description,
+	.filter_description,
+	input.filter_description {
+		text-align: left;
+		width: 55%;
+	}
 
-th.editablegrid-promiser,
-td.editablegrid-promiser,
-.filter_promiser {
-	text-align: center;
-	width: 10%;
-}
+	th.editablegrid-description-wide,
+	td.editablegrid-description-wide,
+	.filter_description-wide {
+		text-align: left;
+		width: 65%;
+	}
 
-th.editablegrid-requester,
-td.editablegrid-requester,
-.filter_requester {
-	text-align: center;
-	width: 10%;
-}
+	th.editablegrid-promiser,
+	td.editablegrid-promiser,
+	.filter_promiser {
+		text-align: center;
+		width: 10%;
+	}
 
-th.editablegrid-due_by,
-td.editablegrid-due_by,
-.filter_due_by {
-	text-align: center;
-	width: 10%;
-}
+	th.editablegrid-requester,
+	td.editablegrid-requester,
+	.filter_requester {
+		text-align: center;
+		width: 10%;
+	}
 
-th.editablegrid-status,
-td.editablegrid-status,
-.filter_status {
-	text-align: center;
-	width: 5%;
-}
+	th.editablegrid-due_by,
+	td.editablegrid-due_by,
+	.filter_due_by {
+		text-align: center;
+		width: 10%;
+	}
 
-th.editablegrid-metric,
-td.editablegrid-metric,
-.filter_metric {
-	text-align: center;
-	width: 5%;
-}
+	th.editablegrid-status,
+	td.editablegrid-status,
+	.filter_status {
+		text-align: center;
+		width: 5%;
+	}
 
-th.editablegrid-actions,
-td.editablegrid-actions,
-.filter_actions {
-	text-align: center;
-	width: 5%;
-}
+	th.editablegrid-metric,
+	td.editablegrid-metric,
+	.filter_metric {
+		text-align: center;
+		width: 5%;
+	}
 
-th.editablegrid-project_number_2,
-td.editablegrid-project_number_2  { /* for project lists */
-	text-align: left;
-	width: 20%;
-}
-th.editablegrid-project_name,
-td.editablegrid-project_name { /* for project lists */
-	text-align: left;
-	width: 80%;
+	th.editablegrid-actions,
+	td.editablegrid-actions,
+	.filter_actions {
+		text-align: center;
+		width: 5%;
+	}
+
+	th.editablegrid-project_number_2,
+	td.editablegrid-project_number_2  { /* for project lists */
+		text-align: left;
+		width: 20%;
+	}
+	th.editablegrid-project_name,
+	td.editablegrid-project_name { /* for project lists */
+		text-align: left;
+		width: 80%;
+	}
 }
 
 .fa-plus-square-o { /* insert */
