@@ -26,6 +26,6 @@
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	error_log(var_dump($result));
+	//error_log(var_dump($result));
 
-	echo 'Project Name Goes Here';
+	echo $result['project_name'];
