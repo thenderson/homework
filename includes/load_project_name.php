@@ -28,4 +28,5 @@
 	
 	//error_log(var_dump($result));
 
-	echo $result['project_name'];
+	echo $result[0]['project_name'];
+	echo $result[1]['project_name'];
