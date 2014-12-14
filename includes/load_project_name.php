@@ -2,13 +2,15 @@
 
     // configuration
     require_once('../includes/config.php');     
-	require_once('../includes/EditableGrid.php');     
 
 	// Get POST data
 	$project_number = strip_tags($_POST['p']);
+	error_log('Project number:'.$project_number);
 	
 	/*	RETRIEVE PROJECT NAME */ //move this to config & pass into this script?
 	$stmt = $comm_db->prepare('SELECT project_name FROM projects WHERE project_number = ?');
+	
+	error_log('stmt: '.$stmt);
 	
 	if (!$stmt)
 	{
@@ -26,6 +28,7 @@
 	{
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
+	
+	error_log($result);
 
-	var_dump($result);
 	echo 'Project Name Goes Here';

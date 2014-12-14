@@ -75,7 +75,13 @@
 					{
 						$('table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");
 						console.log(response);
-					}})};
+					},
+					error: function(XMLHttpRequest, textStatus, exception) 
+					{ 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+					},
+					async: true
+				})};
 			
 			$.datepicker.setDefaults({
 			//	dateFormat: "mm/dd/yy",
