@@ -10,7 +10,7 @@
 	/*	RETRIEVE PROJECT NAME */ //move this to config & pass into this script?
 	$stmt = $comm_db->prepare('SELECT project_name FROM projects WHERE project_number = ?');
 	
-	error_log('stmt: '.$stmt);
+	error_log('stmt: '.var_dump($stmt));
 	
 	if (!$stmt)
 	{

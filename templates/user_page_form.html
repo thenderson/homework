@@ -48,7 +48,7 @@
 				tableLoaded: function() {  
 					user_comm_grid.setCellRenderer('project_number', new CellRenderer({ 
 						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 						}
 					}));
 					this.renderGrid('user_commitments', 'table', 'commitments'); },
