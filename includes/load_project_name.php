@@ -25,8 +25,5 @@
 	{
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
-	
-	//error_log(var_dump($result));
 
 	echo $result[0]['project_name'];
-	echo $result[1]['project_name'];
