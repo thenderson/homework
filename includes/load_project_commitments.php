@@ -4,14 +4,16 @@
     require_once('../includes/config.php');     
 	require_once('../includes/EditableGrid.php');     
 
-	/*	RETRIEVE COMMITMENTS */
-	$planning_horizon = 14; // days
+	// Get POST data
+	$planning_horizon = strip_tags($_POST['horizon']); // days
+	$project_number = strip_tags($_POST['p']);
 	
+	/*	RETRIEVE COMMITMENTS */	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by_f, DATE_FORMAT(requested_on, '%m/%d/%Y') as requested_on_f, status, type, metric 
+		SELECT unique_id, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by_f, DATE_FORMAT(requested_on, '%m/%d/%Y') as requested_on_f, status, type, metric 
 		FROM commitments 
-		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) 
-		ORDER BY project_number, promiser, due_by");
+		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) AND project_number = ?
+		ORDER BY due_by, promiser");
 	
 	if (!$stmt)
 	{
@@ -22,6 +24,7 @@
 	try 
 	{
 		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
+		$stmt->bindParam(2, $project_number, PDO::PARAM_STR);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
@@ -36,16 +39,7 @@
 	else 
 	{
 		$users = $user_res->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($users as $row) $username_lookup[$row["user_id"]] = $row["name"];
-	}
-	
-	/*	RETRIEVE PROJECT NUMBERS & PROJECT SHORTNAMES */ //move this to config & pass into this script?
-	$proj_res = $comm_db->query("SELECT project_number, project_shortname FROM projects");
-	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
-	else 
-	{
-		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
+		foreach ($users as $row) $username_lookup[$row['user_id']] = $row['name'];
 	}
 
 	// create grid
@@ -53,7 +47,6 @@
 	
 	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
-	$grid->addColumn('project_number', 'PROJECT #', 'string', $projects);
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);

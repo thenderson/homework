@@ -2,7 +2,7 @@
 
 	<body>
 		<div class="container-fluid wrap">
-			<div class="col-sm-9 nopadding"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-9 nopadding" id="table_title"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
 			<div class="col-sm-3 paginator nopadding" id="user_commitments_paginator"></div>
 		</div>
 		
@@ -11,19 +11,22 @@
 				<tr>
 					<td class="filter filter_project_number"></td>
 					<td class="filter filter_task_id"></td>
+						<div>
+							<input class="form-control" type="text" id="filter_id" name="filter" placeholder="filter id" />
+						</div>
 					<td class="filter filter_description">
 						<div>
-						  <input class="form-control" type="text" id="filter_desc" name="filter" placeholder="filter description" />
+							<input class="form-control" type="text" id="filter_desc" name="filter" placeholder="filter description" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
 						<div>
-						  <input class="form-control" type="text" id="filter_req" name="filter" placeholder="filter requester" />
+							<input class="form-control" type="text" id="filter_req" name="filter" placeholder="filter requester" />
 						</div>
 					</td>
 					<td class="filter filter_promiser">
 						<div>
-						  <input class="form-control" type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
+							<input class="form-control" type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
 						</div>
 					</td>
 					<td class="filter filter_due_by"></td>
@@ -62,6 +65,17 @@
 				return decodeURIComponent(name[1]);
 			}
 			
+			function showprojectname(projnum) {
+				$.ajax({
+					url: '../includes/load_project_name.php',
+					type: 'POST',
+					dataType: 'text',
+					data: { p: projnum },
+					success: function (response)
+					{
+						$('table_title').html("<h3><strong>PROJECT COMMITMENTS: "+project+" "+response"</strong></h3>");
+					}})};
+			
 			$.datepicker.setDefaults({
 			//	dateFormat: "mm/dd/yy",
 				numberOfMonths: 2,
@@ -91,12 +105,16 @@
 							cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 						}}));
 						
-					this.renderGrid('project_commitments', 'table', 'commitments'); },
+					this.renderGrid('project_commitments', 'table', 'commitments'); 
+					
+					showprojectname(getparam('project'));
+				},
 					
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
 			
+			$("#filter_id").keyup(function() { project_comm_grid.filter($(this).val(), [2]); });
 			$("#filter_desc").keyup(function() { project_comm_grid.filter($(this).val(), [3]); });
 			$("#filter_req").keyup(function() { project_comm_grid.filter($(this).val(), [4]); });
 			$("#filter_prom").keyup(function() { project_comm_grid.filter($(this).val(), [5]); });
@@ -126,7 +144,7 @@
 					p: getparam('project')
 				},
 				success: function (response) 
-				{ //process response as xml, then call tableLoaded
+				{
 					project_comm_grid.loadXMLFromString(response); //synchronous function
 					project_comm_grid.tableLoaded();
 				},
