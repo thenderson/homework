@@ -44,6 +44,7 @@ h6.padding-8px { /* for aligning page title text */
 
 .navbar-right {  /* for aligning header text */ 
 padding-right: 0px;
+margin-right: 0px;
 }
  
 .navbar-collapse {  /* for aligning footer text */
@@ -181,8 +182,6 @@ input.error {
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;	
 	outline: thin auto red;
 }
-input {
-}
 
 #mainTable thead th, #mainTable tbody td { 
   width: 25%;
@@ -263,7 +262,7 @@ td.editablegrid-unique_id {
 	.filter_task_id,
 	input.filter_task_id {
 		text-align: left;
-		width: 10%;
+		width: 5%;
 	}
 
 	th.editablegrid-description,
@@ -271,14 +270,14 @@ td.editablegrid-unique_id {
 	.filter_description,
 	input.filter_description {
 		text-align: left;
-		width: 35%;
+		width: 40%;
 	}
 
 	th.editablegrid-description-wide,
 	td.editablegrid-description-wide,
 	.filter_description-wide {
 		text-align: left;
-		width: 45%;
+		width: 50%;
 	}
 
 	th.editablegrid-promiser,

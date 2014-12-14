@@ -62,13 +62,37 @@
 				return decodeURIComponent(name[1]);
 			}
 			
+			$.datepicker.setDefaults({
+			//	dateFormat: "mm/dd/yy",
+				numberOfMonths: 2,
+				gotoCurrent: true
+			});
+			
 			// load commitments belonging to current project
 			project_comm_grid = new EditableGrid("ProjectCommitments", {
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 15,
 				tableRendered:  function() { updatePaginator(this, "project_commitments_paginator"); },
-				tableLoaded: function() { this.renderGrid('project_commitments', 'table', 'commitments'); },
+				tableLoaded: function() { 
+
+					this.setEnumProvider('status', new EnumProvider({
+						getOptionValuesForEdit: function (grid, column, rowIndex) {	
+							return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
+						}
+
+					//this.setCellRenderer('date_due', new CellRenderer({
+					//	render: function(cell, id) {
+					//		today = moment();
+							
+					this.setCellRenderer('actions', new CellRenderer({
+						render: function(cell, id) { 
+							cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+							cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+						}
+						
+					this.renderGrid('project_commitments', 'table', 'commitments'); },
+					
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
