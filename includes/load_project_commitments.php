@@ -47,6 +47,7 @@
 	
 	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
+	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
@@ -58,10 +59,6 @@
 
 	// ob_start();
 	// echo($commitments[0]['due_by_f']);
-	// echo($commitments[1]['due_by_f']);
-	// echo($commitments[2]['due_by_f']);
-	// echo($commitments[3]['due_by_f']);
-	// echo($commitments[4]['due_by_f']);
 	// $contents = ob_get_contents();
 	// ob_end_clean();
 	// error_log($contents);
