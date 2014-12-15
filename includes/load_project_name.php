@@ -15,4 +15,4 @@
 	catch(PDOException $e) {
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR); }
 
-	echo $result[0]['project_name'];
+	echo strtoupper($result[0]['project_name']);

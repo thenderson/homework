@@ -71,7 +71,7 @@
 				gotoCurrent: true
 			});
 			
-			project_comm_grid = new CommitmentGrid();
+			project_commitments = new CommitmentGrid();
 	
 			$.ajax({
 				url: '../includes/load_project_name.php',
@@ -116,8 +116,8 @@
 				},
 				success: function (response) 
 				{
-					project_comm_grid.grid.loadXMLFromString(response); //synchronous function
-					project_comm_grid.tableLoaded();
+					project_commitments.grid.loadXMLFromString(response); //synchronous function
+					project_commitments.grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
