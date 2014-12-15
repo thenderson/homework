@@ -83,7 +83,7 @@
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
-			})};
+			});
 			
 			$("#filter_id").keyup(function() { project_comm_grid.filter($(this).val(), [2]); });
 			$("#filter_desc").keyup(function() { project_comm_grid.filter($(this).val(), [3]); });
