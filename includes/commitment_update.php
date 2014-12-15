@@ -41,8 +41,8 @@ switch ($column_name) {
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
 		  var_dump('formatted date: ', $new_value);
 		  $contents = ob_get_contents();
-			ob_end_clean();
-			error_log($contents);
+		  ob_end_clean();
+		  error_log($contents);
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
 	   break;
@@ -55,13 +55,7 @@ switch ($column_name) {
 		// todo: better error handling
 		echo 'error';
 		exit;
-	}
-	
-	// ob_start();
-	// var_dump($commitments);
-	// $contents = ob_get_contents();
-	// ob_end_clean();
-	// error_log($contents);		
+	}	
 	
 $stmt = $comm_db->prepare($q);
 

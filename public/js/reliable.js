@@ -1,6 +1,3 @@
-/**
- *  highlightRow and highlight are used to show a visual feedback. If the row has been successfully modified, it will be highlighted in green. Otherwise, in red
- */
 function highlightRow(rowId, bgColor, after)
 {
 	var rowSelector = $("#grid_" + rowId);
@@ -17,111 +14,111 @@ function highlight(div_id, style) {
 }
         
 
-function DatabaseGrid() 
-{ 	
-	$.datepicker.setDefaults({
-	//	dateFormat: "mm/dd/yy",
-		numberOfMonths: 2,
-		gotoCurrent: true
-	});
+// function DatabaseGrid() 
+// { 	
+	// $.datepicker.setDefaults({
+	// //	dateFormat: "mm/dd/yy",
+		// numberOfMonths: 2,
+		// gotoCurrent: true
+	// });
 	
-	this.editableGrid = new EditableGrid("grid", {
-		enableSort: true,
-		dateFormat: "US",
-	    // define the number of row visible by page
-      	pageSize: 10,
-      // Once the table is displayed, we update the paginator state
-        tableRendered:  function() {  updatePaginator(this); },
-   	    tableLoaded: function() { datagrid.initializeGrid(this); },
-		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-   	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-       	}
- 	});
-	this.fetchGrid();
-}
+	// this.editableGrid = new EditableGrid("grid", {
+		// enableSort: true,
+		// dateFormat: "US",
+	    // // define the number of row visible by page
+      	// pageSize: 10,
+      // // Once the table is displayed, we update the paginator state
+        // tableRendered:  function() {  updatePaginator(this); },
+   	    // tableLoaded: function() { datagrid.initializeGrid(this); },
+		// modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+   	    	// updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+       	// }
+ 	// });
+	// this.fetchGrid();
+// }
 
-DatabaseGrid.prototype.fetchGrid = function()  {
-	// call a PHP script to get the data
-	this.editableGrid.loadXML("load_data.php");
-};
+// DatabaseGrid.prototype.fetchGrid = function()  {
+	// // call a PHP script to get the data
+	// this.editableGrid.loadXML("load_data.php");
+// };
 
-DatabaseGrid.prototype.initializeGrid = function(grid) {
+// DatabaseGrid.prototype.initializeGrid = function(grid) {
 
-  var self = this;
+  // var self = this;
  
-	//renderers for the due_by column
-	grid.setCellRenderer('due_by', new CellRenderer({
-		render: function(cell, value) {
-			// var date = this.editablegrid.checkDate(value);
-			// if (typeof date == "object") cell.innerHTML = date.sortDate;
-			// else cell.innerHTML = value;
-			// cell.style.whiteSpace = 'nowrap';
-			cell.innerHTML = value;
-			}
-		}));
+	// //renderers for the due_by column
+	// grid.setCellRenderer('due_by', new CellRenderer({
+		// render: function(cell, value) {
+			// // var date = this.editablegrid.checkDate(value);
+			// // if (typeof date == "object") cell.innerHTML = date.sortDate;
+			// // else cell.innerHTML = value;
+			// // cell.style.whiteSpace = 'nowrap';
+			// cell.innerHTML = value;
+			// }
+		// }));
 	
-	// grid.addCellValidator('due_by', new CellValidator({ 
-		// isValid: function(value) { 
-			// today = new Date();
-			// d = new Date(value);
-			// console.log(d);
-			// return d >= today; }
+	// // grid.addCellValidator('due_by', new CellValidator({ 
+		// // isValid: function(value) { 
+			// // today = new Date();
+			// // d = new Date(value);
+			// // console.log(d);
+			// // return d >= today; }
+	// // }));
+
+	// //renderers for the status column
+	
+	// grid.setEnumProvider('status', new EnumProvider({ 
+		// getOptionValuesForEdit: function (grid, column, rowIndex) {	
+			// return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
+		// }
+
+		// // the function getOptionValuesForEdit is called each time the cell is edited
+		// // here we do only client-side processing, but you could use Ajax here to talk with your server
+		// // if you do, then don't forget to use Ajax in synchronous mode 
+		// // getOptionValuesForEdit: function (grid, column, rowIndex) {
+			// // var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
+			// // if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
+			// // else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
+			// // else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
+			// // return null;
+		// // }
 	// }));
 
-	//renderers for the status column
+	// //renderers for the actions column
 	
-	grid.setEnumProvider('status', new EnumProvider({ 
-		getOptionValuesForEdit: function (grid, column, rowIndex) {	
-			return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
-		}
-
-		// the function getOptionValuesForEdit is called each time the cell is edited
-		// here we do only client-side processing, but you could use Ajax here to talk with your server
-		// if you do, then don't forget to use Ajax in synchronous mode 
-		// getOptionValuesForEdit: function (grid, column, rowIndex) {
-			// var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
-			// if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
-			// else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
-			// else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
-			// return null;
+	// grid.setCellRenderer('actions', new CellRenderer({ 
+		// render: function(cell, id) { 
+		    // //cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
+			// cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+			// cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 		// }
-	}));
+	// }));
 
-	//renderers for the actions column
-	
-	grid.setCellRenderer('actions', new CellRenderer({ 
-		render: function(cell, id) { 
-		    //cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-			cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-		}
-	}));
-
-	grid.renderGrid('tablecontent', 'table', 'commitments');
-}
+	// grid.renderGrid('tablecontent', 'table', 'commitments');
+// }
 
 
 /**
    updateCellValue calls the PHP script that will update the database. 
  */
-function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
+function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
-	var rowId = editableGrid.getRowId(rowIndex);
+	var rowId = grid.getRowId(rowIndex);
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "html",
 		data: {
-			uniqueid: editableGrid.getValueAt(rowIndex, 0), 
+			uniqueid: grid.getValueAt(rowIndex, 0), 
 			newvalue: newValue, 
-			colname: editableGrid.getColumnName(columnIndex),
+			colname: grid.getColumnName(columnIndex),
 		},
 		success: function (response) 
 		{ 
 			// reset old value if failed then highlight row
 			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
-			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+			if (!success) grid.setValueAt(rowIndex, columnIndex, oldValue);
 		    highlight(rowId, success ? "ok" : "error"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
@@ -130,7 +127,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 }
 
 
-DatabaseGrid.prototype.ConfirmDeleteRow = function(id) 
+EditableGrid.prototype.ConfirmDeleteRow = function(id) 
 {
 	$("#delete-confirm")
 		.data("id", id)
@@ -138,7 +135,7 @@ DatabaseGrid.prototype.ConfirmDeleteRow = function(id)
 }
 
 
-DatabaseGrid.prototype.DeleteRow = function(index) 
+EditableGrid.prototype.DeleteRow = function(index) 
 {
 	var self = this;
 	var uniqueId = self.editableGrid.getValueAt(index, 0);
@@ -169,7 +166,7 @@ DatabaseGrid.prototype.DeleteRow = function(index)
 };
 
 
-DatabaseGrid.prototype.addRow = function(index) 
+EditableGrid.prototype.addRow = function(index) 
 {
 	var self = this;
 	var projectNumber = self.editableGrid.getValueAt(index, 1);
@@ -202,7 +199,7 @@ DatabaseGrid.prototype.addRow = function(index)
 }; 
 
 
-DatabaseGrid.prototype.duplicateRow = function(index) 
+EditableGrid.prototype.duplicateRow = function(index) 
 {
 	var self = this;
 	var uniqueid = self.editableGrid.getValueAt(index, 0);

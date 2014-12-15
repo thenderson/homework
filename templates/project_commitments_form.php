@@ -73,8 +73,7 @@
 					data: { p: projnum },
 					success: function (response)
 					{
-						$('table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");
-						console.log(response);
+						$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -108,8 +107,8 @@
 							
 					this.setCellRenderer('actions', new CellRenderer({
 						render: function(cell, id) { 
-							cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-							cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+							cell.innerHTML+= "<i onclick=\"project_comm_grid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+							cell.innerHTML+= "<i onclick=\"project_comm_grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 						}}));
 						
 					this.renderGrid('project_commitments', 'table', 'commitments'); 
