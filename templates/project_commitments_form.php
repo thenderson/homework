@@ -1,13 +1,13 @@
 <?php require 'header.html'; ?>
 
 	<body>
-		<div class="container-fluid wrap">
+		<div class="container-fluid">
 			<div class="col-sm-12 nopadding" id="table_title">
 				<h3><strong>PROJECT COMMITMENTS</strong><i class='fa fa-spinner fa-spin'></i></h3>
 			</div>
 		</div>
 		
-		<div class="container-fluid wrap">
+		<div class="container-fluid">
 			<div class="col-sm-3 filter">
 				<div class="input-group">
 					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
@@ -20,7 +20,7 @@
 			<div class="col-sm-6 paginator" id="paginator"></div>
 		</div>
 		
-		<div class="container-fluid wrap">
+		<div class="container-fluid">
 			<div id="project_commitments">
 				<br>
 				<br>
