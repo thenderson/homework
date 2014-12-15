@@ -33,12 +33,7 @@
 	h6, .h6 {font-size: 8px;}
 }
 
-h1.padding-8px,
-h2.padding-8px,
-h3.padding-8px,
-h4.padding-8px,
-h5.padding-8px,
-h6.padding-8px { /* for aligning page title text */
+.padding-8px { /* for aligning page title text */
 	padding: 8px;
 }
 
@@ -175,28 +170,6 @@ input.error {
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;	
 	outline: thin auto red;
-}
-
-#mainTable thead th, #mainTable tbody td { 
-  width: 25%;
-}
-#mainTable td + td, #mainTable th + th {
-	text-align: right;
-}
-table.scrollable thead tr, table.scrollable tfoot tr  {
-	position: relative;
-	display: block
-}
-
-html>body table.scrollable tbody {
-	display: block;
-	height: 330px;
-	overflow: auto;
-	width: 100%
-}
-
-html>body table.scrollable td, html>body table.scrollable th {
-	width: 200px
 }
 
 th a { /*column headers*/

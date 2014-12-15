@@ -3,12 +3,12 @@
 	<body>
 		<div class="container-fluid">
 			<div class="col-sm-12 nopadding" id="table_title">
-				<h3><strong>PROJECT COMMITMENTS</strong><i class='fa fa-spinner fa-spin'></i></h3>
+				<h3><strong>PROJECT COMMITMENTS &nbsp;&nbsp;</strong><i class='fa fa-spinner fa-spin'></i></h3>
 			</div>
 		</div>
 		
 		<div class="container-fluid">
-			<div class="col-sm-3 filter">
+			<div class="col-sm-3 filter nopadding">
 				<div class="input-group">
 					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
 					<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
