@@ -38,8 +38,8 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"CommitmentGrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"CommitmentGrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i onclick=\"this.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"this.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 
@@ -51,9 +51,6 @@ function CommitmentGrid()
 }
 
 
-/**
-   updateCellValue calls the PHP script that will update the database. 
- */
 function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
 	var rowId = grid.getRowId(rowIndex);

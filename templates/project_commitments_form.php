@@ -2,7 +2,7 @@
 
 	<body>
 		<div class="container-fluid wrap">
-			<div class="col-sm-9 nopadding" id="table_title"><h3><strong>PROJECT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-9 nopadding" id="table_title"><h3><strong>PROJECT COMMITMENTS <i class='fa fa-spinner fa-spin'></i></strong></h3></div>
 			<div class="col-sm-3 paginator nopadding" id="user_commitments_paginator"></div>
 		</div>
 		
@@ -12,21 +12,21 @@
 					<td class="filter filter_project_number"></td>
 					<td class="filter filter_task_id"></td>
 						<div>
-							<input class="form-control" type="text" id="filter_id" name="filter" placeholder="filter id" />
+							<input class="form-control" type="text" id="filter_id" name="filter" placeholder="<i class='fa fa-filter'>#</i>" />
 						</div>
 					<td class="filter filter_description">
 						<div>
-							<input class="form-control" type="text" id="filter_desc" name="filter" placeholder="filter description" />
+							<input class="form-control" type="text" id="filter_desc" name="filter" placeholder="<i class='fa fa-filter'>#</i>" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
 						<div>
-							<input class="form-control" type="text" id="filter_req" name="filter" placeholder="filter requester" />
+							<input class="form-control" type="text" id="filter_req" name="filter" placeholder="<i class='fa fa-filter'>#</i>" />
 						</div>
 					</td>
 					<td class="filter filter_promiser">
 						<div>
-							<input class="form-control" type="text" id="filter_prom" name="filter" placeholder="filter promiser" />
+							<input class="form-control" type="text" id="filter_prom" name="filter" placeholder="<i class='fa fa-filter'>#</i>" />
 						</div>
 					</td>
 					<td class="filter filter_due_by"></td>
