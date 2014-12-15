@@ -11,7 +11,7 @@
 			<div class="col-sm-4 filter filter_description">
 				<div class="input-group">
 					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-					<input class="form-control input-sm" type="text" id="filter_desc" name="filter" placeholder="filter all columns"/>
+					<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
 				</div>
 			</div>
 			<div class="col-sm-4 add_commitment">
@@ -57,7 +57,7 @@
 				async: true
 			});
 			
-			$("#filter_desc").keyup(function() { project_commitments.filter($(this).val()); });
+			$("#filter_all").keyup(function() { project_commitments.filter($(this).val(), [1,2,3,4,5,6]); });
 
 			$("#delete-confirm").dialog({
 				resizable: false,
