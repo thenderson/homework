@@ -65,60 +65,25 @@
 				return decodeURIComponent(name[1]);
 			}
 			
-			function showprojectname(projnum) {
-				$.ajax({
-					url: '../includes/load_project_name.php',
-					type: 'POST',
-					dataType: 'text',
-					data: { p: projnum },
-					success: function (response)
-					{
-						$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");
-					},
-					error: function(XMLHttpRequest, textStatus, exception) 
-					{ 
-						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-					},
-					async: true
-				})};
-			
 			$.datepicker.setDefaults({
 			//	dateFormat: "mm/dd/yy",
 				numberOfMonths: 2,
 				gotoCurrent: true
 			});
 			
-			// load commitments belonging to current project
-			project_comm_grid = new EditableGrid("ProjectCommitments", {
-				enableSort: true,
-				dateFormat: "US",
-				pageSize: 15,
-				tableRendered:  function() { updatePaginator(this, "project_commitments_paginator"); },
-				tableLoaded: function() { 
-
-					this.setEnumProvider('status', new EnumProvider({
-						getOptionValuesForEdit: function (grid, column, rowIndex) {	
-							return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
-						}}));
-
-					//this.setCellRenderer('date_due', new CellRenderer({
-					//	render: function(cell, id) {
-					//		today = moment();
-							
-					this.setCellRenderer('actions', new CellRenderer({
-						render: function(cell, id) { 
-							cell.innerHTML+= "<i onclick=\"project_comm_grid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-							cell.innerHTML+= "<i onclick=\"project_comm_grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-						}}));
-						
-					this.renderGrid('project_commitments', 'table', 'commitments'); 
-					
-					showprojectname(getparam('project'));
-				},
-					
-				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-				}});
+			project_comm_grid = new CommitmentGrid();
+	
+			$.ajax({
+				url: '../includes/load_project_name.php',
+				type: 'POST',
+				dataType: 'text',
+				data: { p: getparam('project') },
+				success: function (response) {
+					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");},
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			})};
 			
 			$("#filter_id").keyup(function() { project_comm_grid.filter($(this).val(), [2]); });
 			$("#filter_desc").keyup(function() { project_comm_grid.filter($(this).val(), [3]); });
@@ -133,7 +98,7 @@
 				buttons: {
 					"Delete": function() {
 						$(this).dialog("close");
-						datagrid.DeleteRow($(this).data('id'));
+						CommitmentGrid.DeleteRow($(this).data('id'));
 					},
 					Cancel: function() {
 						$(this).dialog("close");

@@ -14,88 +14,41 @@ function highlight(div_id, style) {
 }
         
 
-// function DatabaseGrid() 
-// { 	
-	// $.datepicker.setDefaults({
-	// //	dateFormat: "mm/dd/yy",
-		// numberOfMonths: 2,
-		// gotoCurrent: true
-	// });
+function CommitmentGrid() 
+{ 	
+	$.datepicker.setDefaults({
+	//	dateFormat: "mm/dd/yy",
+		numberOfMonths: 2,
+		gotoCurrent: true
+	});
 	
-	// this.editableGrid = new EditableGrid("grid", {
-		// enableSort: true,
-		// dateFormat: "US",
-	    // // define the number of row visible by page
-      	// pageSize: 10,
-      // // Once the table is displayed, we update the paginator state
-        // tableRendered:  function() {  updatePaginator(this); },
-   	    // tableLoaded: function() { datagrid.initializeGrid(this); },
-		// modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-   	    	// updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-       	// }
- 	// });
-	// this.fetchGrid();
-// }
+	this.grid = new EditableGrid('grid', {
+		enableSort: true,
+		dateFormat: "US",
+	    // define the number of row visible by page
+      	pageSize: 15,
 
-// DatabaseGrid.prototype.fetchGrid = function()  {
-	// // call a PHP script to get the data
-	// this.editableGrid.loadXML("load_data.php");
-// };
+        tableRendered:  function() {  updatePaginator(this); },
+		tableLoaded: function() { 
 
-// DatabaseGrid.prototype.initializeGrid = function(grid) {
-
-  // var self = this;
- 
-	// //renderers for the due_by column
-	// grid.setCellRenderer('due_by', new CellRenderer({
-		// render: function(cell, value) {
-			// // var date = this.editablegrid.checkDate(value);
-			// // if (typeof date == "object") cell.innerHTML = date.sortDate;
-			// // else cell.innerHTML = value;
-			// // cell.style.whiteSpace = 'nowrap';
-			// cell.innerHTML = value;
-			// }
-		// }));
-	
-	// // grid.addCellValidator('due_by', new CellValidator({ 
-		// // isValid: function(value) { 
-			// // today = new Date();
-			// // d = new Date(value);
-			// // console.log(d);
-			// // return d >= today; }
-	// // }));
-
-	// //renderers for the status column
-	
-	// grid.setEnumProvider('status', new EnumProvider({ 
-		// getOptionValuesForEdit: function (grid, column, rowIndex) {	
-			// return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
-		// }
-
-		// // the function getOptionValuesForEdit is called each time the cell is edited
-		// // here we do only client-side processing, but you could use Ajax here to talk with your server
-		// // if you do, then don't forget to use Ajax in synchronous mode 
-		// // getOptionValuesForEdit: function (grid, column, rowIndex) {
-			// // var continent = editableGrid.getValueAt(rowIndex, editableGrid.getColumnIndex("continent"));
-			// // if (continent == "eu") return { "be" : "Belgique", "fr" : "France", "uk" : "Great-Britain", "nl": "Nederland"};
-			// // else if (continent == "am") return { "br" : "Brazil", "ca": "Canada", "us" : "USA" };
-			// // else if (continent == "af") return { "ng" : "Nigeria", "za": "South Africa", "zw" : "Zimbabwe" };
-			// // return null;
-		// // }
-	// }));
-
-	// //renderers for the actions column
-	
-	// grid.setCellRenderer('actions', new CellRenderer({ 
-		// render: function(cell, id) { 
-		    // //cell.innerHTML+= "<i onclick=\"datagrid.addRow("+cell.rowIndex+");\" class='fa fa-plus-square-o' >&nbsp;</i>";
-			// cell.innerHTML+= "<i onclick=\"datagrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-			// cell.innerHTML+= "<i onclick=\"datagrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-		// }
-	// }));
-
-	// grid.renderGrid('tablecontent', 'table', 'commitments');
-// }
+			this.setEnumProvider('status', new EnumProvider({
+				getOptionValuesForEdit: function (grid, column, rowIndex) {	
+					return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
+				}}));
+					
+			this.setCellRenderer('actions', new CellRenderer({
+				render: function(cell, id) { 
+					cell.innerHTML+= "<i onclick=\"CommitmentGrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"CommitmentGrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+				}}));
+				
+			this.renderGrid('project_commitments', 'table', 'commitments'); 
+		},
+		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+   	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+       	}
+ 	});
+}
 
 
 /**
@@ -127,7 +80,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-EditableGrid.prototype.ConfirmDeleteRow = function(id) 
+CommitmentGrid.prototype.ConfirmDeleteRow = function(id) 
 {
 	$("#delete-confirm")
 		.data("id", id)
@@ -135,7 +88,7 @@ EditableGrid.prototype.ConfirmDeleteRow = function(id)
 }
 
 
-EditableGrid.prototype.DeleteRow = function(index) 
+CommitmentGrid.prototype.DeleteRow = function(index) 
 {
 	var self = this;
 	var uniqueId = self.editableGrid.getValueAt(index, 0);
@@ -166,7 +119,7 @@ EditableGrid.prototype.DeleteRow = function(index)
 };
 
 
-EditableGrid.prototype.addRow = function(index) 
+CommitmentGrid.prototype.addRow = function(index) 
 {
 	var self = this;
 	var projectNumber = self.editableGrid.getValueAt(index, 1);
@@ -199,7 +152,7 @@ EditableGrid.prototype.addRow = function(index)
 }; 
 
 
-EditableGrid.prototype.duplicateRow = function(index) 
+CommitmentGrid.prototype.duplicateRow = function(index) 
 {
 	var self = this;
 	var uniqueid = self.editableGrid.getValueAt(index, 0);
@@ -278,46 +231,3 @@ function updatePaginator(grid, divId)
 	else link.css("cursor", "pointer").click(function(event) { grid.lastPage(); });
 	paginator.append(link);
 }; 
-
-
-function showAddForm() {
-  if ( $("#addform").is(':visible') ) 
-      $("#addform").hide();
-  else
-      $("#addform").show();
-}
-
-
-// helper function to display a message
-function displayMessage(text, style) { 
-	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
-} 
-
-
-// this will be used to render our table headers
-function InfoHeaderRenderer(message) { 
-	this.message = message; 
-	this.infoImage = new Image();
-	this.infoImage.src = image("information.png");
-};
-
-
-InfoHeaderRenderer.prototype = new CellRenderer();
-InfoHeaderRenderer.prototype.render = function(cell, value) 
-{
-	if (value) {
-		// here we don't use cell.innerHTML = "..." in order not to break the sorting header that has been created for us (cf. option enableSort: true)
-		var link = document.createElement("a");
-		link.href = "javascript:alert('" + this.message + "');";
-		link.appendChild(this.infoImage);
-		cell.appendChild(document.createTextNode("\u00a0\u00a0"));
-		cell.appendChild(link);
-	}
-};
-
-
-// helper function to get path of a demo image
-function image(relativePath) {
-	return "img/" + relativePath;
-}
-
