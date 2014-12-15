@@ -9,24 +9,28 @@
 		<div class="container-fluid wrap">
 			<table id="filterbar">
 				<tr>
-					<td class="filter filter_project_number"></td>
-					<td class="filter filter_task_id"></td>
-						<div>
-							<input class="form-control" type="text" id="filter_id" name="filter" placeholder="<i class='fa fa-filter'></i>" />
+					<td class="filter filter_task_id">
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control" type="text" id="filter_id" name="filter" />
 						</div>
+					</td>
 					<td class="filter filter_description">
-						<div>
-							<input class="form-control" type="text" id="filter_desc" name="filter" placeholder="<i class='fa fa-filter'></i>" />
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control" type="text" id="filter_desc" name="filter" />
 						</div>
 					</td>
 					<td class="filter filter_requester">
-						<div>
-							<input class="form-control" type="text" id="filter_req" name="filter" placeholder="<i class='fa fa-filter'></i>" />
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control" type="text" id="filter_req" name="filter" />
 						</div>
 					</td>
 					<td class="filter filter_promiser">
-						<div>
-							<input class="form-control" type="text" id="filter_prom" name="filter" placeholder="<i class='fa fa-filter'></i>" />
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control" type="text" id="filter_prom" name="filter" />
 						</div>
 					</td>
 					<td class="filter filter_due_by"></td>
@@ -36,7 +40,7 @@
 				</tr>
 			</table>
 			
-			<div id="project_commitments"></div>
+			<div id="project_commitments"><i class='fa fa-spinner fa-spin'></i></div>
 		</div>
 			
 		<script src="/commgr/public/js/editablegrid.js"></script>
@@ -58,18 +62,7 @@
 <?php require 'footer.php'; ?>
 
 	<script type="text/javascript">
-		window.onload = function() { 
-			
-			function getparam(name){
-				if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-				return decodeURIComponent(name[1]);
-			}
-			
-			$.datepicker.setDefaults({
-			//	dateFormat: "mm/dd/yy",
-				numberOfMonths: 2,
-				gotoCurrent: true
-			});
+		window.onload = function() {
 			
 			project_commitments = new CommitmentGrid();
 	

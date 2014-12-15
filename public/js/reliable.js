@@ -38,8 +38,8 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"this.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"this.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i onclick=\"this.grid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"this.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 
@@ -228,3 +228,9 @@ function updatePaginator(grid, divId)
 	else link.css("cursor", "pointer").click(function(event) { grid.lastPage(); });
 	paginator.append(link);
 }; 
+
+//handy function to extract a parameter from a GET request URI.
+function getparam(name){
+	if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+	return decodeURIComponent(name[1]);
+}
