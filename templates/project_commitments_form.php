@@ -116,7 +116,7 @@
 				},
 				success: function (response) 
 				{
-					project_comm_grid.loadXMLFromString(response); //synchronous function
+					project_comm_grid.grid.loadXMLFromString(response); //synchronous function
 					project_comm_grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
