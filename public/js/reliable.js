@@ -16,6 +16,8 @@ function highlight(div_id, style) {
 
 function CommitmentGrid() 
 { 	
+	var self = this;
+	
 	$.datepicker.setDefaults({
 	//	dateFormat: "mm/dd/yy",
 		numberOfMonths: 2,
@@ -38,8 +40,8 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"CommitmentGrid.grid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"this.CommitmentGrid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i onclick=\"self.grid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"self.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 

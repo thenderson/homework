@@ -244,9 +244,7 @@ td.editablegrid-unique_id {
 
 @media screen and (min-device-width:481px) {
 	th.editablegrid-project_number,
-	td.editablegrid-project_number, 
-	.filter_project_number,
-	input.filter_project_number {
+	td.editablegrid-project_number {
 		text-align: left;
 		width: 10%;
 	}
@@ -258,66 +256,55 @@ td.editablegrid-unique_id {
 	}
 
 	th.editablegrid-task_id,
-	td.editablegrid-task_id,
-	.filter_task_id,
-	input.filter_task_id {
+	td.editablegrid-task_id {
 		text-align: left;
 		width: 5%;
 	}
 
 	th.editablegrid-description,
-	td.editablegrid-description,
-	.filter_description,
-	input.filter_description {
+	td.editablegrid-description {
 		text-align: left;
 		width: 40%;
 	}
 
 	th.editablegrid-description-wide,
-	td.editablegrid-description-wide,
-	.filter_description-wide {
+	td.editablegrid-description-wide {
 		text-align: left;
 		width: 50%;
 	}
 
 	th.editablegrid-promiser,
-	td.editablegrid-promiser,
-	.filter_promiser {
+	td.editablegrid-promiser {
 		text-align: center;
 		width: 10%;
 	}
 
 	th.editablegrid-requester,
-	td.editablegrid-requester,
-	.filter_requester {
+	td.editablegrid-requester {
 		text-align: center;
 		width: 10%;
 	}
 
 	th.editablegrid-due_by,
-	td.editablegrid-due_by,
-	.filter_due_by {
+	td.editablegrid-due_by {
 		text-align: center;
 		width: 10%;
 	}
 
 	th.editablegrid-status,
-	td.editablegrid-status,
-	.filter_status {
+	td.editablegrid-status {
 		text-align: center;
 		width: 5%;
 	}
 
 	th.editablegrid-metric,
-	td.editablegrid-metric,
-	.filter_metric {
+	td.editablegrid-metric {
 		text-align: center;
 		width: 5%;
 	}
 
 	th.editablegrid-actions,
-	td.editablegrid-actions,
-	.filter_actions {
+	td.editablegrid-actions {
 		text-align: center;
 		width: 5%;
 	}
@@ -337,9 +324,7 @@ td.editablegrid-unique_id {
 
 @media screen and (max-device-width:480px) {
 	th.editablegrid-project_number,
-	td.editablegrid-project_number, 
-	.filter_project_number,
-	input.filter_project_number {
+	td.editablegrid-project_number  {
 		display: none;
 	}
 			
@@ -350,65 +335,54 @@ td.editablegrid-unique_id {
 	}
 
 	th.editablegrid-task_id,
-	td.editablegrid-task_id,
-	.filter_task_id,
-	input.filter_task_id {
+	td.editablegrid-task_id  {
 		text-align: left;
 		width: 5%;
 	}
 
 	th.editablegrid-description,
-	td.editablegrid-description,
-	.filter_description,
-	input.filter_description {
+	td.editablegrid-description {
 		text-align: left;
 		width: 55%;
 	}
 
 	th.editablegrid-description-wide,
-	td.editablegrid-description-wide,
-	.filter_description-wide {
+	td.editablegrid-description-wide  {
 		text-align: left;
 		width: 55%;
 	}
 
 	th.editablegrid-promiser,
-	td.editablegrid-promiser,
-	.filter_promiser {
+	td.editablegrid-promiser {
 		text-align: center;
 		width: 10%;
 	}
 
 	th.editablegrid-requester,
-	td.editablegrid-requester,
-	.filter_requester {
+	td.editablegrid-requester {
 		display: none;
 	}
 
 	th.editablegrid-due_by,
-	td.editablegrid-due_by,
-	.filter_due_by {
+	td.editablegrid-due_by {
 		text-align: center;
 		width: 10%;
 	}
 
 	th.editablegrid-status,
-	td.editablegrid-status,
-	.filter_status {
+	td.editablegrid-status {
 		text-align: center;
 		width: 5%;
 	}
 
 	th.editablegrid-metric,
-	td.editablegrid-metric,
-	.filter_metric {
+	td.editablegrid-metric {
 		text-align: center;
 		width: 5%;
 	}
 
 	th.editablegrid-actions,
-	td.editablegrid-actions,
-	.filter_actions {
+	td.editablegrid-actions {
 		display: none;
 	}
 
@@ -449,6 +423,11 @@ img.icon {
   margin: 3px;
   vertical-align: middle;
 }
+
+.paginator {
+	text-align: right;
+}
+
 #toolbar .icon {
   width: 32px;
   vertical-align: middle;
@@ -461,11 +440,6 @@ img.icon {
 	padding-top: 5px;
 	width: 600px;
 	border: 0px;	
-}
-
-.paginator {
-	font-size: 0.8em;
-	text-align: right;
 }
 
 a.nobg {  

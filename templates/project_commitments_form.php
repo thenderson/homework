@@ -8,17 +8,25 @@
 		</div>
 		
 		<div class="container-fluid wrap">
-			<div class="col-sm-4 filter filter_description">
+			<div class="col-sm-3 filter">
 				<div class="input-group">
 					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
 					<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
 				</div>
 			</div>
-			<div class="col-sm-4 add_commitment">
+			<div class="col-sm-3 add_commitment">
 				<button type="button" class="btn btn-default btn-sm">New Commitment</button>
 			</div>
+			<div class="col-sm-6 paginator" id="paginator"></div>
+		</div>
+		
+		<div class="container-fluid wrap">
 			<div id="project_commitments">
-				<i class='col-sm-4 fa fa-spinner fa-spin'></i>
+				<br>
+				<br>
+				<i class='fa fa-spinner fa-spin fa-4x text-center'></i>
+				<br>
+				<br>
 			</div>
 		</div>
 			
