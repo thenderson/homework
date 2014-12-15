@@ -57,7 +57,7 @@
 				async: true
 			});
 			
-			$("#filter_all").keyup(function() { project_commitments.filter($(this).val(), [1,2,3,4,5,6]); });
+			$("#filter_all").keyup(function() { project_commitments.grid.filter($(this).val(), [1,2,3,4,5,6]); });
 
 			$("#delete-confirm").dialog({
 				resizable: false,
