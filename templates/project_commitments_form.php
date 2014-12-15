@@ -2,45 +2,24 @@
 
 	<body>
 		<div class="container-fluid wrap">
-			<div class="col-sm-9 nopadding" id="table_title"><h3><strong>PROJECT COMMITMENTS</strong><i class='fa fa-spinner fa-spin'></i></h3></div>
-			<div class="col-sm-3 paginator nopadding" id="user_commitments_paginator"></div>
+			<div class="col-sm-12 nopadding" id="table_title">
+				<h3><strong>PROJECT COMMITMENTS</strong><i class='fa fa-spinner fa-spin'></i></h3>
+			</div>
 		</div>
 		
 		<div class="container-fluid wrap">
-			<table id="filterbar">
-				<tr>
-					<td class="filter filter_task_id">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control" type="text" id="filter_id" name="filter" />
-						</div>
-					</td>
-					<td class="filter filter_description">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control" type="text" id="filter_desc" name="filter" />
-						</div>
-					</td>
-					<td class="filter filter_requester">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control" type="text" id="filter_req" name="filter" />
-						</div>
-					</td>
-					<td class="filter filter_promiser">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control" type="text" id="filter_prom" name="filter" />
-						</div>
-					</td>
-					<td class="filter filter_due_by"></td>
-					<td class="filter filter_status"></td>
-					<td class="filter filter_metric"></td>
-					<td class="filter filter_actions"></td>
-				</tr>
-			</table>
-			
-			<div id="project_commitments"><i class='fa fa-spinner fa-spin'></i></div>
+			<div class="col-sm-4 filter filter_description">
+				<div class="input-group">
+					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+					<input class="form-control input-sm" type="text" id="filter_desc" name="filter" placeholder="filter all columns"/>
+				</div>
+			</div>
+			<div class="col-sm-4 add_commitment">
+				<button type="button" class="btn btn-default btn-sm">New Commitment</button>
+			</div>
+			<div id="project_commitments">
+				<i class='col-sm-4 fa fa-spinner fa-spin'></i>
+			</div>
 		</div>
 			
 		<script src="/commgr/public/js/editablegrid.js"></script>
@@ -78,11 +57,8 @@
 				async: true
 			});
 			
-			$("#filter_id").keyup(function() { project_comm_grid.filter($(this).val(), [2]); });
-			$("#filter_desc").keyup(function() { project_comm_grid.filter($(this).val(), [3]); });
-			$("#filter_req").keyup(function() { project_comm_grid.filter($(this).val(), [4]); });
-			$("#filter_prom").keyup(function() { project_comm_grid.filter($(this).val(), [5]); });
-			
+			$("#filter_desc").keyup(function() { project_commitments.filter($(this).val()); });
+
 			$("#delete-confirm").dialog({
 				resizable: false,
 				autoOpen: false,
