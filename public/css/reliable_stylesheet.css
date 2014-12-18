@@ -272,7 +272,7 @@ td.editablegrid-unique_id {
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
-		text-align: center;
+		text-align: right;
 		width: 5%;
 	}
 
@@ -393,6 +393,7 @@ img.icon {
 
 .paginator {
 	text-align: right;
+	font-size: .9%;
 }
 
 #toolbar .icon {

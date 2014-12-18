@@ -40,8 +40,8 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"self.CommitmentGrid.duplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"self.CommitmentGrid.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i onclick=\"DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 
@@ -79,7 +79,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-CommitmentGrid.prototype.ConfirmDeleteRow = function(id) 
+ConfirmDeleteRow = function(id) 
 {
 	$("#delete-confirm")
 		.data("id", id)
@@ -151,7 +151,7 @@ CommitmentGrid.prototype.addRow = function(index)
 }; 
 
 
-CommitmentGrid.prototype.duplicateRow = function(index) 
+DuplicateRow = function(index) 
 {
 	var self = this;
 	var uniqueid = self.editableGrid.getValueAt(index, 0);
