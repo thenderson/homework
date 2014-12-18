@@ -40,7 +40,7 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"self.grid.DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"this.DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 					cell.innerHTML+= "<i onclick=\"self.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
@@ -90,8 +90,8 @@ ConfirmDeleteRow = function(id)
 CommitmentGrid.prototype.DeleteRow = function(index) 
 {
 	var self = this;
-	var uniqueId = self.editableGrid.getValueAt(index, 0);
-	var rowId = self.editableGrid.getRowId(index);
+	var uniqueId = self.grid.getValueAt(index, 0);
+	var rowId = self.grid.getRowId(index);
 	
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -151,12 +151,12 @@ CommitmentGrid.prototype.addRow = function(index)
 }; 
 
 
-CommitmentGrid.prototype.DuplicateRow = function(index) 
+CommitmentGrid.DuplicateRow = function(index) 
 {
 	var self = this;
-	var uniqueid = self.editableGrid.getValueAt(index, 0);
-	var projectNumber = self.editableGrid.getValueAt(index, 1);
-	var rowId = self.editableGrid.getRowId(index);
+	var uniqueid = self.grid.getValueAt(index, 0);
+	var projectNumber = self.grid.getValueAt(index, 1);
+	var rowId = self.grid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
@@ -170,11 +170,11 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 		{ 
 			// get index for new row (max index + 1)
 			var newRowId = 0;
-			var rowcount = self.editableGrid.getRowCount();
-			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
+			var rowcount = self.grid.getRowCount();
+			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
 			// add new row
-			self.editableGrid.insertAfter(index, newRowId, response[0]);
+			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(newRowId, "ok");
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
