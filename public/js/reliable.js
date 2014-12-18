@@ -40,7 +40,7 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"this.DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\"CommitmentGrid.DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 					cell.innerHTML+= "<i onclick=\"self.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
