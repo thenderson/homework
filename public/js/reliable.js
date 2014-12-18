@@ -154,7 +154,7 @@ CommitmentGrid.prototype.addRow = function(index)
 CommitmentGrid.DuplicateRow = function(index) 
 {
 	var self = this;
-	var uniqueid = self.grid.getValueAt(index, 0);
+	var uniqueid = self.getValueAt(index, 0);
 	var projectNumber = self.grid.getValueAt(index, 1);
 	var rowId = self.grid.getRowId(index);
 
