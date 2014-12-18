@@ -40,7 +40,7 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\"CommitmentGrid.DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\""+this+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 					cell.innerHTML+= "<i onclick=\"self.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
@@ -105,7 +105,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 			var rowSelector = $("#grid_" + rowId);
 			rowSelector.css("text-decoration", "line-through");
 			rowSelector.fadeOut(function() { 
-				self.editableGrid.remove(index);
+				self.grid.remove(index);
 			});
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -118,11 +118,11 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 };
 
 
-CommitmentGrid.prototype.addRow = function(index) 
+CommitmentGrid.prototype.AddRow = function(index) 
 {
 	var self = this;
-	var projectNumber = self.editableGrid.getValueAt(index, 1);
-	var rowId = self.editableGrid.getRowId(index);
+	var projectNumber = self.grid.getValueAt(index, 1);
+	var rowId = self.grid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -135,10 +135,10 @@ CommitmentGrid.prototype.addRow = function(index)
 		{ 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
-			for (var r = 0; r < self.editableGrid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(self.editableGrid.getRowId(r)) + 1);
+			for (var r = 0; r < self.grid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
 			// add new row
-			self.editableGrid.insertAfter(index, newRowId, response[0]);
+			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(newRowId, "ok");
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -151,7 +151,7 @@ CommitmentGrid.prototype.addRow = function(index)
 }; 
 
 
-CommitmentGrid.DuplicateRow = function(index) 
+CommitmentGrid.prototype.DuplicateRow = function(index) 
 {
 	var self = this;
 	var uniqueid = CommitmentGrid.grid.getValueAt(index, 0);
