@@ -400,6 +400,7 @@ img.icon {
 	text-align: right;
 	font-size: 90%;
 	padding: 0px;
+	vertical-align: middle;
 }
 
 #toolbar .icon {
