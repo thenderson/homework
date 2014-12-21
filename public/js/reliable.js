@@ -121,7 +121,6 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 CommitmentGrid.prototype.AddRow = function(index) 
 {
 	var self = this;
-	var projectNumber = self.grid.getValueAt(index, 1);
 	var rowId = self.grid.getRowId(index);
 
     $.ajax({
@@ -129,7 +128,7 @@ CommitmentGrid.prototype.AddRow = function(index)
 		type: 'POST',
 		dataType: "json",
 		data: {
-			projectnumber: projectNumber
+			projectnumber: getparam('project')
 		},
 		success: function (response) 
 		{ 
