@@ -10,22 +10,16 @@
 		<div class="container-fluid" id="bar-top">
 			<table>
 				<tr>
-					<td>
-						<div class="col-sm-3 filter nopadding">
-							<div class="input-group">
-								<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-								<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
-							</div>
+					<td class="col-sm-3 filter nopadding">
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
 						</div>
 					</td>
-					<td>
-						<div class="col-sm-3 add_commitment">
-							<button type="button" class="btn btn-default btn-sm">New Commitment</button>
-						</div>
+					<td class="col-sm-3 add_commitment">
+						<button type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
-					<td>
-						<div class="col-sm-6 paginator" id="paginator"></div>
-					</td>
+					<td class="col-sm-6 paginator" id="paginator"></td>
 				</tr>
 			</table>
 		</div>
