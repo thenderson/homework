@@ -47,7 +47,7 @@ function CommitmentGrid()
 				
 			this.setCellRenderer('metric', new CellRenderer({
 				render: function(cell, value) {
-					row=getRowValues(cell.rowIndex);
+					row=self.grid.getRowValues(cell.rowIndex);
 					date_due=row['date_due'];
 					due_class="due_nextweek";
 					$(cell).addClass(due_class);
