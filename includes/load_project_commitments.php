@@ -10,7 +10,7 @@
 	
 	/*	RETRIEVE COMMITMENTS */	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, DATE_FORMAT(requested_on, '%m/%d/%Y') as requested_on, status, type, metric 
+		SELECT unique_id, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%Y %m %d') as due_by, DATE_FORMAT(requested_on, '%Y %m %d') as requested_on, status, type, metric 
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) AND project_number = ?
 		ORDER BY due_by, promiser");

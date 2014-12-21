@@ -131,7 +131,7 @@ border-top: 0px;
 	background-color: rgb(235, 221, 195);
 }
 
-.due_nextweek>td /* for table rows due next week */
+.due_nextweek /* for table rows due next week */
 {
 	background-color: rgb(228, 228, 228);
 }
