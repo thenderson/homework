@@ -79,10 +79,10 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-ConfirmDeleteRow = function(id) 
+ConfirmDeleteRow = function(index) 
 {
 	$("#delete-confirm")
-		.data("id", id)
+		.data("id", index)
 		.dialog("open");
 }
 
@@ -154,7 +154,7 @@ CommitmentGrid.prototype.AddRow = function(index)
 CommitmentGrid.prototype.DuplicateRow = function(index) 
 {
 	var self = this;
-	var uniqueid = CommitmentGrid.grid.getValueAt(index, 0);
+	var uniqueid = self.grid.getValueAt(index, 0);
 	var projectNumber = self.grid.getValueAt(index, 1);
 	var rowId = self.grid.getRowId(index);
 

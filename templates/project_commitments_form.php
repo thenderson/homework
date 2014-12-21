@@ -76,7 +76,7 @@
 				buttons: {
 					"Delete": function() {
 						$(this).dialog("close");
-						CommitmentGrid.DeleteRow($(this).data('id'));
+						project_commitments.grid.DeleteRow($(this).data('id'));
 					},
 					Cancel: function() {
 						$(this).dialog("close");
