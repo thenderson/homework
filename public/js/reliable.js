@@ -24,13 +24,13 @@ function CommitmentGrid()
 		gotoCurrent: true
 	});
 	
-	this.grid = new EditableGrid('grid', {
+	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: "US",
 	    // define the number of row visible by page
       	pageSize: 15,
 
-        tableRendered:  function() {  updatePaginator(this); },
+        tableRendered:  function() {  updatePaginator(self); },
 		tableLoaded: function() { 
 
 			this.setEnumProvider('status', new EnumProvider({
@@ -40,8 +40,8 @@ function CommitmentGrid()
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\""+this.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"self.grid.ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					cell.innerHTML+= "<i onclick=\""+self.name+".ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 

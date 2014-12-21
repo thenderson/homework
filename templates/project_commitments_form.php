@@ -52,6 +52,7 @@
 		window.onload = function() {
 			
 			project_commitments = new CommitmentGrid();
+			project_commitments.name = "project_commitments";
 	
 			$.ajax({
 				url: '../includes/load_project_name.php',
