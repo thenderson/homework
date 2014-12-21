@@ -37,7 +37,8 @@
 	padding: 8px;
 }
 
-.navbar-right {  /* for aligning header text */ 
+.navbar-right,
+.navbar-nav.navbar-right:last-child {  /* for aligning header text */ 
 padding-right: 0px;
 margin-right: 0px;
 }
