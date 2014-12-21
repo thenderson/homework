@@ -47,9 +47,13 @@ function CommitmentGrid()
 				
 			this.setCellRenderer('metric', new CellRenderer({
 				render: function(cell, value) {
-					cssclass="due_nextweek";
-					console.debug(cell);
-					cell.innerHTML= "<i class='fa fa-circle "+cssclass+"'></i>";
+					row=getRowValues(cell.rowIndex);
+					date_due=row['date_due'];
+					due_class="due_nextweek";
+					$(cell).addClass(due_class);
+					console.debug(row);
+					console.log(date_due);
+					cell.innerHTML= "<i class='fa fa-circle"'></i>";
 				}
 				}));
 			
