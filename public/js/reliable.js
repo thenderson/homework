@@ -30,7 +30,7 @@ function CommitmentGrid()
 	    // define the number of row visible by page
       	pageSize: 15,
 
-        tableRendered:  function() { updatePaginator(self); },
+        tableRendered:  function() { updatePaginator(self.grid); },
 		tableLoaded: function() { 
 
 			this.setEnumProvider('status', new EnumProvider({
@@ -199,7 +199,7 @@ function updatePaginator(grid, divId)
 	console.debug(grid);
 	
 	var paginator = $("#" + divId).empty();
-	var nbPages = grid.grid.getPageCount();
+	var nbPages = grid.getPageCount();
 
 	// get interval
 	var interval = grid.getSlidingPageInterval(20);
