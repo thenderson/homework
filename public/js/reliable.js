@@ -48,11 +48,12 @@ function CommitmentGrid()
 			this.setCellRenderer('metric', new CellRenderer({
 				render: function(cell, value) {
 					cssclass="due_nextweek";
+					console.debug(cell);
 					cell.innerHTML= "<i class='fa fa-circle "+cssclass+"'></i>";
 				}
 				}));
 			
-			this.setCellRenderer('date_due', new CellRenderer({
+			this.setCellRenderer('due_by', new CellRenderer({
 				render: function(cell, value) {
 					cell.innerHTML=value;
 				}
