@@ -174,8 +174,7 @@ input.error {
 }
 
 th a { /*column headers*/
-	color: rgb(165, 171, 129);
-	text-decoration: none;
+	color: rgb(148, 182, 210);
 }
 
 h1 a {
@@ -393,7 +392,8 @@ img.icon {
 }
 
 #bar-top {
-	padding-bottom: 6px;
+	margin-top: 8px;
+	margin-bottom: 6px;
 	width: 100%;
 }
 
@@ -412,11 +412,13 @@ img.icon {
   display: inline-block;
 }
 
+/*
 #edition {
 	padding-top: 5px;
 	width: 600px;
 	border: 0px;	
 }
+*/
 
 a.nobg {  
 	color: black;
