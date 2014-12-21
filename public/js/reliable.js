@@ -30,7 +30,7 @@ function CommitmentGrid()
 	    // define the number of row visible by page
       	pageSize: 15,
 
-        tableRendered:  function() {  updatePaginator(self); },
+        tableRendered:  function() {  console.log('updatePaginator: self= '+self); updatePaginator(self); },
 		tableLoaded: function() { 
 
 			this.setEnumProvider('status', new EnumProvider({
@@ -92,6 +92,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 	var self = this;
 	var uniqueId = self.grid.getValueAt(index, 0);
 	var rowId = self.grid.getRowId(index);
+	
 	console.log("self: "+self);
 	console.log("uniqueId: "+uniqueId);
 	console.log('rowId: '+rowId);
@@ -195,6 +196,7 @@ function updatePaginator(grid, divId)
     divId = divId || "paginator";
 	
 	console.log('divId: '+divId);
+	console.log('grid: '+grid);
 	
 	var paginator = $("#" + divId).empty();
 	var nbPages = grid.getPageCount();
