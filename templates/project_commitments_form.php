@@ -5,22 +5,22 @@
 			<div class="col-sm-12 nopadding" id="table_title">
 				<h3><strong>PROJECT COMMITMENTS &nbsp;&nbsp;</strong><i class='fa fa-spinner fa-spin'></i></h3>
 			</div>
-
-			<table id="bar-top">
-				<tr>
-					<td class="col-sm-3 filter nopadding">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
-						</div>
-					</td>
-					<td class="col-sm-3 add_commitment">
-						<button type="button" class="btn btn-default btn-sm">New Commitment</button>
-					</td>
-					<td class="col-sm-6 paginator" id="paginator"></td>
-				</tr>
-			</table>
 		</div>
+
+		<table id="bar-top">
+			<tr>
+				<td class="col-sm-3 filter nopadding">
+					<div class="input-group">
+						<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+						<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
+					</div>
+				</td>
+				<td class="col-sm-3 add_commitment">
+					<button type="button" class="btn btn-default btn-sm">New Commitment</button>
+				</td>
+				<td class="col-sm-6 paginator" id="paginator"></td>
+			</tr>
+		</table>
 		
 		<div class="container-fluid">
 			<div id="project_commitments">
