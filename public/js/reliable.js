@@ -27,15 +27,16 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: "US",
-	    // define the number of row visible by page
-      	pageSize: 15,
+      	pageSize: 10,
+		editmode: 'static',
+		editorzoneid: 'editzone',
 
         tableRendered:  function() { updatePaginator(self.grid); },
 		tableLoaded: function() { 
 
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {	
-					return { 'open':'open', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
+					return { 'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
 				}}));
 					
 			this.setCellRenderer('actions', new CellRenderer({
@@ -43,6 +44,19 @@ function CommitmentGrid()
 					cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
+				
+			this.setCellRenderer('metric', new CellRenderer({
+				render: function(cell, value) {
+					cssclass="due_nextweek";
+					cell.innerHTML= "<i class='fa fa-circle "+cssclass+"'></i>";
+				}
+				}));
+			
+			this.setCellRenderer('date_due', new CellRenderer({
+				render: function(cell, value) {
+					cell.innerHTML=value;
+				}
+				}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 
 		},
