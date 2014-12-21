@@ -5,10 +5,8 @@
 			<div class="col-sm-12 nopadding" id="table_title">
 				<h3><strong>PROJECT COMMITMENTS &nbsp;&nbsp;</strong><i class='fa fa-spinner fa-spin'></i></h3>
 			</div>
-		</div>
-		
-		<div class="container-fluid" id="bar-top">
-			<table>
+
+			<table id="bar-top">
 				<tr>
 					<td class="col-sm-3 filter nopadding">
 						<div class="input-group">
