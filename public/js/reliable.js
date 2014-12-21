@@ -189,7 +189,9 @@ function updatePaginator(grid, divId)
     divId = divId || "paginator";	
 	var paginator = $("#" + divId).empty();
 	var nbPages = grid.getPageCount();
-
+	
+	console.log('nbPages: '+nbPages);
+	
 	// get interval
 	var interval = grid.getSlidingPageInterval(20);
 	if (interval == null) return;

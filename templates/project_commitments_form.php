@@ -22,11 +22,7 @@
 		
 		<div class="container-fluid">
 			<div id="project_commitments">
-				<br>
-				<br>
-				<i class='fa fa-spinner fa-spin fa-4x text-center'></i>
-				<br>
-				<br>
+				<br><br><br><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></
 			</div>
 		</div>
 			
@@ -49,18 +45,18 @@
 <?php require 'footer.php'; ?>
 
 	<script type="text/javascript">
+		project_commitments = new CommitmentGrid();
+		project_commitments.name = "project_commitments";
+		
 		window.onload = function() {
-			
-			project_commitments = new CommitmentGrid();
-			project_commitments.name = "project_commitments";
-	
+			pnum = getparam('projec');
 			$.ajax({
 				url: '../includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
-				data: { p: getparam('project') },
+				data: { p: pnum },
 				success: function (response) {
-					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3>");},
+					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3> | #"+pnum);},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
