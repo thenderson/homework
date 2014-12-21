@@ -92,6 +92,9 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 	var self = this;
 	var uniqueId = self.grid.getValueAt(index, 0);
 	var rowId = self.grid.getRowId(index);
+	console.log("self: "+self);
+	console.log("uniqueId: "+uniqueId);
+	console.log('rowId: '+rowId);
 	
     $.ajax({
 		url: '../includes/commitment_delete.php',
@@ -190,6 +193,9 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 function updatePaginator(grid, divId)
 {
     divId = divId || "paginator";
+	
+	console.log('divId: '+divId);
+	
 	var paginator = $("#" + divId).empty();
 	var nbPages = grid.getPageCount();
 
