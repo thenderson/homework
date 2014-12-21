@@ -154,8 +154,6 @@ CommitmentGrid.prototype.AddRow = function(index)
 CommitmentGrid.prototype.DuplicateRow = function(index) 
 {
 	var self = this;
-	var uniqueid = self.grid.getValueAt(index, 0);
-	var projectNumber = self.grid.getValueAt(index, 1);
 	var rowId = self.grid.getRowId(index);
 
     $.ajax({
@@ -163,8 +161,8 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 		type: 'POST',
 		dataType: "json",
 		data: {
-			uniqueId: uniqueid,
-			projectnumber: projectNumber
+			uniqueId: self.grid.getValueAt(index, 0),
+			projectnumber: getparam('project')
 		},
 		success: function (response) 
 		{ 
