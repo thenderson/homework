@@ -19,6 +19,7 @@ else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $new_Id = $result[0]['task_id'] + 1; 
 error_log('new #: '.$new_Id);
+
 // Duplicate selected record in database
 $stmt = $comm_db->prepare('INSERT INTO `commitments` ( project_number, task_id, description, requester, promiser, due_by, status, type, metric )
 							SELECT project_number, ?, description, requester, promiser, due_by, "OPEN", type, NULL

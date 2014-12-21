@@ -173,10 +173,6 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			var rowcount = self.grid.getRowCount();
 			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
-			console.log('rowcount: '+rowcount);
-			console.log('newRowId: '+newRowId);
-			console.debug(self);
-			
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(newRowId, "ok");
