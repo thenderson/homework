@@ -53,7 +53,7 @@ function CommitmentGrid()
 					$(cell).addClass(due_class);
 					console.debug(row);
 					console.log(date_due);
-					cell.innerHTML= "<i class='fa fa-circle"'></i>";
+					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
 				}
 				}));
 			
