@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid">
+		<div class="container-fluid" id="bar-top">
 			<div class="col-sm-3 filter nopadding">
 				<div class="input-group">
 					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
@@ -57,7 +57,7 @@
 				dataType: 'text',
 				data: { p: pnum },
 				success: function (response) {
-					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong></h3> | #"+pnum);},
+					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
