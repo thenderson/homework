@@ -49,7 +49,8 @@
 		project_commitments.name = "project_commitments";
 		
 		window.onload = function() {
-			pnum = getparam('projec');
+			pnum = getparam('project');
+			
 			$.ajax({
 				url: '../includes/load_project_name.php',
 				type: 'POST',
