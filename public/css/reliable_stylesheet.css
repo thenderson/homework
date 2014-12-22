@@ -142,17 +142,17 @@ border-top: 1px solid rgb(192, 192, 192);
 
 .due_future /* for table rows > one week out */
 {
-	color: rgb(192, 192, 192);
+	color: rgb(96, 96, 96);
 }
 
 .overdue_1w /* for table rows < 2 weeks overdue */
 {
-	background-color: rgba(216, 178, 92, .6);
+	background-color: rgba(216, 178, 92, .4);
 }
 
 .overdue_2w /* for table rows > 2 weeks overdue */
 {
-	background-color: rgba(221, 128, 71, .6);
+	background-color: rgba(221, 128, 71, .4);
 }
 
 .flash-ok {
