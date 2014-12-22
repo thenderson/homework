@@ -104,7 +104,7 @@ margin-left: 0px;
 #projects>thead>tr>td,
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
-border-bottom: 2px solid white; 
+border-bottom: 1px solid rgb(64, 64, 64); 
 }
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
@@ -164,7 +164,6 @@ tbody tr.due_future:hover {
 }
 
 .due_future {
-	border-bottom-color: black;
 }
 
 /*
