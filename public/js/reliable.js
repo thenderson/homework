@@ -45,24 +45,20 @@ function CommitmentGrid()
 					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
-			this.setCellRenderer('metric', new CellRenderer({ //shades row based on how soon commitment is due
+			this.setCellRenderer('metric', new CellRenderer({ 
 				render: function(cell, value) {
-					row=self.grid.getRow(cell.rowIndex);
-					row_val=self.grid.getRowValues(cell.rowIndex);
-					due_raw=row_val['due_by'];
-					due_by=moment(due_raw);
-					how_soon=due_by.diff(moment(),'days');
-					due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
-					$(row).addClass(due_class);
 					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
-					
-					console.log(due_raw+" -> "+due_by.format("YY MM DD")+" -> "+how_soon+" -> "+due_class);
 				}
 				}));
 			
-			this.setCellRenderer('due_by', new CellRenderer({
+			this.setCellRenderer('due_by', new CellRenderer({ //shades row based on how soon commitment is due
 				render: function(cell, value) {
-					cell.innerHTML=moment(value).format("\'YY.MM.DD");
+					date_due=moment(value)
+					cell.innerHTML=date_due.format("\'YY.MM.DD");
+					row=self.grid.getRow(cell.rowIndex);
+					how_soon=date_due.diff(moment(),'days');
+					due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+					$(row).addClass(due_class);
 				}
 				}));
 				

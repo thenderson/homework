@@ -11,8 +11,8 @@
 		background / dark 2		rgb(119, 95, 85)
 		background / light 2	rgb(235, 221, 195)		row hover
 		dark red				rgb(192, 0, 0)			delete icon
-		light grey				rgb(228, 228, 228)		commitments due next week
-		med grey				rgb(217, 217, 217)		
+		light grey				rgb(228, 228, 228)		
+		med grey				rgb(217, 217, 217)		commitments due next week
 		dark med grey			rgb(190, 190, 190)		table header
 */
 @media screen and (min-device-width:481px) {
@@ -128,7 +128,9 @@ border-top: 0px;
 
 #commitments>tbody tr:hover>td,
 #projects>tbody tr:hover>td {
-	background-color: rgb(235, 221, 195);
+	/*background-color: rgb(235, 221, 195);*/
+	border: 2px;
+	opacity: 50%;
 }
 
 .due_nextweek /* for table rows due next week */
@@ -138,17 +140,19 @@ border-top: 0px;
 
 .due_future /* for table rows > one week out */
 {
-	color: rgb(228, 228, 228);
+	color: rgb(217, 217, 217);
 }
 
 .overdue_1w /* for table rows < 2 weeks overdue */
 {
 	background-color: rgb(216, 178, 92);
+	opacity: 80%;
 }
 
 .overdue_2w /* for table rows > 2 weeks overdue */
 {
 	background-color: rgb(221, 128, 71);
+	opacity: 80%;
 }
 
 .flash-ok {
