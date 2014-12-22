@@ -19,9 +19,11 @@ function CommitmentGrid()
 	var self = this;
 	
 	$.datepicker.setDefaults({
-	//	dateFormat: "mm/dd/yy",
+		dateFormat: "yy-mm-dd",
 		numberOfMonths: 2,
 		gotoCurrent: true
+		defaultDate: 14,
+		showAnim: 'puff',
 	});
 	
 	self.grid = new EditableGrid('grid', {

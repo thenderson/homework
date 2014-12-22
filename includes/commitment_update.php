@@ -34,8 +34,9 @@ switch ($column_name) {
 	   if ($new_value === "") 
 		 $new_value = NULL;
 	   else {
-		  $date_info = date_parse_from_format('?y.mm.dd|', $new_value);
+		  $date_info = date_parse_from_format('Y.mm.dd|', $new_value);
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+		  error_log($new-value);
 		  // ob_start();
 		  // var_dump('date from POST: ', $new_value);
 		  // var_dump('date_info: ', $date_info);
