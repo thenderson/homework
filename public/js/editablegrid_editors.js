@@ -388,7 +388,7 @@ DateCellEditor.prototype.displayEditor = function(element, htmlInput)
 	TextCellEditor.prototype.displayEditor.call(this, element, htmlInput);
 
 	jQuery(htmlInput).datepicker({ 
-		//dateFormat: (this.editablegrid.dateFormat == "EU" ? "dd/mm/yy" : "mm/dd/yy"), **dateformat set in 'reliable.js'**
+		dateFormat: (this.editablegrid.dateFormat == "EU" ? "dd/mm/yy" : (this.editablegrid.dateFormat == "EU" ? "mm/dd/yy" : this.editablegrid.dateFormat)),
 		changeMonth: true,
 		changeYear: true,
 		yearRange: "c-100:c+10",

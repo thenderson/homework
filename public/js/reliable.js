@@ -27,7 +27,7 @@ function CommitmentGrid()
 	
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
-		dateFormat: "US",
+		dateFormat: "yy-mm-dd",
       	pageSize: 10,
 		editmode: 'static',
 		editorzoneid: 'editzone',
