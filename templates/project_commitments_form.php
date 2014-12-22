@@ -1,4 +1,7 @@
-<?php require 'header.html'; ?>
+<?php 
+	require 'config.php';
+	require 'header.html'; 
+?>
 
 	<body>
 		<div class="container-fluid">

@@ -12,7 +12,7 @@ function highlightRow(rowId, bgColor, after)
 function highlight(div_id, style) {
 	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
 }
-        
+   
 
 function CommitmentGrid() 
 { 	
