@@ -54,7 +54,7 @@ function CommitmentGrid()
 					$(row).addClass(due_class);
 					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
 					
-					console.log(due_by+" -> "+due_class);
+					console.log(due_by.format("YY MM DD")+" -> "+how_soon+" -> "+due_class);
 				}
 				}));
 			
