@@ -19,7 +19,7 @@ function CommitmentGrid()
 	var self = this;
 	
 	$.datepicker.setDefaults({
-		dateFormat: "yy-mm-dd",
+		dateFormat: "''y-mm-dd",
 		numberOfMonths: 2,
 		gotoCurrent: true,
 		defaultDate: 14,

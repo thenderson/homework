@@ -514,3 +514,7 @@ form input:hover, form textarea:hover, form input:focus, form textarea:focus {
 .button:hover {
 text-decoration: none;
 }
+
+.ui-widget { /*datepicker*/
+font-size: .85em;
+}
