@@ -53,6 +53,8 @@ function CommitmentGrid()
 					due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 					$(row).addClass(due_class);
 					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
+					
+					console.log(due_by+" -> "+due_class);
 				}
 				}));
 			
