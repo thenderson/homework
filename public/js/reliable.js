@@ -22,7 +22,6 @@ function CommitmentGrid()
 		dateFormat: "yy-mm-dd",
 		numberOfMonths: 2,
 		gotoCurrent: true,
-		defaultDate: 7,
 		showAnim: 'puff'
 	});
 	
