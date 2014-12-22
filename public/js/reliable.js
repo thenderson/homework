@@ -75,7 +75,7 @@ function CommitmentGrid()
 function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
 	var rowId = grid.getRowId(rowIndex);
-	console.log(oldValue, newValue);
+	//console.log(oldValue, newValue);
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
