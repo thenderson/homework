@@ -136,17 +136,17 @@ border-top: 0px;
 	background-color: rgb(228, 228, 228);
 }
 
-.due_future>td /* for table rows > one week out */
+.due_future /* for table rows > one week out */
 {
 	color: rgb(228, 228, 228);
 }
 
-.overdue_1w>td /* for table rows < 2 weeks overdue */
+.overdue_1w /* for table rows < 2 weeks overdue */
 {
 	background-color: rgb(216, 178, 92);
 }
 
-.overdue_2w>td /* for table rows > 2 weeks overdue */
+.overdue_2w /* for table rows > 2 weeks overdue */
 {
 	background-color: rgb(221, 128, 71);
 }
