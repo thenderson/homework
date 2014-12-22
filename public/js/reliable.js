@@ -59,7 +59,7 @@ function CommitmentGrid()
 			
 			this.setCellRenderer('due_by', new CellRenderer({
 				render: function(cell, value) {
-					cell.innerHTML=value;
+					cell.innerHTML=moment(value);
 				}
 				}));
 				
