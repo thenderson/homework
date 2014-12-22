@@ -19,10 +19,10 @@ function CommitmentGrid()
 	var self = this;
 	
 	$.datepicker.setDefaults({
-		formatDate: "yy-mm-dd",
+		dateFormat: "yy-mm-dd",
 		numberOfMonths: 2,
 		gotoCurrent: true,
-		defaultDate: 14,
+		defaultDate: 7,
 		showAnim: 'puff'
 	});
 	
@@ -55,7 +55,7 @@ function CommitmentGrid()
 			
 			this.setCellRenderer('due_by', new CellRenderer({ //shades row based on how soon commitment is due
 				render: function(cell, value) {
-					date_due=moment(value)
+					date_due=moment(value, 'YYYY-MM-DD')
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
 					row=self.grid.getRow(cell.rowIndex);
 					how_soon=date_due.diff(moment(),'days');
