@@ -45,13 +45,13 @@ function CommitmentGrid()
 					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 				
-			this.setCellRenderer('metric', new CellRenderer({
+			this.setCellRenderer('metric', new CellRenderer({ //shades row based on how soon commitment is due
 				render: function(cell, value) {
-					row=self.grid.getRowValues(cell.rowIndex);
-					how_soon=moment(row['due_by']).diff(moment(),'days');
+					row=self.grid.getRow(cell.rowIndex);
+					due_by=moment(self.grid.getRowAttribute[cell.rowIndex, 'due_by']);
+					how_soon=due_by.diff(moment(),'days');
 					due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
-					$(cell).addClass(due_class);
-					console.log(how_soon);
+					$(row).addClass(due_class);
 					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
 				}
 				}));
