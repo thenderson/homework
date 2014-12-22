@@ -48,14 +48,15 @@ function CommitmentGrid()
 			this.setCellRenderer('metric', new CellRenderer({ //shades row based on how soon commitment is due
 				render: function(cell, value) {
 					row=self.grid.getRow(cell.rowIndex);
-					due_by_raw=self.grid.getRowAttribute(cell.rowIndex, 'due_by');
+					row_val=self.grid.getRowValues(cell.rowIndex);
+					due_raw=row_val['due_by'];
 					due_by=moment(due_by_raw);
 					how_soon=due_by.diff(moment(),'days');
 					due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 					$(row).addClass(due_class);
 					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
 					
-					console.log(due_by_raw+" -> "+due_by.format("YY MM DD")+" -> "+how_soon+" -> "+due_class);
+					console.log(due_raw+" -> "+due_by.format("YY MM DD")+" -> "+how_soon+" -> "+due_class);
 				}
 				}));
 			
