@@ -105,7 +105,7 @@ margin-left: 0px;
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
 border-bottom: 1px solid rgb(192, 192, 192); 
-border-top: 0px;
+border-top: 1px solid rgb(192, 192, 192);
 }
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
@@ -129,7 +129,10 @@ border-top: 0px;
 #commitments>tbody tr:hover>td,
 #projects>tbody tr:hover>td {
 	/*background-color: rgb(235, 221, 195);*/
-	border-style: dashed;
+	border-top-style: dotted;
+	border-bottom-style: dotted;
+	border-top-color: black;
+	border-bottom-color: black;
 }
 
 .due_nextweek /* for table rows due next week */
@@ -144,12 +147,12 @@ border-top: 0px;
 
 .overdue_1w /* for table rows < 2 weeks overdue */
 {
-	background-color: rgba(216, 178, 92, .8);
+	background-color: rgba(216, 178, 92, .6);
 }
 
 .overdue_2w /* for table rows > 2 weeks overdue */
 {
-	background-color: rgba(221, 128, 71, .8);
+	background-color: rgba(221, 128, 71, .6);
 }
 
 .flash-ok {
