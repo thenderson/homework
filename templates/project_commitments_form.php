@@ -49,39 +49,39 @@
 		<div id="add-commitment" title="Record New Commitment" data-role="dialog">
 			<form role="form-horizontal">
 				<div class="form-group">
-					<label for="inp-req" class="col-sm-2 control-label">Requester</label>
+					<label for="inp-req" class="col-sm-2 control-label align-right">Requester</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="inp-req">
+						<select class="form-control input-sm" id="inp-req">
 							<option>1</option>
 							<option>2</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-prom" class="col-sm-2 control-label">Promiser</label>
+					<label for="inp-prom" class="col-sm-2 control-label align-right">Promiser</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="inp-prom">
+						<select class="form-control input-sm" id="inp-prom">
 							<option>1</option>
 							<option>2</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-comm" class="col-sm-2 control-label">Commitment</label>
+					<label for="inp-comm" class="col-sm-2 control-label align-right">Commitment</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="inp-comm" rows="3"></textarea>
+						<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-due" class="col-sm-2 control-label">Date Due</label>
+					<label for="inp-due" class="col-sm-2 control-label align-right">Date Due</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" id="inp-due"></input>
+						<input type="date" class="form-control input-sm" id="inp-due"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-stat" class="col-sm-2 control-label">Status</label>
+					<label for="inp-stat" class="col-sm-2 control-label align-right">Status</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="inp-stat">
+						<select class="form-control input-sm" id="inp-stat">
 							<option>1</option>
 							<option>2</option>
 						</select>
@@ -96,6 +96,8 @@
 <?php require 'footer.php'; ?>
 
 	<script type="text/javascript">
+		jQuery.datepicker.setDefaults({dateFormat:"yy-mm-dd"});   
+		
 		project_commitments = new CommitmentGrid();
 		project_commitments.name = "project_commitments";
 		
@@ -136,7 +138,7 @@
 				resizable: true,
 				autoOpen: false,
 				height:400,
-				width:400,
+				width:500,
 				modal: true,
 				effect: highlight,
 				buttons: {
