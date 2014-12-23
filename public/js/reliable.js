@@ -253,3 +253,14 @@ function getparam(name){
 	if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
 	return decodeURIComponent(name[1]);
 }
+
+/**
+ * Overloading the default checkDate function to neuter it.
+ */
+EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
+	return { 
+		formattedDate: strDate,
+		sortDate: strDate,
+		dbDate: strDate 
+	};
+};

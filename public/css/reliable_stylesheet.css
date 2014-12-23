@@ -174,7 +174,7 @@ input.error {
 }
 
 
-th a { column headers
+th a { /*column headers*/
 	color: black;
 }
 
