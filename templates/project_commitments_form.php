@@ -153,7 +153,8 @@
 				}
 			});
 			
-			$("#add_com_btn").on("click", function() {
+			$("#new_com_btn").on("click", function() {
+				console.log("click!");
 				$("#add-commitment").dialog("open"); 
 			});
 			
