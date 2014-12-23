@@ -119,14 +119,14 @@
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() {  
+				tableRendered:  function() { updatePaginator(this, "all_projects_paginator"); },	
+				tableLoaded: function() { 
 					all_proj_grid.setCellRenderer('project_number_2', new CellRenderer({ 
 						render: function(cell, value) { 
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
 						}
 					}));
-					updatePaginator(this, "all_projects_paginator"); },
-				tableLoaded: function() { this.renderGrid("all_projects", 'table', 'projects'); },
+					this.renderGrid("all_projects", 'table', 'projects'); },
 			});
 
 			all_proj_grid.loadXML("../includes/load_all_projects.php");			

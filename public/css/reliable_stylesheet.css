@@ -104,7 +104,8 @@ margin-left: 0px;
 #projects>thead>tr>td,
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
-border-bottom: 1px dotted black; 
+	border-bottom: 1px dotted black;
+	border-top: 1px dotted black;
 }
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
