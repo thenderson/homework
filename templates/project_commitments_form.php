@@ -19,7 +19,7 @@
 						</div>
 					</td>
 					<td class="col-sm-3 add_commitment">
-						<button type="button" class="btn btn-default btn-sm">New Commitment</button>
+						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
 					<td class="col-sm-6 paginator" id="paginator"></td>
 				</tr>
@@ -44,6 +44,51 @@
 			<div data-role="content" id="text">
 				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><h4>Deleting commitments cannot be undone. Are you sure?</h4></p>
 			</div>
+		</div>
+		
+		<div id="add-commitment" title="Record New Commitment" data-role="dialog">
+			<form role="form-horizontal">
+				<div class="form-group">
+					<label for="inp-req" class="col-sm-2 control-label">Requester</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="inp-req">
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inp-prom" class="col-sm-2 control-label">Promiser</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="inp-prom">
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inp-desc" class="col-sm-2 control-label">Commitment</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="inp-desc" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inp-due" class="col-sm-2 control-label">Commitment</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="inp-due" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inp-stat" class="col-sm-2 control-label">Commitment</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="inp-stat">
+							<option>1</option>
+							<option>2</option>
+						</select>
+					</div>
+				</div>
+			</form>
+
 		</div>
 		
 	</body>
@@ -85,6 +130,31 @@
 						$(this).dialog("close");
 					}
 				}
+			});
+			
+			$("#add-commitment").dialog({
+				resizable: false,
+				autoOpen: false,
+				height:180,
+				modal: true,
+				buttons: {
+					"Submit": function() {
+						$(this).dialog("close");
+						//project_commitments.AddRow(???);
+					},
+					"Submit+": function() {
+						$(this).dialog("close");
+						//project_commitments.AddRow(???);
+						$(this).dialog("open");
+					},
+					Cancel: function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+			
+			$("#add_com_btn").on("click", function() {
+				$("#add-commitment").dialog("open"); 
 			});
 			
 			$.ajax({
