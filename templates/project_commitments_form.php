@@ -160,7 +160,7 @@
 				$("#add-commitment").dialog("open"); 
 			});
 			
-			$("#inp-due").datePicker({
+			$("#inp-due").datepicker({
 				dateFormat: "yy-mm-dd",
 				numberOfMonths: 2,
 				gotoCurrent: true,
