@@ -91,31 +91,31 @@ margin-left: 0px;
 		font-size: 10px;
 	}
 }
-
-#commitments>thead>tr>th, 
+ 
 #commitments>tbody>tr>th,
 #commitments>tfoot>tr>th,
 #commitments>thead>tr>td,
 #commitments>tbody>tr>td,
-#commitments>tfoot>tr>td,
-#projects>thead>tr>th, 
+#commitments>tfoot>tr>td, 
 #projects>tbody>tr>th,
 #projects>tfoot>tr>th,
 #projects>thead>tr>td,
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
-	border-bottom: 1px dotted black;
-	border-top: 1px dotted black;
+	border-bottom: 1px solid white;
+	border-bottom-style: none;
 }
+
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
-	background: rgb(190, 190, 190);
+	background: rgb(160, 160, 160);
 	color: #555;
 	padding-left: 1px;
 	padding-right: 1px;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	white-space: nowrap; 
+	border-bottom: 2px solid white;
 }
 
 #commitments td,
@@ -125,16 +125,6 @@ margin-left: 0px;
 	padding-right: 1px;
 	padding-left: 1px;
 }
-
-/*
-#commitments>tbody tr:hover>td,
-#projects>tbody tr:hover>td {
-	border-top-style: dotted;
-	border-bottom-style: dotted;
-	border-top-color: black;
-	border-bottom-color: black;
-}
-*/
 
 tbody tr.overdue_2w:hover {
 	background-color: rgba(221, 128, 71, .25);
@@ -183,11 +173,11 @@ input.error {
 	outline: thin auto red;
 }
 
-/*
+
 th a { column headers
-	color: rgb(148, 182, 210);
+	color: black;
 }
-*/
+
 
 h1 a {
 	font-size: 12px;
