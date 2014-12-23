@@ -49,6 +49,12 @@
 		<div id="add-commitment" title="Record New Commitment" data-role="dialog">
 			<form role="form-horizontal">
 				<div class="form-group">
+					<label for="inp-comm" class="col-sm-2 control-label align-right">Commitment</label>
+					<div class="col-sm-10">
+						<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="inp-req" class="col-sm-2 control-label align-right">Requester</label>
 					<div class="col-sm-10">
 						<select class="form-control input-sm" id="inp-req">
@@ -67,15 +73,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-comm" class="col-sm-2 control-label align-right">Commitment</label>
-					<div class="col-sm-10">
-						<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
 					<label for="inp-due" class="col-sm-2 control-label align-right">Date Due</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control input-sm" id="inp-due"></input>
+						<input type="text" class="form-control input-sm" id="inp-due"></input>
 					</div>
 				</div>
 				<div class="form-group">
@@ -96,7 +96,7 @@
 <?php require 'footer.php'; ?>
 
 	<script type="text/javascript">
-		jQuery.datepicker.setDefaults({dateFormat:"yy-mm-dd"});   
+		jQuery.datepicker.setDefaults({dateFormat:$.datepicker.W3C});   
 		
 		project_commitments = new CommitmentGrid();
 		project_commitments.name = "project_commitments";
@@ -163,7 +163,7 @@
 			});
 			
 			$("#inp-due").datepicker({
-				dateFormat: "yy-mm-dd",
+				dateFormat: $.datepicker.W3C,
 				numberOfMonths: 2,
 				gotoCurrent: true,
 				showAnim: 'puff'
