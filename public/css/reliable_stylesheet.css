@@ -103,7 +103,7 @@ margin-left: 0px;
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
 	border-bottom: 1px solid white;
-	border-bottom-style: none;
+	border-bottom: 1px solid white;
 }
 
 #commitments>thead>tr>th,
