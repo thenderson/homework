@@ -67,19 +67,19 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-desc" class="col-sm-2 control-label">Commitment</label>
+					<label for="inp-comm" class="col-sm-2 control-label">Commitment</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="inp-desc" rows="3"></textarea>
+						<textarea class="form-control" id="inp-comm" rows="3"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-due" class="col-sm-2 control-label">Commitment</label>
+					<label for="inp-due" class="col-sm-2 control-label">Date Due</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="inp-due" rows="3"></textarea>
+						<input type="date" class="form-control" id="inp-due"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inp-stat" class="col-sm-2 control-label">Commitment</label>
+					<label for="inp-stat" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-10">
 						<select class="form-control" id="inp-stat">
 							<option>1</option>
@@ -133,10 +133,12 @@
 			});
 			
 			$("#add-commitment").dialog({
-				resizable: false,
+				resizable: true,
 				autoOpen: false,
-				height:180,
+				height:400,
+				width:400,
 				modal: true,
+				effect: highlight,
 				buttons: {
 					"Submit": function() {
 						$(this).dialog("close");
@@ -156,6 +158,13 @@
 			$("#new_com_btn").on("click", function() {
 				console.log("click!");
 				$("#add-commitment").dialog("open"); 
+			});
+			
+			$("#inp-due").datePicker({
+				dateFormat: "yy-mm-dd",
+				numberOfMonths: 2,
+				gotoCurrent: true,
+				showAnim: 'puff'
 			});
 			
 			$.ajax({

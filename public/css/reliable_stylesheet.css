@@ -108,14 +108,13 @@ margin-left: 0px;
 
 #commitments>thead>tr>th,
 #projects>thead>tr>th { /*table header*/
-	background: rgb(160, 160, 160);
-	color: #555;
+	background: white;
 	padding-left: 1px;
 	padding-right: 1px;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	white-space: nowrap; 
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid black;
 }
 
 #commitments td,
