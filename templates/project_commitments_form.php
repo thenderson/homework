@@ -47,50 +47,42 @@
 		</div>
 		
 		<div id="add-commitment" title="Record New Commitment" data-role="dialog">
-			<form role="form-horizontal">
+			<form>
 				<div class="form-group">
-					<label for="inp-comm" class="col-sm-2 control-label align-right">Commitment</label>
-					<div class="col-sm-10">
-						<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inp-req" class="col-sm-2 control-label align-right">Requester</label>
-					<div class="col-sm-10">
-						<select class="form-control input-sm" id="inp-req">
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inp-prom" class="col-sm-2 control-label align-right">Promiser</label>
-					<div class="col-sm-10">
-						<select class="form-control input-sm" id="inp-prom">
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inp-due" class="col-sm-2 control-label align-right">Date Due</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" id="inp-due"></input>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inp-stat" class="col-sm-2 control-label align-right">Status</label>
-					<div class="col-sm-10">
-						<select class="form-control input-sm" id="inp-stat">
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</div>
+					<label for="inp-comm">Commitment</label>
+					<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
 				</div>
 			</form>
-
+			<form class="inline">
+				<div class="form-group">
+					<label for="inp-req">Requester</label>
+					<select class="form-control input-sm" id="inp-req">
+						<option>1</option>
+						<option>2</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="inp-prom">Promiser</label>
+					<select class="form-control input-sm" id="inp-prom">
+						<option>1</option>
+						<option>2</option>
+					</select>
+				</div>
+			</form>
+			<form class = "inline">
+				<div class="form-group">
+					<label for="inp-due">Date Due</label>
+					<input type="text" class="form-control input-sm" id="inp-due"></input>
+				</div>
+				<div class="form-group">
+					<label for="inp-stat">Status</label>
+					<select class="form-control input-sm" id="inp-stat">
+						<option>1</option>
+						<option>2</option>
+					</select>
+				</div>
+			</form>
 		</div>
-		
 	</body>
 	
 <?php require 'footer.php'; ?>
