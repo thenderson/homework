@@ -1,4 +1,4 @@
-var statuses = {'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'};
+var statuses = ['open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'];
 
 function highlightRow(rowId, bgColor, after)
 {
@@ -268,7 +268,8 @@ EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
 
 function populate_select(element, values) {
 	$(values).each(function() {
-		$(element).append($("<option>").attr('value',this.val).text(this.text));
+		$(element).append($("<option>").attr('value',this.values).text(this.text));
 	});
-	console.log(element+values);
+	console.log(element);
+	console.debug(values);
 };
