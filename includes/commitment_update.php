@@ -37,7 +37,7 @@ switch ($column_name) {
 	   if ($new_value === "") 
 		 $new_value = NULL;
 	   else {
-		  $date_info = date_parse_from_format('Y.mm.dd|', $new_value);
+		  $date_info = date_parse_from_format('Y.m.d|', $new_value);
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
 		  error_log(var_dump($date_info));
 		  error_log($new_value);
