@@ -132,7 +132,6 @@
 				height:400,
 				width:500,
 				modal: true,
-				effect: puff,
 				buttons: {
 					"Submit": function() {
 						$(this).dialog("close");
@@ -150,7 +149,9 @@
 			});
 			
 			$("#new_com_btn").on("click", function() {
-				$("#add-commitment").dialog("open"); 
+				$("#add-commitment")
+					.dialog( show: { effect: "puff", duration: 600 }
+					.dialog("open"); 
 			});
 			
 			$("#inp-due").datepicker({
