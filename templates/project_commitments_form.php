@@ -56,14 +56,14 @@
 			<form class="inline">
 				<div class="form-group">
 					<label class="sr-only" for="inp-req">Requester</label>
-					<select class="form-control input-sm" id="inp-req" placeholder="Requester">
+					<select class="col-sm-6 form-control input-sm" id="inp-req" placeholder="Requester">
 						<option>1</option>
 						<option>2</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="sr-only" for="inp-prom">Promiser</label>
-					<select class="form-control input-sm" id="inp-prom" placeholder="Promiser">
+					<select class="col-sm-6 form-control input-sm" id="inp-prom" placeholder="Promiser">
 						<option>1</option>
 						<option>2</option>
 					</select>
