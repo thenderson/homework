@@ -7,9 +7,6 @@ $unique_id = strip_tags($_POST['uniqueid']);
 $new_value = strip_tags($_POST['newvalue']);
 $column_name = strip_tags($_POST['colname']);
 
-error_log('post: '.$_POST['newvalue']);
-error_log('tags stripped: '.$new_value);
-
 // Update database
 switch ($column_name) {
 	case 'project_number':
@@ -39,15 +36,8 @@ switch ($column_name) {
 	   else {
 		  $date_info = date_parse_from_format('Y.m.d|', $new_value);
 		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
-		  error_log(var_dump($date_info));
+		  error_log(print_r($date_info, true));
 		  error_log($new_value);
-		  // ob_start();
-		  // var_dump('date from POST: ', $new_value);
-		  // var_dump('date_info: ', $date_info);
-		  //var_dump('formatted date: ', $new_value);
-		  //$contents = ob_get_contents();
-		  //ob_end_clean();
-		  //error_log($contents);
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
 	   break;
