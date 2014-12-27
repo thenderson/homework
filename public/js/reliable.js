@@ -1,3 +1,5 @@
+var statuses = {'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'};
+
 function highlightRow(rowId, bgColor, after)
 {
 	var rowSelector = $("#grid_" + rowId);
@@ -37,7 +39,7 @@ function CommitmentGrid()
 
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {	
-					return { 'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a' };
+					return { statuses };
 				}}));
 					
 			this.setCellRenderer('actions', new CellRenderer({
@@ -254,7 +256,7 @@ function getparam(name){
 }
 
 /**
- * Overloading the default checkDate function to neuter it.
+ * Overloading the default checkDate function in order to neuter it.
  */
 EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
 	return { 
@@ -262,4 +264,10 @@ EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
 		sortDate: strDate,
 		dbDate: strDate 
 	};
+};
+
+function populate_select(element, values) {
+	$(values).each(function() {
+		$(element).append($("<option>").attr('value',this.val).text(this.text));
+	});
 };
