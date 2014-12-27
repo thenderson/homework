@@ -27,7 +27,7 @@ function CommitmentGrid()
 	
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
-		dateFormat: "yy-mm-dd",
+		dateFormat: $.datepicker.W3C,
       	pageSize: 10,
 		editmode: 'static',
 		editorzoneid: 'editzone',
