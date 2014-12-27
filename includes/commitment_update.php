@@ -7,7 +7,8 @@ $unique_id = strip_tags($_POST['uniqueid']);
 $new_value = strip_tags($_POST['newvalue']);
 $column_name = strip_tags($_POST['colname']);
 
-error_log('newvalue: '.var_dump($new_value));
+error_log('post: '.$_POST['newvalue']);
+error_log('tags stripped: '.$new_value);
 
 // Update database
 switch ($column_name) {
