@@ -181,10 +181,10 @@
 				async: true
 			});
 			
-			$("#inp-rec").selectmenu();
+			$("#inp-req").selectmenu();
 			$("#inp-prom").selectmenu();
 			$("#inp-stat").selectmenu();
 			
-			populate_select("#imp-stat", statuses);
+			populate_select("#inp-stat", statuses);
 		}; 
 	</script>
