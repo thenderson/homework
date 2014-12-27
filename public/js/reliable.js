@@ -39,7 +39,7 @@ function CommitmentGrid()
 
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {	
-					return { statuses };
+					return statuses;
 				}}));
 					
 			this.setCellRenderer('actions', new CellRenderer({
