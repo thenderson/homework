@@ -40,13 +40,13 @@
 		<script src="/commgr/public/js/editablegrid_charts.js" ></script>
 		<script src="/commgr/public/js/reliable.js" ></script>
 							
-		<div id="delete-confirm" title="Delete commitment?" data-role="dialog">   
+		<div id="delete-confirm" class="dialog" title="Delete commitment?" data-role="dialog">   
 			<div data-role="content" id="text">
 				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><h4>Deleting commitments cannot be undone. Are you sure?</h4></p>
 			</div>
 		</div>
 		
-		<div id="add-commitment" title="Record New Commitment" data-role="dialog">
+		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
 			<form>
 				<div class="form-group">
 					<label for="inp-comm">Commitment</label>
@@ -184,7 +184,7 @@
 			$("#inp-rec").selectmenu();
 			$("#inp-prom").selectmenu();
 			$("#inp-stat")
-				.selectmenu();
+				.selectmenu()
 				.selectmenu( "option", { "Open" : "Open", "Closed" : "Closed" } );
 		}; 
 	</script>

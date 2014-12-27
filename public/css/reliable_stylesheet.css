@@ -508,3 +508,8 @@ text-decoration: none;
 .ui-widget { /*datepicker*/
 font-size: .85em;
 }
+
+.dialog {
+display: none;
+}
+}
