@@ -150,7 +150,7 @@
 			
 			$("#new_com_btn").on("click", function() {
 				$("#add-commitment")
-					.dialog( show: { effect: "puff", duration: 600 }
+					.dialog({show: { effect: "puff", duration: 600 }})
 					.dialog("open"); 
 			});
 			
