@@ -270,4 +270,5 @@ function populate_select(element, values) {
 	$(values).each(function() {
 		$(element).append($("<option>").attr('value',this.val).text(this.text));
 	});
+	console.log(element+values);
 };
