@@ -55,16 +55,16 @@
 			</form>
 			<form class="form-inline">
 				<div class="form-group">
-					<label class="sr-only" for="inp-req">Requester</label>
-					<select class="form-control input-sm" id="inp-req" placeholder="Requester">
-						<option>1</option>
+					<label for="inp-req">Requester</label>
+					<select class="form-control input-sm" id="inp-req">
+						<option>Todd Henderson</option>
 						<option>2</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label class="sr-only" for="inp-prom">Promiser</label>
-					<select class="form-control input-sm" id="inp-prom" placeholder="Promiser">
-						<option>1</option>
+					<label for="inp-prom">Promiser</label>
+					<select class="form-control input-sm" id="inp-prom">
+						<option>Todd Henderson</option>
 						<option>2</option>
 					</select>
 				</div>
@@ -77,7 +77,7 @@
 				<div class="form-group">
 					<label for="inp-stat">Status</label>
 					<select class="form-control input-sm" id="inp-stat">
-						<option>1</option>
+						<option>Open</option>
 						<option>2</option>
 					</select>
 				</div>
@@ -180,5 +180,11 @@
 				},
 				async: true
 			});
+			
+			$("#inp-rec").selectmenu();
+			$("#inp-prom").selectmenu();
+			$("#inp-stat")
+				.selectmenu();
+				.selectmenu( "option", { "Open" : "Open", "Closed" : "Closed" } );
 		}; 
 	</script>
