@@ -77,7 +77,7 @@
 				<div class="form-group">
 					<label for="inp-stat">Status</label>
 					<select class="form-control input-sm" id="inp-stat">
-						<option>Open</option>
+						<option>1</option>
 						<option>2</option>
 					</select>
 				</div>
@@ -132,7 +132,7 @@
 				height:400,
 				width:500,
 				modal: true,
-				effect: highlight,
+				effect: puff,
 				buttons: {
 					"Submit": function() {
 						$(this).dialog("close");
@@ -150,7 +150,6 @@
 			});
 			
 			$("#new_com_btn").on("click", function() {
-				console.log("click!");
 				$("#add-commitment").dialog("open"); 
 			});
 			
@@ -185,6 +184,6 @@
 			$("#inp-prom").selectmenu();
 			$("#inp-stat")
 				.selectmenu()
-				.selectmenu( "option", { "Open" : "Open", "Closed" : "Closed" } );
+				.selectmenu( "option", { "1" : "Open", "2" : "Closed" } );
 		}; 
 	</script>
