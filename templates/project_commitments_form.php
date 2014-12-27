@@ -53,23 +53,23 @@
 					<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
 				</div>
 			</form>
-			<form class="inline">
+			<form class="form-inline">
 				<div class="form-group">
 					<label class="sr-only" for="inp-req">Requester</label>
-					<select class="col-sm-6 form-control input-sm" id="inp-req" placeholder="Requester">
+					<select class="form-control input-sm" id="inp-req" placeholder="Requester">
 						<option>1</option>
 						<option>2</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="sr-only" for="inp-prom">Promiser</label>
-					<select class="col-sm-6 form-control input-sm" id="inp-prom" placeholder="Promiser">
+					<select class="form-control input-sm" id="inp-prom" placeholder="Promiser">
 						<option>1</option>
 						<option>2</option>
 					</select>
 				</div>
 			</form>
-			<form class="inline">
+			<form class="form-inline">
 				<div class="form-group">
 					<label for="inp-due">Date Due</label>
 					<input type="text" class="form-control input-sm" id="inp-due"></input>
