@@ -1,4 +1,4 @@
-var statuses = ['open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'];
+var statuses = {'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'};
 
 function highlightRow(rowId, bgColor, after)
 {

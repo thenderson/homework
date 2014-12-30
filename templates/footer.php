@@ -11,7 +11,8 @@
 		</div>
 		<nav class="collapse navbar-collapse" id="collapse2">
 			<ul class="nav navbar-nav">
-				<li><p class="navbar-text"><span class='fa fa-copyright'></span>2014 <a href="http://www.boulderassociates.com"> Boulder Associates Architects, Inc.</a></p></li>
+				<li><p class="navbar-text"><span class='fa fa-copyright'></span>2014 <a href="http://www.boulderassociates.com"> Boulder Associates 
+Architects, Inc.</a></p></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="disabled"><a href="#">terms</a></li>
