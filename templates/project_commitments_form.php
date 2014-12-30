@@ -154,7 +154,7 @@
 			
 			$("#new_com_btn").on("click", function() {
 				$("#add-commitment")
-					.dialog({show: { effect: "puff", duration: 400 }})
+					.dialog({show: { effect: "puff", duration: 300 }})
 					.dialog("open"); 
 			});
 			
