@@ -52,8 +52,6 @@
 					<label for="inp-comm">Commitment</label>
 					<textarea class="form-control input-sm" id="inp-comm" rows="3"></textarea>
 				</div>
-			</form>
-			<form class="form-inline">
 				<div class="form-group">
 					<label for="inp-req">Requester</label>
 					<select class="form-control input-sm" id="inp-req">
@@ -68,8 +66,6 @@
 						<option>2</option>
 					</select>
 				</div>
-			</form>
-			<form class="form-inline">
 				<div class="form-group">
 					<label for="inp-due">Date Due</label>
 					<input type="text" class="form-control input-sm" id="inp-due"></input>
@@ -101,6 +97,20 @@
 				data: { p: pnum },
 				success: function (response) {
 					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");},
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			});
+			
+			$.ajax({
+				url: '../includes/load_project_usernames.php',
+				type: 'POST',
+				dataType: 'JSON',
+				data: { p: pnum },
+				success: function (response) {
+					var proj_users = response;
+					console.debug(proj_users);
+					},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
@@ -184,5 +194,7 @@
 			$("#inp-stat").selectmenu();
 			
 			populate_select("#inp-stat", statuses);
+			populate_select("#inp-req", proj_users);
+			populate_select("#inp-prom", proj_users);
 		}; 
 	</script>
