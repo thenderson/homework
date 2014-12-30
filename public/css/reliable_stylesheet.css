@@ -232,13 +232,13 @@ td.editablegrid-unique_id {
 	th.editablegrid-description,
 	td.editablegrid-description {
 		text-align: left;
-		width: 40%;
+		width: 44%;
 	}
 
 	th.editablegrid-description-wide,
 	td.editablegrid-description-wide {
 		text-align: left;
-		width: 50%;
+		width: 54%;
 	}
 
 	th.editablegrid-promiser,
@@ -268,13 +268,13 @@ td.editablegrid-unique_id {
 	th.editablegrid-metric,
 	td.editablegrid-metric {
 		text-align: center;
-		width: 5%;
+		width: 3%;
 	}
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 		text-align: right;
-		width: 5%;
+		width: 3%;
 	}
 
 	th.editablegrid-project_number_2,
@@ -311,13 +311,13 @@ td.editablegrid-unique_id {
 	th.editablegrid-description,
 	td.editablegrid-description {
 		text-align: left;
-		width: 55%;
+		width: 57%;
 	}
 
 	th.editablegrid-description-wide,
 	td.editablegrid-description-wide  {
 		text-align: left;
-		width: 55%;
+		width: 57%;
 	}
 
 	th.editablegrid-promiser,
@@ -346,7 +346,7 @@ td.editablegrid-unique_id {
 	th.editablegrid-metric,
 	td.editablegrid-metric {
 		text-align: center;
-		width: 5%;
+		width: 3%;
 	}
 
 	th.editablegrid-actions,
