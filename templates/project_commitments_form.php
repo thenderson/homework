@@ -77,8 +77,6 @@
 				<div class="form-group">
 					<label for="inp-stat">Status</label>
 					<select class="form-control input-sm" id="inp-stat">
-						<option>1</option>
-						<option>2</option>
 					</select>
 				</div>
 			</form>
@@ -185,9 +183,6 @@
 			$("#inp-prom").selectmenu();
 			$("#inp-stat").selectmenu();
 			
-			//populate_select("#inp-stat", statuses);
-			$.each(statuses, function(key, value) {
-				$("#inp-stat").append($("<option>").attr('value',key).text(key));
-			});
+			populate_select("#inp-stat", statuses);
 		}; 
 	</script>

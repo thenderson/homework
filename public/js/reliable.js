@@ -267,9 +267,7 @@ EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
 };
 
 function populate_select(element, values) {
-	$(values).each(function() {
-		$(element).append($("<option>").attr('value',this.values).text(this.text));
-	});
-	console.debug(element);
-	console.debug(values);
+	$.each(values, function(key, value) {
+				$([element]).append($("<option>").attr('value',key).text(key));
+			});
 };
