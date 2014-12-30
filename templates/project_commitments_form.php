@@ -64,7 +64,7 @@
 				</div>
 				<div class="form-group">
 					<label for="inp-due">Date Due</label>
-					<input type="text" class="form-control input-sm" id="inp-due"></input>
+					<input type="text" class="form-control input-sm" id="inp-due">
 				</div>
 				<div class="form-group">
 					<label for="inp-stat">Status</label>
