@@ -55,15 +55,11 @@
 				<div class="form-group">
 					<label for="inp-req">Requester</label>
 					<select class="form-control input-sm" id="inp-req">
-						<option>Todd Henderson</option>
-						<option>2</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="inp-prom">Promiser</label>
 					<select class="form-control input-sm" id="inp-prom">
-						<option>Todd Henderson</option>
-						<option>2</option>
 					</select>
 				</div>
 				<div class="form-group">
