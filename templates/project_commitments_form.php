@@ -185,6 +185,9 @@
 			$("#inp-prom").selectmenu();
 			$("#inp-stat").selectmenu();
 			
-			populate_select("#inp-stat", statuses);
+			//populate_select("#inp-stat", statuses);
+			$.each(statuses, function(key, value) {
+				$("#inp-stat").append($("<option>").attr('value',key).text(key));
+			});
 		}; 
 	</script>
