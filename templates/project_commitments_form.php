@@ -104,7 +104,7 @@
 				dataType: 'JSON',
 				data: { p: pnum },
 				success: function (response) {
-					var proj_users = response;
+					proj_users = response;
 					console.debug(proj_users);
 					},
 				error: function(XMLHttpRequest, textStatus, exception) { 
