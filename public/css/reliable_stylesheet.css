@@ -378,6 +378,10 @@ td.editablegrid-unique_id {
 	color: rgb(192, 0, 0);
 }
 
+.fa-copyright {
+	color: black;
+	font-size: 12px;
+
 #commitments i,
 #projects i { /* fontawesome icons */
   cursor: pointer;
