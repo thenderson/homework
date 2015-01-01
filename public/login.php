@@ -1,7 +1,7 @@
 <?php
 
     // configuration
-    require("../includes/config.php"); 
+    require("/includes/config.php"); 
 
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -36,7 +36,7 @@
 				$_SESSION["username"] = $row["username"];
 
                 // Successful login ... redirect to commitment view
-                redirect("/public/index.php");
+                redirect("/index.php");
             }
         }
 		else
