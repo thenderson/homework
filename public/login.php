@@ -36,12 +36,12 @@
 				$_SESSION["username"] = $row["username"];
 
                 // Successful login ... redirect to commitment view
-                redirect("/commgr/public/index.php");
+                redirect("/public/index.php");
             }
         }
 		else
 		{
-			apologize("Multiple users exist?");
+			apologize("?");
 		}
 
         // else apologize

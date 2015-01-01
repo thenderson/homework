@@ -22,7 +22,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect("/commgr/public/login.php");
+            redirect("/public/login.php");
         }
     }
 	

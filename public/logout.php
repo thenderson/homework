@@ -7,6 +7,6 @@
     logout();
 
     // redirect user
-    redirect("/commgr/public");
+    redirect("/public");
 
 ?>

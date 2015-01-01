@@ -35,7 +35,7 @@
                 $rows = $comm_db("SELECT LAST_INSERT_ID() AS user_id");
                 $id = $rows[0]["user_id"];
                 $_SESSION["id"] = $id;		
-                redirect("/commgr/public/index.php");
+                redirect("/public/index.php");
             }
         }
     }
