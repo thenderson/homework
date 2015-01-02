@@ -25,7 +25,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect(ROOT.'/index.php');
+            redirect('index.php');
         }
     }
 	
