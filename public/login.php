@@ -1,7 +1,7 @@
 <?php
 
     // configuration
-    require(ROOT.'/config.php'); 
+    require('../config.php'); 
 
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
