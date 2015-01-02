@@ -21,8 +21,7 @@
         else
         {
             // register user in database
-			error_log('the next line causes an error?');
-			$hash = crypt($_POST('password');
+			$hash = crypt($_POST('password'));
             $result = $comm_db->query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) 
 				VALUES({$_POST["name"]}, {$_POST["company"]}, {$_POST["username"]}, {$hash}, {$_POST["email"]}, 'no_alerts', 'no_reports')");
             
@@ -32,10 +31,10 @@
             }
             else //success
             {
-                $rows = $comm_db("SELECT LAST_INSERT_ID() AS user_id");
+                $rows = $comm_db('SELECT LAST_INSERT_ID() AS user_id');
                 $id = $rows[0]["user_id"];
                 $_SESSION["id"] = $id;		
-                redirect("/public/index.php");
+                redirect('../index.php');
             }
         }
     }
@@ -43,7 +42,7 @@
     {
         // else render form
 		error_log('rendering registration form');
-        render("register_form.php", ["title" => "Register"]);
+        render('register_form.php', ["title" => "Register"]);
     }
 
 ?>
