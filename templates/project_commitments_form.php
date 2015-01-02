@@ -1,5 +1,5 @@
 <?php 
-	require '../includes/config.php';
+	require './includes/config.php';
 	require 'header.html'; 
 ?>
 
@@ -32,13 +32,13 @@
 			</div>
 		</div>
 			
-		<script src="/public/js/editablegrid.js"></script>
-		<script src="/public/js/editablegrid_renderers.js" ></script>
-		<script src="/public/js/editablegrid_editors.js" ></script>
-		<script src="/public/js/editablegrid_validators.js" ></script>
-		<script src="/public/js/editablegrid_utils.js" ></script>
-		<script src="/public/js/editablegrid_charts.js" ></script>
-		<script src="/public/js/reliable.js" ></script>
+		<script src="./public/js/editablegrid.js"></script>
+		<script src="./public/js/editablegrid_renderers.js" ></script>
+		<script src="./public/js/editablegrid_editors.js" ></script>
+		<script src="./public/js/editablegrid_validators.js" ></script>
+		<script src="./public/js/editablegrid_utils.js" ></script>
+		<script src="./public/js/editablegrid_charts.js" ></script>
+		<script src="./public/js/reliable.js" ></script>
 							
 		<div id="delete-confirm" class="dialog" title="Delete commitment?" data-role="dialog">   
 			<div data-role="content" id="text">
@@ -87,7 +87,7 @@
 			pnum = getparam('project');
 			
 			$.ajax({
-				url: '../includes/load_project_name.php',
+				url: './includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
 				data: { p: pnum },
@@ -99,7 +99,7 @@
 			});
 			
 			$.ajax({
-				url: '../includes/load_project_usernames.php',
+				url: './includes/load_project_usernames.php',
 				type: 'POST',
 				dataType: 'JSON',
 				data: { p: pnum },
@@ -168,7 +168,7 @@
 			});
 			
 			$.ajax({
-				url: '../includes/load_project_commitments.php',
+				url: './includes/load_project_commitments.php',
 				type: 'POST',
 				dataType: "text",
 				data: {
