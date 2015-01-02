@@ -66,6 +66,7 @@
 			// load commitments belonging to current user
 			user_comm_grid = new EditableGrid("UserCommitments", {
 				enableSort: true,
+				editMode: 'absolute',
 				dateFormat: "US",
 				pageSize: 5,
 				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
