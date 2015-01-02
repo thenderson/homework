@@ -48,9 +48,15 @@
 
 			catch(PDOException $e) 
 			{
-				trigger_error('SQL Error: ' . $e->getMessage(), E_USER_ERROR);
-				echo 'error';
-				exit;
+				if ($e->getCode()== 23000)
+				{
+					apologize('Username already taken. Select a unique username.');
+				}
+				else
+				{
+					trigger_error('SQL Error: ' . $e->getMessage(), E_USER_ERROR);
+					exit;
+				}
 			}
 
 			$rows = $comm_db->query('SELECT LAST_INSERT_ID() AS user_id');
