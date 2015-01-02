@@ -18,31 +18,50 @@
             // ID-10-T error
             apologize("Error ID10t: password & confirmation don't match.");
         }
-        else
+        else //looks good so far
         {
-            // register user in database
+			$name = strip_tags($_POST['name']);
+			$company = strip_tags($_POST['company']);
+			$username = strip_tags($_POST['username']);
 			$hash = crypt($_POST['password']);
-            $result = $comm_db->query("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) 
-				VALUES({$_POST["name"]}, {$_POST["company"]}, {$_POST["username"]}, {$hash}, {$_POST["email"]}, 'no_alerts', 'no_reports')");
+			$email = strip_tags($_POST['email']);
             
-            if ($result === false)
-            {
-                apologize("Crap. Something went wrong ... duplicate username?");
-            }
-            else //success
-            {
-                $rows = $comm_db('SELECT LAST_INSERT_ID() AS user_id');
-                $id = $rows[0]["user_id"];
-                $_SESSION["id"] = $id;		
-                redirect('../index.php');
-            }
+			$stmt = $comm_db->prepare("INSERT INTO users (name, company, username, hash, email, pref_alerts, pref_reports) 
+				VALUES(?, ?, ?, ?, ?, 'no_alerts', 'no_reports')");
+
+			if (!$stmt)
+			{
+				trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+				echo 'error';
+				exit;
+			}
+
+			try
+			{
+				$stmt->bindParam(1, $name, PDO::PARAM_STR);
+				$stmt->bindParam(2, $company, PDO::PARAM_STR);	
+				$stmt->bindParam(3, $username, PDO::PARAM_STR);	
+				$stmt->bindParam(4, $hash, PDO::PARAM_STR);	
+				$stmt->bindParam(5, $email, PDO::PARAM_STR);	
+				$stmt->execute();
+			}             
+
+			catch(PDOException $e) 
+			{
+				trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+				echo 'error';
+				exit;
+			}
+
+			$rows = $comm_db('SELECT LAST_INSERT_ID() AS user_id');
+			$id = $rows[0]["user_id"];
+			$_SESSION["id"] = $id;		
+			redirect('../index.php');
         }
     }
     else
     {
         // else render form
-		error_log('rendering registration form');
         render('register_form.php', ["title" => "Register"]);
     }
-
 ?>

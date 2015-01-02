@@ -18,15 +18,36 @@
             apologize("You must provide your password.");
         }
 
+		$username = strip_tags($_POST['username']);
+		
         // query database for user
-        $rows = $comm_db->query("SELECT * FROM users WHERE username = '{$_POST["username"]}'");
-		//** wow! this appears ripe for SQL injection attack.
+		$stmt = $comm_db->prepare("SELECT * FROM users WHERE username = ?");
+
+		if (!$stmt)
+		{
+			trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+			echo 'error';
+			exit;
+		}
+
+		try
+		{
+			$stmt->bindParam(1, $username, PDO::PARAM_STR);	
+			$stmt->execute();
+		}             
+
+		catch(PDOException $e) 
+		{
+			trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+			echo 'error';
+			exit;
+		}      
 		
         // if we found user, check password
-        if ($rows->rowCount() == 1)
+        if ($stmt->rowCount() == 1)
         {
             // first (and only) row
-            $row = $rows->fetch(PDO::FETCH_ASSOC);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // compare hash of user's input against hash that's in database
             if (crypt($_POST["password"],$row["hash"]) == $row["hash"])
@@ -41,7 +62,7 @@
         }
 		else
 		{
-			apologize("?");
+			apologize("Login failed: Multiple matching users?");
 		}
 
         // else apologize
