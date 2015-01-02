@@ -10,12 +10,9 @@
 	// set timezone to US PST
 	date_default_timezone_set('America/Los_Angeles');
 	
-	// set path to root
-	define('ROOT', __DIR__);
-	
     // requirements
-    require(ROOT.'/includes/constants.php');
-    require(ROOT.'/includes/functions.php');
+    require('/includes/constants.php');
+    require('/includes/functions.php');
 
     // enable sessions
     session_start();

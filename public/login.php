@@ -36,7 +36,7 @@
 				$_SESSION["username"] = $row["username"];
 
                 // Successful login ... redirect to commitment view
-                redirect(ROOT."/index.php");
+                redirect('../index.php');
             }
         }
 		else
@@ -50,7 +50,7 @@
     else
     {
         // else render form
-        render("login_form.php");
+        render('login_form.php');
     }
 
 ?>

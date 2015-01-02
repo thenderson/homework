@@ -1,7 +1,7 @@
 <?php
 
     // configuration
-    require("config.php");
+    require('../includes/config.php');
 
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -43,7 +43,7 @@
     else
     {
         // else render form
-        render("change_password_form.php");
+        render('change_password_form.php');
     }
 
 ?>

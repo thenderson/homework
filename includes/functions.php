@@ -132,19 +132,19 @@
     function render($template, $values = [])
     {
         // if template exists, render it
-        if (file_exists(ROOT."/templates/$template"))
+        if (file_exists("../templates/$template"))
         {
             // extract variables into local scope
             extract($values);
 
             // render header
-            require(ROOT.'/templates/header.html');
+            require('../templates/header.html');
 
             // render template
-            require(ROOT."/templates/$template");
+            require("../templates/$template");
 
             // render footer
-            require(ROOT.'/templates/footer.php');
+            require('../templates/footer.php');
         }
 
         // else err
