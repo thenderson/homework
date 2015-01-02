@@ -60,18 +60,15 @@
                 redirect('../index.php');
             }
         }
-		else
+		else //user not found or multiple matching users (somehow)
 		{
-			apologize("Login failed: Multiple matching users?");
+			if ($stmt->rowCount() == 0) apologize('Login failed: Invalid username.');
+			else apologize('Login failed: Non-unique username?');
 		}
-
-        // else apologize
-        apologize("Invalid username and/or password.");
     }
     else
     {
         // else render form
         render('login_form.php');
     }
-
 ?>
