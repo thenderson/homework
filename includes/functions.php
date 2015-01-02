@@ -132,7 +132,8 @@
     function render($template, $values = [])
     {
         // if template exists, render it
-        if (file_exists("./templates/$template"))
+        //if (file_exists("./templates/$template"))
+		if (true)
         {
             // extract variables into local scope
             extract($values);
