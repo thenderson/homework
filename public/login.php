@@ -59,6 +59,7 @@
                 // Successful login ... redirect to commitment view
                 redirect('../index.php');
             }
+			else apologize("Invalid username and/or password.");
         }
 		else //user not found or multiple matching users (somehow)
 		{

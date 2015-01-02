@@ -105,7 +105,6 @@
 				data: { p: pnum },
 				success: function (response) {
 					proj_users = response;
-					console.debug(proj_users);
 					populate_select("#inp-req", proj_users);
 					populate_select("#inp-prom", proj_users);
 					},
