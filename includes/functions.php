@@ -110,7 +110,7 @@
         else
         {
             // adapted from http://www.php.net/header
-            $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
+            $protocol = (isset($_SERVER["HTTPS"])) ? 'https' : 'http';
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
@@ -132,19 +132,19 @@
     function render($template, $values = [])
     {
         // if template exists, render it
-        if (file_exists(ROOT."templates/$template"))
+        if (file_exists(ROOT."/templates/$template"))
         {
             // extract variables into local scope
             extract($values);
 
             // render header
-            require(ROOT.'templates/header.html');
+            require(ROOT.'/templates/header.html');
 
             // render template
-            require(ROOT."templates/$template");
+            require(ROOT."/templates/$template");
 
             // render footer
-            require(ROOT.'templates/footer.php');
+            require(ROOT.'/templates/footer.php');
         }
 
         // else err
