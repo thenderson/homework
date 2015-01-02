@@ -14,8 +14,8 @@
 	define('ROOT', __DIR__);
 	
     // requirements
-    require(ROOT.'includes/constants.php');
-    require(ROOT.'includes/functions.php');
+    require(ROOT.'/includes/constants.php');
+    require(ROOT.'/includes/functions.php');
 
     // enable sessions
     session_start();
@@ -25,7 +25,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect(ROOT);
+            redirect(ROOT.'/index.php');
         }
     }
 	
