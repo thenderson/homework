@@ -11,8 +11,8 @@
 	date_default_timezone_set('America/Los_Angeles');
 	
     // requirements
-    require('/includes/constants.php');
-    require('/includes/functions.php');
+    require('constants.php');
+    require('functions.php');
 
     // enable sessions
     session_start();
@@ -22,7 +22,7 @@
     {
         if (empty($_SESSION["id"]))
         {
-            redirect('/public/login.php');
+            redirect('../public/login.php');
         }
     }
 	
