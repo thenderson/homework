@@ -87,7 +87,7 @@
 			pnum = getparam('project');
 			
 			$.ajax({
-				url: './includes/load_project_name.php',
+				url: '../includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
 				data: { p: pnum },
@@ -99,7 +99,7 @@
 			});
 			
 			$.ajax({
-				url: './includes/load_project_usernames.php',
+				url: '../includes/load_project_usernames.php',
 				type: 'POST',
 				dataType: 'JSON',
 				data: { p: pnum },
@@ -168,7 +168,7 @@
 			});
 			
 			$.ajax({
-				url: './includes/load_project_commitments.php',
+				url: '../includes/load_project_commitments.php',
 				type: 'POST',
 				dataType: "text",
 				data: {
