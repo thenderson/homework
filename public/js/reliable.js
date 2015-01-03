@@ -69,7 +69,7 @@ function CommitmentGrid()
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 						$(row).addClass(due_class);
 					}
-				}));
+				}}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 
 		},
