@@ -61,7 +61,8 @@ function CommitmentGrid()
 					row=self.grid.getRow(cell.rowIndex);
 					status=self.grid.getValueAt(cell.rowIndex, 7);
 					console.log('rowindex: '+cell.rowIndex);
-					console.debug(cell);
+					console.debug(row);
+					console.log(self.grid.getColumnIndex('status');
 					how_soon=date_due.diff(moment(),'days');
 					if (status == 'closed') {
 						$(row).addClass('closed');
