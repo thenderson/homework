@@ -70,7 +70,8 @@ margin-left: 0px;
 @media screen and (min-device-width:481px) {
 	#commitments,
 	#projects {
-		margin-bottom: 4px; 
+		margin-bottom: 2px; 
+		margin-top: 2px;
 		border-collapse: collapse; 
 		width: 100%;
 		font-size: 12px;
@@ -85,7 +86,8 @@ margin-left: 0px;
 @media screen and (max-device-width:480px) {
 	#commitments,
 	#projects {
-		margin-bottom: 4px; 
+		margin-bottom: 2px; 
+		margin-top: 2px; 
 		border-collapse: collapse; 
 		width: 100%;
 		font-size: 10px;
@@ -102,8 +104,8 @@ margin-left: 0px;
 #projects>thead>tr>td,
 #projects>tbody>tr>td,
 #projects>tfoot>tr>td {
-	border-bottom: 1px solid white;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid rgb(192,192,192);
+	border-bottom: 1px solid rgb(192,192,192);
 }
 
 #commitments>thead>tr>th,
@@ -119,8 +121,8 @@ margin-left: 0px;
 
 #commitments td,
 #projects td {
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	padding-right: 1px;
 	padding-left: 1px;
 }
@@ -415,13 +417,6 @@ img.icon {
 }
 #toolbar a {
   display: inline-block;
-}
-
-#edition {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	width: 600px;
-	border: 20px;	
 }
 
 a.nobg {  
