@@ -30,7 +30,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: 10,
+      	pageSize: 5,
 		editmode: 'absolute',
 
         tableRendered:  function() { updatePaginator(self.grid); },

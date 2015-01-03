@@ -16,17 +16,25 @@
 		dark med grey			rgb(190, 190, 190)		table header
 */
 @media screen and (min-device-width:481px) {
+	h1, .h1 {font-size: 24px;}
 	h2, .h2 {font-size: 18px;}
 	h3, .h3 {font-size: 14px; margin: 2 0;}
 	h4, .h4 {font-size: 12px;}
 	h5, .h5 {font-size: 11px;}
+	h6, .h6 {font-size: 10px;}
 }
 
 @media screen and (max-device-width:480px) {
+	h1, .h1 {font-size: 20px;}
 	h2, .h2 {font-size: 16px;}
 	h3, .h3 {font-size: 12px; margin: 2 0;}
 	h4, .h4 {font-size: 10px;}
 	h5, .h5 {font-size: 9px;}
+	h6, .h6 {font-size: 8px;}
+}
+
+.padding-8px { /* for aligning page title text */
+	padding: 8px;
 }
 
 .navbar-right,
@@ -44,6 +52,14 @@ padding-left: 0px;
 
 .navbar-text {  /* for aligning footer text */
 margin-left: 0px;
+}
+
+.comm_table_title {
+  background-color: rgb(165, 171, 129); /* olive 4 */
+}
+
+.comm_table_foot {
+  background-color: rgb(200, 204, 179); /* olive 3 */
 }
 
 .nopadding {
@@ -78,8 +94,8 @@ margin-left: 0px;
 	}
 }
 
-#commitments th,
-#projects th { /*table header*/
+#commitments>th,
+#projects>th { /*table header*/
 	background: white;
 	padding-left: 1px;
 	padding-right: 1px;
@@ -139,6 +155,7 @@ tr:hover {
 	color: rgb(192, 192, 192);
 }
 
+
 td:focus {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
@@ -146,8 +163,23 @@ td:focus {
 	outline: rgb(91, 157, 217) auto 5px;
 }
 
+
+input.error {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;	
+	outline: thin auto red;
+}
+
+
 th a { /*column headers*/
 	color: black;
+}
+
+
+h1 a {
+	font-size: 12px;
+	float: right;
 }
 
 a:hover {
@@ -156,7 +188,21 @@ a:hover {
 
 img {
 	border: 0;
-} 
+}
+
+.ok { 
+	background-color: #0a8819; 
+	color: white; 
+	padding: 5px;
+}
+
+input.invalid {
+	background: rgb(192, 0, 0);
+}
+
+#message {
+	width: 100%;
+}  
 
 th.editablegrid-unique_id,
 td.editablegrid-unique_id {
@@ -319,6 +365,10 @@ td.editablegrid-unique_id {
 	}
 }
 
+.fa-plus-square-o { /* insert */
+	color: rgb(148, 182, 210);
+}
+
 .fa-files-o { /* duplicate */
 	color: rgb(0, 0, 0);
 }
@@ -330,6 +380,15 @@ td.editablegrid-unique_id {
 #commitments i,
 #projects i { /* fontawesome icons */
   cursor: pointer;
+}
+img.icon {
+  width: 16px;
+  cursor: pointer;
+}
+#paginator .icon {
+  width: 16px;
+  margin: 3px;
+  vertical-align: middle;
 }
 
 #bar-top {
@@ -343,6 +402,14 @@ td.editablegrid-unique_id {
 	font-size: 90%;
 	padding: 0px;
 	vertical-align: middle;
+}
+
+#toolbar .icon {
+  width: 32px;
+  vertical-align: middle;
+}
+#toolbar a {
+  display: inline-block;
 }
 
 a.nobg {  
@@ -360,8 +427,49 @@ a.nobg:active, #currentpageindex {
 	padding: 1 3;
 	margin: 0 5;
 }
+	
+.nobg span#currentpageindex { padding: 4px 8px; }
 
 a.nobg:focus { outline: 1px; }
+
+#filter { 
+	width: 250px;
+	margin-bottom: 10px; 
+    border: 1px solid #d1d1d1;
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+#addform {
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px #636363;
+  display: none;
+  width: 400px;
+  height: 200px;
+  border-radius: 20px;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -100px;
+  z-index: 1000;
+  border: 1px solid #e1e1e1;
+}
+#addform .row {
+  margin: 10px 0;
+}
+#addform input {
+  width: 380px;
+	padding: 5px 9px;
+	border: solid 1px #e1d1e1;
+	outline: 0;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+}
    
 /*form input:hover, form textarea:hover, form input:focus, form textarea:focus */
 input, textarea { 
@@ -376,6 +484,40 @@ input, textarea {
 	-khtml-border-radius: 5px;
 	line-height: normal;
 	background-color: white;
+}
+
+/*
+input[type=text], input[type=button], textarea {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+-ms-border-radius: 5px;
+-khtml-border-radius: 5px;
+border: 1px solid #c7c6c6;
+outline: medium none;
+padding: 5px;
+margin: 0;
+width: 610px;
+}
+*/
+
+#addform .row.tright {
+  text-align: right;
+}
+.button {
+  border-radius: 3px;
+  padding: 5px 10px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  border: solid 1px #e1d1e1;
+  color: #313131;
+  font-size: 1.3em;
+  background: -webkit-gradient(linear, left top, left 25, from(#f2f2f2), color-stop(4%, #EEEEEE), to(#f2f2f2));
+  background: -moz-linear-gradient(top, #f2f2f2, #EEEEEE 1px, #f2f2f2 25px);
+	
+}
+.button:hover {
+text-decoration: none;
 }
 
 .ui-widget { /*datepicker*/
