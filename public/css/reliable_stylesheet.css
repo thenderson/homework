@@ -419,8 +419,9 @@ img.icon {
 
 #edition {
 	padding-top: 5px;
+	padding-bottom: 5px;
 	width: 600px;
-	border: 0px;	
+	border: 20px;	
 }
 
 a.nobg {  

@@ -62,7 +62,7 @@ function CommitmentGrid()
 					console.debug(row);
 					status=self.grid.getValueAt(cell.rowIndex, 8);
 					how_soon=date_due.diff(moment(),'days');
-					due_class = status == 'closed' ? 'closed' : (how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+					due_class = status == 'closed' ? 'closed' : (how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future')));
 					$(row).addClass(due_class);
 				}
 				}));
