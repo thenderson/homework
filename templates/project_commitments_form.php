@@ -243,7 +243,7 @@
 				content: 'Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'});
 				
-			$('#add_commitment').tooltip({
+			$('#new_com_btn').tooltip({
 				content: 'Record a new commitment'});	
 		});
 	</script>
