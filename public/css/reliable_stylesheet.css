@@ -93,30 +93,16 @@ margin-left: 0px;
 		font-size: 10px;
 	}
 }
- 
-#commitments>tbody>tr>th,
-#commitments>tfoot>tr>th,
-#commitments>thead>tr>td,
-#commitments>tbody>tr>td,
-#commitments>tfoot>tr>td, 
-#projects>tbody>tr>th,
-#projects>tfoot>tr>th,
-#projects>thead>tr>td,
-#projects>tbody>tr>td,
-#projects>tfoot>tr>td {
-	border-bottom: 1px solid rgb(192,192,192);
-	border-bottom: 1px solid rgb(192,192,192);
-}
 
-#commitments>thead>tr>th,
-#projects>thead>tr>th { /*table header*/
+#commitments>th,
+#projects>th { /*table header*/
 	background: white;
 	padding-left: 1px;
 	padding-right: 1px;
 	padding-top: 4px;
-	padding-bottom: 4px;
+	padding-bottom: 2px;
 	white-space: nowrap; 
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid rgb(192,192,192);
 }
 
 #commitments td,
@@ -125,6 +111,9 @@ margin-left: 0px;
 	padding-bottom: 6px;
 	padding-right: 1px;
 	padding-left: 1px;
+	line-height: normal;
+	border-bottom: 1px solid rgb(192,192,192);
+	border-bottom: 1px solid rgb(192,192,192);
 }
 
 tbody tr.overdue_2w:hover {
@@ -140,6 +129,10 @@ tbody tr.due_nextweek:hover {
 }
 
 tbody tr.due_future:hover {
+	background-color: rgba(228, 228, 228, .5);
+}
+
+tr:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
@@ -162,14 +155,14 @@ tbody tr.due_future:hover {
 	color: rgb(192, 192, 192);
 }
 
-/*
+
 td:focus {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
 	outline: rgb(91, 157, 217) auto 5px;
 }
-*/
+
 
 input.error {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px red;
@@ -489,7 +482,7 @@ input, textarea {
 	-o-border-radius: 5px;
 	-ms-border-radius: 5px;
 	-khtml-border-radius: 5px;
-	line-height: initial;
+	line-height: normal;
 	background-color: white;
 }
 
