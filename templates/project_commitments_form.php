@@ -155,7 +155,7 @@
 				modal: true,
 				buttons: {
 					"Submit": function() {
-						var data = $('form').serializeArray();
+						var data = $('#add_commitment').serializeArray();
 						$(this).dialog("close");
 						console.debug(data);
 						//project_commitments.AddRow(???);
@@ -213,35 +213,35 @@
 		
 		// activate tooltip
 		$(document).ready(function() {
-			$('th[".editablegrid-task_id"]').tooltip({
+			$('th .editablegrid-task_id').tooltip({
 				content: '<span>Unique ID for the request. Not editable.</span>'});
 			
-			$('th[".editablegrid-description"]').tooltip({
+			$('th .editablegrid-description').tooltip({
 				content: '<span>Descibe what work products shall be handed-off to whom in \
 				what form, via what method & at what level of completion.</span>'});
 			
-			$('th[".editablegrid-promiser"]').tooltip({
+			$('th .editablegrid-promiser').tooltip({
 				content: '<span>Select the person who is promising the work described.</span>'});
 			
-			$('th[".editablegrid-requester"]').tooltip({
+			$('th .editablegrid-requester').tooltip({
 				content: '<span>Select the person who is asking \
 				for the work described. If the promiser = the requester, this will be considered a \
 				personal workplan item and may not appear on the team workplan.</span>'});
 				
-			$('th[".editablegrid-due_by"]').tooltip({
+			$('th .editablegrid-due_by').tooltip({
 				content: '<span>Select the date when the work product described be handed-off.</span>'});
 			
-			$('th[".editablegrid-status"]').tooltip({
+			$('th .editablegrid-status').tooltip({
 				content: '<span>Open: Commitment is not complete. \n\
 				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
 				In Progress: Work on the request has begun but is incomplete. \n\
 				Deferred: The request is set aside indefinitely. \n\
 				Unknown: The promiser and/or requester are not available to status the commitment.</span>'});
 				
-			$('th[".editablegrid-metric"]').tooltip({
+			$('th .editablegrid-metric').tooltip({
 				content: '<span>Overdue, complete, anticipated, improvised.</span>'});
 			
-			$('th[".editablegrid-actions"]').tooltip({
+			$('th .editablegrid-actions').tooltip({
 				content: '<span>Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.</span>'});
 		});
