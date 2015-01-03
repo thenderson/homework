@@ -52,14 +52,14 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-comm">Description</label>
 					<div class="controls">
-						<textarea class="form-control input-sm" id="inp-comm" rows="4"></textarea>
+						<textarea class="form-control input-sm" id="inp-comm" name="description" rows="4"></textarea>
 					</div>
 				</div>
 
 				<div class="control-group">
 					<label class="control-label" for="inp-req">Requester</label>
 					<div class="controls">
-						<select class="input-sm" id="inp-req" style="width: 200px">
+						<select class="input-sm" id="inp-req" name="requester" style="width: 200px">
 						</select>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-prom">Promiser</label>
 					<div class="controls">
-						<select class="input-sm" id="inp-prom" style="width: 200px">
+						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px">
 						</select>
 					</div>
 				</div>
@@ -75,14 +75,14 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-due">Date Due</label>
 					<div class="controls">
-						<input type="text" class="input-sm" id="inp-due" style="width: 200px">
+						<input type="text" class="input-sm" id="inp-due" name="date_due" style="width: 200px">
 					</div>
 				</div>
 				
 				<div class="control-group">
 					<label class="control-label" for="inp-stat">Status</label>
 					<div class="controls">
-						<select class="input-sm" id="inp-stat" style="width: 200px">
+						<select class="input-sm" id="inp-stat" name="status" style="width: 200px">
 						</select>
 					</div>
 				</div>
@@ -118,9 +118,7 @@
 				type: 'POST',
 				dataType: 'JSON',
 				data: { p: pnum },
-				success: function (response) {
-					proj_users = response;
-					console.debug(proj_users);
+				success: function (proj_users) {
 					populate_select_obj("#inp-req", proj_users);
 					populate_select_obj("#inp-prom", proj_users);
 					},
@@ -150,7 +148,7 @@
 			$("#add-commitment").dialog({
 				resizable: true,
 				autoOpen: false,
-				height:400,
+				height:450,
 				width:300,
 				modal: true,
 				buttons: {
@@ -213,7 +211,7 @@
 		
 		// activate tooltip
 		$(document).ready(function() {
-			$('th .editablegrid-task_id a').tooltip({
+			$('.editablegrid-task_id').tooltip({
 				content: '<span>Unique ID for the request. Not editable.</span>'});
 			
 			$('th .editablegrid-description a').tooltip({
