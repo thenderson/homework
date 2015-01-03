@@ -153,10 +153,13 @@
 				modal: true,
 				buttons: {
 					"Submit": function() {
-						var data = $('#comm_form').serializeArray();
+						var data = {};
+						$.each($('#comm_form').serializeArray(), function(i, field) {
+							data[field.name] = field.value;
+						});
 						$(this).dialog("close");
 						console.debug(data);
-						project_commitments.AddRow([data[0],data[1],data[2],data[3],data[4]]);
+						project_commitments.AddRow(data);
 					},
 					"Submit+": function() {
 						$(this).dialog("close");
