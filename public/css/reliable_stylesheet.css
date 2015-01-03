@@ -84,7 +84,7 @@ margin-left: 0px;
 	padding-left: 1px;
 	padding-right: 1px;
 	padding-top: 4px;
-	padding-bottom: 2px;
+	padding-bottom: 0px;
 	white-space: nowrap; 
 	border-bottom: 2px solid rgb(192,192,192);
 }
@@ -116,7 +116,8 @@ tbody tr.due_future:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
-tr:hover {
+#commitments tr:hover,
+#projects tr:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
@@ -343,6 +344,11 @@ td.editablegrid-unique_id {
 	font-size: 90%;
 	padding: 0px;
 	vertical-align: middle;
+}
+
+a.paginator {
+	padding: 1 3;
+	margin: 0 5;
 }
 
 a.nobg {  
