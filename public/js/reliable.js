@@ -143,31 +143,36 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 };
 
 
-CommitmentGrid.prototype.AddRow = function(index) 
+CommitmentGrid.prototype.AddRow = function(values) 
 {
 	var self = this;
-	var rowId = self.grid.getRowId(index);
 
     $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
 		dataType: "json",
 		data: {
-			projectnumber: getparam('project')
+			projectnumber: getparam('project'),
+			desc: values['description'],
+			prom: values['promiser'],
+			req: values['requester'],
+			due: values['date_due'],
+			stat: values['status']
 		},
 		success: function (response) 
 		{ 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
-			for (var r = 0; r < self.grid.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
+			var rowCount = self.grid.getRowCount();
+			for (var r = 0; r < rowCount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
 			// add new row
-			self.grid.insertAfter(index, newRowId, response[0]);
+			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(rowId, "error");
+			//highlight(rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true

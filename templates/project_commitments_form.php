@@ -156,7 +156,7 @@
 						var data = $('#comm_form').serializeArray();
 						$(this).dialog("close");
 						console.debug(data);
-						//project_commitments.AddRow(???);
+						project_commitments.AddRow({data[0],data[1],data[2],data[3],data[4]});
 					},
 					"Submit+": function() {
 						$(this).dialog("close");
@@ -240,7 +240,10 @@
 				content: '<span>Overdue, complete, anticipated, improvised.</span>'});
 			
 			$('th .editablegrid-actions a').tooltip({
-				content: '<span>Delete or duplicate. Note: \
-				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.</span>'});
+				content: 'Delete or duplicate. Note: \
+				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'});
+				
+			$('#add_commitment').tooltip({
+				content: 'Record a new commitment'});	
 		});
 	</script>
