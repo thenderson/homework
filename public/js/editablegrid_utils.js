@@ -214,7 +214,7 @@ EditableGrid.prototype.autoWidth = function (element)
  */
 EditableGrid.prototype.autoHeight = function (element) 
 {
-	window.alert('offsetHeight: '+element.offsetHeight+' paddingTop: '+this.paddingTop(element)+' paddingBottom: '+this.paddingBottom(element)+' borderTop: '+this.borderTop(element)+' borderBottom: '+this.borderBottom(element));
+	//console.log('offsetHeight: '+element.offsetHeight+' paddingTop: '+this.paddingTop(element)+' paddingBottom: '+this.paddingBottom(element)+' borderTop: '+this.borderTop(element)+' borderBottom: '+this.borderBottom(element));
 	return element.offsetHeight - this.paddingTop(element) - this.paddingBottom(element) - this.borderTop(element) - this.borderBottom(element);
 };
 
