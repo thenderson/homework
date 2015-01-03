@@ -275,3 +275,9 @@ function populate_select(element, values) {
 		$(element).append($("<option>").attr('value',key).text(key));
 	});
 };
+
+function populate_select_obj(element, objects) {
+	$.each(objects, function(key, object) {
+		$(element).append($("<option>").attr('value',object['user_id']).text(object['name']));
+	});
+};

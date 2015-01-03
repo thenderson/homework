@@ -75,7 +75,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-due">Date Due</label>
 					<div class="controls">
-						<input type="text" class="input-sm" id="inp-due">
+						<input type="text" class="input-sm" id="inp-due" style="width: 200px">
 					</div>
 				</div>
 				
@@ -121,8 +121,8 @@
 				success: function (response) {
 					proj_users = response;
 					console.debug(proj_users);
-					populate_select("#inp-req", proj_users);
-					populate_select("#inp-prom", proj_users);
+					populate_select_obj("#inp-req", proj_users);
+					populate_select_obj("#inp-prom", proj_users);
 					},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
@@ -150,12 +150,14 @@
 			$("#add-commitment").dialog({
 				resizable: true,
 				autoOpen: false,
-				height:400,
-				width:500,
+				height:600,
+				width:300,
 				modal: true,
 				buttons: {
 					"Submit": function() {
+						var data = $('form').serializeArray();
 						$(this).dialog("close");
+						console.debug(data);
 						//project_commitments.AddRow(???);
 					},
 					"Submit+": function() {
