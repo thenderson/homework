@@ -479,10 +479,27 @@ a.nobg:focus { outline: 1px; }
 }
    
 form input:hover, form textarea:hover, form input:focus, form textarea:focus { 
-	border-color: #a1a1a1; 
+	border-color: rgb(200, 204, 179); 
 	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+	padding: 5px;
+	margin: 0;
 }
+
+/*
+input[type=text], input[type=button], textarea {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+-ms-border-radius: 5px;
+-khtml-border-radius: 5px;
+border: 1px solid #c7c6c6;
+outline: medium none;
+padding: 5px;
+margin: 0;
+width: 610px;
+}
+*/
 
 #addform .row.tright {
   text-align: right;

@@ -232,7 +232,7 @@ TextCellEditor.prototype.getEditor = function(element, value)
 	var autoHeight = this.editablegrid.autoHeight(element);
 	if (this.autoHeight) htmlInput.style.height = autoHeight + 'px'; // auto-adapt height to cell
 	htmlInput.value = this.editorValue(value);
-	console.log(autoHeight);
+	//console.log(autoHeight);
 	
 	// listen to keyup to check validity and update style of input field 
 	htmlInput.onkeyup = function(event) { this.celleditor.updateStyle(this); };
