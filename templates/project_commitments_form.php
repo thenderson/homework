@@ -156,7 +156,7 @@
 						var data = $('#comm_form').serializeArray();
 						$(this).dialog("close");
 						console.debug(data);
-						project_commitments.AddRow({data[0],data[1],data[2],data[3],data[4]});
+						project_commitments.AddRow([data[0],data[1],data[2],data[3],data[4]]);
 					},
 					"Submit+": function() {
 						$(this).dialog("close");
