@@ -478,7 +478,8 @@ a.nobg:focus { outline: 1px; }
 	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
 }
    
-form input:hover, form textarea:hover, form input:focus, form textarea:focus { 
+/*form input:hover, form textarea:hover, form input:focus, form textarea:focus */
+input, textarea { 
 	border-color: rgb(200, 204, 179); 
 	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
