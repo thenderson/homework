@@ -59,7 +59,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-req">Requester</label>
 					<div class="controls">
-						<select class="input-medium" id="inp-req">
+						<select class="input-sm" id="inp-req" style="width: 200px">
 						</select>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-prom">Promiser</label>
 					<div class="controls">
-						<select class="input-medium" id="inp-prom">
+						<select class="input-sm" id="inp-prom">
 						</select>
 					</div>
 				</div>
@@ -75,14 +75,14 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-due">Date Due</label>
 					<div class="controls">
-						<input type="date" class="input-medium" id="inp-due">
+						<input type="text" class="input-sm" id="inp-due">
 					</div>
 				</div>
 				
 				<div class="control-group">
 					<label class="control-label" for="inp-stat">Status</label>
 					<div class="controls">
-						<select class="input-medium" id="inp-stat">
+						<select class="input-sm" id="inp-stat">
 						</select>
 					</div>
 				</div>
@@ -210,39 +210,36 @@
 		
 		// activate tooltip
 		$(document).ready(function() {
-			$('th[.editablegrid-project_number]').tooltip({
-			content: '<span>The specific project that the work contributes to.</span>'});
-			
 			$('th[.editablegrid-task_id]').tooltip({
-			content: '<span>Unique ID for the request. Not editable.</span>'});
+				content: '<span>Unique ID for the request. Not editable.</span>'});
 			
 			$('th[.editablegrid-description]').tooltip({
-			content: '<span>Descibe what work products shall be handed-off to whom in \
+				content: '<span>Descibe what work products shall be handed-off to whom in \
 				what form, via what method & at what level of completion.</span>'});
 			
 			$('th[.editablegrid-promiser]').tooltip({
-			content: '<span>Select the person who is promising the work described.</span>'});
+				content: '<span>Select the person who is promising the work described.</span>'});
 			
 			$('th[.editablegrid-requester]').tooltip({
-			content: '<span>Select the person who is asking \
+				content: '<span>Select the person who is asking \
 				for the work described. If the promiser = the requester, this will be considered a \
 				personal workplan item and may not appear on the team workplan.</span>'});
 				
 			$('th[.editablegrid-due_by]').tooltip({
-			content: '<span>Select the date when the work product described be handed-off.</span>'});
+				content: '<span>Select the date when the work product described be handed-off.</span>'});
 			
 			$('th[.editablegrid-status]').tooltip({
-			content: '<span>Open: Commitment is not complete. \n\
+				content: '<span>Open: Commitment is not complete. \n\
 				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
 				In Progress: Work on the request has begun but is incomplete. \n\
 				Deferred: The request is set aside indefinitely. \n\
 				Unknown: The promiser and/or requester are not available to status the commitment.</span>'});
 				
 			$('th[.editablegrid-metric]').tooltip({
-			content: '<span>Overdue, complete, anticipated, improvised.</span>'});
+				content: '<span>Overdue, complete, anticipated, improvised.</span>'});
 			
 			$('th[.editablegrid-actions]').tooltip({
-			content: '<span>Delete or duplicate. Note: \
+				content: '<span>Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.</span>'});
 		});
 	</script>
