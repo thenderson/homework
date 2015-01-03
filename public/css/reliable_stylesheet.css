@@ -346,7 +346,7 @@ td.editablegrid-unique_id {
 	vertical-align: middle;
 }
 
-a.paginator {
+.paginator a{
 	padding: 1 3;
 	margin: 0 5;
 }
