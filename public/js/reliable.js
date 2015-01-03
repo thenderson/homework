@@ -59,12 +59,16 @@ function CommitmentGrid()
 					date_due=moment(value, 'YYYY-MM-DD')
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
 					row=self.grid.getRow(cell.rowIndex);
-					console.debug(row);
 					status=self.grid.getValueAt(cell.rowIndex, 8);
+					console.log(status);
 					how_soon=date_due.diff(moment(),'days');
-					due_class = status == 'closed' ? 'closed' : (how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future')));
-					$(row).addClass(due_class);
-				}
+					if (status == 'closed') {
+						$(row).addClass('closed');
+					}
+					else {
+						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+						$(row).addClass(due_class);
+					}
 				}));
 				
 			this.renderGrid('project_commitments', 'table', 'commitments'); 

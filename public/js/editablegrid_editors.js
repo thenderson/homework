@@ -229,7 +229,7 @@ TextCellEditor.prototype.getEditor = function(element, value)
 	if (this.fieldSize > 0) htmlInput.setAttribute("size", this.fieldSize);
 	else htmlInput.style.width = this.editablegrid.autoWidth(element) + 'px'; // auto-adapt width to cell, if no length specified 
 
-	var autoHeight = this.editablegrid.autoHeight(element);
+	var autoHeight = this.editablegrid.autoHeight(element) + 5;
 	if (this.autoHeight) htmlInput.style.height = autoHeight + 'px'; // auto-adapt height to cell
 	htmlInput.value = this.editorValue(value);
 
