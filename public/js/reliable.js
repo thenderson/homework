@@ -31,8 +31,7 @@ function CommitmentGrid()
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
       	pageSize: 10,
-		editmode: 'static',
-		editorzoneid: 'editzone',
+		editmode: 'absolute',
 
         tableRendered:  function() { updatePaginator(self.grid); },
 		tableLoaded: function() { 
