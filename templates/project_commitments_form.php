@@ -167,10 +167,6 @@
 		}; 
 		
 		// activate tooltip
-		// handle jQuery plugin naming conflict between jQuery UI and Bootstrap
-		$.widget.bridge('uibutton', $.ui.button);
-		$.widget.bridge('uitooltip', $.ui.tooltip);
-
 		$(document).ready(function() {
 			$('.editablegrid-task_id').uitooltip({
 				content: '<span>Unique ID for the request. Not editable.</span>'});
