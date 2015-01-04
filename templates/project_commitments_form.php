@@ -39,57 +39,9 @@
 		<script src="../public/js/editablegrid_utils.js" ></script>
 		<!--<script src="../public/js/editablegrid_charts.js" ></script>-->
 		<script src="../public/js/reliable.js" ></script>
-							
-		<div id="delete-confirm" class="dialog" title="Delete commitment?" data-role="dialog">   
-			<div data-role="content" id="text">
-				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><h4>Deleting commitments cannot be undone. Are you sure?</h4></p>
-			</div>
-		</div>
-		
-		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
-			<form class='form-horizontal' id='comm_form'>
-			
-				<div class="control-group">
-					<label class="control-label" for="inp-comm">Description</label>
-					<div class="controls">
-						<textarea class="form-control input-sm" id="inp-comm" name="description" rows="4"></textarea>
-					</div>
-				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="inp-req">Requester</label>
-					<div class="controls">
-						<select class="input-sm" id="inp-req" name="requester" style="width: 200px">
-						</select>
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<label class="control-label" for="inp-prom">Promiser</label>
-					<div class="controls">
-						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px">
-						</select>
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<label class="control-label" for="inp-due">Date Due</label>
-					<div class="controls">
-						<input type="text" class="input-sm" id="inp-due" name="date_due" style="width: 200px">
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<label class="control-label" for="inp-stat">Status</label>
-					<div class="controls">
-						<select class="input-sm" id="inp-stat" name="status" style="width: 200px">
-						</select>
-					</div>
-				</div>
-			</form>			
-		</div>
-	</body>
-	
+<?php require 'dialogs.html'; ?>
+	</body>	
 <?php require 'footer.php'; ?>
 
 	<script type="text/javascript">
@@ -161,9 +113,12 @@
 						project_commitments.AddRow(data);
 					},
 					"Submit+": function() {
-						$(this).dialog("close");
-						//project_commitments.AddRow(???);
-						$(this).dialog("open");
+						var data = {};
+						$.each($('#comm_form').serializeArray(), function(i, field) {
+							data[field.name] = field.value;
+						});
+						project_commitments.AddRow(data);
+						$(this).dialog("close").delay(500).dialog("open");
 					},
 					Cancel: function() {
 						$(this).dialog("close");
@@ -212,6 +167,10 @@
 		}; 
 		
 		// activate tooltip
+		// handle jQuery plugin naming conflict between jQuery UI and Bootstrap
+		$.widget.bridge('uibutton', $.ui.button);
+		$.widget.bridge('uitooltip', $.ui.tooltip);
+
 		$(document).ready(function() {
 			$('.editablegrid-task_id').tooltip({
 				content: '<span>Unique ID for the request. Not editable.</span>'});

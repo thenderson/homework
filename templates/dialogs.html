@@ -1,0 +1,48 @@
+		<div id="delete-confirm" class="dialog" title="Delete commitment?" data-role="dialog">   
+			<div data-role="content" id="text">
+				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><h4>Deleting commitments cannot be undone. Are you sure?</h4></p>
+			</div>
+		</div>
+		
+		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
+			<form class='form-horizontal' id='comm_form'>
+			
+				<div class="control-group">
+					<label class="control-label" for="inp-comm">Description</label>
+					<div class="controls">
+						<textarea class="form-control input-sm" id="inp-comm" name="description" rows="4"></textarea>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inp-req">Requester</label>
+					<div class="controls">
+						<select class="input-sm" id="inp-req" name="requester" style="width: 200px">
+						</select>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="inp-prom">Promiser</label>
+					<div class="controls">
+						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px">
+						</select>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="inp-due">Date Due</label>
+					<div class="controls">
+						<input type="text" class="input-sm" id="inp-due" name="date_due" style="width: 200px">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="inp-stat">Status</label>
+					<div class="controls">
+						<select class="input-sm" id="inp-stat" name="status" style="width: 200px">
+						</select>
+					</div>
+				</div>
+			</form>			
+		</div>

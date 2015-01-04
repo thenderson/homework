@@ -146,7 +146,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 CommitmentGrid.prototype.AddRow = function(values) 
 {
 	var self = this;
-	console.debug(values);
+	
     $.ajax({
 		url: '../includes/commitment_add.php',
 		type: 'POST',
