@@ -172,22 +172,22 @@
 		$.widget.bridge('uitooltip', $.ui.tooltip);
 
 		$(document).ready(function() {
-			$('.editablegrid-task_id').tooltip({
+			$('.editablegrid-task_id').uitooltip({
 				content: '<span>Unique ID for the request. Not editable.</span>'});
 			
-			$('th .editablegrid-description a').tooltip({
+			$('th .editablegrid-description a').uitooltip({
 				content: '<span>Descibe what work products shall be handed-off to whom in \
 				what form, via what method & at what level of completion.</span>'});
 			
-			$('th .editablegrid-promiser a').tooltip({
+			$('th .editablegrid-promiser a').uitooltip({
 				content: '<span>Select the person who is promising the work described.</span>'});
 			
-			$('th .editablegrid-requester a').tooltip({
+			$('th .editablegrid-requester a').uitooltip({
 				content: '<span>Select the person who is asking \
 				for the work described. If the promiser = the requester, this will be considered a \
 				personal workplan item and may not appear on the team workplan.</span>'});
 				
-			$('th .editablegrid-due_by a').tooltip({
+			$('th .editablegrid-due_by a').uitooltip({
 				content: '<span>Select the date when the work product described be handed-off.</span>'});
 			
 			$('th .editablegrid-status a').tooltip({
@@ -204,7 +204,7 @@
 				content: 'Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'});
 				
-			$('#new_com_btn').tooltip({
+			$('#new_com_btn').uitooltip({
 				content: 'Record a new commitment'});	
 		});
 	</script>
