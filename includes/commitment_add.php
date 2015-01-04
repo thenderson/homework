@@ -38,11 +38,11 @@ try
 {
 	$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
 	$stmt->bindParam(2, $new_Id, PDO::PARAM_STR);
-	$stmt->bingParam(3, $description, PDO::PARAM_STR);
-	$stmt->bingParam(4, $requester, PDO::PARAM_INT);
-	$stmt->bingParam(5, $promiser, PDO::PARAM_INT);
-	$stmt->bingParam(6, $due, PDO::PARAM_STR);
-	$stmt->bingParam(7, $status, PDO::PARAM_STR);
+	$stmt->bindParam(3, $description, PDO::PARAM_STR);
+	$stmt->bindParam(4, $requester, PDO::PARAM_INT);
+	$stmt->bindParam(5, $promiser, PDO::PARAM_INT);
+	$stmt->bindParam(6, $due, PDO::PARAM_STR);
+	$stmt->bindParam(7, $status, PDO::PARAM_STR);
 	$stmt->execute();
 }             
 

@@ -173,7 +173,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
 			//highlight(rowId, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+			alert("Ajax failure\n" + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
 	});		

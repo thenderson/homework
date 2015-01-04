@@ -158,7 +158,6 @@
 							data[field.name] = field.value;
 						});
 						$(this).dialog("close");
-						console.debug(data);
 						project_commitments.AddRow(data);
 					},
 					"Submit+": function() {
