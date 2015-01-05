@@ -51,13 +51,12 @@
 		project_commitments.name = "project_commitments";
 		
 		window.onload = function() {
-			pnum = getparam('project');
 			
 			$.ajax({
 				url: '../includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
-				data: { p: pnum },
+				data: { p: getparam('project') },
 				success: function (response) {
 					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");},
 				error: function(XMLHttpRequest, textStatus, exception) { 

@@ -56,13 +56,13 @@
 		</div>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+
 	console.log("this code executed");
 		$.ajax({
 			url: '../includes/load_project_usernames.php',
 			type: 'POST',
 			dataType: 'JSON',
-			data: { p: pnum },
+			data: { p: getparam('project') },
 			success: function (proj_users) {
 				populate_select_obj("#inp-req", proj_users);
 				populate_select_obj("#inp-prom", proj_users);
@@ -91,7 +91,7 @@
 		$("#add-commitment").dialog({
 			resizable: true,
 			autoOpen: false,
-			height:450,
+			height:500,
 			width:300,
 			modal: true,
 			buttons: {
