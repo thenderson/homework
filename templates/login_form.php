@@ -48,3 +48,6 @@
 <br>
 <br>
 <br>
+<script>
+	$('#username').uitooltip({
+		content: 'Record a new commitment'});	
