@@ -10,8 +10,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-comm">Description</label>
 					<div class="controls">
-						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products shall be handed-off to whom, in
-				what form, via what method & at what level of completion." rows="4"></textarea>
+						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5"></textarea>
 					</div>
 				</div>
 
@@ -29,7 +28,7 @@
 						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px">
 						</select>
 					</div>
-					<p class="form-control-static">If the promiser = the requester, this will be considered a personal workplan item and may not appear on the team workplan.</p>
+					<p class="form-control-static">If promiser = requester, this will be considered a personal workplan item.</p>
 				</div>
 				
 				<div class="control-group">
@@ -43,6 +42,13 @@
 					<label class="control-label" for="inp-stat">Status</label>
 					<div class="controls">
 						<select class="input-sm" id="inp-stat" name="status" style="width: 200px">
+							<option value="open-high">"open: high priority"</option>
+							<option value="open" selected>"open"</option>
+							<option value="open-low">"open: low priority"</option>
+							<option value="closed">"closed"</option>
+							<option value="in progress">"in progress"</option>
+							<option value="deferred">"deferred"</option>
+							<option value="unknown">"unknown"</option>
 						</select>
 					</div>
 				</div>

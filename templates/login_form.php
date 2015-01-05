@@ -48,6 +48,3 @@
 <br>
 <br>
 <br>
-<script>
-	$(function () { $("[data-toggle='tooltip']").tooltip(); });
-</script>

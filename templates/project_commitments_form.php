@@ -118,7 +118,7 @@
 							data[field.name] = field.value;
 						});
 						project_commitments.AddRow(data);
-						$(this).dialog("close").delay(500).dialog("open");
+						$(this).dialog("close").delay(700).dialog("open");
 					},
 					Cancel: function() {
 						$(this).dialog("close");
@@ -162,23 +162,20 @@
 			$("#inp-req").selectmenu();
 			$("#inp-prom").selectmenu();
 			$("#inp-stat").selectmenu();
-			
-			populate_select("#inp-stat", statuses); 
 		
 			// activate tooltips
-						
-			$('th .editablegrid-status a').uitooltip({
-				content: '<span>Open: Commitment is not complete. \n\
+			
+			$('th .editablegrid-status').attr("title", 'Open: Commitment is not complete. \n\
 				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
 				In Progress: Work on the request has begun but is incomplete. \n\
 				Deferred: The request is set aside indefinitely. \n\
-				Unknown: The promiser and/or requester are not available to status the commitment.</span>'});
-				
-			$('th .editablegrid-metric a').uitooltip({
-				content: '<span>Overdue, complete, anticipated, improvised.</span>'});
+				Unknown: The promiser and/or requester are not available to status the commitment.').tooltip();
 			
-			$('th .editablegrid-actions a').uitooltip({
-				content: 'Delete or duplicate. Note: \
-				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'});
+			$('th .editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').tooltip();
+			
+			$('th .editablegrid-actions').attr('title', 'Delete or duplicate. Note: \
+				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.').tooltip();
+				
+			//$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		};
 	</script>
