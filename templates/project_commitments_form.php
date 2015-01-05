@@ -163,44 +163,22 @@
 			$("#inp-prom").selectmenu();
 			$("#inp-stat").selectmenu();
 			
-			populate_select("#inp-stat", statuses);
-		}; 
+			populate_select("#inp-stat", statuses); 
 		
-		// activate tooltip
-		$(document).ready(function() {
-			$('.editablegrid-task_id').uitooltip({
-				content: '<span>Unique ID for the request. Not editable.</span>'});
-			
-			$('th .editablegrid-description a').uitooltip({
-				content: '<span>Descibe what work products shall be handed-off to whom in \
-				what form, via what method & at what level of completion.</span>'});
-			
-			$('th .editablegrid-promiser a').uitooltip({
-				content: '<span>Select the person who is promising the work described.</span>'});
-			
-			$('th .editablegrid-requester a').uitooltip({
-				content: '<span>Select the person who is asking \
-				for the work described. If the promiser = the requester, this will be considered a \
-				personal workplan item and may not appear on the team workplan.</span>'});
-				
-			$('th .editablegrid-due_by a').uitooltip({
-				content: '<span>Select the date when the work product described be handed-off.</span>'});
-			
-			$('th .editablegrid-status a').tooltip({
+			// activate tooltips
+						
+			$('th .editablegrid-status a').uitooltip({
 				content: '<span>Open: Commitment is not complete. \n\
 				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
 				In Progress: Work on the request has begun but is incomplete. \n\
 				Deferred: The request is set aside indefinitely. \n\
 				Unknown: The promiser and/or requester are not available to status the commitment.</span>'});
 				
-			$('th .editablegrid-metric a').tooltip({
+			$('th .editablegrid-metric a').uitooltip({
 				content: '<span>Overdue, complete, anticipated, improvised.</span>'});
 			
-			$('th .editablegrid-actions a').tooltip({
+			$('th .editablegrid-actions a').uitooltip({
 				content: 'Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.'});
-				
-			$('#new_com_btn').uitooltip({
-				content: 'Record a new commitment'});	
-		});
+		};
 	</script>

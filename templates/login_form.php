@@ -20,7 +20,7 @@
 			<div class="row">
 				<legend>
 					<div class="col-sm-10 col-sm-offset-2">
-						<h5>please log in or <a data-toggle="tooltip" title="tooltippy goodness!" href="register.php">register</a> for an account.</h5>
+						<h5>please log in or <a href="register.php">register</a> for an account.</h5>
 					</div>
 				</legend>
 			</div>
