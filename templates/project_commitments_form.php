@@ -65,79 +65,7 @@
 				async: true
 			});
 			
-			$.ajax({
-				url: '../includes/load_project_usernames.php',
-				type: 'POST',
-				dataType: 'JSON',
-				data: { p: pnum },
-				success: function (proj_users) {
-					populate_select_obj("#inp-req", proj_users);
-					populate_select_obj("#inp-prom", proj_users);
-					},
-				error: function(XMLHttpRequest, textStatus, exception) { 
-					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-				async: true
-			});
-			
 			$("#filter_all").keyup(function() { project_commitments.grid.filter($(this).val(), [1,2,3,4,5,6]); });
-
-			$("#delete-confirm").dialog({
-				resizable: false,
-				autoOpen: false,
-				height:180,
-				modal: true,
-				buttons: {
-					"Delete": function() {
-						$(this).dialog("close");
-						project_commitments.DeleteRow($(this).data('id'));
-					},
-					Cancel: function() {
-						$(this).dialog("close");
-					}
-				}
-			});
-			
-			$("#add-commitment").dialog({
-				resizable: true,
-				autoOpen: false,
-				height:450,
-				width:300,
-				modal: true,
-				buttons: {
-					"Submit": function() {
-						var data = {};
-						$.each($('#comm_form').serializeArray(), function(i, field) {
-							data[field.name] = field.value;
-						});
-						$(this).dialog("close");
-						project_commitments.AddRow(data);
-					},
-					"Submit+": function() {
-						var data = {};
-						$.each($('#comm_form').serializeArray(), function(i, field) {
-							data[field.name] = field.value;
-						});
-						project_commitments.AddRow(data);
-						$(this).dialog("close").delay(700).dialog("open");
-					},
-					Cancel: function() {
-						$(this).dialog("close");
-					}
-				}
-			});
-			
-			$("#new_com_btn").on("click", function() {
-				$("#add-commitment")
-					.dialog({show: { effect: "puff", duration: 300 }})
-					.dialog("open"); 
-			});
-			
-			$("#inp-due").datepicker({
-				dateFormat: $.datepicker.W3C,
-				numberOfMonths: 2,
-				gotoCurrent: true,
-				showAnim: 'puff'
-			});
 			
 			$.ajax({
 				url: '../includes/load_project_commitments.php',
@@ -158,24 +86,7 @@
 				},
 				async: true
 			});
-			
-			$("#inp-req").selectmenu();
-			$("#inp-prom").selectmenu();
-			$("#inp-stat").selectmenu();
-		
-			// activate tooltips
-			
-			$('th .editablegrid-status').attr("title", 'Open: Commitment is not complete. \n\
-				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
-				In Progress: Work on the request has begun but is incomplete. \n\
-				Deferred: The request is set aside indefinitely. \n\
-				Unknown: The promiser and/or requester are not available to status the commitment.').tooltip();
-			
-			$('th .editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').tooltip();
-			
-			$('th .editablegrid-actions').attr('title', 'Delete or duplicate. Note: \
-				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.').tooltip();
-				
+
 			//$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		};
 	</script>

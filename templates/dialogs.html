@@ -54,3 +54,83 @@
 				</div>
 			</form>			
 		</div>
+<script type="text/javascript">
+	window.onload = function() {
+	
+		$.ajax({
+			url: '../includes/load_project_usernames.php',
+			type: 'POST',
+			dataType: 'JSON',
+			data: { p: pnum },
+			success: function (proj_users) {
+				populate_select_obj("#inp-req", proj_users);
+				populate_select_obj("#inp-prom", proj_users);
+				},
+			error: function(XMLHttpRequest, textStatus, exception) { 
+				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+			async: true
+		});
+		
+		$("#delete-confirm").dialog({
+			resizable: false,
+			autoOpen: false,
+			height:180,
+			modal: true,
+			buttons: {
+				"Delete": function() {
+					$(this).dialog("close");
+					project_commitments.DeleteRow($(this).data('id'));
+				},
+				Cancel: function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+		
+		$("#add-commitment").dialog({
+			resizable: true,
+			autoOpen: false,
+			height:450,
+			width:300,
+			modal: true,
+			buttons: {
+				"Submit": function() {
+					var data = {};
+					$.each($('#comm_form').serializeArray(), function(i, field) {
+						data[field.name] = field.value;
+					});
+					$(this).dialog("close");
+					project_commitments.AddRow(data);
+				},
+				"Submit+": function() {
+					var data = {};
+					$.each($('#comm_form').serializeArray(), function(i, field) {
+						data[field.name] = field.value;
+					});
+					project_commitments.AddRow(data);
+					$(this).dialog("close").delay(700).dialog("open");
+				},
+				Cancel: function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+		
+		$("#new_com_btn").on("click", function() {
+			$("#add-commitment")
+				.dialog({show: { effect: "puff", duration: 300 }})
+				.dialog("open"); 
+		});
+		
+		$("#inp-due").datepicker({
+			dateFormat: $.datepicker.W3C,
+			numberOfMonths: 2,
+			gotoCurrent: true,
+			showAnim: 'puff'
+		});
+
+		$("#inp-req").selectmenu();
+		$("#inp-prom").selectmenu();
+		$("#inp-stat").selectmenu();
+	}
+</script>
