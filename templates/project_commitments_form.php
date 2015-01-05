@@ -54,6 +54,20 @@
 			pnum = getparam('project');
 			
 			$.ajax({
+				url: '../includes/load_project_usernames.php',
+				type: 'POST',
+				dataType: 'JSON',
+				data: { p: getparam('project') },
+				success: function (proj_users) {
+					populate_select_obj("#inp-req", proj_users);
+					populate_select_obj("#inp-prom", proj_users);
+					},
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			});
+			
+			$.ajax({
 				url: '../includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
