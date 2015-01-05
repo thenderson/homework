@@ -30,20 +30,20 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: 5,
+      	pageSize: 10,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
 			// activate tooltips onto rendered grid
-			$('th .editablegrid-status').attr("title", 'Open: Commitment is not complete. \n\
+			$('th.editablegrid-status').attr("title", 'Open: Commitment is not complete. \n\
 				Closed: The requester is satisfied that the promiser has met the commitment described. \n\
 				In Progress: Work on the request has begun but is incomplete. \n\
 				Deferred: The request is set aside indefinitely. \n\
 				Unknown: The promiser and/or requester are not available to status the commitment.').tooltip();
 			
-			$('th .editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').tooltip();
+			$('th.editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').tooltip();
 			
-			$('th .editablegrid-actions').attr('title', 'Delete or duplicate. Note: \
+			$('th.editablegrid-actions').attr('title', 'Delete or duplicate. Note: \
 				Only delete a commitment if it is truly messed-up. Otherwise, its status and/or variance should be entered.').tooltip();
 				
 			updatePaginator(self.grid); 
