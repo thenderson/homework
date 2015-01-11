@@ -103,7 +103,7 @@
 		
 		$("#new_com_btn").on("click", function() {
 			$("#add-commitment")
-				.dialog({show: { effect: "transfer", duration: 250 }})
+				.dialog({show: { effect: "transfer", to: $("#add-commitment"), duration: 250 }})
 				.dialog("open"); 
 		});
 		
