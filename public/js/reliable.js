@@ -50,7 +50,7 @@ function CommitmentGrid()
 		},
 		tableLoaded: function() { 
 
-			if (this.hasColumn('project_number') {
+			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
