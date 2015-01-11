@@ -18,10 +18,13 @@
 							<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
 						</div>
 					</td>
-					<td class="col-sm-3 add_commitment">
+					<td class="col-sm-1 add_commitment">
 						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
-					<td class="col-sm-6 paginator" id="paginator"></td>
+					<td class="col-sm-1 show-hide_closed">
+						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">Show Closed</button>
+					</td>
+					<td class="col-sm-7 paginator" id="paginator"></td>
 				</tr>
 			</table>
 		</div>

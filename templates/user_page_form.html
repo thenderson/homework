@@ -1,6 +1,6 @@
 	<body>
 		<div class="container-fluid nopadding" id="bar-top">
-			<div class="col-sm-12"><h3><strong>YOUR CURRENT COMMITMENTS</strong></h3></div>
+			<div class="col-sm-12"><h3><strong>YOUR COMMITMENTS</strong></h3></div>
 		</div>
 		
 		<div class="container-fluid">
@@ -22,6 +22,31 @@
 		
 		<div class="container-fluid">
 			<div id="commitments">
+				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i><br><br><br></div>
+			</div>
+		</div>
+		<br>
+		
+		<div class="container-fluid nopadding" id="bar-top">
+			<div class="col-sm-12"><h3><strong>YOUR REQUESTS</strong></h3></div>
+		</div>
+		
+		<div class="container-fluid">
+			<table id="bar-top">
+				<tr>
+					<td class="col-sm-3 filter nopadding">
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control input-sm" type="text" id="filter_all_req" name="filter"/>
+						</div>
+					</td>
+					<td class="col-sm-6 paginator" id="user_requests_paginator"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="container-fluid">
+			<div id="requests">
 				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i><br><br><br></div>
 			</div>
 		</div>
@@ -68,7 +93,7 @@
 				type: 'POST',
 				dataType: "text",
 				data: {
-					horizon: 30,
+					horizon: 21,
 				},
 				success: function (response) 
 				{
@@ -82,41 +107,41 @@
 				async: true
 			});
 			
-//			user_comm_grid = new EditableGrid("UserCommitments", {
-//				enableSort: true,
-//				editMode: 'static',
-//				dateFormat: "US",
-//				pageSize: 5,
-//				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
-//				tableLoaded: function() {  
-//					user_comm_grid.setCellRenderer('project_number', new CellRenderer({ 
-//						render: function(cell, value) { 
-//							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
-//						}
-//					}));
-//					this.renderGrid('user_commitments', 'table', 'commitments'); },
-//				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-//					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-//				}});
+			user_request_grid = new EditableGrid("user_requests", {
+				enableSort: true,
+				editMode: 'static',
+				dateFormat: "US",
+				pageSize: 5,
+				tableRendered:  function() { updatePaginator(this, "user_requests_paginator"); },
+				tableLoaded: function() {  
+					user_request_grid.setCellRenderer('project_number', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+						}
+					}));
+					this.renderGrid('requests', 'table', 'commitments'); },
+				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+				}});
 			
-//			$.ajax({
-//				url: '../includes/load_user_commitments.php',
-//				type: 'POST',
-//				dataType: "text",
-//				data: {
-//					horizon: 30
-//				},
-//				success: function (response) 
-//				{ //process response as xml, then call tableLoaded
-//					user_comm_grid.loadXMLFromString(response); //synchronous function
-//					user_comm_grid.tableLoaded();
-//				},
-//				error: function(XMLHttpRequest, textStatus, exception) 
-//				{ 
-//					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-//				},
-//				async: true
-//			});
+			$.ajax({
+				url: '../includes/load_user_requests.php',
+				type: 'POST',
+				dataType: "text",
+				data: {
+					horizon: 21,
+				},
+				success: function (response) 
+				{ //process response as xml, then call tableLoaded
+					user_request_grid.loadXMLFromString(response); //synchronous function
+					user_request_grid.tableLoaded();
+				},
+				error: function(XMLHttpRequest, textStatus, exception) 
+				{ 
+				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+				},
+				async: true
+			});
 			
 			user_proj_grid = new EditableGrid("UserProjects", {
 				enableSort: true,
