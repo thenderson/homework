@@ -12,7 +12,7 @@
 		<div class="container-fluid">
 			<table id="bar-top">
 				<tr>
-					<td class="col-sm-3 filter nopadding">
+					<td class="col-sm-2 filter nopadding">
 						<div class="input-group">
 							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
 							<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
@@ -24,7 +24,7 @@
 					<td class="col-sm-1 show-hide_closed">
 						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">Show Closed</button>
 					</td>
-					<td class="col-sm-7 paginator" id="paginator"></td>
+					<td class="col-sm-8 paginator" id="paginator"></td>
 				</tr>
 			</table>
 		</div>
