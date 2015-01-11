@@ -42,13 +42,13 @@
 					<label class="control-label" for="inp-stat">Status</label>
 					<div class="controls">
 						<select class="input-sm" id="inp-stat" name="status" style="width: 200px">
-							<option value="open-high">"open: high priority"</option>
-							<option value="open" selected>"open"</option>
-							<option value="open-low">"open: low priority"</option>
-							<option value="closed">"closed"</option>
-							<option value="in progress">"in progress"</option>
-							<option value="deferred">"deferred"</option>
-							<option value="unknown">"unknown"</option>
+							<option value="open-high">open: high priority</option>
+							<option value="open" selected>open</option>
+							<option value="open-low">open: low priority</option>
+							<option value="closed">closed</option>
+							<option value="in progress">in progress</option>
+							<option value="deferred">deferred</option>
+							<option value="unknown">unknown</option>
 						</select>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 		
 		$("#new_com_btn").on("click", function() {
 			$("#add-commitment")
-				.dialog({show: { effect: "puff", duration: 300 }})
+				.dialog({show: { effect: "transfer", duration: 250 }})
 				.dialog("open"); 
 		});
 		

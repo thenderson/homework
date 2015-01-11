@@ -64,34 +64,20 @@
 				window.location.href = "../templates/project_commitments_form.php?project="+p_num;}
 			
 			// load commitments belonging to current user
-			user_comm_grid = new EditableGrid("UserCommitments", {
-				enableSort: true,
-				editMode: 'static',
-				dateFormat: "US",
-				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
-				tableLoaded: function() {  
-					user_comm_grid.setCellRenderer('project_number', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
-						}
-					}));
-					this.renderGrid('user_commitments', 'table', 'commitments'); },
-				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-				}});
+			user_commitments = new CommitmentGrid();
+			user_commitments.name = "user_commitments";
 			
 			$.ajax({
 				url: '../includes/load_user_commitments.php',
 				type: 'POST',
 				dataType: "text",
 				data: {
-					horizon: 30
+					horizon: 30,
 				},
 				success: function (response) 
-				{ //process response as xml, then call tableLoaded
-					user_comm_grid.loadXMLFromString(response); //synchronous function
-					user_comm_grid.tableLoaded();
+				{
+					user_commitments.grid.loadXMLFromString(response); //synchronous function
+					user_commitments.grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
@@ -99,6 +85,42 @@
 				},
 				async: true
 			});
+			
+//			user_comm_grid = new EditableGrid("UserCommitments", {
+//				enableSort: true,
+//				editMode: 'static',
+//				dateFormat: "US",
+//				pageSize: 5,
+//				tableRendered:  function() { updatePaginator(this, "user_commitments_paginator"); },
+//				tableLoaded: function() {  
+//					user_comm_grid.setCellRenderer('project_number', new CellRenderer({ 
+//						render: function(cell, value) { 
+//							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+//						}
+//					}));
+//					this.renderGrid('user_commitments', 'table', 'commitments'); },
+//				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+//					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+//				}});
+			
+//			$.ajax({
+//				url: '../includes/load_user_commitments.php',
+//				type: 'POST',
+//				dataType: "text",
+//				data: {
+//					horizon: 30
+//				},
+//				success: function (response) 
+//				{ //process response as xml, then call tableLoaded
+//					user_comm_grid.loadXMLFromString(response); //synchronous function
+//					user_comm_grid.tableLoaded();
+//				},
+//				error: function(XMLHttpRequest, textStatus, exception) 
+//				{ 
+//					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+//				},
+//				async: true
+//			});
 			
 			user_proj_grid = new EditableGrid("UserProjects", {
 				enableSort: true,

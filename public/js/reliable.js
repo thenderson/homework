@@ -39,12 +39,12 @@ function CommitmentGrid()
 				Closed: Requester is satisfied that promiser has met commitment. \n\
 				In Progress: Work on request has begun but is incomplete. \n\
 				Deferred: Request is set aside indefinitely. \n\
-				Unknown: Promiser and/or requester not available to status commitment.').tooltip();
+				Unknown: Promiser and/or requester not available to status commitment.').attr('data-placement', 'left').tooltip();
 			
-			$('th.editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').tooltip();
+			$('th.editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').attr('data-placement', 'left').tooltip();
 			
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete. Note: \
-				Only delete a commitment if it is truly mistaken. Otherwise, enter its status and/or variance.').tooltip();
+				Only delete a commitment if it is truly mistaken. Otherwise, enter its status and/or variance.').attr('data-placement', 'left').tooltip();
 				
 			updatePaginator(self.grid); 
 		},
