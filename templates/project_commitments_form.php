@@ -27,7 +27,7 @@
 		</div>
 		
 		<div class="container-fluid">
-			<div id="project_commitments">
+			<div id="commitments">
 				<br><br><br><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i>
 			</div>
 		</div>

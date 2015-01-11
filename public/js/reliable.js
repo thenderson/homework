@@ -83,7 +83,7 @@ function CommitmentGrid()
 					}
 				}}));
 				
-			this.renderGrid('project_commitments', 'table', 'commitments'); 
+			this.renderGrid('commitments', 'table', 'commitments'); 
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
    	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
