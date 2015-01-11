@@ -57,15 +57,11 @@
 	</body>
 	
 	<script type="text/javascript">
-		window.onload = function() { 
-		
-			// pass to project-specific page
-			goto_project_view = function (p_num) { 
-				window.location.href = "../templates/project_commitments_form.php?project="+p_num;}
+		window.onload = function() {
 			
 			// load commitments belonging to current user
-			user_commitments = new CommitmentGrid();
-			user_commitments.name = "user_commitments";
+			commitments = new CommitmentGrid();
+			commitments.name = "user_commitments";
 			
 			$.ajax({
 				url: '../includes/load_user_commitments.php',
@@ -76,8 +72,8 @@
 				},
 				success: function (response) 
 				{
-					user_commitments.grid.loadXMLFromString(response); //synchronous function
-					user_commitments.grid.tableLoaded();
+					commitments.grid.loadXMLFromString(response); //synchronous function
+					commitments.grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 

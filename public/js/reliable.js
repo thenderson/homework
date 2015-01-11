@@ -50,6 +50,13 @@ function CommitmentGrid()
 		},
 		tableLoaded: function() { 
 
+			if (this.hasColumn('project_number') {
+				this.setCellRenderer('project_number', new CellRenderer({ 
+					render: function(cell, value) { 
+						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+					}}));
+			};
+				
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {	
 					return statuses;
@@ -300,3 +307,7 @@ function populate_select_obj(element, objects) {
 		$(element).append($("<option>").attr('value',object['user_id']).text(object['name']));
 	});
 };
+
+// pass to project-specific page
+goto_project_view = function (p_num) { 
+	window.location.href = "../templates/project_commitments_form.php?project="+p_num;}

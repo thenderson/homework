@@ -64,7 +64,7 @@
 			buttons: {
 				"Delete": function() {
 					$(this).dialog("close");
-					project_commitments.DeleteRow($(this).data('id'));
+					commitments.DeleteRow($(this).data('id'));
 				},
 				Cancel: function() {
 					$(this).dialog("close");
@@ -85,14 +85,14 @@
 						data[field.name] = field.value;
 					});
 					$(this).dialog("close");
-					project_commitments.AddRow(data);
+					commitments.AddRow(data);
 				},
 				"Submit+": function() {
 					var data = {};
 					$.each($('#comm_form').serializeArray(), function(i, field) {
 						data[field.name] = field.value;
 					});
-					project_commitments.AddRow(data);
+					commitments.AddRow(data);
 					$(this).dialog("close").delay(700).dialog("open");
 				},
 				Cancel: function() {

@@ -47,8 +47,8 @@
 	<script type="text/javascript">
 		jQuery.datepicker.setDefaults({dateFormat:$.datepicker.W3C});   
 		
-		project_commitments = new CommitmentGrid();
-		project_commitments.name = "project_commitments";
+		commitments = new CommitmentGrid();
+		commitments.name = "project_commitments";
 		
 		window.onload = function() {
 			pnum = getparam('project');
@@ -79,7 +79,7 @@
 				async: true
 			});
 			
-			$("#filter_all").keyup(function() { project_commitments.grid.filter($(this).val(), [1,2,3,4,5,6]); });
+			$("#filter_all").keyup(function() { commitments.grid.filter($(this).val(), [1,2,3,4,5,6]); });
 			
 			$.ajax({
 				url: '../includes/load_project_commitments.php',
@@ -91,8 +91,8 @@
 				},
 				success: function (response) 
 				{
-					project_commitments.grid.loadXMLFromString(response); //synchronous function
-					project_commitments.grid.tableLoaded();
+					commitments.grid.loadXMLFromString(response); //synchronous function
+					commitments.grid.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
