@@ -1,10 +1,10 @@
 	<body>
-		<div class="container-fluid nopadding" id="bar-top">
+		<div class="container-fluid nopadding">
 			<div class="col-sm-12"><h3><strong>YOUR COMMITMENTS</strong></h3></div>
 		</div>
 		
 		<div class="container-fluid">
-			<table id="bar-top">
+			<table>
 				<tr>
 					<td class="col-sm-2 filter nopadding">
 						<div class="input-group">
@@ -15,18 +15,17 @@
 					<td class="col-sm-1 add_commitment">
 						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
-					<td class="col-sm-9">
-					</td>
+					<td class="col-sm-9"></td>
 				</tr>
 			</table>
-		</div>
-		
-		<div class="container-fluid">
+
 			<div id="commitments">
-				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i><br><br><br></div>
+				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 			</div>
-			<form class='form-inline' id='bottom-com'>
-				<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i>&nbsp;&nbsp;|&nbsp;&nbsp;page size: </div>
+			
+			<form class='form-inline'>
+				<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
 						<select class="input-sm" id="com_page_size" onchange="commitments.grid.setPageSize(this.value)">
@@ -38,52 +37,89 @@
 						</select>
 					</div>
 				</div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
 				<div class="form-group paginator" id="paginator"></div>
 			</form>
 		</div>
 		<br>
 		
-		<div class="container-fluid nopadding" id="bar-top">
+		<div class="container-fluid nopadding">
 			<div class="col-sm-12"><h3><strong>YOUR REQUESTS</strong></h3></div>
 		</div>
 		
 		<div class="container-fluid">
-			<table id="bar-top">
+			<table>
 				<tr>
-					<td class="col-sm-3 filter nopadding">
+					<td class="col-sm-2 filter nopadding">
 						<div class="input-group">
 							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
 							<input class="form-control input-sm" type="text" id="filter_all_req" name="filter"/>
 						</div>
 					</td>
-					<td class="col-sm-6 paginator" id="user_requests_paginator"></td>
+					<td class="col-sm-10"></td>
 				</tr>
 			</table>
-		</div>
-		
-		<div class="container-fluid">
+
 			<div id="requests">
-				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i><br><br><br></div>
+				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 			</div>
+			
+			<form class='form-inline'>
+				<div class="form-group" id="req_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+				<div class="form-group">
+					<div class="controls">
+						<select class="input-sm" id="req_page_size" onchange="requests.grid.setPageSize(this.value)">
+							<option value=5>5</option>
+							<option value=10 selected>10</option>
+							<option value=25>25</option>
+							<option value=50>50</option>
+							<option value=0>all</option>
+						</select>
+					</div>
+				</div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+				<div class="form-group paginator" id="req_paginator"></div>
+			</form>
 		</div>
 		<br>
 
 		<div class="container-fluid">
-			<div class="col-sm-6 nopadding">
-				<div class="col-sm-6 nopadding"><h3><strong>YOUR PROJECTS</strong></h3></div>
-				<div class="col-sm-6 paginator nopadding" id="user_projects_paginator"></div>
-				<div id="user_projects">
-					<br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i>
-				</div>
+			<div class="nopadding"><h3><strong>PROJECTS</strong></h3></div>
+			
+			<table>
+				<tr>
+					<td class="col-sm-2 filter nopadding">
+						<div class="input-group">
+							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
+							<input class="form-control input-sm" type="text" id="filter_all_proj" name="filter"/>
+						</div>
+					</td>
+					<td class="col-sm-10"></td>
+				</tr>
+			</table>
+			
+			<div id="user_projects">
+				<br><br><br><i class='fa fa-spinner fa-spin text-center'></i>
 			</div>
-
-			<div class="col-sm-6 nopadding">
-				<div class="col-sm-6 nopadding"><h3><strong>ALL PROJECTS</strong></h3></div>
-				<div class="col-sm-6 paginator nopadding" id="all_projects_paginator"></div>
-				<div id="all_projects">
-					<br><br><br><i class='fa fa-spinner fa-spin fa-3x text-center'></i>
+			
+			<form class='form-inline'>
+				<div class="form-group" id="proj_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+				<div class="form-group">
+					<div class="controls">
+						<select class="input-sm" id="proj_page_size" onchange="projects.grid.setPageSize(this.value)">
+							<option value=5 selected>5</option>
+							<option value=10>10</option>
+							<option value=25>25</option>
+							<option value=50>50</option>
+							<option value=0>all</option>
+						</select>
+					</div>
 				</div>
-			</div>
+				<div class="spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+				<div class="form-group paginator" id="projects_paginator"></div>
+			</form>
 		</div>
 			
 		<script src="./public/js/editablegrid.js"></script>
@@ -115,7 +151,7 @@
 				{
 					commitments.grid.loadXMLFromString(response); //synchronous function
 					commitments.grid.tableLoaded();
-					$("#com_total").html('total: '+commitments.grid.getTotalRowCount()+'&nbsp;&nbsp;|&nbsp;&nbsp;page size: ');
+					$("#com_total").html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
@@ -124,14 +160,17 @@
 				async: true
 			});
 			
-			user_request_grid = new EditableGrid("user_requests", {
+			requests = new EditableGrid("user_requests", {
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
-				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this, "user_requests_paginator"); },
+				pageSize: 10,
+				tableRendered:  function() { 
+					updatePaginator(this, "req_paginator"); 
+					$("#req_total").html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
+				},
 				tableLoaded: function() {  
-					user_request_grid.setCellRenderer('project_number', new CellRenderer({ 
+					requests.setCellRenderer('project_number', new CellRenderer({ 
 						render: function(cell, value) { 
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 						}
@@ -150,8 +189,8 @@
 				},
 				success: function (response) 
 				{ //process response as xml, then call tableLoaded
-					user_request_grid.loadXMLFromString(response); //synchronous function
-					user_request_grid.tableLoaded();
+					requests.loadXMLFromString(response); //synchronous function
+					requests.tableLoaded();
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
@@ -160,13 +199,16 @@
 				async: true
 			});
 			
-			user_proj_grid = new EditableGrid("UserProjects", {
+			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
 				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this, "user_projects_paginator"); },
+				tableRendered:  function() { 
+					updatePaginator(this, "projects_paginator"); 
+					$("#proj_total").html('total: <strong>'+projects.grid.getTotalRowCount()+'</strong>');
+				},
 				tableLoaded: function() { 
-					user_proj_grid.setCellRenderer('project_number_2', new CellRenderer({ 
+					projects.setCellRenderer('project_number_2', new CellRenderer({ 
 						render: function(cell, value) { 
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
 						}
@@ -174,22 +216,6 @@
 					this.renderGrid('user_projects', 'table', 'projects'); }
 			}); 
 				
-			user_proj_grid.loadXML("../includes/load_user_projects.php");
-
-			all_proj_grid = new EditableGrid("AllProjects", {
-				enableSort: true,
-				dateFormat: "US",
-				pageSize: 5,
-				tableRendered:  function() { updatePaginator(this, "all_projects_paginator"); },	
-				tableLoaded: function() { 
-					all_proj_grid.setCellRenderer('project_number_2', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
-						}
-					}));
-					this.renderGrid("all_projects", 'table', 'projects'); },
-			});
-
-			all_proj_grid.loadXML("../includes/load_all_projects.php");			
+			projects_grid.loadXML("../includes/load_user_projects.php");
 		}; 
 	</script>
