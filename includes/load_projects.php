@@ -12,10 +12,17 @@
 		NATURAL JOIN users_projects
 		WHERE user_id = ?
 		ORDER BY project_number_2");
+		
+	$stmt2 = $comm_db->prepare("
+		SELECT project_number as project_number_2, project_name
+		FROM projects
+		NATURAL JOIN users_projects
+		WHERE user_id != ?
+		ORDER BY project_number_2");
 	
-	if (!$stmt)
+	if (!$stmt || !$stmt2)
 	{
-		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		trigger_error('Statement failed : ' . $stmt->error, $stmt2->error, E_USER_ERROR);
 		exit;
 	}
 	
@@ -23,7 +30,11 @@
 	{
 		$stmt->bindParam(1, $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
-		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		$stmt2->bindParam(1, $_SESSION['id'], PDO::PARAM_INT);
+		$stmt2->execute();		
+		$commitments = $commitments.append($stmt2->fetchAll(PDO::FETCH_ASSOC));
 	} 
 	catch(PDOException $e) 
 	{
