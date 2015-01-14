@@ -13,7 +13,7 @@
 	/*	RETRIEVE COMMITMENTS */
 	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, high_priority, status
+		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and requester = ?
 		ORDER BY due_by, project_number");
@@ -67,7 +67,7 @@
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	//$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('high_priority', '!','boolean');
+	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STATUS','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
