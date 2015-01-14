@@ -168,28 +168,25 @@ td.editablegrid-unique_id {
 	th.editablegrid-project_number,
 	td.editablegrid-project_number {
 		text-align: left;
-		min-width: 10em;
-		max-width: 11em;
+		min-width: 7em;
 	}
 	
 	th.editablegrid-project_shortname,
 	td.editablegrid-project_shortname {
 		text-align: left;
-		min-width: 8em;
-		max-width: 12em;
+		min-width: 9em;
 	}
 
 	th.editablegrid-task_id,
 	td.editablegrid-task_id {
 		text-align: left;
-		min-width: 10em;
-		max-width: 11em;
+		min-width: 6em;
 	}
 
 	th.editablegrid-description,
 	td.editablegrid-description {
 		text-align: left;
-		min-width: 20em;
+		min-width: 16em;
 	}
 
 	th.editablegrid-description-wide,
@@ -201,50 +198,43 @@ td.editablegrid-unique_id {
 	th.editablegrid-promiser,
 	td.editablegrid-promiser {
 		text-align: center;
-		min-width: 8em;
-		max-width: 15em;
+		min-width: 10em;
 	}
 
 	th.editablegrid-requester,
 	td.editablegrid-requester {
 		text-align: center;
-		min-width: 8em;
-		max-width: 15em;
+		min-width: 10em;
 	}
 
 	th.editablegrid-due_by,
 	td.editablegrid-due_by {
 		text-align: center;
-		min-width: 10em;
-		max-width: 11em;
+		min-width: 6em;
 	}
 	
 	th.editablegrid-priority_h,
 	td.editablegrid-priority_h {
 		text-align: center;
 		min-width: 3em;
-		max-width: 4em;
 	}
 
 	th.editablegrid-status,
 	td.editablegrid-status {
 		text-align: center;
-		min-width: 3em;
-		max-width: 4em;
+		min-width: 4em;
 	}
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 		text-align: right;
-		min-width: 3em;
-		max-width: 4em;
+		min-width: 4em;
 	}
 
 	th.editablegrid-project_number_2,
 	td.editablegrid-project_number_2  { /* for project lists */
 		text-align: left;
-		min-width: 10em;
-		max-width: 11em;
+		min-width: 7em;
 	}
 	th.editablegrid-project_name,
 	td.editablegrid-project_name { /* for project lists */
