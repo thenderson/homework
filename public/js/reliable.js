@@ -1,4 +1,7 @@
-var statuses = {'open':'open', 'open-high':'open-high', 'open-low': 'open-low', 'closed':'closed', 'in progress':'in progress', 'deferred':'deferred', 'unknown':'unknown', 'n/a':'n/a'};
+var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':'complete - anticipated',
+	'V1':'variance - time', 'V2':'variance - waiting, internal', 'V3':'variance - waiting, external', 'V4':'variance - COS', 
+	'V5':'variance - superseded, internal', 'V6':'variance - superseded, external', 'V7':'variance - forgot', 'V8':'variance - not needed', 
+	'V9':'variance - tech failure', 'D':'deferred', '?':'unknown', 'NA':'n/a'};
 
 function highlightRow(rowId, bgColor, after)
 {
@@ -41,8 +44,6 @@ function CommitmentGrid()
 				Deferred: Request is set aside indefinitely. \n\
 				Unknown: Promiser and/or requester not available to status commitment.').attr('data-placement', 'left').tooltip();
 			
-			$('th.editablegrid-metric').attr('title', 'Overdue, complete, anticipated, improvised.').attr('data-placement', 'left').tooltip();
-			
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete. Note: \
 				Only delete a commitment if it is truly mistaken. Otherwise, enter its status and/or variance.').attr('data-placement', 'left').tooltip();
 				
@@ -67,12 +68,6 @@ function CommitmentGrid()
 					cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
-				
-			this.setCellRenderer('metric', new CellRenderer({ 
-				render: function(cell, value) {
-					cell.innerHTML= "<i class=\'fa fa-circle\'></i>";
-				}
-				}));
 			
 			this.setCellRenderer('due_by', new CellRenderer({ //shades row based on how soon commitment is due
 				render: function(cell, value) {
