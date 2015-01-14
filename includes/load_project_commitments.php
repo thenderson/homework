@@ -54,7 +54,6 @@
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STATUS','string');
-	$grid->addColumn('metric','METRIC','string', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	//render grid
