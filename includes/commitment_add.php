@@ -56,7 +56,7 @@ catch(PDOException $e)
 // Retrieve newly created commitment from database and send back to JS
 $id = $comm_db->lastInsertId('unique_id');
 $stmt = $comm_db->query("SELECT unique_id, project_number, task_id, description, requester, 
-		promiser, due_by, requested_on, status, type, metric 
+		promiser, due_by, high-priority, status 
 		FROM commitments WHERE unique_id = $id"); 
 
 if (!$stmt)
