@@ -18,7 +18,7 @@
 									<li><a href="javascript:load_user_comms(21);">3 weeks</a></li>
 									<li><a href="javascript:load_user_comms('all');">all</a></li>
 									<li role="presentation" class="divider"></li>
-									<li id="show_closed_toggle"><a href="javascript:load_user_comms(showClosed='closed');">show closed</a></li>
+									<li id="show_closed_toggle"><a href="javascript:load_user_comms(showClosed=true);">show closed</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -156,12 +156,19 @@
 			commitments = new CommitmentGrid();
 			commitments.name = "user_commitments";
 			
-			load_user_coms = function (horizon, showClosed) {
-				horizon = horizon || (commitments.getCookie('horizon') || 21);
-				showClosed = showClosed || (commitments.getCookie('showClosed') || false);
+			load_user_comms = function (horizon, showClosed) {
+				horizon = horizon || (commitments.grid.getCookie('horizon') || 21);
 				
-				commitments.setCookie('horizon', horizon);
-				commitments.setCookie('showClosed', showClosed);
+				if (typeof(showClosed)==='undefined') {
+					showClosed = commitments.grid.getCookie('showClosed');
+					if (showClosed===null) showClosed = false;
+				}
+				
+				if (showClosed===false) $('#show_closed_toggle').html('<a href="javascript:load_user_comms(showClosed=true);">show closed</a>');
+				else $('#show_closed_toggle').html('<a href="javascript:load_user_comms(showClosed=false);">hide closed</a>');
+				
+				commitments.grid.setCookie('horizon', horizon);
+				commitments.grid.setCookie('showClosed', showClosed);
 				
 				$.ajax({
 					url: '../includes/load_user_commitments.php',
@@ -185,7 +192,7 @@
 				});
 			};
 			
-			load_user_coms();
+			load_user_comms();
 			
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
