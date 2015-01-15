@@ -6,6 +6,23 @@
 		<div class="container-fluid">
 			<table>
 				<tr>
+					<td class="col-sm-4">
+						<ul class="nav nav-tabs">
+							<li role="presentation"><a href="#">Overdue</a></li>
+							<li role="presentation" class="active"><a href="#">This Week</a></li>
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+								  Lookahead <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">1 week</a></li>
+									<li><a href="#">2 weeks</a></li>
+									<li><a href="#">3 weeks</a></li>
+									<li><a href="#">all</a></li>
+									<li role="presentation" class="divider"></li>
+									<li><a href="#">closed</a></li>
+								</ul>
+							</li>
+						</ul>
 					<td class="col-sm-2 filter nopadding">
 						<div class="input-group">
 							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
@@ -15,7 +32,7 @@
 					<td class="col-sm-1 add_commitment">
 						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
-					<td class="col-sm-9"></td>
+					<td class="col-sm-3"></td>
 				</tr>
 			</table>
 

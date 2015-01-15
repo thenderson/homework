@@ -36,6 +36,9 @@
 	//declare grid columns TODO add columns for PPC & TA
 	$grid->addColumn('project_number_2', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_name', 'PROJECT NAME', 'string', NULL, false);
+	$grid->addColumn('open', 'OPEN', 'string', NULL, false);
+	$grid->addColumn('ppc', 'PPC', 'string', NULL, false);
+	$grid->addColumn('ta', 'TA', 'string', NULL, false);
 
 	//render grid
 	$grid->renderXML($commitments);
