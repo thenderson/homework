@@ -6,13 +6,29 @@
 	
 	// Get POST data
 	$planning_horizon = strip_tags($_POST['horizon']); // days
+	$showComplete = strip_tags($_POST['showComplete']);
+	
+	error_log('horizon:'.$planning_horizon.', showHidden:'.$showHidden);
 
+	/*  COMPOSE QUERY */
+	
+	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status FROM commitments";
+	
+	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
+	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = :promiser";
+	
+	if ($showComplete == false) $q = $q . " and status IN ('O', '?', 'D', 'NA')";
+	
+	$q = $q . ' ORDER BY due_by, project_number';
+	
+	error_log('query: '.$q);
+	
 	/*	RETRIEVE COMMITMENTS */
 	
 	$stmt = $comm_db->prepare("
 		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status
 		FROM commitments 
-		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = ?
+		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = ? and status != 
 		ORDER BY due_by, project_number");
 	
 	if (!$stmt)
@@ -65,6 +81,7 @@
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('completed', '?', 'boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
