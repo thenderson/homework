@@ -7,29 +7,19 @@
 	// Get POST data
 	$planning_horizon = strip_tags($_POST['horizon']); // days
 	$showClosed = strip_tags($_POST['showClosed']);
-	
-	error_log('horizon:'.$planning_horizon.', showClosed:'.$showClosed);
 
 	/*  COMPOSE QUERY */
-	
 	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status FROM commitments";
 	
 	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
-	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = :promiser";
+	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :promiser";
 	
 	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA')";
 	
 	$q = $q . ' ORDER BY due_by, project_number';
 	
-	error_log('query: '.$q);
-	
 	/*	RETRIEVE COMMITMENTS */
-	
-	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status 
-		FROM commitments 
-		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = ?  
-		ORDER BY due_by, project_number");
+	$stmt = $comm_db->prepare($q);
 	
 	if (!$stmt)
 	{
@@ -39,8 +29,8 @@
 	
 	try 
 	{
-		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->bindParam(2, $_SESSION['id'], PDO::PARAM_INT);
+		if ($planning_horizon != 'all') $stmt->bindParam(':horizon', $planning_horizon, PDO::PARAM_INT);
+		$stmt->bindParam(':promiser', $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
