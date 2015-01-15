@@ -18,7 +18,7 @@
 									<li><a href="javascript:load_user_comms(21);">3 weeks</a></li>
 									<li><a href="javascript:load_user_comms('all');">all</a></li>
 									<li role="presentation" class="divider"></li>
-									<li id="show_closed_toggle"><a href="javascript:load_user_comms(null, true);">show closed</a></li>
+									<li id="show_closed_toggle"><a href="javascript:load_user_comms(undefined, true);">show closed</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -157,15 +157,11 @@
 			commitments.name = "user_commitments";
 			
 			load_user_comms = function (horizon, showClosed) {
-				if (typeof(horizon) === 'undefined' || typeof(horizon) === null) horizon = (commitments.grid.getCookie('horizon') || 21);
+				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
+				if (typeof(showClosed)==='undefined') showClosed = (commitments.grid.getCookie('showClosed') || false);
 				
-				if (typeof(showClosed)==='undefined') {
-					showClosed = commitments.grid.getCookie('showClosed');
-					if (showClosed===null) showClosed = false;
-				}
-				
-				if (showClosed===false) $('#show_closed_toggle').html('<a href="javascript:load_user_comms(null, true);">show closed</a>');
-				else $('#show_closed_toggle').html('<a href="javascript:load_user_comms(null, false);">hide closed</a>');
+				if (showClosed===false) $('#show_closed_toggle').html('<a href="javascript:load_user_comms(undefined, true);">show closed</a>');
+				else $('#show_closed_toggle').html('<a href="javascript:load_user_comms(undefined, false);">hide closed</a>');
 				
 				commitments.grid.setCookie('horizon', horizon);
 				commitments.grid.setCookie('showClosed', showClosed);
