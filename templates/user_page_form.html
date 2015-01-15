@@ -6,11 +6,11 @@
 		<div class="container-fluid">
 			<table>
 				<tr>
-					<td class="col-sm-4">
-						<ul class="nav nav-pills" onchange="console.log(this.value)">
-							<li role="presentation"><a href="#">Overdue</a></li>
-							<li role="presentation" class="active"><a href="#">This Week</a></li>
-							<li role="presentation" class="dropdown">
+					<td class="col-sm-5">
+						<ul class="nav nav-pills">
+							<li role="presentation" onclick="console.log(this.value)"><a href="#">Overdue</a></li>
+							<li role="presentation" class="active" onclick="console.log(this.value)"><a href="#">This Week</a></li>
+							<li role="presentation" class="dropdown" onclick="console.log(this.value)">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 								  Lookahead <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -32,7 +32,7 @@
 					<td class="col-sm-1 add_commitment">
 						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
 					</td>
-					<td class="col-sm-5"></td>
+					<td class="col-sm-4"></td>
 				</tr>
 			</table>
 
