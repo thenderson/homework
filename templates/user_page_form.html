@@ -8,18 +8,17 @@
 				<tr>
 					<td class="col-sm-5">
 						<ul class="nav nav-pills">
-							<li role="presentation"><a href="console.log(this.value)">Overdue</a></li>
-							<li role="presentation" class="active" onclick="console.log(this.value)"><a href="#">This Week</a></li>
-							<li role="presentation" class="dropdown" onclick="console.log(this.value)">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+							<li role="presentation"><a href="javascript:load_user_comms(0);">Overdue</a></li>
+							<li role="presentation" class="active" ><a href="javascript:load_user_comms(7);">This Week</a></li>
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 								  Lookahead <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">1 week</a></li>
-									<li><a href="#">2 weeks</a></li>
-									<li><a href="#">3 weeks</a></li>
-									<li><a href="#">all</a></li>
+									<li><a href="javascript:load_user_comms(14);">2 weeks</a></li>
+									<li><a href="javascript:load_user_comms(21);">3 weeks</a></li>
+									<li><a href="javascript:load_user_comms('all');">all</a></li>
 									<li role="presentation" class="divider"></li>
-									<li><a href="#">closed</a></li>
+									<li id="show_closed_toggle"><a href="javascript:load_user_comms(showClosed='closed');">show closed</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -157,25 +156,36 @@
 			commitments = new CommitmentGrid();
 			commitments.name = "user_commitments";
 			
-			$.ajax({
-				url: '../includes/load_user_commitments.php',
-				type: 'POST',
-				dataType: "text",
-				data: {
-					horizon: 21,
-				},
-				success: function (response) 
-				{
-					commitments.grid.loadXMLFromString(response); //synchronous function
-					commitments.grid.tableLoaded();
-					$("#com_total").html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
-				},
-				error: function(XMLHttpRequest, textStatus, exception) 
-				{ 
-					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-				},
-				async: true
-			});
+			load_user_coms = function (horizon, showClosed) {
+				horizon = horizon || (commitments.getCookie('horizon') || 21);
+				showClosed = showClosed || (commitments.getCookie('showClosed') || false);
+				
+				commitments.setCookie('horizon', horizon);
+				commitments.setCookie('showClosed', showClosed);
+				
+				$.ajax({
+					url: '../includes/load_user_commitments.php',
+					type: 'POST',
+					dataType: "text",
+					data: {
+						horizon: horizon,
+						showClosed: showClosed
+					},
+					success: function (response) 
+					{
+						commitments.grid.loadXMLFromString(response); //synchronous function
+						commitments.grid.tableLoaded();
+						$("#com_total").html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
+					},
+					error: function(XMLHttpRequest, textStatus, exception) 
+					{ 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+					},
+					async: true
+				});
+			};
+			
+			load_user_coms();
 			
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
