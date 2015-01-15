@@ -157,9 +157,7 @@
 			commitments.name = "user_commitments";
 			
 			load_user_comms = function (horizon, showClosed) {
-				console.log(horizon, showClosed);
-				
-				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
+				if (typeof(horizon) === 'undefined' || typeof(horizon) === null) horizon = (commitments.grid.getCookie('horizon') || 21);
 				
 				if (typeof(showClosed)==='undefined') {
 					showClosed = commitments.grid.getCookie('showClosed');
@@ -171,6 +169,8 @@
 				
 				commitments.grid.setCookie('horizon', horizon);
 				commitments.grid.setCookie('showClosed', showClosed);
+				
+				console.log(horizon, showClosed);
 				
 				$.ajax({
 					url: '../includes/load_user_commitments.php',

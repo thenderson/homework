@@ -17,7 +17,7 @@
 	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
 	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and promiser = :promiser";
 	
-	if ($showClosed == false) $q = $q . " and status IN ('O', '?', 'D', 'NA')";
+	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA')";
 	
 	$q = $q . ' ORDER BY due_by, project_number';
 	
