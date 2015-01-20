@@ -74,11 +74,11 @@ function CommitmentGrid()
 					date_due=moment(value, 'YYYY-MM-DD')
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
 					row=self.grid.getRow(cell.rowIndex);
-					status=self.grid.getValueAt(cell.rowIndex, 6); //cell.rowIndex?? how can that work?
+					status=self.grid.getValueAt(cell.rowIndex, 8);
 						console.log('status: '+status);
-						console.debug(cell);
+						console.debug(row);
 					how_soon=date_due.diff(moment(),'days');
-					if (status == 'closed') {
+					if (status == 1) {
 						$(row).addClass('closed');
 					}
 					else {
