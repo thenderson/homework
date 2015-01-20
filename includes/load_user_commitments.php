@@ -10,7 +10,7 @@
 
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, 
-		priority_h, status, status IN ('O', '?', 'D', 'NA', NULL) as is_open FROM commitments";
+		priority_h, status, status NOT IN ('O', '?', 'D', 'NA', NULL) as is_closed FROM commitments";
 	
 	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
 	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :promiser";
@@ -73,7 +73,7 @@
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
-	$grid->addColumn('is_open', '?', 'boolean');
+	$grid->addColumn('is_closed', '?', 'boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
