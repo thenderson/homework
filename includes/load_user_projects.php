@@ -4,13 +4,23 @@
     require_once('../includes/config.php');     
 	require_once('../includes/EditableGrid.php');     
 
-	/*	RETRIEVE PROJECT LIST */
+	/*	RETRIEVE PROJECT LIST & # OF OPEN COMMITMENTS */
 	
 	$stmt = $comm_db->prepare("
-		SELECT project_number as project_number_2, project_name
-		FROM projects
-		NATURAL JOIN users_projects
-		WHERE user_id = ?
+		SELECT 
+			a.project_number as project_number_2, 
+			a.project_name,
+			IF(
+				EXISTS(
+					SELECT b.user_id, b.project_number
+					FROM users_projects b
+					WHERE a.project_number = b.project_number
+					AND b.user_id = 3), 1,0) as user_belongs,
+			(SELECT count(*)
+				FROM commitments c
+				WHERE c.status IN ('O', '?', 'D', 'NA', NULL)
+				AND a.project_number=c.project_number) as num_open
+		FROM projects a
 		ORDER BY project_number_2");
 	
 	if (!$stmt)
@@ -23,7 +33,7 @@
 	{
 		$stmt->bindParam(1, $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
-		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
 	catch(PDOException $e) 
 	{
@@ -36,9 +46,10 @@
 	//declare grid columns TODO add columns for PPC & TA
 	$grid->addColumn('project_number_2', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_name', 'PROJECT NAME', 'string', NULL, false);
-	$grid->addColumn('open', 'OPEN', 'string', NULL, false);
+	$grig->addColumn('user_belongs', 'MEMBER OF TEAM', 'boolean');
+	$grid->addColumn('num_open', 'OPEN', 'string', NULL, false);
 	$grid->addColumn('ppc', 'PPC', 'string', NULL, false);
 	$grid->addColumn('ta', 'TA', 'string', NULL, false);
 
 	//render grid
-	$grid->renderXML($commitments);
+	$grid->renderXML($projects);
