@@ -38,7 +38,7 @@ function CommitmentGrid()
 
         tableRendered:  function() { 
 			// activate tooltips onto rendered grid
-			$('th.editablegrid-status').attr("title", 'Open: Commitment not complete. \n\
+			$('th.editablegrid-status').attr('title', 'Open: Commitment not complete. \n\
 				Closed: Requester is satisfied that promiser has met commitment. \n\
 				In Progress: Work on request has begun but is incomplete. \n\
 				Deferred: Request is set aside indefinitely. \n\
@@ -75,8 +75,6 @@ function CommitmentGrid()
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
 					row=self.grid.getRow(cell.rowIndex);
 					status=self.grid.getValueAt(cell.rowIndex, 8);
-						console.log('status: '+status);
-						console.debug(row);
 					how_soon=date_due.diff(moment(),'days');
 					if (status == 1) {
 						$(row).addClass('closed');
