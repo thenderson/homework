@@ -38,15 +38,22 @@ function CommitmentGrid()
 
         tableRendered:  function() { 
 			// activate tooltips onto rendered grid
-			$('th.editablegrid-status').attr('title', 'Open: Commitment not complete. \n\
-				Closed: Requester is satisfied that promiser has met commitment. \n\
-				In Progress: Work on request has begun but is incomplete. \n\
-				Deferred: Request is set aside indefinitely. \n\
-				Unknown: Promiser and/or requester not available to status commitment.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+			$('th.editablegrid-priority_h').attr('title', 'Toggles if a commitment has a higher than normal priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+
+			$('th.editablegrid-is_closed').attr('title', 'Indicates if a commitment is closed. Note, closed commitments cannot be reopened; duplicate another similar commitment is desired.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
+
+			$('th.editablegrid-status').attr('title', 
+				'<strong>O:</strong> Open commitment\n\
+				<strong>C0:</strong> Closed, improvised\n\
+				<strong>C1:</strong> Closed, 1 week plan\n\
+				<strong>C2:</strong> Closed, anticipated\n\
+				<strong>D:</strong> Deferred indefinitely\n\
+				<strong>V*:</strong> Variance for plan failure.\n\
+				<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 			
-			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete. Note: \
+			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete. \n\ Note: \
 				Only delete a commitment if it is truly mistaken. Otherwise, enter its status and/or variance.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
-				
+
 			updatePaginator(self.grid); 
 		},
 		tableLoaded: function() { 
@@ -106,6 +113,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			uniqueid: grid.getValueAt(rowIndex, 0), 
 			newvalue: newValue, 
 			colname: grid.getColumnName(columnIndex),
+			date_due: grid.getValueAt(rowIndex, 6)
 		},
 		success: function (response) 
 		{ 
