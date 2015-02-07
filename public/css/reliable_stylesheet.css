@@ -3,7 +3,7 @@
 
 		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons
 		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
-		accent 3 / olive 4		rgb(165, 171, 129)		
+		accent 3 / olive 4		rgb(165, 171, 129)		active pill
 		accent 3 / olive 3		rgb(200, 204, 179)   	
 		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
 		accent 5 / green		rgb(123, 167, 157)		column headers
@@ -386,11 +386,13 @@ display: none;
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
 color: #fff;
-background-color: #337ab7;
+background-color: rgb(165, 171, 129);
 }
 
-.nav>li>a {
+.nav-pills>li>a {
 padding: 6px 10px;
+color: #fff;
+background-color: rgb(228, 228, 228);
 }
 
 .tooltip {
