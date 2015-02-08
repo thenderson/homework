@@ -248,7 +248,7 @@
 			if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
 			commitments.grid.setCookie('horizon', horizon);
 			load_user_comms(horizon);
-			weeks = (horizon == 'all') : 10 ? horizon / 7;
+			weeks = (horizon == 'all') ? 10 : horizon / 7;
 			
 			$('#comm-horizon-slider').slider({
 				min: 0,
