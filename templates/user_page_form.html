@@ -46,7 +46,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
 				<div class="checkbox">
 					<label>
-						<input id="hide-closed" type="checkbox">hide closed
+						<input id="show-closed" type="checkbox">$nbsp;show closed
 					</label>
 				</div>
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
@@ -181,8 +181,8 @@
 				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
 				if (typeof(showClosed)==='undefined') showClosed = (commitments.grid.getCookie('showClosed') || false);
 				
-				if (showClosed==false) $('#hide_closed').checked = true;
-				else $('#hide_closed').checked = false;
+				if (showClosed==false) $('#show-closed').checked = false;
+				else $('#show-closed').checked = true;
 				
 				switch (horizon) {
 					case 0:
@@ -274,10 +274,8 @@
 				}
 			});
 			
-			$('#hide-closed').change(function() {
-				console.debug(this);
-				if (this.checked) load_user_comms(undefined, true);
-				else load_user_comms(undefined, false);
+			$('#show-closed').change(function() {
+				load_user_comms(undefined, this.checked);
 			});
 			
 			requests = new EditableGrid("user_requests", {
