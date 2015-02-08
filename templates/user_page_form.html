@@ -8,13 +8,14 @@
 				<tr>
 					<td class="col-sm-5 nopadding">
 						<ul class="nav nav-pills">
-							<li role="presentation"><a id="pill-0" href="javascript:load_user_comms(0);">Overdue<</a></li>
-							<li role="presentation" id="pill-7" ><a href="javascript:load_user_comms(7);">This Week</a></li>
+							<li role="presentation"><a id="pill-0" href="javascript:load_user_comms(0);">Just Overdue</a></li>
+							<li role="presentation" id="pill-7" ><a href="javascript:load_user_comms(7);">Due This Week</a></li>
 							<li role="presentation" id="pill-lookahead" class="dropdown">
 								<a id="pill-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lookahead<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="javascript:load_user_comms(14);">2 weeks</li>
 									<li><a href="javascript:load_user_comms(21);">3 weeks</a></li>
+									<li><a href="javascript:load_user_comms(42);">6 weeks</a></li>
 									<li><a href="javascript:load_user_comms('all');">all</a></li>
 									<li role="presentation" class="divider"></li>
 									<li id="show_closed_toggle"><a href="javascript:load_user_comms(undefined, true);">show closed</a></li>
@@ -186,6 +187,11 @@
 						$('#pill-lookahead').addClass('active');
 						$('#pill-drop').html('Lookahead: 3 wk<span class="caret"></span>');
 						break;
+					case 42:
+						$('#pill-0').removeClass('active');
+						$('#pill-7').removeClass('active');
+						$('#pill-lookahead').addClass('active');
+						$('#pill-drop').html('Lookahead: 6 wk<span class="caret"></span>');
 					case 'all':
 						$('#pill-0').removeClass('active');
 						$('#pill-7').removeClass('active');
