@@ -41,7 +41,7 @@
 			<form class='form-inline'>
 				<div><button id="new_com_btn" type="button" class="btn btn-default btn-sm">new commitment</button></div>
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
-				<div id="slider-comm-horizon"></div>
+				<div id="comm-horizon-slider"></div>
 				<div id="comm-horizon-text"></div>
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
 				<div class="checkbox">
@@ -248,14 +248,17 @@
 			if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
 			commitments.grid.setCookie('horizon', horizon);
 			
-			$('#slider_comm_horizon').slider({
+			$('#comm-horizon-slider').slider({
 				min: 0,
 				max: 10,
 				step: 1,
+				range: 'min',
 				value: horizon,
+				slide: function(event, ui) {
+					$('#comm-horizon-text').val('lookahead: '+ui.value+' weeks');
+				},
 				change: function( event, ui ) {
-					console.debug(event, ui);
-					$('#comm-horizon-text').html('lookahead: '+ui.value+'weeks');
+					$('#comm-horizon-text').val('lookahead: '+ui.value+' weeks');
 				}
 			});
 			
