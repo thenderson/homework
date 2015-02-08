@@ -273,8 +273,10 @@
 				}
 			});
 			
-			$('#hide-closed').change(data, function(data) {
-				console.debug(data);
+			$('#hide-closed').change(function() {
+				console.debug(this);
+				if (this.checked) load_user_comms(undefined, true);
+				else load_user_comms(undefined, false);
 			});
 			
 			requests = new EditableGrid("user_requests", {
