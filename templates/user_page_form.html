@@ -255,10 +255,13 @@
 				range: 'min',
 				value: horizon,
 				slide: function(event, ui) {
-					$('#comm-horizon-text').val('lookahead: '+ui.value+' weeks');
+					$('#comm-horizon-text').html('lookahead: '+ui.value+' weeks');
+					console.log('slide');
 				},
 				change: function( event, ui ) {
-					$('#comm-horizon-text').val('lookahead: '+ui.value+' weeks');
+					$('#comm-horizon-text').html('lookahead: '+ui.value+' weeks');
+					console.log('change: '+ui.value);
+					load_user_comms(ui.value);
 				}
 			});
 			
