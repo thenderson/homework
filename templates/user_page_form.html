@@ -249,10 +249,10 @@
 			commitments.grid.setCookie('horizon', horizon);
 			
 			$('#slider_comm_horizon').slider({
-				min: 0;
-				max: 10;
-				step: 1;
-				value: horizon;
+				min: 0,
+				max: 10,
+				step: 1,
+				value: horizon,
 				change: function( event, ui ) {
 					console.debug(event, ui);
 					$('#comm-horizon-text').html('lookahead: '+ui.value+'weeks');
