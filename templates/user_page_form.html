@@ -4,39 +4,6 @@
 		</div>
 		
 		<div class="container-fluid">
-			<!--
-			<table>
-				<tr>
-					<td class="col-sm-5 nopadding">
-						<ul class="nav nav-pills">
-							<li role="presentation" id="pill-0"><a href="javascript:load_user_comms(0);">Just Overdue</a></li>
-							<li role="presentation" id="pill-7"><a href="javascript:load_user_comms(7);">Due This Week</a></li>
-							<li role="presentation" id="pill-lookahead" class="dropdown">
-								<a id="pill-drop" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lookahead<span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="javascript:load_user_comms(14);">2 weeks</li>
-									<li><a href="javascript:load_user_comms(21);">3 weeks</a></li>
-									<li><a href="javascript:load_user_comms(42);">6 weeks</a></li>
-									<li><a href="javascript:load_user_comms('all');">all</a></li>
-									<li role="presentation" class="divider"></li>
-									<li id="show_closed_toggle"><a href="javascript:load_user_comms(undefined, undefined);">---</a></li>
-								</ul>
-							</li>
-						</ul>
-					</td>
-					<td class="col-sm-1 add_commitment">
-						<button id="new_com_btn" type="button" class="btn btn-default btn-sm">New Commitment</button>
-					</td>
-					<td class="col-sm-2 filter nopadding">
-						<div class="input-group">
-							<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-							<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
-						</div>
-					</td>
-					<td class="col-sm-4"></td>
-				</tr>
-			</table>
-			-->
 			
 			<form class='form-inline'>
 				<div class="form-group"><button id="new_com_btn" type="button" class="btn btn-default btn-sm">new commitment</button></div>
@@ -183,42 +150,6 @@
 				
 				if (showClosed==false) $('#show-closed').checked = false;
 				else $('#show-closed').checked = true;
-				
-				switch (horizon) {
-					case 0:
-						$('#pill-0').addClass('active');
-						$('#pill-7').removeClass('active');
-						$('#pill-lookahead').removeClass('active');
-						break;
-					case 7:
-						$('#pill-0').removeClass('active');
-						$('#pill-7').addClass('active');
-						$('#pill-lookahead').removeClass('active');
-						break;
-					case 14:
-						$('#pill-0').removeClass('active');
-						$('#pill-7').removeClass('active');
-						$('#pill-lookahead').addClass('active');
-						$('#pill-drop').html('Lookahead: 2 wk<span class="caret"></span>');
-						break;
-					case 21:
-						$('#pill-0').removeClass('active');
-						$('#pill-7').removeClass('active');
-						$('#pill-lookahead').addClass('active');
-						$('#pill-drop').html('Lookahead: 3 wk<span class="caret"></span>');
-						break;
-					case 42:
-						$('#pill-0').removeClass('active');
-						$('#pill-7').removeClass('active');
-						$('#pill-lookahead').addClass('active');
-						$('#pill-drop').html('Lookahead: 6 wk<span class="caret"></span>');
-					case 'all':
-						$('#pill-0').removeClass('active');
-						$('#pill-7').removeClass('active');
-						$('#pill-lookahead').addClass('active');
-						$('#pill-drop').html('Lookahead: all<span class="caret"></span>');
-						break;
-				}
 				
 				commitments.grid.setCookie('horizon', horizon);
 				commitments.grid.setCookie('showClosed', showClosed);
