@@ -13,7 +13,8 @@
 	/*	RETRIEVE COMMITMENTS */
 	
 	$stmt = $comm_db->prepare("
-		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, priority_h, status
+		SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, 
+			priority_h, status, IF(status IN ('O', '?', 'D', 'NA', NULL),0,1) as is_closed
 		FROM commitments 
 		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) and requester = ?
 		ORDER BY due_by, project_number");
@@ -68,6 +69,7 @@
 	//$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('is_closed', '?', 'boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 

@@ -415,4 +415,9 @@ color: rgb(0,0,0);
 text-align: left;
 background-color: rgb(200, 204, 179);
 }
+
+.input-group-filter {
+max-width: 300px;
+min-width: 150px;
+}
 }
