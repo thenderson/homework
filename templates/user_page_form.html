@@ -158,8 +158,12 @@
 			commitments.name = "user_commitments";
 			
 			load_user_comms = function (horizon, showClosed) {
+			
+				console.log('horizon a '+horizon);
 				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
 				if (typeof(showClosed)==='undefined') showClosed = (commitments.grid.getCookie('showClosed') || false);
+				
+				console.log('horizon b '+horizon);
 				
 				if (showClosed==false) $('#show_closed_toggle').html('<a href="javascript:load_user_comms(undefined, true);">show closed</a>');
 				else $('#show_closed_toggle').html('<a href="javascript:load_user_comms(undefined, false);">hide closed</a>');

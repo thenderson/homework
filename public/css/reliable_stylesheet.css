@@ -1,7 +1,7 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 /* colors from MS Office Median color scheme: 
 
-		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons
+		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons, new commitment button
 		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
 		accent 3 / olive 4		rgb(165, 171, 129)		active pill
 		accent 3 / olive 3		rgb(200, 204, 179)   	
@@ -394,6 +394,11 @@ font-size: 12px;
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
 color: #fff;
 background-color: rgb(165, 171, 129);
+}
+
+#new_com_btn {
+color: rgb(0,0,0);
+background-color: rgb(148, 182, 210);
 }
 
 .tooltip {
