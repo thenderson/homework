@@ -45,6 +45,7 @@ switch ($column_name) {
 	   
 	case 'priority_h':
 		$q='UPDATE commitments SET priority_h = ? WHERE unique_id = ?';
+		$new_value = ($new_value == 'true') ? 1 : 0;
 		break;
 
 	case 'is_closed':
