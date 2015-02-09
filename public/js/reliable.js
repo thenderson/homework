@@ -122,7 +122,10 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			if (!success) grid.setValueAt(rowIndex, columnIndex, oldValue);
 		    highlight(rowId, success ? "ok" : "error"); 
 		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			highlight(rowId, "error");
+			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
+		},
 		async: true
 	});
 }
