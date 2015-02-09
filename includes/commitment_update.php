@@ -76,7 +76,7 @@ switch ($column_name) {
 		$now = new DateTime();
 		$when_due = date_diff($due, $now)->format('d');
 		
-		$new_value = ($when_due > 13) : 'C2' ? (($when_due > 6) : 'C1' ? 'C0');
+		$new_value = ($when_due > 13) ? 'C2' : (($when_due > 6) ? 'C1' : 'C0');
 		
 		$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		break;
