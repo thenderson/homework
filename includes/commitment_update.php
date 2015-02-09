@@ -74,6 +74,8 @@ switch ($column_name) {
 			$r = $s->fetchAll(PDO::FETCH_ASSOC);
 			$requested_on = new DateTime($r[0]['requested_on']) ;
 		}
+		error_log('datedue: '.$date_due);
+		
 		$due = DateTime::createFromFormat('Y-m-d', $date_due);
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
