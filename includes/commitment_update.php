@@ -35,10 +35,10 @@ switch ($column_name) {
 		if ($new_value === "") 
 			$new_value = NULL;
 		else {
-			error_log('newvalue: '.$new_value);
-			$date_info = date_parse_from_format('Y.m.d|', $new_value);
-			$new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
-			error_log('dateinfo: '.$date_info.' new newvalue: '.$new_value);
+			//error_log('newvalue: '.$new_value);
+			//$date_info = date_parse_from_format('Y.m.d|', $new_value);
+			//$new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+			//error_log('dateinfo: '.$date_info.' new newvalue: '.$new_value);
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
 	   break;
@@ -73,7 +73,7 @@ switch ($column_name) {
 			$r = $s->fetchAll(PDO::FETCH_ASSOC);
 			$requested_on = new DateTime($r[0]['requested_on']) ;
 		}
-		$due = DateTime::createFromFormat('Y.m.d', $date_due);
+		$due = DateTime::createFromFormat('Y-m-d', $date_due);
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
 		$when_due = date_diff($due, $now)->format('d');
