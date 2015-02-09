@@ -32,11 +32,13 @@ switch ($column_name) {
 		
 	case 'due_by':
 		// spruce-up the date format
-	   if ($new_value === "") 
-		 $new_value = NULL;
-	   else {
-		  $date_info = date_parse_from_format('Y.m.d|', $new_value);
-		  $new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+		if ($new_value === "") 
+			$new_value = NULL;
+		else {
+			error_log('newvalue: '.$new_value);
+			$date_info = date_parse_from_format('Y.m.d|', $new_value);
+			$new_value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+			error_log('dateinfo: '.$date_info.' new newvalue: '.$new_value);
 	   }
 	   $q="UPDATE commitments SET due_by = ? WHERE unique_id = ?";
 	   break;
@@ -85,8 +87,10 @@ switch ($column_name) {
 		// todo: better error handling
 		echo 'error';
 		exit;
-	}	
-	
+	}
+
+error_log('query: '.$q.' newvalue: '.$new_value);	
+
 $stmt = $comm_db->prepare($q);
 
 if (!$stmt)
