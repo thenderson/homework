@@ -76,7 +76,7 @@ switch ($column_name) {
 		}
 		error_log('datedue: '.$date_due);
 		
-		$due = DateTime::createFromFormat('Y-m-d', $date_due);
+		$due = DateTime::createFromFormat('m/d/Y', $date_due);
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
 		$when_due = date_diff($due, $now)->format('d');
