@@ -33,7 +33,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: 10,
+      	pageSize: commPageSize,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
@@ -317,3 +317,15 @@ function populate_select_obj(element, objects) {
 goto_project_view = function (p_num) { 
 	window.location.href = "../templates/project_commitments_form.php?project="+p_num;}
 	
+/**
+ * Overloading default function to add cookie for pagesize
+ */
+EditableGrid.prototype.setPageSize = function(gridname, pageSize)
+{
+	this.pageSize = parseInt(pageSize);
+	if (isNaN(this.pageSize)) this.pageSize = 0;
+	this.currentPageIndex = 0;
+	this.refreshGrid();
+	
+	commitments.grid.setCookie(gridname, this.pageSize);
+};

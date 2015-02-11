@@ -31,7 +31,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="com_page_size" onchange="commitments.grid.setPageSize(this.value)">
+						<select class="input-sm" id="com_page_size" onchange="commitments.grid.setPageSize('commPageSize', this.value)">
 							<option value=5>5</option>
 							<option value=10 selected>10</option>
 							<option value=25>25</option>
@@ -72,7 +72,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="req_page_size" onchange="requests.setPageSize(this.value)">
+						<select class="input-sm" id="req_page_size" onchange="requests.setPageSize('reqPageSize', this.value)">
 							<option value=5>5</option>
 							<option value=10 selected>10</option>
 							<option value=25>25</option>
@@ -111,7 +111,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize(this.value)">
+						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projPageSize', this.value)">
 							<option value=5 selected>5</option>
 							<option value=10>10</option>
 							<option value=25>25</option>
@@ -142,6 +142,10 @@
 			// load commitments belonging to current user
 			commitments = new CommitmentGrid();
 			commitments.name = "user_commitments";
+			
+			commPageSize = commitments.grid.getCookie('commPageSize') || 10;
+			reqPageSize = commitments.grid.getCookie('reqPageSize') || 10;
+			projPageSize = commitments.grid.getCookie('projPageSize') || 5;
 			
 			load_user_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
@@ -207,12 +211,14 @@
 				load_user_comms(undefined, this.checked);
 			});
 			
+			if (commitments.grid.getCookie('showClosed')==false) $('#show-closed').checked = false;
+				else $('#show-closed').checked = true;
 			
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
-				pageSize: 10,
+				pageSize: reqPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "req_paginator"); 
 					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
@@ -250,7 +256,7 @@
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
-				pageSize: 5,
+				pageSize: projPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "projects_paginator"); 
 					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
