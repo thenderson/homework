@@ -211,11 +211,24 @@
 			else $('#show-closed').checked = false;
 				
 			commPageSize = getCookie('commPageSize') || 10; 
-			$('select#comm-page-size option').each(function() { this.selected = (this.val == commPageSize); });
+			$('#comm-page-size option').val(commPageSize);
 			reqPageSize = getCookie('reqPageSize') || 10; 
 			$('select#req-page-size option').each(function() { this.selected = (this.val == reqPageSize); });
 			projPageSize = getCookie('projPageSize') || 10; 
 			$('select#proj-page-size option').each(function() { this.selected = (this.val == projPageSize); });
+			
+			
+
+$('#ddlCars option').each(function () {
+                 var item = $(this).val().toString();
+                 if (item == carToBeSelected)
+                {
+                     $(this).attr("selected", "selected");  //select the current item                                     $('#ddlCars').trigger('change');  //explicit trigger of change event                                    
+                 }
+                 index++;
+});
+
+
 
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
