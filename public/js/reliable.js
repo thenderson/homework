@@ -38,9 +38,9 @@ function CommitmentGrid()
 
         tableRendered:  function() { 
 			// activate tooltips onto rendered grid
-			$('th.editablegrid-priority_h').attr('title', 'Toggles if a commitment has a higher than normal priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+			$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
-			$('th.editablegrid-is_closed').attr('title', 'Indicates if a commitment is closed. Note, closed commitments cannot be reopened; duplicate another similar commitment is desired.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
+			$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
 
 			$('th.editablegrid-status').attr('title', 
 				'<strong>O:</strong> Open commitment\n\
@@ -49,10 +49,9 @@ function CommitmentGrid()
 				<strong>C2:</strong> Closed, anticipated\n\
 				<strong>D:</strong> Deferred indefinitely\n\
 				<strong>V*:</strong> Variance for plan failure.\n\
-				<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+				<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip({html: true}).tooltip();
 			
-			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete. \n\ Note: \
-				Only delete a commitment if it is truly mistaken. Otherwise, enter its status and/or variance.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
 			updatePaginator(self.grid); 
 		},
@@ -317,3 +316,16 @@ function populate_select_obj(element, objects) {
 // pass to project-specific page
 goto_project_view = function (p_num) { 
 	window.location.href = "../templates/project_commitments_form.php?project="+p_num;}
+	
+/**
+ * Overloading default setPageSize to add feature to save cookie w/ users selection
+ */
+EditableGrid.prototype.setPageSize = function(pageSize)
+{	
+	this.pageSize = parseInt(pageSize);
+	if (isNaN(this.pageSize)) this.pageSize = 0;
+	this.currentPageIndex = 0;
+	this.refreshGrid();
+	
+	this.setCookie('pageSize', this.pageSize);
+};

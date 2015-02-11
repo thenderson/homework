@@ -9,13 +9,13 @@
 	$showClosed = strip_tags($_POST['showClosed']);
 
 	/*  COMPOSE QUERY */
-	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, DATE_FORMAT(due_by,'%m/%d/%Y') as due_by, 
-		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', NULL),0,1) as is_closed FROM commitments";
+	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, 
+		priority_h, status, IF(status IN ('O', '?', 'D', 'NA'),0,1) as is_closed FROM commitments";
 	
 	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
 	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :promiser";
 	
-	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA', NULL)";
+	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA')";
 	
 	$q = $q . ' ORDER BY due_by, project_number';
 	
