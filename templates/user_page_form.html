@@ -213,9 +213,9 @@
 			commPageSize = getCookie('commPageSize') || 10; 
 			$('#comm_page_size').val(commPageSize);
 			reqPageSize = getCookie('reqPageSize') || 10; 
-			$('select#req_page_size option').each(function() { this.selected = (this.val == reqPageSize); });
+			$('#req_page_size').val(commPageSize);
 			projPageSize = getCookie('projPageSize') || 10; 
-			$('select#proj_page_size option').each(function() { this.selected = (this.val == projPageSize); });
+			$('#proj_page_size').val(commPageSize);
 			
 			
 
