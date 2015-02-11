@@ -317,15 +317,3 @@ function populate_select_obj(element, objects) {
 goto_project_view = function (p_num) { 
 	window.location.href = "../templates/project_commitments_form.php?project="+p_num;}
 	
-/**
- * Overloading default setPageSize to add feature to save cookie w/ users selection
- */
-EditableGrid.prototype.setPageSize = function(pageSize)
-{	
-	this.pageSize = parseInt(pageSize);
-	if (isNaN(this.pageSize)) this.pageSize = 0;
-	this.currentPageIndex = 0;
-	this.refreshGrid();
-	
-	this.setCookie('pageSize', this.pageSize);
-};

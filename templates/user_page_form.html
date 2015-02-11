@@ -208,12 +208,11 @@
 			});
 			
 			
-			
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
-				pageSize: (this.getCookie('pageSize', this.pageSize) || 10),
+				pageSize: 10,
 				tableRendered:  function() { 
 					updatePaginator(this, "req_paginator"); 
 					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
