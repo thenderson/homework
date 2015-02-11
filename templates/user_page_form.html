@@ -144,14 +144,14 @@
 			commitments.name = "user_commitments";
 			
 			load_user_comms = function (horizon, showClosed) {
-				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
-				if (typeof(showClosed)==='undefined') showClosed = (commitments.grid.getCookie('showClosed') || false);
+				if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
+				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') || false);
 				
 				if (showClosed==false) $('#show-closed').checked = false;
 				else $('#show-closed').checked = true;
 				
-				commitments.grid.setCookie('horizon', horizon);
-				commitments.grid.setCookie('showClosed', showClosed);
+				setCookie('horizon', horizon);
+				setCookie('showClosed', showClosed);
 				
 				$.ajax({
 					url: '../includes/load_user_commitments.php',
@@ -175,8 +175,8 @@
 				});
 			};
 			
-			if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
-			commitments.grid.setCookie('horizon', horizon);
+			if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
+			setCookie('horizon', horizon);
 			weeks = (horizon == 'all') ? 10 : horizon / 7;
 			
 			$('#comm-horizon-slider').slider({
@@ -207,14 +207,21 @@
 				load_user_comms(undefined, this.checked);
 			});
 			
-			if (commitments.grid.getCookie('showClosed')==false) $('#show-closed').checked = false;
-				else $('#show-closed').checked = true;
-			
+			if (getCookie('showClosed')==true) $('#show-closed').checked = true;
+			else $('#show-closed').checked = false;
+				
+			commPageSize = getCookie('commPageSize') || 10; 
+			this.selected = (this.val == commPageSize);});
+			reqPageSize = getCookie('reqPageSize') || 10; 
+			this.selected = (this.val == reqPageSize);});
+			projPageSize = getCookie('projPageSize') || 10; 
+			this.selected = (this.val == projPageSize);});
+
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
-				pageSize: getCookie('reqPageSize') || 10,
+				pageSize: reqPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "req_paginator"); 
 					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
@@ -252,7 +259,7 @@
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
-				pageSize: getCookie('projPageSize') || 5,
+				pageSize: projPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "projects_paginator"); 
 					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
