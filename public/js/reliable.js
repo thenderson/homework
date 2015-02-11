@@ -33,7 +33,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: self.grid.getCookie('commPageSize') || 10,
+      	pageSize: self.getCookie('commPageSize') || 10,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
