@@ -207,8 +207,7 @@
 				load_user_comms(undefined, this.checked);
 			});
 			
-			if (getCookie('showClosed')==true) $('#show-closed').checked = true;
-			else $('#show-closed').checked = false;
+			$('#show-closed').prop('checked', getCookie('showClosed'));
 				
 			commPageSize = getCookie('commPageSize') || 10; 
 			$('#comm_page_size').val(commPageSize);
