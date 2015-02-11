@@ -31,7 +31,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="com_page_size" onchange="commitments.grid.setPageSize('commPageSize', this.value)">
+						<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commPageSize', this.value)">
 							<option value=5>5</option>
 							<option value=10 selected>10</option>
 							<option value=25>25</option>
@@ -211,11 +211,11 @@
 			else $('#show-closed').checked = false;
 				
 			commPageSize = getCookie('commPageSize') || 10; 
-			$('#comm-page-size').val(commPageSize);
+			$('#comm_page_size').val(commPageSize);
 			reqPageSize = getCookie('reqPageSize') || 10; 
-			$('select#req-page-size option').each(function() { this.selected = (this.val == reqPageSize); });
+			$('select#req_page_size option').each(function() { this.selected = (this.val == reqPageSize); });
 			projPageSize = getCookie('projPageSize') || 10; 
-			$('select#proj-page-size option').each(function() { this.selected = (this.val == projPageSize); });
+			$('select#proj_page_size option').each(function() { this.selected = (this.val == projPageSize); });
 			
 			
 
