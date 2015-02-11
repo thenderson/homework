@@ -211,11 +211,11 @@
 			else $('#show-closed').checked = false;
 				
 			commPageSize = getCookie('commPageSize') || 10; 
-			this.selected = (this.val == commPageSize);});
+			$('select#comm-page-size option').each(function() { this.selected = (this.val == commPageSize); });
 			reqPageSize = getCookie('reqPageSize') || 10; 
-			this.selected = (this.val == reqPageSize);});
+			$('select#req-page-size option').each(function() { this.selected = (this.val == reqPageSize); });
 			projPageSize = getCookie('projPageSize') || 10; 
-			this.selected = (this.val == projPageSize);});
+			$('select#proj-page-size option').each(function() { this.selected = (this.val == projPageSize); });
 
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
