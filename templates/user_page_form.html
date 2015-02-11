@@ -211,7 +211,7 @@
 			else $('#show-closed').checked = false;
 				
 			commPageSize = getCookie('commPageSize') || 10; 
-			$('#comm-page-size option').val(commPageSize);
+			$('#comm-page-size').val(commPageSize);
 			reqPageSize = getCookie('reqPageSize') || 10; 
 			$('select#req-page-size option').each(function() { this.selected = (this.val == reqPageSize); });
 			projPageSize = getCookie('projPageSize') || 10; 
