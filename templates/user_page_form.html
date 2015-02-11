@@ -217,19 +217,6 @@
 			projPageSize = getCookie('projPageSize') || 10; 
 			$('#proj_page_size').val(commPageSize);
 			
-			
-
-$('#ddlCars option').each(function () {
-                 var item = $(this).val().toString();
-                 if (item == carToBeSelected)
-                {
-                     $(this).attr("selected", "selected");  //select the current item                                     $('#ddlCars').trigger('change');  //explicit trigger of change event                                    
-                 }
-                 index++;
-});
-
-
-
 			requests = new EditableGrid("user_requests", {
 				enableSort: true,
 				editMode: 'static',
