@@ -33,7 +33,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: commPageSize,
+      	pageSize: self.grid.getCookie('commPageSize') || 10,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
@@ -320,12 +320,12 @@ goto_project_view = function (p_num) {
 /**
  * Overloading default function to add cookie for pagesize
  */
-EditableGrid.prototype.setPageSize = function(gridname, pageSize)
+EditableGrid.prototype.setPageSize = function(cookiename, pageSize)
 {
 	this.pageSize = parseInt(pageSize);
 	if (isNaN(this.pageSize)) this.pageSize = 0;
 	this.currentPageIndex = 0;
 	this.refreshGrid();
 	
-	commitments.grid.setCookie(gridname, this.pageSize);
+	commitments.grid.setCookie(cookiename, this.pageSize);
 };
