@@ -33,7 +33,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: self.getCookie('commPageSize') || 10,
+      	pageSize: getCookie('commPageSize') || 10,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
@@ -327,5 +327,24 @@ EditableGrid.prototype.setPageSize = function(cookiename, pageSize)
 	this.currentPageIndex = 0;
 	this.refreshGrid();
 	
-	commitments.grid.setCookie(cookiename, this.pageSize);
+	setCookie(cookiename, this.pageSize, 90);
 };
+
+function setCookie(cookieName,cookieValue,nDays) {
+ var today = new Date();
+ var expire = new Date();
+ if (nDays==null || nDays==0) nDays=1;
+ expire.setTime(today.getTime() + 3600000*24*nDays);
+ document.cookie = cookieName+"="+escape(cookieValue)
+                 + ";expires="+expire.toGMTString();
+}
+
+function getCookie(cookieName) {
+ var theCookie=" "+document.cookie;
+ var ind=theCookie.indexOf(" "+cookieName+"=");
+ if (ind==-1) ind=theCookie.indexOf(";"+cookieName+"=");
+ if (ind==-1 || cookieName=="") return "";
+ var ind1=theCookie.indexOf(";",ind+1);
+ if (ind1==-1) ind1=theCookie.length; 
+ return unescape(theCookie.substring(ind+cookieName.length+2,ind1));
+}

@@ -143,9 +143,6 @@
 			commitments = new CommitmentGrid();
 			commitments.name = "user_commitments";
 			
-			reqPageSize = commitments.grid.getCookie('reqPageSize') || 10;
-			projPageSize = commitments.grid.getCookie('projPageSize') || 5;
-			
 			load_user_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') horizon = (commitments.grid.getCookie('horizon') || 21);
 				if (typeof(showClosed)==='undefined') showClosed = (commitments.grid.getCookie('showClosed') || false);
@@ -217,7 +214,7 @@
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
-				pageSize: reqPageSize,
+				pageSize: getCookie('reqPageSize') || 10,
 				tableRendered:  function() { 
 					updatePaginator(this, "req_paginator"); 
 					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
@@ -255,7 +252,7 @@
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
-				pageSize: projPageSize,
+				pageSize: getCookie('projPageSize') || 5,
 				tableRendered:  function() { 
 					updatePaginator(this, "projects_paginator"); 
 					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
