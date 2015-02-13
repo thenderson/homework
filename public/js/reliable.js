@@ -75,7 +75,7 @@ function CommitmentGrid()
 					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 				}}));
 			
-			this.setCellRenderer('due_by', new CellRenderer({ //shades row based on how soon commitment is due
+			this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
 				render: function(cell, value) {
 					date_due=moment(value, 'YYYY-MM-DD')
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
@@ -84,7 +84,6 @@ function CommitmentGrid()
 					how_soon=date_due.diff(moment(),'days');
 					if (status == 'true') {
 						$(row).addClass('closed');
-						$(cell).addClass('closed');
 					}
 					else {
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
