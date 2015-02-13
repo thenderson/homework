@@ -275,8 +275,8 @@
 			
 			$("#filter_all").keyup(function() { //one filter to rule them all
  				commitments.grid.filter($(this).val());
-				requests.grid.filter($(this).val());
-				projects.grid.filter($(this).val());
+				requests.filter($(this).val());
+				projects.filter($(this).val());
 			});
 
 			projects.loadXML("../includes/load_user_projects.php");
