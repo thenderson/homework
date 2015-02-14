@@ -1,20 +1,22 @@
-<header class="navbar navbar-default" id="top" role="navigation">
-	<div class="container-fluid wrap">
-		<div class="navbar-header">
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="../" class="navbar-brand"><strong>reliable promising</strong></a>
-		</div>
-		
-		<nav class="collapse navbar-collapse" id="collapse" role="navigation">
-			<ul class="nav navbar-nav">
-				<li><a href="../index.php">home</a></li>
-				<form class='narbar-form navbar-left'>
-					<button id="new_com_btn" type="button" class="btn btn-default btn-sm">new commitment</button>
+<header>
+	<nav class="navbar navbar-default" id="top" role="navigation">
+		<div class="container-fluid wrap">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#rp-navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="../" class="navbar-brand"><strong>reliable promising</strong></a>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="rp-navbar">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.php">home</a></li>
+				</ul>
+				<form class='navbar-form navbar-left'>
+					<button id="new_com_btn" type="button" class="btn btn-default navbar-btn btn-sm">new commitment</button>
 					<div class="input-group input-group-filter">
 						<input class="form-control input-sm" type="text" id="filter_all" placeholder="filter" name="filter"/>
 					</div>
@@ -28,22 +30,22 @@
 						</label>
 					</div>
 				</form>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<?php
-				if (empty($_SESSION["username"]))
-				{ ?>
-					<li class="navbar-text navbar-right">guest</li>
-				<?php
-				}
-				else
-				{ ?>
-					<li class="navbar-text navbar-right">logged in as <strong><?php echo $_SESSION["username"];?></strong></li>
-				<?php
-				} ?>
-				<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
-				<li><a href="../public/logout.php">logout</a></li>
-			</ul>
-		</nav>
-	</div>
+				<ul class="nav navbar-nav navbar-right">
+					<?php
+					if (empty($_SESSION["username"]))
+					{ ?>
+						<li>guest</li>
+					<?php
+					}
+					else
+					{ ?>
+						<li>logged in as <strong><?php echo $_SESSION["username"];?></strong></li>
+					<?php
+					} ?>
+					<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
+					<li><a href="../public/logout.php">logout</a></li>
+				</ul>
+			</div> <!--navbar-->
+		</div> <!--container-->
+	</nav>
 </header>
