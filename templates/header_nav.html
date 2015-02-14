@@ -12,9 +12,6 @@
 			</div>
 			
 			<div class="collapse navbar-collapse" id="rp-navbar">
-				<ul class="nav navbar-nav">
-					<li><a href="../index.php">home</a></li>
-				</ul>
 				<form class='navbar-form navbar-left'>
 					<button id="new_com_btn" type="button" class="btn btn-default navbar-btn btn-sm">new commitment</button>
 					<div class="input-group input-group-filter">
@@ -34,12 +31,12 @@
 					<?php
 					if (empty($_SESSION["username"]))
 					{ ?>
-						<li>guest</li>
+						<li class="navbar-text">guest</li>
 					<?php
 					}
 					else
 					{ ?>
-						<li>logged in as <strong><?php echo $_SESSION["username"];?></strong></li>
+						<li class="navbar-text">hi, <strong><?php echo $_SESSION["username"];?></strong></li>
 					<?php
 					} ?>
 					<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
