@@ -65,10 +65,10 @@
 			
 			<form class='form-inline'>
 				<div class="form-group" id="proj_total">total: <i class='fa fa-spinner fa-spin'></i></div>
-				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+				<div class="form-group spacer">&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projPageSize', this.value)">
+						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projPageSize', this.value)">page size
 							<option value=5 selected>5</option>
 							<option value=10>10</option>
 							<option value=25>25</option>
@@ -142,7 +142,7 @@
 				range: 'min',
 				value: weeks,
 				slide: function(event, ui) {
-					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' weeks');
+					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
 					else $('#horizon-text').html('lookahead: all');
 				},
 				change: function( event, ui ) {
@@ -152,7 +152,7 @@
 					}
 					else if (ui.value < 10) {
 						horizon = ui.value * 7;
-						$('#horizon-text').html('lookahead: '+ui.value+' weeks');
+						$('#horizon-text').html('lookahead: '+ui.value+' wk');
 					}
 					else {
 						horizon = 'all';
@@ -233,6 +233,10 @@
 					this.renderGrid('user_projects', 'table', 'projects'); }
 			}); 
 			
+			commitments.grid.filter(""); //clear any leftover filtering
+			requests.filter("");
+			projects.filter("");
+				
 			$("#filter_all").keyup(function() { //one filter to rule them all
  				commitments.grid.filter($(this).val());
 				requests.filter($(this).val());
