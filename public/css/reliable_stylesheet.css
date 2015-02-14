@@ -46,6 +46,11 @@ padding-left: 0px;
 margin-left: 0px;
 }
 
+.navbar-form {
+margin-top: 0;
+margin-bottom: 0;
+}
+
 .nopadding {
 	padding-left: 1px;
 	padding-right: 1px;
