@@ -432,7 +432,12 @@ background-color: rgb(200, 204, 179);
 width: 150px;
 }
 
-.horizon-slider {
+#horizon-slider {
 width: 150px;
+}
+
+#horizon-text {
+text-align: center;
+font-size: 11px;
 }
 }

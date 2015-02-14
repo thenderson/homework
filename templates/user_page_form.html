@@ -5,23 +5,6 @@
 		</div>
 		
 		<div class="container-fluid">
-<!-- 			<form class='form-inline'>
-				<div class="form-group"><button id="new_com_btn" type="button" class="btn btn-default btn-sm">new commitment</button></div>
-				<div class="input-group input-group-filter">
-					<div class="input-group-addon"><i class='fa fa-filter'></i></div>
-					<input class="form-control input-sm" type="text" id="filter_all" name="filter"/>
-				</div>
-				<div class="form-group spacer">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-				<div class="form-group horizon-slider" id="comm-horizon-slider"></div>
-				<div class="form-group" id="comm-horizon-text">&nbsp;lookahead</div>
-				<div class="form-group spacer">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-				<div class="checkbox">
-					<label>
-						<input id="show-closed" type="checkbox">&nbsp;show closed
-					</label>
-				</div>
-			</form> -->
-
 			<div id="commitments">
 				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 			</div>
@@ -40,7 +23,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group spacer">&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div class="form-group paginator" id="paginator"></div>
 			</form>
 		</div>
@@ -69,7 +51,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group spacer">&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div class="form-group paginator" id="req_paginator"></div>
 			</form>
 		</div>
@@ -96,7 +77,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group spacer">&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div class="form-group paginator" id="projects_paginator"></div>
 			</form>
 		</div>
@@ -155,24 +135,28 @@
 			setCookie('horizon', horizon);
 			weeks = (horizon == 'all') ? 10 : horizon / 7;
 			
-			$('#comm-horizon-slider').slider({
+			$('#horizon-slider').slider({
 				min: 0,
 				max: 10,
 				step: 1,
 				range: 'min',
 				value: weeks,
 				slide: function(event, ui) {
-					if (ui.value < 10) $('#comm-horizon-text').html('&nbsp;lookahead: '+ui.value+' weeks');
-					else $('#comm-horizon-text').html('&nbsp;lookahead: all');
+					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' weeks');
+					else $('#horizon-text').html('lookahead: all');
 				},
 				change: function( event, ui ) {
-					if (ui.value < 10) {
+					if (ui.value == 0) {
+						horizon = 0;
+						$('#horizon-text').html('overdue only');
+					}
+					else if (ui.value < 10) {
 						horizon = ui.value * 7;
-						$('#comm-horizon-text').html('&nbsp;lookahead: '+ui.value+' weeks');
+						$('#horizon-text').html('lookahead: '+ui.value+' weeks');
 					}
 					else {
 						horizon = 'all';
-						$('#comm-horizon-text').html('&nbsp;lookahead: all');
+						$('#horizon-text').html('lookahead: all');
 					}
 					
 					load_user_comms(horizon);
