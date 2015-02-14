@@ -25,13 +25,13 @@
 				</legend>
 			</div>
 			<div class="form-group">
-				<label for="username" class="col-sm-3 control-label">username</label>
+				<label for="username" class="col-sm-3 control-label login">username</label>
 				<div class="col-sm-4">
 					<input autofocus class="form-control" name="username" id="username" type="text"/>
 				</div>
 			</div>
 			<div class="form-group"> 
-				<label for="password" class="col-sm-3 control-label">password</label>
+				<label for="password" class="col-sm-3 control-label login">password</label>
 				<div class="col-sm-4">
 					<input class="form-control" name="password" id="password" type="password"/>
 				</div>
