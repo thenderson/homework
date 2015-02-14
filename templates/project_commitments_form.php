@@ -1,8 +1,9 @@
 <?php 
 	require '../includes/config.php';
 	require 'header.html'; 
+	require 'header_nav.html';
 ?>
-
+	</head>
 	<body>
 		<div class="container-fluid">
 			<div class="col-sm-12 nopadding" id="table_title">

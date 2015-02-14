@@ -140,7 +140,10 @@
 
             // render header
             require('templates/header.html');
-
+			
+			if ($template == 'user_page_form.html') // project page form is never called through this render function, btw.
+				require ('templates/header_nav.html');
+			
             // render template
             require("templates/$template");
 
