@@ -135,6 +135,7 @@
 			if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
 			setCookie('horizon', horizon);
 			weeks = (horizon == 'all') ? 10 : horizon / 7;
+			console.log('weeks '+weeks);
 			
 			$('#horizon-slider').slider({
 				min: 0,
@@ -159,7 +160,6 @@
 						horizon = 'all';
 						$('#horizon-text').html('lookahead: all');
 					}
-					console.log(ui.value);
 					load_user_comms(horizon);
 				}
 			});
