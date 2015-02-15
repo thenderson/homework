@@ -132,30 +132,22 @@
 			
 			if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
 			setCookie('horizon', horizon);
-			weeks = (horizon == 'all') ? 10 : horizon / 7;
+			var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
 			
 			$('#horizon-slider').slider({
 				min: 0,
 				max: 10,
 				step: 1,
 				range: 'min',
-				value: parseInt(weeks),
+				value: weeks,
 				create: function(event, ui) {
-					if (weeks < 1) {
-						horizon = 0;
-						$('#horizon-text').html('overdue only');
-					}
-					else if (weeks < 10) {
-						horizon = ui.value * 7;
-						$('#horizon-text').html('lookahead: '+weeks+' wk');
-					}
-					else {
-						horizon = 'all';
-						$('#horizon-text').html('lookahead: all');
-					}
+					if (weeks < 1) $('#horizon-text').html('overdue only');
+					else if (weeks < 10) $('#horizon-text').html('lookahead: '+weeks+' wk');
+					else $('#horizon-text').html('lookahead: all');
 				},
 				slide: function(event, ui) {
-					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
+					if (ui.value < 1) $('#horizon-text').html('overdue only');
+					else if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
 					else $('#horizon-text').html('lookahead: all');
 				},
 				change: function( event, ui ) {
