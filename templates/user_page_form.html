@@ -145,7 +145,7 @@
 						horizon = 0;
 						$('#horizon-text').html('overdue only');
 					}
-					else if (ui.value < 10) {
+					else if (weeks < 10) {
 						horizon = ui.value * 7;
 						$('#horizon-text').html('lookahead: '+ui.value+' wk');
 					}
