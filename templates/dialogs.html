@@ -135,11 +135,16 @@
 		search_contains: true,
 		width: 250
 	});
+	
 	$("#inp-prom").chosen({
 		disable_search_threshold: 10,
 		placeholder_text_multiple: "Pick one or more",
 		search_contains: true,
 		width: 250
 	});
-	$("#inp-stat").chosen();
+	
+	$("#inp-stat").chosen(({
+		placeholder_text_single: "Pick one",
+		width: 250
+	});
 </script>
