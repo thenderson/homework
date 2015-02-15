@@ -8,6 +8,14 @@
 			<form class='form-horizontal' id='comm_form'>
 			
 				<div class="control-group">
+					<label class="control-label" for="inp-proj">Project</label>
+					<div class="controls">
+						<select class="input-sm" id="inp-proj" name="project" style="width: 200px">
+						</select>
+					</div>
+				</div>
+				
+				<div class="control-group">
 					<label class="control-label" for="inp-comm">Description</label>
 					<div class="controls">
 						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5"></textarea>
@@ -23,7 +31,7 @@
 				</div>
 				
 				<div class="control-group">
-					<label class="control-label" for="inp-prom">Promiser</label>
+					<label class="control-label" for="inp-prom">Promiser(s)</label>
 					<div class="controls">
 						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px">
 						</select>
@@ -55,66 +63,66 @@
 			</form>			
 		</div>
 		
-	<script type="text/javascript">		
-		$("#delete-confirm").dialog({
-			resizable: false,
-			autoOpen: false,
-			height:180,
-			modal: true,
-			buttons: {
-				"Delete": function() {
-					$(this).dialog("close");
-					commitments.DeleteRow($(this).data('id'));
-				},
-				Cancel: function() {
-					$(this).dialog("close");
-				}
+<script type="text/javascript">		
+	$("#delete-confirm").dialog({
+		resizable: false,
+		autoOpen: false,
+		height:180,
+		modal: true,
+		buttons: {
+			"Delete": function() {
+				$(this).dialog("close");
+				commitments.DeleteRow($(this).data('id'));
+			},
+			Cancel: function() {
+				$(this).dialog("close");
 			}
-		});
-		
-		$("#add-commitment").dialog({
-			resizable: true,
-			autoOpen: false,
-			height:500,
-			width:300,
-			modal: true,
-			buttons: {
-				"Submit": function() {
-					var data = {};
-					$.each($('#comm_form').serializeArray(), function(i, field) {
-						data[field.name] = field.value;
-					});
-					$(this).dialog("close");
-					commitments.AddRow(data);
-				},
-				"Submit+": function() {
-					var data = {};
-					$.each($('#comm_form').serializeArray(), function(i, field) {
-						data[field.name] = field.value;
-					});
-					commitments.AddRow(data);
-					$(this).dialog("close").delay(700).dialog("open");
-				},
-				Cancel: function() {
-					$(this).dialog("close");
-				}
+		}
+	});
+	
+	$("#add-commitment").dialog({
+		resizable: true,
+		autoOpen: false,
+		height:600,
+		width:300,
+		modal: true,
+		buttons: {
+			"Submit": function() {
+				var data = {};
+				$.each($('#comm_form').serializeArray(), function(i, field) {
+					data[field.name] = field.value;
+				});
+				$(this).dialog("close");
+				commitments.AddRow(data);
+			},
+			"Submit+": function() {
+				var data = {};
+				$.each($('#comm_form').serializeArray(), function(i, field) {
+					data[field.name] = field.value;
+				});
+				commitments.AddRow(data);
+				$(this).dialog("close").delay(700).dialog("open");
+			},
+			Cancel: function() {
+				$(this).dialog("close");
 			}
-		});
-		
-		$("#new_com_btn").on("click", function() {
-			$("#add-commitment")
-				.dialog({show: { effect: "puff", duration: 150 }})
-				.dialog("open"); 
-		});
-		
-		$("#inp-due").datepicker({
-			dateFormat: $.datepicker.W3C,
-			numberOfMonths: 2,
-			gotoCurrent: true,
-			showAnim: 'puff'
-		});
+		}
+	});
+	
+	$("#new_com_btn").on("click", function() {
+		$("#add-commitment")
+			.dialog({show: { effect: "puff", duration: 150 }})
+			.dialog("open"); 
+	});
+	
+	$("#inp-due").datepicker({
+		dateFormat: $.datepicker.W3C,
+		numberOfMonths: 2,
+		gotoCurrent: true,
+		showAnim: 'puff'
+	});
 
-		$("#inp-req").selectmenu();
-		$("#inp-prom").selectmenu();
-		$("#inp-stat").selectmenu();
+	$("#inp-req").chosen();
+	$("#inp-prom").chosen();
+	$("#inp-stat").chosen();
 </script>

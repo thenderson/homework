@@ -74,6 +74,10 @@ margin-bottom: 0;
 		margin-left: 2.5%;
 		margin-right: 2.5%;
 	}
+	
+	.navbar-form .checkbox input[type=checkbox] {
+		margin-left: 16;
+	}
 }
 
 @media screen and (max-device-width:480px) {
@@ -87,6 +91,10 @@ margin-bottom: 0;
 	}
 	.spacer {
 		display: none;
+	}
+	
+	.navbar-form .checkbox input[type=checkbox] {
+		margin-left: 0;
 	}
 }
 
