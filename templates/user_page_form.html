@@ -102,7 +102,7 @@
 				if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
 				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') || false);
 				
-				$('#show-closed').checked = false;
+				if (showClosed == 'false') $('#show-closed').checked = false;
 				else $('#show-closed').checked = true;
 				
 				setCookie('horizon', horizon);
