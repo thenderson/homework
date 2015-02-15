@@ -433,7 +433,8 @@ width: 150px;
 }
 
 #horizon-slider {
-max-width: 150px;
+width: 300px;
+margin: 4px 4px;
 }
 
 #horizon-text {
