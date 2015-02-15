@@ -102,7 +102,7 @@
 				if (typeof(horizon) === 'undefined') horizon = (getCookie('horizon') || 21);
 				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') || false);
 				
-				if (showClosed==false) $('#show-closed').checked = false;
+				$('#show-closed').checked = false;
 				else $('#show-closed').checked = true;
 				
 				setCookie('horizon', horizon);
@@ -147,7 +147,7 @@
 					}
 					else if (weeks < 10) {
 						horizon = ui.value * 7;
-						$('#horizon-text').html('lookahead: '+ui.value+' wk');
+						$('#horizon-text').html('lookahead: '+weeks+' wk');
 					}
 					else {
 						horizon = 'all';
@@ -179,7 +179,7 @@
 				load_user_comms(undefined, this.checked);
 			});
 			
-			$('#show-closed').checked = getCookie('showClosed');
+			$('#show-closed').checked = getCookie('showClosed') || false;
 				
 			commPageSize = getCookie('commPageSize') || 10; 
 			$('#comm_page_size').val(commPageSize);
