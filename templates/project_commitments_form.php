@@ -46,7 +46,7 @@
 				success: function (proj_users) {
 					populate_select_obj("#inp-req", proj_users);
 					populate_select_obj("#inp-prom", proj_users);
-					},
+				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
