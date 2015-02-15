@@ -139,15 +139,15 @@
 			$('#horizon-slider').slider({
 				min: parseInt(0),
 				max: parseInt(10),
-				step: 1,
+				step: parseInt(1),
 				range: 'min',
-				value: weeks,
+				value: parseInt(weeks),
 				slide: function(event, ui) {
 					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
 					else $('#horizon-text').html('lookahead: all');
 				},
 				change: function( event, ui ) {
-					if (ui.value == 0) {
+					if (ui.value < 1) {
 						horizon = 0;
 						$('#horizon-text').html('overdue only');
 					}
