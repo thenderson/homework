@@ -137,11 +137,11 @@
 			weeks = (horizon == 'all') ? 10 : horizon / 7;
 			
 			$('#horizon-slider').slider({
-				min: parseInt(0),
-				max: parseInt(10),
-				step: parseInt(1),
+				min: 0,
+				max: 10,
+				step: 1,
 				range: 'min',
-				value: parseInt(weeks),
+				value: 1,
 				slide: function(event, ui) {
 					if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
 					else $('#horizon-text').html('lookahead: all');
