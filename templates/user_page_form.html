@@ -137,8 +137,8 @@
 			weeks = (horizon == 'all') ? 10 : horizon / 7;
 			
 			$('#horizon-slider').slider({
-				min: 0,
-				max: 10,
+				min: parseInt(0),
+				max: parseInt(10),
 				step: 1,
 				range: 'min',
 				value: weeks,
