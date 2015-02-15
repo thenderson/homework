@@ -123,6 +123,10 @@
 	});
 
 	$("#inp-req").chosen();
-	$("#inp-prom").chosen();
+	$("#inp-prom").chosen({
+		disable_search_threshold: 0,
+		placeholder_text_multiple: "Pick one or more",
+		search_contains: true
+	});
 	$("#inp-stat").chosen();
 </script>
