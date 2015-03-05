@@ -157,5 +157,4 @@
             trigger_error("Invalid template: $template", E_USER_ERROR);
         }
     }
-
 ?>
