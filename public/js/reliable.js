@@ -178,7 +178,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 		type: 'POST',
 		dataType: "json",
 		data: {
-			projectnumber: getparam('project'),
+			projectnumber: values['projectnumber'],
 			desc: values['description'],
 			prom: values['promiser'],
 			req: values['requester'],
