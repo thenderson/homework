@@ -278,15 +278,11 @@
 			// populate new commitment requester and promiser select menus with project team members
 			$('#inp-proj').on("selectmenuselect", function( event, object ) 
 			{
-				console.log($('#inp-proj').val());
-				console.log(object.value());
-				
-				
 				$.ajax({
 					url: '../includes/load_project_usernames.php',
 					type: 'POST',
 					dataType: 'JSON',
-					data: { p: 999999.99 },
+					data: { p: $('#inp-proj').val() },
 					success: function (proj_users) {
 						populate_select_names("#inp-req", proj_users);
 						$('#inp-req').selectmenu('enable');
