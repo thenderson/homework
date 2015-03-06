@@ -282,7 +282,7 @@
 					url: '../includes/load_project_usernames.php',
 					type: 'POST',
 					dataType: 'JSON',
-					data: { p: object.value },
+					data: { p: object['value'] },
 					success: function (proj_users) {
 						populate_select_names("#inp-req", proj_users);
 						$('#inp-req').selectmenu('enable');
