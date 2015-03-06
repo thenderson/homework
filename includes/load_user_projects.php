@@ -15,7 +15,7 @@
 					SELECT b.user_id, b.project_number
 					FROM users_projects b
 					WHERE a.project_number = b.project_number
-					AND b.user_id = 3), 1,0) as user_belongs,
+					AND b.user_id = :user), 1,0) as user_belongs,
 			(SELECT count(*)
 				FROM commitments c
 				WHERE c.status IN ('O', '?', 'D', 'NA', NULL)
@@ -31,7 +31,7 @@
 	
 	try 
 	{
-		$stmt->bindParam(1, $_SESSION['id'], PDO::PARAM_INT);
+		$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 

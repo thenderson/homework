@@ -307,9 +307,15 @@ function populate_select(element, values) {
 	});
 };
 
-function populate_select_obj(element, objects) {
+function populate_select_names(element, objects) {
 	$.each(objects, function(key, object) {
 		$(element).append($("<option>").attr('value',object['user_id']).text(object['name']));
+	});
+};
+
+function populate_select_projects(element, objects) {
+	$.each(objects, function(key, object) {
+		$(element).append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 	});
 };
 

@@ -38,27 +38,31 @@
 		window.onload = function() {
 			pnum = getparam('project');
 			
+			// populate new commitment requester and promiser select menus with project team members
 			$.ajax({
 				url: '../includes/load_project_usernames.php',
 				type: 'POST',
 				dataType: 'JSON',
 				data: { p: getparam('project') },
 				success: function (proj_users) {
-					populate_select_obj("#inp-req", proj_users);
-					populate_select_obj("#inp-prom", proj_users);
+					populate_select_names("#inp-req", proj_users);
+					populate_select_names("#inp-prom", proj_users);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
 			});
 			
+			//load project name, populate table_title & project number selectmenu in New Commitment dialog
 			$.ajax({
 				url: '../includes/load_project_name.php',
 				type: 'POST',
 				dataType: 'text',
 				data: { p: pnum },
 				success: function (response) {
-					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");},
+					$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");
+					$('#inp-proj').append($("<option>").attr('value',response).text(response)).selectmenu('disable');
+				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true

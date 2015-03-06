@@ -255,5 +255,44 @@
 
 			projects.loadXML("../includes/load_user_projects.php");
 			load_user_comms(horizon, show_closed);
+			
+			// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
+			$.ajax({
+				url: '../includes/load_user_project_list.php',
+				type: 'POST',
+				dataType: 'JSON',
+				success: function (user_proj_list) {
+					populate_select_projects("#inp-proj", user_proj_list);
+				},
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			});
+			
+			$('#inp-req').selectmenu('disable');
+			$('#inp-prom').selectmenu('disable');
+			
+			// populate new commitment requester and promiser select menus with project team members
+			$('#inp-proj').on("selectmenuselect", function( event, ui ) 
+			{
+				console.debug(event);
+				console.debug(ui);
+			
+//				$.ajax({
+	//				url: '../includes/load_project_usernames.php',
+		//			type: 'POST',
+			//		dataType: 'JSON',
+				//	data: { p: getparam('project') },
+					//success: function (proj_users) {
+						//populate_select_names("#inp-req", proj_users);
+//						$('#inp-req').selectmenu('enable');
+	//					populate_select_names("#inp-prom", proj_users);
+		//				$('#inp-prom').selectmenu('enable');
+			//		},
+				//	error: function(XMLHttpRequest, textStatus, exception) { 
+					//	alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+//					async: true
+	//			});
+			} );
 		}; 
 	</script>
