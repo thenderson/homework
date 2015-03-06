@@ -8,7 +8,7 @@
 		SELECT project_number, project_name
 		FROM projects
 		NATURAL JOIN users_projects
-		WHERE user_name = :user
+		WHERE user_id = :user
 		ORDER BY project_number');
 	
 	if (!$stmt)
