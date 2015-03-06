@@ -262,10 +262,13 @@
 				type: 'POST',
 				dataType: 'JSON',
 				success: function (user_proj_list) {
-					populate_select_projects("#inp-proj", user_proj_list);
+					//populate_select_projects("#inp-proj", user_proj_list);
+					$.each(user_proj_list, function(key, object) {
+						$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
+					}
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
-					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+					alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
 			});
 			
