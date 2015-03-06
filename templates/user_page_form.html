@@ -276,26 +276,23 @@
 			$('#inp-prom').selectmenu('disable');
 			
 			// populate new commitment requester and promiser select menus with project team members
-			$('#inp-proj').on("selectmenuselect", function( event, ui ) 
+			$('#inp-proj').on("selectmenuselect", function( event, object ) 
 			{
-				console.debug(event);
-				console.debug(ui);
-			
-//				$.ajax({
-	//				url: '../includes/load_project_usernames.php',
-		//			type: 'POST',
-			//		dataType: 'JSON',
-				//	data: { p: getparam('project') },
-					//success: function (proj_users) {
-						//populate_select_names("#inp-req", proj_users);
-//						$('#inp-req').selectmenu('enable');
-	//					populate_select_names("#inp-prom", proj_users);
-		//				$('#inp-prom').selectmenu('enable');
-			//		},
-				//	error: function(XMLHttpRequest, textStatus, exception) { 
-					//	alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-//					async: true
-	//			});
+				$.ajax({
+					url: '../includes/load_project_usernames.php',
+					type: 'POST',
+					dataType: 'JSON',
+					data: { p: object.value },
+					success: function (proj_users) {
+						populate_select_names("#inp-req", proj_users);
+						$('#inp-req').selectmenu('enable');
+						populate_select_names("#inp-prom", proj_users);
+						$('#inp-prom').selectmenu('enable');
+					},
+					error: function(XMLHttpRequest, textStatus, exception) { 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+					async: true
+				});
 			} );
 		}; 
 	</script>
