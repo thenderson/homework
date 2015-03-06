@@ -279,7 +279,8 @@
 			$('#inp-proj').on("selectmenuselect", function( event, object ) 
 			{
 				console.debug(object);
-				console.log(object[0].value);
+				console.log(object[0]['value']);
+				console.log(object[1]['value']);
 				
 				
 				$.ajax({
