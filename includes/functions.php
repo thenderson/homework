@@ -112,6 +112,7 @@
         {
             // adapted from http://www.php.net/header
             $protocol = (isset($_SERVER["HTTPS"])) ? 'https' : 'http';
+			error_log('protocol'+$protocol);
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
