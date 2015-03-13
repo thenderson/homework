@@ -102,6 +102,7 @@
         else if (preg_match("/^\//", $destination))
         {
             $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
+			error_log('protocol'+$protocol);
             $host = $_SERVER["HTTP_HOST"];
             $location = "Location: $protocol://$host$destination";
         }
