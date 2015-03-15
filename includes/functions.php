@@ -92,17 +92,19 @@
      */
     function redirect($destination)
     {
+		error_log('\n\nFunction redirect activated');
         // handle URL
         if (preg_match("/^https?:\/\//", $destination))
         {
             $location = 'Location: ' . $destination;
+			error_log('matched condition 1');
         }
 
         // handle absolute path
         else if (preg_match("/^\//", $destination))
         {
             $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
-			error_log('protocol'+$protocol);
+			error_log('matched condition 2; protocol: '+$protocol);
             $host = $_SERVER["HTTP_HOST"];
             $location = "Location: $protocol://$host$destination";
         }
@@ -112,7 +114,7 @@
         {
             // adapted from http://www.php.net/header
             $protocol = (isset($_SERVER["HTTPS"])) ? 'https' : 'http';
-			error_log('protocol'+$protocol);
+			error_log('matched condition 3; protocol: '+$protocol);
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
@@ -125,6 +127,7 @@
 		header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 		
         // exit immediately since we're redirecting anyway
+		error_log('Function redirect exiting now.\n');
         exit;
     }
 
