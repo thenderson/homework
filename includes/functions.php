@@ -102,7 +102,14 @@
         // handle absolute path
         else if (preg_match("/^\//", $destination))
         {
-            $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
+            $isSecure = false;
+			if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+				$isSecure = true;
+			}
+			elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+				$isSecure = true;
+			}
+			$protocol = $isSecure ? 'https' : 'http';
             $host = $_SERVER["HTTP_HOST"];
             $location = "Location: $protocol://$host$destination";
 			error_log('matched condition 2; flag: '.$_SERVER['HTTPS'].' protocol: '.$protocol.' location: '.$location);
@@ -111,8 +118,14 @@
         // handle relative path
         else
         {
-            // adapted from http://www.php.net/header
-            $protocol = (isset($_SERVER["HTTPS"])) ? 'https' : 'http';
+            $isSecure = false;
+			if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+				$isSecure = true;
+			}
+			elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+				$isSecure = true;
+			}
+			$protocol = $isSecure ? 'https' : 'http';
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
