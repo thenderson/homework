@@ -96,7 +96,6 @@
         if (preg_match("/^https?:\/\//", $destination))
         {
             $location = 'Location: ' . $destination;
-			error_log('matched condition 1; location: '.$location);
         }
 
         // handle absolute path
@@ -112,7 +111,6 @@
 			$protocol = $isSecure ? 'https' : 'http';
             $host = $_SERVER["HTTP_HOST"];
             $location = "Location: $protocol://$host$destination";
-			error_log('matched condition 2; flag: '.$_SERVER['HTTPS'].' protocol: '.$protocol.' location: '.$location);
         }
 
         // handle relative path
@@ -129,7 +127,6 @@
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $location = "Location: $protocol://$host$path/$destination";
-			error_log('matched condition 3; flag: '.$_SERVER['HTTPS'].' protocol: '.$protocol.' location: '.$location);
         }
 		
 		http_response_code(302);
