@@ -10,6 +10,14 @@ $requester = strip_tags($_POST['req']);
 $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
 
+if ($status == 'OH') 
+{
+	$status = 'O';
+	$priority = 1;
+}
+
+else $priority = 0;
+
 // Determine task_id for new commitment
 $stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
@@ -25,7 +33,7 @@ $new_Id = $result[0]['task_id'] + 1;
 
 
 // Insert new commitment into database
-$stmt = $comm_db->prepare("INSERT INTO commitments (project_number, task_id, description, requester, promiser, due_by, status) VALUES (?,?,?,?,?,?,?)");
+$stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, requester, promiser, due_by, status, priority_h) VALUES (?,?,?,?,?,?,?,?)');
 
 if (!$stmt)
 {
@@ -43,6 +51,7 @@ try
 	$stmt->bindParam(5, $promiser, PDO::PARAM_INT);
 	$stmt->bindParam(6, $due, PDO::PARAM_STR);
 	$stmt->bindParam(7, $status, PDO::PARAM_STR);
+	$stmt->bindParam(8, $priority, PDO::PARAM_INT);
 	$stmt->execute();
 }             
 
