@@ -81,6 +81,8 @@ switch ($column_name) {
 		$when_due = date_diff($now, $due)->format('d');
 		$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 		
+		error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
+		
 		$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		break;
 		
@@ -89,8 +91,6 @@ switch ($column_name) {
 		echo 'error';
 		exit;
 	}
-
-error_log('query: '.$q.' newvalue: '.$new_value);	
 
 $stmt = $comm_db->prepare($q);
 
