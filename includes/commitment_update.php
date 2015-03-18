@@ -82,18 +82,13 @@ switch ($column_name) {
 				$requested_on = new DateTime($r[0]['requested_on']) ;
 			}
 			
+			// calculate closed status
 			$due = DateTime::createFromFormat('Y-m-d', $date_due);
 			$foresight = date_diff($requested_on, $due)->format('%r%a');
 			$now = new DateTime();
 			$when_due = date_diff($now, $due)->format('%r%a');
 			$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
-			
-			$requested_onD = $requested_on->format('%Y %m %d');
-			$dueD = $due->format('%Y %m %d');
-			$nowD = $now->format('%Y %m %d');
-			error_log("requested on: $requested_onD; due: $dueD; now: $nowD");
-			error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
-			
+
 			$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		}
 		break;

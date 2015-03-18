@@ -7,13 +7,22 @@
 	// Get POST data
 	$planning_horizon = strip_tags($_POST['horizon']); // days
 	$showClosed = strip_tags($_POST['showClosed']);
+	$p_or_r = strip_tags($_POST['p-or-r']); // load promises or requests
 
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, 
 		priority_h, status, IF(status IN ('O', '?', 'D', 'NA'),0,1) as is_closed FROM commitments";
 	
-	if ($planning_horizon == 'all') $q = $q . " WHERE promiser = :promiser";
-	else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :promiser";
+	if ($planning_horizon == 'all')
+	{
+		if ($p_or_r == 'promises') $q = $q . ' WHERE promiser = :user';
+		else $q = $q . ' WHERE requester = :user';
+	}
+	else 
+	{
+		if ($p_or_r == 'promises') $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :user";
+		else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and requester = :user";
+	}
 	
 	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA')";
 	
@@ -31,7 +40,7 @@
 	try 
 	{
 		if ($planning_horizon != 'all') $stmt->bindParam(':horizon', $planning_horizon, PDO::PARAM_INT);
-		$stmt->bindParam(':promiser', $_SESSION['id'], PDO::PARAM_INT);
+		$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		//var_dump($commitments);
@@ -69,8 +78,10 @@
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
-	//$grid->addColumn('promiser','PROMISER','string', $username_lookup);
-	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
+	
+	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
+	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
+
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('is_closed', '?', 'boolean');

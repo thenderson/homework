@@ -98,16 +98,15 @@
 			commitments = new CommitmentGrid();
 			commitments.name = "user_commitments";
 			
-			load_user_comms = function (horizon, showClosed) {
+			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
 					hor = getCookie('horizon');
-					horizon = (typeof(hor) === 'number') ? hor : 21;
+					horizon = (typeof(hor) === 'number') ? hor : (hor == 'all' ? 'all' : 21);
 				}
 				
 				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') == 'true' ? true : false);
 				
-				if (showClosed == 'false') $('#show-closed').checked = false;
-				else $('#show-closed').checked = true;
+				$('#show-closed').checked = showClosed;
 				
 				setCookie('horizon', horizon);
 				setCookie('showClosed', showClosed);
@@ -118,7 +117,8 @@
 					dataType: "text",
 					data: {
 						horizon: horizon,
-						showClosed: showClosed
+						showClosed: showClosed,
+						p_or_r: 'promises'
 					},
 					success: function (response) 
 					{
@@ -129,6 +129,27 @@
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
 						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+					},
+					async: true
+				});
+				
+				$.ajax({
+					url: '../includes/load_user_commitments.php',
+					type: 'POST',
+					dataType: "text",
+					data: {
+						horizon: horizon,
+						showClosed: showClosed,
+						p_or_r: 'requests'
+					},
+					success: function (response) 
+					{ //process response as xml, then call tableLoaded
+						requests.loadXMLFromString(response); //synchronous function
+						requests.tableLoaded();
+					},
+					error: function(XMLHttpRequest, textStatus, exception) 
+					{ 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
 					},
 					async: true
 				});
@@ -168,7 +189,7 @@
 						horizon = 'all';
 						$('#horizon-text').html('lookahead: all');
 					}
-					load_user_comms(horizon);
+					load_comms(horizon);
 				}
 			});
 			
@@ -177,7 +198,7 @@
 			setCookie('showClosed', show_closed);
 			
 			$('#show-closed').change(function() {
-				load_user_comms(undefined, this.checked);
+				load_comms(undefined, this.checked);
 			});
 				
 			commPageSize = getCookie('commPageSize') || 10; 
@@ -207,25 +228,6 @@
 					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 				}});
 			
-			$.ajax({
-				url: '../includes/load_user_requests.php',
-				type: 'POST',
-				dataType: "text",
-				data: {
-					horizon: 21,
-				},
-				success: function (response) 
-				{ //process response as xml, then call tableLoaded
-					requests.loadXMLFromString(response); //synchronous function
-					requests.tableLoaded();
-				},
-				error: function(XMLHttpRequest, textStatus, exception) 
-				{ 
-				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-				},
-				async: true
-			});
-			
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
@@ -254,7 +256,7 @@
 			});
 
 			projects.loadXML("../includes/load_user_projects.php");
-			load_user_comms(horizon, show_closed);
+			load_comms(horizon, show_closed);
 			
 			// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
 			$.ajax({
