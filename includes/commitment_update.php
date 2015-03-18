@@ -75,7 +75,7 @@ switch ($column_name) {
 			$requested_on = new DateTime($r[0]['requested_on']) ;
 		}
 		
-		$due = DateTime::createFromFormat('Y/m/d', $date_due);
+		$due = DateTime::createFromFormat('Y-m-d', $date_due);
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
 		$when_due = date_diff($due, $now)->format('d');
