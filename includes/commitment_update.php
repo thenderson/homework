@@ -49,41 +49,49 @@ switch ($column_name) {
 		break;
 
 	case 'is_closed':
-		$s = $comm_db->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
-		
-		if (!$s)
+		if ($new_value == 'true')
 		{
-			trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
-			echo 'error';
-			exit;
+			$q = 'UPDATE commitments SET is_closed = ?, status = "O" WHERE unique_id = ?';
+			$new_value = 0;
 		}
-		try
+		else
 		{
-			$s->bindParam(1, $unique_id, PDO::PARAM_INT);	
-			$s->execute();
-		}             
-		catch(PDOException $e) 
-		{
-			trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
-			echo 'error';
-			exit;
-		} 		
-		if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
-		else 
-		{
-			$r = $s->fetchAll(PDO::FETCH_ASSOC);
-			$requested_on = new DateTime($r[0]['requested_on']) ;
+			$s = $comm_db->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
+		
+			if (!$s)
+			{
+				trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
+				echo 'error';
+				exit;
+			}
+			try
+			{
+				$s->bindParam(1, $unique_id, PDO::PARAM_INT);	
+				$s->execute();
+			}             
+			catch(PDOException $e) 
+			{
+				trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+				echo 'error';
+				exit;
+			} 		
+			if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
+			else 
+			{
+				$r = $s->fetchAll(PDO::FETCH_ASSOC);
+				$requested_on = new DateTime($r[0]['requested_on']) ;
+			}
+			
+			$due = DateTime::createFromFormat('Y-m-d', $date_due);
+			$foresight = date_diff($requested_on, $due)->format('%d');
+			$now = new DateTime();
+			$when_due = date_diff($now, $due)->format('%d');
+			$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
+			
+			error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
+			
+			$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		}
-		
-		$due = DateTime::createFromFormat('Y-m-d', $date_due);
-		$foresight = date_diff($requested_on, $due)->format('d');
-		$now = new DateTime();
-		$when_due = date_diff($now, $due)->format('d');
-		$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
-		
-		error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
-		
-		$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		break;
 		
 	default:
