@@ -88,7 +88,10 @@ switch ($column_name) {
 			$when_due = date_diff($now, $due)->format('%d');
 			$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 			
-			error_log("requested on: $requested_on; due: $due; now: $now");
+			$requested_onD = $requested_on->format('%Y %m %d');
+			$dueD = $due->format('%Y %m %d');
+			$nowD = $now->format('%Y %m %d');
+			error_log("requested on: $requested_onD; due: $dueD; now: $nowD");
 			error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
 			
 			$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
