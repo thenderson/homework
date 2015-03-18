@@ -7,7 +7,7 @@
 	// Get POST data
 	$planning_horizon = strip_tags($_POST['horizon']); // days
 	$showClosed = strip_tags($_POST['showClosed']);
-	$p_or_r = strip_tags($_POST['p-or-r']); // load promises or requests
+	$p_or_r = strip_tags($_POST['p_or_r']); // load promises or requests
 
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, 
