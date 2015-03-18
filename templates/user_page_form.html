@@ -159,7 +159,7 @@
 			horizon = (typeof(hor) === 'number') ? hor : (hor == 'all' ? 'all' : 21);
 			setCookie('horizon', horizon);
 			var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
-			console.log('hor cookie ' + hor + ' horizon ' + horizon);
+			console.log('hor cookie ' + hor + ' horizon ' + horizon + ' weeks ' + weeks);
 			
 			$('#horizon-slider').slider({
 				min: 0,
@@ -198,7 +198,7 @@
 			show_closed = shcl == 'true' ? true : false;
 			$('#show-closed').checked = show_closed;
 			setCookie('showClosed', show_closed);
-			console.log('shcl cookie '+ shcl + 'showClosed '+ show_closed);
+			console.log('shcl cookie '+ shcl + ' showClosed '+ show_closed);
 			
 			$('#show-closed').change(function() {
 				load_comms(undefined, this.checked);
