@@ -49,7 +49,7 @@ switch ($column_name) {
 		break;
 
 	case 'is_closed':
-		if ($new_value == 'true')
+		if ($new_value == 'false')
 		{
 			$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 			$new_value = 'O';
@@ -88,6 +88,7 @@ switch ($column_name) {
 			$when_due = date_diff($now, $due)->format('%d');
 			$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 			
+			error_log("requested on: $requested_on; due: $due; now: $now");
 			error_log('foresight: '.$foresight.' when_due: '.$when_due.' new value: '.$new_value);
 			
 			$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
