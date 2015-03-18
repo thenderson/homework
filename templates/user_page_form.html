@@ -218,9 +218,9 @@
 				pageSize: reqPageSize,
 				tableRendered:  function() { 
 					// activate tooltips onto rendered grid
-//					$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+					$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
-//					$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
+					$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
 
 //					$('th.editablegrid-status').attr('title', 
 //						'<strong>O:</strong> Open commitment\n\
@@ -243,16 +243,11 @@
 						}
 					}));
 					
-//					this.setEnumProvider('status', new EnumProvider({
-//						getOptionValuesForEdit: function (grid, column, rowIndex) {	
-//							return statuses;
-//					}}));
-					
-//					this.setCellRenderer('actions', new CellRenderer({
-//						render: function(cell, id) { 
-//							cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-//							cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-//					}}));
+					this.setCellRenderer('actions', new CellRenderer({
+						render: function(cell, id) { 
+							cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+							cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					}}));
 					
 //					this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
 //						render: function(cell, value) {
