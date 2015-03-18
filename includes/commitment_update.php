@@ -51,8 +51,8 @@ switch ($column_name) {
 	case 'is_closed':
 		if ($new_value == 'true')
 		{
-			$q = 'UPDATE commitments SET is_closed = ?, status = "O" WHERE unique_id = ?';
-			$new_value = 0;
+			$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
+			$new_value = 'O';
 		}
 		else
 		{
