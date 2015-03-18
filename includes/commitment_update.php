@@ -79,7 +79,7 @@ switch ($column_name) {
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
 		$when_due = date_diff($due, $now)->format('d');
-		$new_value = $when_due < 0 ? 'CL': ($foresignt > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
+		$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 		
 		$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
 		break;
