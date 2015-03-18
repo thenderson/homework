@@ -78,7 +78,7 @@ switch ($column_name) {
 		$due = DateTime::createFromFormat('Y-m-d', $date_due);
 		$foresight = date_diff($requested_on, $due)->format('d');
 		$now = new DateTime();
-		$when_due = date_diff($due, $now)->format('d');
+		$when_due = date_diff($now, $due)->format('d');
 		$new_value = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 		
 		$q="UPDATE commitments SET status = ? WHERE unique_id = ?";
