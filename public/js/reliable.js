@@ -1,4 +1,4 @@
-var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':'complete - anticipated',
+var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':'complete - anticipated', 'CL':'complete - closed late',
 	'V1':'variance - time', 'V2':'variance - waiting, internal', 'V3':'variance - waiting, external', 'V4':'variance - COS', 
 	'V5':'variance - superseded, internal', 'V6':'variance - superseded, external', 'V7':'variance - forgot', 'V8':'variance - not needed', 
 	'V9':'variance - tech failure', 'D':'deferred', '?':'unknown', 'NA':'n/a'};
@@ -8,7 +8,7 @@ function highlightRow(rowId, bgColor, after)
 	var rowSelector = $("#grid_" + rowId);
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("normal", 0.5, function() { 
-		rowSelector.fadeTo("fast", 1, function() { 
+		rowSelector.fadeTo("fast", 0.5, function() { 
 			rowSelector.css("background-color", '');
 		});
 	});
