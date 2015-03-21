@@ -193,6 +193,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 			for (var r = 0; r < rowCount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
 			// add new row
+			console.debug(response);
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
 		},
