@@ -102,7 +102,7 @@
 				if (typeof(horizon) === 'undefined') {
 					hor = getCookie('horizon');
 					console.log('read cookie horizon = ' + hor + ' type of = ' + typeof(hor));
-					horizon = (parsInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
+					horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
 				}
 				
 				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') == 'true' ? true : false);
