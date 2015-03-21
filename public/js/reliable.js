@@ -7,8 +7,8 @@ function highlightRow(rowId, bgColor, after)
 {
 	var rowSelector = $("#grid_" + rowId);
 	rowSelector.css("background-color", bgColor);
-	rowSelector.fadeTo("normal", 0.5, function() { 
-		rowSelector.fadeTo("fast", 0.5, function() { 
+	rowSelector.fadeTo("fast", 0.5, function() { 
+		rowSelector.fadeTo("fast", 1, function() { 
 			rowSelector.css("background-color", '');
 		});
 	});
