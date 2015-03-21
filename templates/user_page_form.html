@@ -101,7 +101,7 @@
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
 					hor = getCookie('horizon');
-					console.log('read cookie horizon = ' + hor);
+					console.log('read cookie horizon = ' + hor + ' type of = ' + typeof(hor));
 					horizon = (typeof(hor) === 'number') ? hor : (hor == 'all' ? 'all' : 21);
 				}
 				
@@ -113,6 +113,7 @@
 				console.log('set cookie horizon = '+ horizon);
 				
 				setCookie('showClosed', showClosed);
+				console.log('set cookie showClosed = ' + showClosed);
 				
 				$.ajax({
 					url: '../includes/load_user_commitments.php',
@@ -202,7 +203,8 @@
 			show_closed = shcl == 'true' ? true : false;
 			$('#show-closed').prop('checked', show_closed);
 			setCookie('showClosed', show_closed);
-			console.log('shcl cookie '+ shcl + ' showClosed '+ show_closed);
+			console.log('onload get cookie showClosed = ' + shcl);
+			console.log('onload set cookie showClosed = ' + show_closed);
 			
 			$('#show-closed').change(function() {
 				load_comms(undefined, this.checked);
