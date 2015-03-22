@@ -2,29 +2,31 @@
 	<body>
 		<?php require 'dialogs.html'; ?>
 		<div class="container-fluid nopadding">
-			<div class="col-sm-12"><h3><strong>YOUR COMMITMENTS</strong></h3></div>
-		</div>
-		<div class="container-fluid">
-			<div id="commitments">
-				<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
+			<div class="accordion col-sm-12">
+				<h3><strong>YOUR COMMITMENTS</strong></h3>
 			</div>
-			
-			<form class='form-inline'>
-				<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
-				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
-				<div class="form-group">
-					<div class="controls">
-						<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
-							<option value=5>5</option>
-							<option value=10 selected>10</option>
-							<option value=25>25</option>
-							<option value=50>50</option>
-							<option value=0>all</option>
-						</select>
-					</div>
+			<div class="container-fluid">
+				<div id="commitments">
+					<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 				</div>
-				<div class="form-group paginator" id="commitments_paginator"></div>
-			</form>
+				
+				<form class='form-inline'>
+					<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+					<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class="form-group">
+						<div class="controls">
+							<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
+								<option value=5>5</option>
+								<option value=10 selected>10</option>
+								<option value=25>25</option>
+								<option value=50>50</option>
+								<option value=0>all</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group paginator" id="commitments_paginator"></div>
+				</form>
+			</div>
 		</div>
 		<br>
 		
@@ -155,6 +157,11 @@
 			};
 		
 			// configure sliders & misc. stuff
+			$(".accordion").accordion({
+				heightStyle: 'content',
+				collapsible: true
+			});
+			
 			hor = getCookie('horizon');
 			horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
 			setCookie('horizon', horizon);
