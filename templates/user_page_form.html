@@ -298,12 +298,12 @@
 			}); 
 			
 			commitments.grid.filter(""); //clear any leftover filtering
-			requests.filter("");
+			requests.grid.filter("");
 			projects.filter("");
 				
 			$("#filter_all").keyup(function() { //one filter to rule them all
  				commitments.grid.filter($(this).val());
-				requests.filter($(this).val());
+				requests.grid.filter($(this).val());
 				projects.filter($(this).val());
 			});
 
