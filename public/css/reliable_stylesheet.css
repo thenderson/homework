@@ -467,12 +467,14 @@ margin: 0px 8px;
 .ui-accordion-content {
 border: none;
 background: none;
-color: default;
+padding: 0 0;
+margin: 0 0;
 }
 
 .ui-accordion-header {
 border: none;
 background: none;
 color: default;
+margin: 0 0;
 }
 }
