@@ -251,8 +251,8 @@
 						render: function(cell, value) {
 							date_due=moment(value, 'YYYY-MM-DD')
 							cell.innerHTML=date_due.format("\'YY.MM.DD");
-							row=requests.grid.getRow(cell.rowIndex);
-							status=requests.grid.getValueAt(cell.rowIndex, 8);
+							row=requests.getRow(cell.rowIndex);
+							status=requests.getValueAt(cell.rowIndex, 8);
 							how_soon=date_due.diff(moment(),'days');
 							if (status == 'true') {
 								$(row).addClass('closed');

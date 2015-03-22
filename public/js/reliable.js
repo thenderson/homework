@@ -135,7 +135,6 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			}
 			else {
 				values = response[0];
-				console.debug(values);
 				$.each(values, function(key, value) {
 					columnIndex = grid.getColumnIndex(key);
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
