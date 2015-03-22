@@ -136,10 +136,9 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 				console.debug(values);
 				$.each(values, function(key, value) {
 					columnIndex = grid.getColumnIndex(key);
-					console.log('value ' + value+ ' at index ' + columnIndex);
-					//grid.setValueAt(rowIndex, columnIndex, value);
-					highlight(rowId, "ok");
+					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
+				highlight(rowId, "ok");
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
