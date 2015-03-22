@@ -137,8 +137,8 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 				$.each(values, function(key, value) {
 					columnIndex = grid.getColumnIndex(key);
 					grid.setValueAt(rowIndex, columnIndex, value);
-				}
-				highlight(rowId, "ok");
+					highlight(rowId, "ok");
+				};
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
