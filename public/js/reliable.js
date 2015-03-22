@@ -130,7 +130,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			if (response == 'error') {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
 				highlight(rowId, "error"); 
-			}
+			};
 			else {
 				values = response[0];
 				console.debug(values);
@@ -138,8 +138,8 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					columnIndex = grid.getColumnIndex(key);
 					grid.setValueAt(rowIndex, columnIndex, value);
 				}
-				highlight(newRowId, "ok");
-			}
+				highlight(rowId, "ok");
+			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(rowId, "error");
