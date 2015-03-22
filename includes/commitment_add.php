@@ -78,3 +78,4 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
+error_log("ID: $id; Project #: $project_number");
