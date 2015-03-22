@@ -130,7 +130,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			if (response == 'error') {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
 				highlight(rowId, "error"); 
-			};
+			}
 			else {
 				values = response[0];
 				console.debug(values);
