@@ -141,8 +141,12 @@ tbody tr.due_future:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
-.priority { 
+.priority-h { 
 	font-weight: bold;
+}
+
+.priority-n {
+	font-weight: normal;
 }
 
 .overdue_2w {/* for table rows > 2 weeks overdue */
@@ -162,6 +166,8 @@ tbody tr.due_future:hover {
 
 .closed {
 	color: rgb(192, 192, 192);
+	font-weight: normal;
+	background-color: none;
 }
 
 td:focus {
