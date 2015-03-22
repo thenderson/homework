@@ -82,7 +82,7 @@
 	$("#add-commitment").dialog({
 		resizable: true,
 		autoOpen: false,
-		height: 800,
+		height: 600,
 		width: 300,
 		modal: true,
 		position: { my: "center", at: "center", of: window, collision: 'fit' },
@@ -107,13 +107,14 @@
 				$(this).dialog("close");
 			}
 		},
-		open: function () {$("#add-commitment").dialog( "option", "position", "center" );}
+		//open: function () {$("#add-commitment").dialog( "option", "position", "center" );}
 	});
 	
 	$("#new_com_btn").on("click", function() {
 		$("#add-commitment")
 			.dialog({show: { effect: "puff", duration: 150 }})
 			.dialog("open"); 
+			return false; // stops page from scrolling to the location of the href anchor of the ID in the selector ... or something
 	});
 	
 	$("#inp-due").datepicker({
