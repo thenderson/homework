@@ -281,7 +281,7 @@
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
-				pageSize: projectsPageSize,
+				pageSize: projPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "projects_paginator"); 
 					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
