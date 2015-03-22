@@ -94,8 +94,7 @@
 		window.onload = function() {
 			
 			// load commitments belonging to current user
-			commitments = new CommitmentGrid();
-			commitments.name = "commitments";
+			commitments = new CommitmentGrid('commitments');
 			
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
@@ -282,7 +281,7 @@
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
 				dateFormat: "US",
-				pageSize: projPageSize,
+				pageSize: projectsPageSize,
 				tableRendered:  function() { 
 					updatePaginator(this, "projects_paginator"); 
 					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');

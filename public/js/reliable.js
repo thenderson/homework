@@ -19,9 +19,10 @@ function highlight(div_id, style) {
 }
    
 
-function CommitmentGrid() 
+function CommitmentGrid(name) 
 { 	
 	var self = this;
+	this.name = name;
 	
 	$.datepicker.setDefaults({
 		dateFormat: $.datepicker.W3C,
