@@ -81,9 +81,11 @@
 	$("#add-commitment").dialog({
 		resizable: true,
 		autoOpen: false,
-		height:600,
-		width:300,
+		height: 'auto',
+		width: 300,
 		modal: true,
+		closeOnEscape: true,
+		position: { my: "center", at: "center", of: 'window', collision: 'fit' }
 		buttons: {
 			"Submit": function() {
 				var data = {};

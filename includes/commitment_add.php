@@ -66,7 +66,7 @@ catch(PDOException $e)
 $id = $comm_db->lastInsertId('unique_id');
 $stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_name, a.task_id, 
 	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
-	FROM (SELECT * FROM commitments WHERE task_id = $id) a, 
+	FROM (SELECT * FROM commitments WHERE unique_id = $id) a, 
 	(SELECT project_name FROM projects WHERE project_number = $project_number) b"); 
 
 if (!$stmt)
@@ -78,4 +78,3 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
-error_log("ID: $id; Project #: $project_number");
