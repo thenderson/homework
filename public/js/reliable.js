@@ -91,6 +91,13 @@ function CommitmentGrid()
 					}
 				}}));
 				
+			this.setCellRenderer('priority_h', new CellRenderer ({ //shades cells based on priority
+				render: function(cell, value) {
+					if (value = true) {
+						desc_cell=self.grid.getCell(cell.rowIndex, 4);
+						$(desc_cell).addClass('priority');
+			}}}));
+				
 			this.renderGrid('commitments', 'table', 'commitments'); 
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
