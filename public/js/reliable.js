@@ -95,7 +95,9 @@ function CommitmentGrid()
 				render: function(cell, value) {
 					cell.innerHTML=value;
 					priority = self.grid.getValueAt(cell.rowIndex, 7);
-					$(cell).addClass((priority == true ? 'priority-h' : 'priority-n'));
+					if (priority == true) {
+						$(cell).addClass('priority-h');
+					}
 				}}));
 				
 			this.renderGrid('commitments', 'table', 'commitments'); 
