@@ -72,6 +72,7 @@ margin-bottom: 0;
 
 @media screen and (min-device-width:481px) {
 	#commitments,
+	#requests,
 	#projects {
 		margin-bottom: 2px; 
 		margin-top: 2px;
@@ -92,6 +93,7 @@ margin-bottom: 0;
 
 @media screen and (max-device-width:480px) {
 	#commitments,
+	#requests,
 	#projects {
 		margin-bottom: 2px; 
 		margin-top: 2px; 
@@ -109,6 +111,7 @@ margin-bottom: 0;
 }
 
 #commitments th,
+#requests th,
 #projects th { /*table header*/
 	background: white;
 	padding-left: 1px;
@@ -120,6 +123,7 @@ margin-bottom: 0;
 }
 
 #commitments td,
+#requests td,
 #projects td {
 	padding-top: 6px;
 	padding-bottom: 6px;
@@ -147,6 +151,7 @@ tbody tr.due_future:hover {
 }
 
 #commitments tr:hover,
+#requests tr:hover,
 #projects tr:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
@@ -347,6 +352,7 @@ td.editablegrid-unique_id {
 }
 
 #commitments i,
+#requests i,
 #projects i { /* fontawesome icons */
   cursor: pointer;
 }
