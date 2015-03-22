@@ -64,11 +64,6 @@ function CommitmentGrid(name)
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 					}}));
 			};
-				
-//			this.setEnumProvider('status', new EnumProvider({
-//				getOptionValuesForEdit: function (grid, column, rowIndex) {	
-//					return statuses;
-//				}}));
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 

@@ -93,9 +93,9 @@
 	<script type="text/javascript">
 		window.onload = function() {
 			
-			// load commitments belonging to current user
+			// load commitments
 			commitments = new CommitmentGrid('commitments');
-			
+			requests = new CommitmentGrid('requests');
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
 					hor = getCookie('horizon');
@@ -142,17 +142,19 @@
 					},
 					success: function (response) 
 					{ //process response as xml, then call tableLoaded
-						requests.loadXMLFromString(response); //synchronous function
-						requests.tableLoaded();
+						requests.grid.loadXMLFromString(response); //synchronous function
+						requests.grid.tableLoaded();
+						$("#req_total").html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
-					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
 					},
 					async: true
 				});
 			};
-			
+		
+			// configure sliders & misc. stuff
 			hor = getCookie('horizon');
 			horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
 			setCookie('horizon', horizon);
@@ -206,77 +208,77 @@
 			projPageSize = getCookie('projectsPageSize') || 10; 
 			$('#proj_page_size').val(projPageSize);
 			
-			requests = new EditableGrid("user_requests", {
-				name: 'requests',
-				enableSort: true,
-				editMode: 'static',
-				dateFormat: "US",
-				pageSize: reqPageSize,
-				tableRendered:  function() { 
-					// activate tooltips onto rendered grid
-					$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+//			requests = new EditableGrid("user_requests", {
+//				name: 'requests',
+//				enableSort: true,
+//				editMode: 'static',
+//				dateFormat: "US",
+//				pageSize: reqPageSize,
+//				tableRendered:  function() { 
+//					// activate tooltips onto rendered grid
+//					$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
-					$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
+//					$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
 
-					$('th.editablegrid-status').attr('title', 
-						'<strong>O:</strong> Open commitment\n\
-						<strong>C0:</strong> Closed, improvised\n\
-						<strong>C1:</strong> Closed, 1 week plan\n\
-						<strong>C2:</strong> Closed, anticipated\n\
-						<strong>D:</strong> Deferred indefinitely\n\
-						<strong>V*:</strong> Variance for plan failure.\n\
-						<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip({html: true}).tooltip();
+//					$('th.editablegrid-status').attr('title', 
+//						'<strong>O:</strong> Open commitment\n\
+//						<strong>C0:</strong> Closed, improvised\n\
+//						<strong>C1:</strong> Closed, 1 week plan\n\
+//						<strong>C2:</strong> Closed, anticipated\n\
+//						<strong>D:</strong> Deferred indefinitely\n\
+//						<strong>V*:</strong> Variance for plan failure.\n\
+//						<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip({html: true}).tooltip();
+//					
+//					$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+//					updatePaginator(this, "req_paginator"); 
+//					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
+//				},
+//				
+//				tableLoaded: function() {  
+//					this.setCellRenderer('project_number', new CellRenderer({ 
+//						render: function(cell, value) { 
+//							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+//						}
+//					}));
 					
-					$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
-					updatePaginator(this, "req_paginator"); 
-					$("#req_total").html('total: <strong>'+requests.getTotalRowCount()+'</strong>');
-				},
-				
-				tableLoaded: function() {  
-					this.setCellRenderer('project_number', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
-						}
-					}));
+//					this.setCellRenderer('actions', new CellRenderer({
+//						render: function(cell, id) { 
+//							cell.innerHTML+= "<i onclick=\""+requests.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+//							cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+//					}}));
 					
-					this.setCellRenderer('actions', new CellRenderer({
-						render: function(cell, id) { 
-							cell.innerHTML+= "<i onclick=\""+requests.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-							cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
-					}}));
-					
-					this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
-						render: function(cell, value) {
-							date_due=moment(value, 'YYYY-MM-DD')
-							cell.innerHTML=date_due.format("\'YY.MM.DD");
-							row=requests.getRow(cell.rowIndex);
-							status=requests.getValueAt(cell.rowIndex, 8);
-							how_soon=date_due.diff(moment(),'days');
-							if (status == 'true') {
-								$(row).addClass('closed');
-							}
-							else {
-								due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
-								$(cell).addClass(due_class);
-								$(row).removeClass('closed');
-							}
-						}}));
+//					this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
+//						render: function(cell, value) {
+//							date_due=moment(value, 'YYYY-MM-DD')
+//							cell.innerHTML=date_due.format("\'YY.MM.DD");
+//							row=requests.getRow(cell.rowIndex);
+//							status=requests.getValueAt(cell.rowIndex, 8);
+//							how_soon=date_due.diff(moment(),'days');
+//							if (status == 'true') {
+//								$(row).addClass('closed');
+//							}
+//							else {
+//								due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+//								$(cell).addClass(due_class);
+//								$(row).removeClass('closed');
+//							}
+//						}}));
+//						
+//					this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
+//						render: function(cell, value) {
+//							cell.innerHTML=value;
+//							priority = requests.getValueAt(cell.rowIndex, 7);
+//							if (priority == true) {
+//								$(cell).addClass('priority-h');
+//							}
+//							else $(cell).removeClass('priority-h');
+//						}}));
 						
-					this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
-						render: function(cell, value) {
-							cell.innerHTML=value;
-							priority = requests.getValueAt(cell.rowIndex, 7);
-							if (priority == true) {
-								$(cell).addClass('priority-h');
-							}
-							else $(cell).removeClass('priority-h');
-						}}));
-						
-					this.renderGrid('requests', 'table', 'commitments'); },
-					
-				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-				}});
+//					this.renderGrid('requests', 'table', 'commitments'); },
+//					
+//				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+//					updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+//				}});
 			
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
