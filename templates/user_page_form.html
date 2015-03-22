@@ -14,7 +14,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commPageSize', this.value)">
+						<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
 							<option value=5>5</option>
 							<option value=10 selected>10</option>
 							<option value=25>25</option>
@@ -42,7 +42,7 @@
 				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="req_page_size" onchange="requests.setPageSize('reqPageSize', this.value)">
+						<select class="input-sm" id="req_page_size" onchange="requests.setPageSize('requestsPageSize', this.value)">
 							<option value=5>5</option>
 							<option value=10 selected>10</option>
 							<option value=25>25</option>
@@ -68,7 +68,7 @@
 				<div class="form-text spacer">&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projPageSize', this.value)">
+						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projectsPageSize', this.value)">
 							<option value=5 selected>5</option>
 							<option value=10>10</option>
 							<option value=25>25</option>
@@ -95,7 +95,7 @@
 			
 			// load commitments belonging to current user
 			commitments = new CommitmentGrid();
-			commitments.name = "user_commitments";
+			commitments.name = "commitments";
 			
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
@@ -191,9 +191,8 @@
 					load_comms(horizon);
 				}
 			});
-			
-			shcl = getCookie('showClosed');
-			show_closed = shcl == 'true' ? true : false;
+
+			show_closed = getCookie('showClosed') == 'true' ? true : false;
 			$('#show-closed').prop('checked', show_closed);
 			setCookie('showClosed', show_closed);
 			
@@ -201,15 +200,15 @@
 				load_comms(undefined, this.checked);
 			});
 				
-			commPageSize = getCookie('commPageSize') || 10; 
+			commPageSize = getCookie(commitments.name+'PageSize') || 10; 
 			$('#comm_page_size').val(commPageSize);
-			reqPageSize = getCookie('reqPageSize') || 10; 
-			$('#req_page_size').val(commPageSize);
-			projPageSize = getCookie('projPageSize') || 10; 
-			$('#proj_page_size').val(commPageSize);
+			reqPageSize = getCookie(requests.name+'PageSize') || 10; 
+			$('#req_page_size').val(reqPageSize);
+			projPageSize = getCookie('projectsPageSize') || 10; 
+			$('#proj_page_size').val(projPageSize);
 			
 			requests = new EditableGrid("user_requests", {
-				name: 'user_requests',
+				name: 'requests',
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
@@ -260,7 +259,18 @@
 							else {
 								due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 								$(cell).addClass(due_class);
+								$(row).removeClass('closed');
 							}
+						}}));
+						
+					this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
+						render: function(cell, value) {
+							cell.innerHTML=value;
+							priority = self.grid.getValueAt(cell.rowIndex, 7);
+							if (priority == true) {
+								$(cell).addClass('priority-h');
+							}
+							else $(cell).removeClass('priority-h');
 						}}));
 						
 					this.renderGrid('requests', 'table', 'commitments'); },

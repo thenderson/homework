@@ -33,7 +33,7 @@ function CommitmentGrid()
 	self.grid = new EditableGrid('grid', {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
-      	pageSize: getCookie('commPageSize') || 10,
+      	pageSize: getCookie(self.name+'PageSize') || 10,
 		editmode: 'absolute',
 
         tableRendered:  function() { 
@@ -64,10 +64,10 @@ function CommitmentGrid()
 					}}));
 			};
 				
-			this.setEnumProvider('status', new EnumProvider({
-				getOptionValuesForEdit: function (grid, column, rowIndex) {	
-					return statuses;
-				}}));
+//			this.setEnumProvider('status', new EnumProvider({
+//				getOptionValuesForEdit: function (grid, column, rowIndex) {	
+//					return statuses;
+//				}}));
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
@@ -102,7 +102,7 @@ function CommitmentGrid()
 					else $(cell).removeClass('priority-h');
 				}}));
 				
-			this.renderGrid('commitments', 'table', 'commitments'); 
+			this.renderGrid(self.name, 'table', self.name); 
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
    	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
