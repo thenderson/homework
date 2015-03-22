@@ -142,7 +142,7 @@ tbody tr.due_future:hover {
 }
 
 .priority { 
-	text-decoration: bold;
+	font-weight: bold;
 }
 
 .overdue_2w {/* for table rows > 2 weeks overdue */

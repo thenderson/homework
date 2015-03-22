@@ -91,12 +91,14 @@ function CommitmentGrid()
 					}
 				}}));
 				
-			this.setCellRenderer('priority_h', new CellRenderer ({ //shades cells based on priority
+			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
 				render: function(cell, value) {
-					if (value = true) {
-						desc_cell=self.grid.getCell(cell.rowIndex, 4);
-						$(desc_cell).addClass('priority');
-			}}}));
+					cell.innerHTML=value;
+					priority = self.grid.getCell(cell.rowIndex, 7);
+					if (priority = true) {
+						$(cell).addClass('priority');
+					}
+				}}));
 				
 			this.renderGrid('commitments', 'table', 'commitments'); 
 		},
