@@ -95,7 +95,7 @@
 			
 			// load commitments belonging to current user
 			commitments = new CommitmentGrid();
-			//commitments.name = "user_commitments";
+			commitments.name = "user_commitments";
 			
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
@@ -209,6 +209,7 @@
 			$('#proj_page_size').val(commPageSize);
 			
 			requests = new EditableGrid("user_requests", {
+				name: 'user_requests',
 				enableSort: true,
 				editMode: 'static',
 				dateFormat: "US",
@@ -242,7 +243,7 @@
 					
 					this.setCellRenderer('actions', new CellRenderer({
 						render: function(cell, id) { 
-							cell.innerHTML+= "<i onclick=\""+this.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+							cell.innerHTML+= "<i onclick=\""+requests.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
 							cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 					}}));
 					
@@ -250,8 +251,8 @@
 						render: function(cell, value) {
 							date_due=moment(value, 'YYYY-MM-DD')
 							cell.innerHTML=date_due.format("\'YY.MM.DD");
-							row=this.grid.getRow(cell.rowIndex);
-							status=this.grid.getValueAt(cell.rowIndex, 8);
+							row=requests.grid.getRow(cell.rowIndex);
+							status=requests.grid.getValueAt(cell.rowIndex, 8);
 							how_soon=date_due.diff(moment(),'days');
 							if (status == 'true') {
 								$(row).addClass('closed');

@@ -88,6 +88,7 @@ function CommitmentGrid()
 					else {
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 						$(cell).addClass(due_class);
+						$(row).removeClass('closed');
 					}
 				}}));
 				
@@ -98,6 +99,7 @@ function CommitmentGrid()
 					if (priority == true) {
 						$(cell).addClass('priority-h');
 					}
+					else $(cell).removeClass('priority-h');
 				}}));
 				
 			this.renderGrid('commitments', 'table', 'commitments'); 
