@@ -11,23 +11,25 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<form class='form-inline'>
-				<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
-				<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
-				<div class="form-group">
-					<div class="controls">
-						<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
-							<option value=5>5</option>
-							<option value=10 selected>10</option>
-							<option value=25>25</option>
-							<option value=50>50</option>
-							<option value=0>all</option>
-						</select>
+		<div class="container-fluid nopadding">
+			<div>
+				<form class='form-inline'>
+					<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+					<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class="form-group">
+						<div class="controls">
+							<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
+								<option value=5>5</option>
+								<option value=10 selected>10</option>
+								<option value=25>25</option>
+								<option value=50>50</option>
+								<option value=0>all</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="form-group paginator" id="commitments_paginator"></div>
-			</form>
+					<div class="form-group paginator" id="commitments_paginator"></div>
+				</form>
+			</div>
 		</div>
 		<br>
 		
