@@ -60,6 +60,16 @@ margin-bottom: 0;
 	max-width: 15em;
 }
 
+.priority-h { 
+	font-weight: bold;
+}
+
+.closed {
+	color: rgb(192, 192, 192);
+	font-weight: normal;
+	background-color: none;
+}
+
 @media screen and (min-device-width:481px) {
 	#commitments,
 	#projects {
@@ -142,10 +152,6 @@ tbody tr.due_future:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
-.priority-h { 
-	font-weight: bold;
-}
-
 .overdue_2w {/* for table rows > 2 weeks overdue */
 	background-color: rgba(221, 128, 71, .45);
 }
@@ -159,12 +165,6 @@ tbody tr.due_future:hover {
 }
 
 .due_future {
-}
-
-.closed {
-	color: rgb(192, 192, 192);
-	font-weight: normal;
-	background-color: none;
 }
 
 td:focus {
