@@ -94,9 +94,9 @@ function CommitmentGrid()
 			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
 				render: function(cell, value) {
 					cell.innerHTML=value;
-					priority = self.grid.getCell(cell.rowIndex, 7);
+					priority = self.grid.getValueAt(cell.rowIndex, 7);
 					console.log(cell.rowIndex + " priority= " + priority);
-					if (priority = true) {
+					if (priority == true) {
 						$(cell).addClass('priority');
 					}
 				}}));
