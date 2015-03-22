@@ -116,9 +116,10 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
-		dataType: "html",
+		dataType: "json",
 		data: {
 			uniqueid: grid.getValueAt(rowIndex, 0), 
+			projectnumber: grid.getValueAt(rowIndex, 1),
 			newvalue: newValue, 
 			colname: grid.getColumnName(columnIndex),
 			date_due: grid.getValueAt(rowIndex, 6)
@@ -126,9 +127,19 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 		success: function (response) 
 		{ 
 			// reset old value if failed then highlight row
-			var success = onResponse ? onResponse(response) : (response == "ok" || !isNaN(parseInt(response))); // by default, a successful response can be "ok" or a database id 
-			if (!success) grid.setValueAt(rowIndex, columnIndex, oldValue);
-		    highlight(rowId, success ? "ok" : "error"); 
+			if (response == 'error') {
+				grid.setValueAt(rowIndex, columnIndex, oldValue);
+				highlight(rowId, "error"); 
+			}
+			else {
+				values = response[0];
+				console.debug(values);
+				$.each(values, function(key, value) {
+					columnIndex = grid.getColumnIndex(key);
+					grid.setValueAt(rowIndex, columnIndex, value);
+				}
+				highlight(newRowId, "ok");
+			}
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(rowId, "error");
@@ -202,7 +213,6 @@ CommitmentGrid.prototype.AddRow = function(values)
 			for (var r = 0; r < rowCount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
 			
 			// add new row
-			console.debug(response);
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
 		},

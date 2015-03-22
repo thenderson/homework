@@ -4,13 +4,14 @@ require_once('config.php');
                       
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
+$project_number = strip_tags($_POST['projectnumber']);
 $new_value = strip_tags($_POST['newvalue']);
 $column_name = strip_tags($_POST['colname']);
 $date_due = strip_tags($_POST['date_due']);
 
 // Update database
 switch ($column_name) {
-	case 'project_number':
+	case 'project_number': // this column isn't currently editable
 		// todo: validate input reflects an existing project number.
 		$q="UPDATE commitments SET project_number = ? WHERE unique_id = ?";
 		break;
@@ -122,5 +123,18 @@ catch(PDOException $e)
 	exit;
 }      
 
-echo 'ok';
-exit;
+// Retrieve newly revised commitment from database and send back to JS
+$stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
+	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
+	FROM (SELECT * FROM commitments WHERE unique_id = $unique_id) a, 
+	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"); 
+
+if (!$stmt)
+{
+	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+	echo 'error';
+	exit;
+}
+else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo json_encode($new_comm);

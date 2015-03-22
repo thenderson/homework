@@ -67,7 +67,7 @@
 		autoOpen: false,
 		height:180,
 		modal: true,
-		position: { my: "center", at: "center", of: window, collision: 'fit' },
+		//position: { my: "center", at: "center", of: window, collision: 'fit' },
 		buttons: {
 			"Delete": function() {
 				$(this).dialog("close");
@@ -85,7 +85,7 @@
 		height: 600,
 		width: 300,
 		modal: true,
-		position: { my: "center", at: "center", of: window, collision: 'fit' },
+		//position: { my: "center", at: "center", of: window, collision: 'fit' },
 		buttons: {
 			"Submit": function() {
 				var data = {};
@@ -114,7 +114,7 @@
 		$("#add-commitment")
 			.dialog({show: { effect: "puff", duration: 150 }})
 			.dialog("open"); 
-			return false; // stops page from scrolling to the location of the href anchor of the ID in the selector ... or something
+			//return false; // stops page from scrolling to the location of the href anchor of the ID in the selector ... or something
 	});
 	
 	$("#inp-due").datepicker({
