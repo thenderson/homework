@@ -197,8 +197,6 @@
 			show_closed = shcl == 'true' ? true : false;
 			$('#show-closed').prop('checked', show_closed);
 			setCookie('showClosed', show_closed);
-			console.log('onload get cookie showClosed = ' + shcl);
-			console.log('onload set cookie showClosed = ' + show_closed);
 			
 			$('#show-closed').change(function() {
 				load_comms(undefined, this.checked);
