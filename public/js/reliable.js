@@ -139,7 +139,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					grid.setValueAt(rowIndex, columnIndex, value);
 					highlight(rowId, "ok");
 				}
-			};
+			}
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(rowId, "error");
