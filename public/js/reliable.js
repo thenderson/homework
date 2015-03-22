@@ -138,7 +138,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					columnIndex = grid.getColumnIndex(key);
 					grid.setValueAt(rowIndex, columnIndex, value);
 					highlight(rowId, "ok");
-				};
+				}
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
