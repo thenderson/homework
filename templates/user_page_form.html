@@ -1,7 +1,7 @@
 	</head>
 	<body>
 		<?php require 'dialogs.html'; ?>
-		<div class="container-fluid nopadding accordion">
+		<div class="container-fluid nopadding" id='accordion-com'>
 			<div class="col-sm-12">
 				<h3><strong>YOUR COMMITMENTS</strong></h3>
 				<div class="form-group spacer com_total-spacer-above">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
@@ -163,7 +163,7 @@
 			// configure sliders & misc. stuff
 			$('#accordion-com').accordion({
 				heightStyle: 'content',
-				collapsible: true
+				collapsible: true,
 				activate: function(event, ui) {
 					$('#com_total-above').toggle();
 					$('#com_total-spacer-above').toggle();
