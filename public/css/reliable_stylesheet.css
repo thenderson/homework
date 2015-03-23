@@ -81,9 +81,9 @@ margin-bottom: 0;
 		font-size: 12px;
 	}
 	
-	.container-fluid {
-		margin-left: 2.5%;
-		margin-right: 2.5%;
+	.container-fluid { /* was 2.5% */
+		margin-left: 1%;
+		margin-right: 1%;
 	}
 	
 	.navbar-form .checkbox input[type=checkbox] {
@@ -469,12 +469,23 @@ border: none;
 background: none;
 padding: 0 0;
 margin: 0 0;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .ui-accordion-header {
 border: none;
 background: none;
-color: default;
+color: inherit;
 margin: 0 0;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.ui-widget-content a {
+  color: inherit;
+}
+
+#com_total-above,
+#com_total-spacer-above {
+display: none;
 }
 }
