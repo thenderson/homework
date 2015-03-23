@@ -195,6 +195,10 @@ td.editablegrid-unique_id {
 	display: none;
 }
 
+.editablegrid-project_number a {
+color: #337ab7;
+}
+
 @media screen and (min-device-width:481px) {
 	th.editablegrid-project_number,
 	td.editablegrid-project_number {
@@ -464,6 +468,7 @@ font-size: 12px;
 margin: 0px 8px;
 }
 
+.ui-accordion,
 .ui-accordion-content {
 border: none;
 background: none;
@@ -481,7 +486,6 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .ui-widget-content a {
-  color: #337ab7;
 }
 
 #com_total-above,

@@ -4,7 +4,7 @@
 		<div class="container-fluid nopadding" id='accordion-com'>
 			<div class="col-sm-12">
 				<form class='form-inline'>
-					<h3><strong>YOUR COMMITMENTS</strong></h3>
+					<div class='form-group'><h3><strong>YOUR COMMITMENTS</strong></h3></div>
 					<div class="form-group spacer" id='com_total-spacer-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 					<div class="form-group" id="com_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
@@ -36,11 +36,13 @@
 		</div>
 		<br>
 		<div class="container-fluid nopadding" id='accordion-req'>
-			<form class='form-inline'>
-				<div class="col-sm-12"><h3><strong>YOUR REQUESTS</strong></h3></div>
-				<div class="form-group spacer" id='req_total-spacer-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
-				<div class="form-group" id="req_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
-			</form>
+			<div class="col-sm-12">
+				<form class='form-inline'>
+					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div></div>
+					<div class="form-group spacer" id='req_total-spacer-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class="form-group" id="req_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
+				</form>
+			</div>
 			<div class="container-fluid">
 				<div id="requests">
 					<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
@@ -134,7 +136,7 @@
 					{
 						commitments.grid.loadXMLFromString(response); //synchronous function
 						commitments.grid.tableLoaded();
-						$('[id^=com_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
+						$('#com_total').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -157,7 +159,7 @@
 					{ //process response as xml, then call tableLoaded
 						requests.grid.loadXMLFromString(response); //synchronous function
 						requests.grid.tableLoaded();
-						$('[id^=req_total]').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
+						$('#req_total').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
