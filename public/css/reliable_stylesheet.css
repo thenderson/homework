@@ -481,11 +481,13 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .ui-widget-content a {
-  color: inherit;
+  color: #337ab7;
 }
 
 #com_total-above,
-#com_total-spacer-above {
+#req_total-above,
+#com_total-spacer-above,
+#req_total-spacer-above {
 display: none;
 }
 }
