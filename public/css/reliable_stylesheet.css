@@ -492,7 +492,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 #req_total-above,
 #spacer-com_total-above,
 #spacer-req_total-above {
-display: none;
+/*display: none;*/
 }
 
 .pg-size {
