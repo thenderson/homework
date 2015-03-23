@@ -4,8 +4,8 @@
 		<div class="container-fluid nopadding" id='accordion-com'>
 			<div>
 				<form class='form-inline'>
-					<div class='form-group'><h3><strong>YOUR COMMITMENTS</strong></h3></div>
-					<div class="form-group spacer" id='spacer-com_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<h3 class='form-group'><strong>YOUR COMMITMENTS</strong></h3>s
+					<div class="form-group spacer" id='spacer-com_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
 					<div class="form-group" id="com_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
@@ -17,7 +17,6 @@
 					<form class='form-inline'>
 						<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
-						<div class="form-group spacer">page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
 								<select class="input-sm pg-size" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
@@ -34,12 +33,14 @@
 				</div>
 			</div>
 		</div>
+		
 		<br>
+		
 		<div class="container-fluid nopadding" id='accordion-req'>
 			<div class="col-sm-12">
 				<form class='form-inline'>
-					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div></div>
-					<div class="form-group spacer" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div>
+					<div class="form-group spacer" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
 					<div class="form-group" id="req_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
