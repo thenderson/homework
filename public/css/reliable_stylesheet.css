@@ -195,7 +195,7 @@ td.editablegrid-unique_id {
 	display: none;
 }
 
-.editablegrid-project_number a {
+td.editablegrid-project_number a {
 color: #337ab7;
 }
 
@@ -490,8 +490,13 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 
 #com_total-above,
 #req_total-above,
-#com_total-spacer-above,
-#req_total-spacer-above {
+#spacer-com_total-above,
+#spacer-req_total-above {
 display: none;
+}
+
+.pg-size {
+height: 25px;
+padding: 0px, 0px;
 }
 }

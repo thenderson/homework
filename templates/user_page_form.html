@@ -2,10 +2,10 @@
 	<body>
 		<?php require 'dialogs.html'; ?>
 		<div class="container-fluid nopadding" id='accordion-com'>
-			<div class="col-sm-12">
+			<div>
 				<form class='form-inline'>
 					<div class='form-group'><h3><strong>YOUR COMMITMENTS</strong></h3></div>
-					<div class="form-group spacer" id='com_total-spacer-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class="form-group spacer" id='spacer-com_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 					<div class="form-group" id="com_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
@@ -20,7 +20,7 @@
 						<div class="form-group spacer">page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
-								<select class="input-sm" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
+								<select class="input-sm pg-size" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
 									<option value=5>5</option>
 									<option value=10 selected>10</option>
 									<option value=25>25</option>
@@ -39,7 +39,7 @@
 			<div class="col-sm-12">
 				<form class='form-inline'>
 					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div></div>
-					<div class="form-group spacer" id='req_total-spacer-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
+					<div class="form-group spacer" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 					<div class="form-group" id="req_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
@@ -53,7 +53,7 @@
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
-								<select class="input-sm" id="req_page_size" onchange="requests.grid.setPageSize('requestsPageSize', this.value)">
+								<select class="input-sm pg-size" id="req_page_size" onchange="requests.grid.setPageSize('requestsPageSize', this.value)">
 									<option value=5>5</option>
 									<option value=10 selected>10</option>
 									<option value=25>25</option>
@@ -81,7 +81,7 @@
 				<div class="form-text spacer">&nbsp;&nbsp;page size:&nbsp;</div>
 				<div class="form-group">
 					<div class="controls">
-						<select class="input-sm" id="proj_page_size" onchange="projects.setPageSize('projectsPageSize', this.value)">
+						<select class="input-sm pg-size" id="proj_page_size" onchange="projects.setPageSize('projectsPageSize', this.value)">
 							<option value=5 selected>5</option>
 							<option value=10>10</option>
 							<option value=25>25</option>
@@ -136,7 +136,7 @@
 					{
 						commitments.grid.loadXMLFromString(response); //synchronous function
 						commitments.grid.tableLoaded();
-						$('#com_total').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
+						$('[id^=com_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -159,7 +159,7 @@
 					{ //process response as xml, then call tableLoaded
 						requests.grid.loadXMLFromString(response); //synchronous function
 						requests.grid.tableLoaded();
-						$('#req_total').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
+						$('[id^=req_total]').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -173,7 +173,7 @@
 			$('#accordion-com').accordion({
 				heightStyle: 'content',
 				collapsible: true,
-				activate: function(event, ui) {
+				beforeActivate: function(event, ui) {
 					$('#com_total-above').toggle();
 					$('#com_total-spacer-above').toggle();
 				}
@@ -182,7 +182,7 @@
 			$('#accordion-req').accordion({
 				heightStyle: 'content',
 				collapsible: true,
-				activate: function(event, ui) {
+				beforeActivate: function(event, ui) {
 					$('#req_total-above').toggle();
 					$('#req_total-spacer-above').toggle();
 				}
