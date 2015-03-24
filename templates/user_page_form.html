@@ -262,10 +262,6 @@
 			$('#req_page_size').val(reqPageSize);
 			projPageSize = getCookie('projectsPageSize') || 10; 
 			$('#proj_page_size').val(projPageSize);
-
-			// Load data first time
-			projects.loadXML("../includes/load_user_projects.php");
-			load_comms(horizon, show_closed);
 	
 			projects = new EditableGrid("Projects", {
 				enableSort: true,
@@ -283,6 +279,10 @@
 					}));
 					this.renderGrid('user_projects', 'table', 'projects'); }
 			});
+			
+			// Load data first time
+			projects.loadXML("../includes/load_user_projects.php");
+			load_comms(horizon, show_closed);
 			
 			// Set-up filters
 			commitments.grid.filter(""); //clear any leftover filtering
