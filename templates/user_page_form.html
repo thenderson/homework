@@ -181,23 +181,6 @@
 					async: true
 				});
 			};
-			
-			projects = new EditableGrid("Projects", {
-				enableSort: true,
-				dateFormat: "US",
-				pageSize: projPageSize,
-				tableRendered:  function() { 
-					updatePaginator(this, "projects_paginator"); 
-					$('[id^=proj_total]').html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
-				},
-				tableLoaded: function() { 
-					projects.setCellRenderer('project_number_2', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
-						}
-					}));
-					this.renderGrid('user_projects', 'table', 'projects'); }
-			}); 
 		
 			// configure accordions, sliders, cookies & misc. stuff
 			$('#accordion-com').accordion({
@@ -290,8 +273,26 @@
 				projects.filter($(this).val());
 			});
 
+			// Load data first time
 			projects.loadXML("../includes/load_user_projects.php");
 			load_comms(horizon, show_closed);
+	
+			projects = new EditableGrid("Projects", {
+				enableSort: true,
+				dateFormat: "US",
+				pageSize: projPageSize,
+				tableRendered:  function() { 
+					updatePaginator(this, "projects_paginator"); 
+					$('[id^=proj_total]').html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
+				},
+				tableLoaded: function() { 
+					projects.setCellRenderer('project_number_2', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+						}
+					}));
+					this.renderGrid('user_projects', 'table', 'projects'); }
+			}); 
 			
 			// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
 			$.ajax({
