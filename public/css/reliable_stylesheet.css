@@ -3,12 +3,14 @@
 
 		accent 1 / ice blue		rgb(148, 182, 210)		accordion header
 		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
-		accent 3 / olive 4		rgb(165, 171, 129)		accordion header
-		accent 3 / olive 3		rgb(200, 204, 179)   	
+		accent 3 / olive 4		rgb(165, 171, 129)		
+		accent 3 / olive 3		rgb(200, 204, 179)   	accordion header
 		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
-		accent 5 / green		rgb(123, 167, 157)		accordion header
+		accent 5 / green		rgb(123, 167, 157)		
+		accent 5 / green 40%	rgb(174, 202, 196)		accordion header
 		accent 6 / grey 50%		rgb(150, 140, 140)
-		background / dark 2		rgb(119, 95, 85)
+		tan background / dark 2	rgb(119, 95, 85)
+		tan background 25%		rgb(207, 174, 114)		accordion header
 		background / light 2	rgb(235, 221, 195)		row hover
 		dark red				rgb(192, 0, 0)			delete icon
 		light grey				rgb(228, 228, 228)		
@@ -490,15 +492,18 @@ height: 29px;
 }
 
 #header-com {
-background: rgb(165, 171, 129); /*olive 4*/
+background: rgb(200, 204, 179); /*olive 4 40%*/
+margin: 0 15;
 }
 
 #header-req {
-background: rgb(123, 167, 157); /*green 5*/
+background: rgb(174, 202, 196); /*green 5 40%*/
+margin: 0 15;
 }
 
 #header-proj {
-background: rgb(148, 182, 210); /*ice blue*/
+background: rgb(207, 174, 114); /*tan, darker, 25%*/
+margin: 0 15;
 }
 
 #com_total-above,
