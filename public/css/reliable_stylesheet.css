@@ -489,15 +489,15 @@ height: 29px;
 .ui-widget-content a {
 }
 
-#accordion-com {
+#header-com {
 background: rgb(165, 171, 129); /*olive 4*/
 }
 
-#accordion-req {
+#header-req {
 background: rgb(123, 167, 157); /*green 5*/
 }
 
-#accordion-proj {
+#header-proj {
 background: rgb(148, 182, 210); /*ice blue*/
 }
 
