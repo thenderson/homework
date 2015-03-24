@@ -262,16 +262,6 @@
 			$('#req_page_size').val(reqPageSize);
 			projPageSize = getCookie('projectsPageSize') || 10; 
 			$('#proj_page_size').val(projPageSize);
-			
-			commitments.grid.filter(""); //clear any leftover filtering
-			requests.grid.filter("");
-			projects.filter("");
-				
-			$("#filter_all").keyup(function() { //one filter to rule them all
- 				commitments.grid.filter($(this).val());
-				requests.grid.filter($(this).val());
-				projects.filter($(this).val());
-			});
 
 			// Load data first time
 			projects.loadXML("../includes/load_user_projects.php");
@@ -292,7 +282,18 @@
 						}
 					}));
 					this.renderGrid('user_projects', 'table', 'projects'); }
-			}); 
+			});
+			
+			// Set-up filters
+			commitments.grid.filter(""); //clear any leftover filtering
+			requests.grid.filter("");
+			projects.filter("");
+				
+			$("#filter_all").keyup(function() { //one filter to rule them all
+ 				commitments.grid.filter($(this).val());
+				requests.grid.filter($(this).val());
+				projects.filter($(this).val());
+			});
 			
 			// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
 			$.ajax({
