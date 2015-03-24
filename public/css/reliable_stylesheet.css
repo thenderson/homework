@@ -1,12 +1,12 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 /* colors from MS Office Median color scheme: 
 
-		accent 1 / ice blue		rgb(148, 182, 210)		insert & duplicate icons, new commitment button
+		accent 1 / ice blue		rgb(148, 182, 210)		accordion header
 		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
-		accent 3 / olive 4		rgb(165, 171, 129)		active pill
+		accent 3 / olive 4		rgb(165, 171, 129)		accordion header
 		accent 3 / olive 3		rgb(200, 204, 179)   	
 		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
-		accent 5 / green		rgb(123, 167, 157)		column headers
+		accent 5 / green		rgb(123, 167, 157)		accordion header
 		accent 6 / grey 50%		rgb(150, 140, 140)
 		background / dark 2		rgb(119, 95, 85)
 		background / light 2	rgb(235, 221, 195)		row hover
@@ -480,18 +480,33 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 .ui-accordion-header {
 border: none;
 background: none;
-color: inherit;
 margin: 0 0;
+padding: 0 0;
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+height: 29px;
 }
 
 .ui-widget-content a {
 }
 
+#accordion-com {
+background: rgb(165, 171, 129); /*olive 4*/
+}
+
+#accordion-req {
+background: rgb(123, 167, 157); /*green 5*/
+}
+
+#accordion-proj {
+background: rgb(148, 182, 210); /*ice blue*/
+}
+
 #com_total-above,
 #req_total-above,
+#proj_total-above,
 #spacer-com_total-above,
-#spacer-req_total-above {
+#spacer-req_total-above,
+#spacer-proj_total-above {
 /*display: none;*/
 }
 

@@ -35,7 +35,7 @@
 		</div>
 		<br>
 		<div class="container-fluid nopadding" id='accordion-req'>
-			<div class="col-sm-12">
+			<div class="container-fluid">
 				<form class='form-inline'>
 					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div>
 					<div class="form-group spacer" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
@@ -67,35 +67,45 @@
 			</div>
 		</div>
 		<br>
-		<div class="container-fluid">
-			<div class="nopadding"><h3><strong>PROJECTS</strong></h3></div>
-			
-			<div id="user_projects">
-				<br><br><br><i class='fa fa-spinner fa-spin text-center'></i>
+		<div class="container-fluid nopadding" id='accordion-proj'>
+			<div class='container-fluid'>
+				<form class='form-inline'>
+					<div class='form-group table-title'><h3><strong>PROJECTS</strong></h3></div>
+					<div class="form-group" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+					<div class="form-group" id="proj_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
+				</form>
 			</div>
-			
-			<form class='form-inline'>
-				<div class="form-group" id="proj_total">total: <i class='fa fa-spinner fa-spin'></i></div>
-				<div class="form-text spacer">&nbsp;&nbsp;page size:&nbsp;</div>
-				<div class="form-group">
-					<div class="controls">
-						<select class="input-sm pg-size" id="proj_page_size" onchange="projects.setPageSize('projectsPageSize', this.value)">
-							<option value=5 selected>5</option>
-							<option value=10>10</option>
-							<option value=25>25</option>
-							<option value=50>50</option>
-							<option value=0>all</option>
-						</select>
-					</div>
+			<div class='container-fluid'>
+				<div id="user_projects">
+					<br><br><br><i class='fa fa-spinner fa-spin text-center'></i>
 				</div>
-				<div class="form-group paginator" id="projects_paginator"></div>
-			</form>
+				<div>
+					<form class='form-inline'>
+						<div class="form-group" id="proj_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+						<div class="form-text spacer">&nbsp;&nbsp;page size:&nbsp;</div>
+						<div class="form-group">
+							<div class="controls">
+								<select class="input-sm pg-size" id="proj_page_size" onchange="projects.setPageSize('projectsPageSize', this.value)">
+									<option value=5 selected>5</option>
+									<option value=10>10</option>
+									<option value=25>25</option>
+									<option value=50>50</option>
+									<option value=0>all</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group paginator" id="projects_paginator"></div>
+					</form>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript">
 			$('#com_total-above').hide();
 			$('#spacer-com_total-above').hide();
 			$('#req_total-above').hide();
 			$('#spacer-req_total-above').hide();
+			$('#proj_total-above').hide();
+			$('#spacer-proj_total-above').hide();
 		</script>	
 		<script src="./public/js/editablegrid.js"></script>
 		<script src="./public/js/editablegrid_renderers.js" ></script>
@@ -171,8 +181,25 @@
 					async: true
 				});
 			};
+			
+			projects = new EditableGrid("Projects", {
+				enableSort: true,
+				dateFormat: "US",
+				pageSize: projPageSize,
+				tableRendered:  function() { 
+					updatePaginator(this, "projects_paginator"); 
+					$('[id^=proj_total]').html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
+				},
+				tableLoaded: function() { 
+					projects.setCellRenderer('project_number_2', new CellRenderer({ 
+						render: function(cell, value) { 
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+						}
+					}));
+					this.renderGrid('user_projects', 'table', 'projects'); }
+			}); 
 		
-			// configure sliders & misc. stuff
+			// configure accordions, sliders, cookies & misc. stuff
 			$('#accordion-com').accordion({
 				heightStyle: 'content',
 				collapsible: true,
@@ -183,6 +210,15 @@
 			});
 			
 			$('#accordion-req').accordion({
+				heightStyle: 'content',
+				collapsible: true,
+				beforeActivate: function(event, ui) {
+					$('#req_total-above').toggle('slow');
+					$('#spacer-req_total-above').toggle('slow');
+				}
+			});
+			
+			$('#accordion-proj').accordion({
 				heightStyle: 'content',
 				collapsible: true,
 				beforeActivate: function(event, ui) {
@@ -243,23 +279,6 @@
 			$('#req_page_size').val(reqPageSize);
 			projPageSize = getCookie('projectsPageSize') || 10; 
 			$('#proj_page_size').val(projPageSize);
-			
-			projects = new EditableGrid("Projects", {
-				enableSort: true,
-				dateFormat: "US",
-				pageSize: projPageSize,
-				tableRendered:  function() { 
-					updatePaginator(this, "projects_paginator"); 
-					$("#proj_total").html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
-				},
-				tableLoaded: function() { 
-					projects.setCellRenderer('project_number_2', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
-						}
-					}));
-					this.renderGrid('user_projects', 'table', 'projects'); }
-			}); 
 			
 			commitments.grid.filter(""); //clear any leftover filtering
 			requests.grid.filter("");
