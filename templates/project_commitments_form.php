@@ -16,11 +16,11 @@
 				</div>
 				<div>
 					<form class='form-inline'>
-						<div class="form-group" id="commitments_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+						<div class="form-group" id="project_commitments_total">total: <i class='fa fa-spinner fa-spin'></i></div>
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
-								<select class="input-sm pg-size" id="comm_page_size" onchange="commitments.grid.setPageSize('commitmentsPageSize', this.value)">
+								<select class="input-sm pg-size" id="comm_page_size" onchange="project_commitments.grid.setPageSize('project_commitmentsPageSize', this.value)">
 									<option value=5>5</option>
 									<option value=10 selected>10</option>
 									<option value=25>25</option>
@@ -29,7 +29,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group paginator" id="commitments_paginator"></div>
+						<div class="form-group paginator" id="project_commitments_paginator"></div>
 					</form>
 				</div>
 			</div>
@@ -49,20 +49,20 @@
 		pnum = getparam('project');
 		
 		// load commitments
-		commitments = new CommitmentGrid('commitments');
+		commitments = new CommitmentGrid('project_commitments');
 
 		load_comms = function (horizon, showClosed) {
 			if (typeof(horizon) === 'undefined') {
-				hor = getCookie('horizon');
+				hor = getCookie('horizon-p');
 				horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
 			}
 			
-			if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') == 'true' ? true : false);
+			if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed-p') == 'true' ? true : false);
 			
 			$('#show-closed').prop('checked', showClosed);
 			
-			setCookie('horizon', horizon);
-			setCookie('showClosed', showClosed);
+			setCookie('horizon-p', horizon);
+			setCookie('showClosed-p', showClosed);
 			
 			// load project commitments
 			$.ajax({
@@ -89,9 +89,9 @@
 		};
 	
 		// configure accordions, sliders, cookies & misc. stuff		
-		hor = getCookie('horizon');
+		hor = getCookie('horizon-p');
 		horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
-		setCookie('horizon', horizon);
+		setCookie('horizon-p', horizon);
 		var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
 		
 		$('#horizon-slider').slider({
@@ -127,9 +127,9 @@
 			}
 		});
 
-		show_closed = getCookie('showClosed') == 'true' ? true : false;
+		show_closed = getCookie('showClosed-p') == 'true' ? true : false;
 		$('#show-closed').prop('checked', show_closed);
-		setCookie('showClosed', show_closed);
+		setCookie('showClosed-p', show_closed);
 		
 		$('#show-closed').change(function() {
 			load_comms(undefined, this.checked);
