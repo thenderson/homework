@@ -58,6 +58,10 @@ function CommitmentGrid(name)
 		},
 		tableLoaded: function() { 
 
+			var closed_col = self.grid.getColumnIndex('is_closed');
+			//var desc_col = self.grid.getColumnIndex('description');
+			var priority_col = self.grid.getColumnIndex('priority_h');
+			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
@@ -76,7 +80,7 @@ function CommitmentGrid(name)
 					date_due=moment(value, 'YYYY-MM-DD')
 					cell.innerHTML=date_due.format("\'YY.MM.DD");
 					row=self.grid.getRow(cell.rowIndex);
-					status=self.grid.getValueAt(cell.rowIndex, 8);
+					status=self.grid.getValueAt(cell.rowIndex, closed_col);
 					how_soon=date_due.diff(moment(),'days');
 					if (status == 'true') {
 						$(row).addClass('closed');
@@ -91,7 +95,7 @@ function CommitmentGrid(name)
 			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
 				render: function(cell, value) {
 					cell.innerHTML=value;
-					priority = self.grid.getValueAt(cell.rowIndex, 7);
+					priority = self.grid.getValueAt(cell.rowIndex, priority_col);
 					if (priority == true) {
 						$(cell).addClass('priority-h');
 					}
@@ -99,6 +103,7 @@ function CommitmentGrid(name)
 				}}));
 				
 			this.renderGrid(self.name, 'table', self.name); 
+			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
    	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);

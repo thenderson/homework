@@ -78,7 +78,7 @@
 				{
 					commitments.grid.loadXMLFromString(response); //synchronous function
 					commitments.grid.tableLoaded();
-					$('[id^=commitments_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
+					//$('[id^=commitments_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
