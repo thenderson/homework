@@ -5,15 +5,29 @@
 	require_once('../includes/EditableGrid.php');     
 
 	// Get POST data
-	$planning_horizon = strip_tags($_POST['horizon']); // days
+	$planning_horizon = strip_tags($_POST['horizon']);
+	$showClosed = strip_tags($_POST['showClosed']);
 	$project_number = strip_tags($_POST['p']);
 	
+	/*  COMPOSE QUERY */
+	$q = "SELECT unique_id, task_id, description, requester, promiser, due_by, 
+		priority_h, status, IF(status IN ('O', '?', 'D', 'NA'),0,1) as is_closed FROM commitments";
+	
+	if ($planning_horizon == 'all')
+	{
+		$q = $q . " WHERE project_number = :projnum";
+	}
+	else 
+	{
+		$q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) AND project_number = :projnum";
+	}
+	
+	if ($showClosed == 'false') $q = $q . " AND status IN ('O', '?', 'D', 'NA')";
+	
+	$q = $q . ' ORDER BY due_by, project_number';
+	
 	/*	RETRIEVE COMMITMENTS */	
-	$stmt = $comm_db->prepare("
-		SELECT unique_id, task_id, description, requester, promiser, priority_h, due_by, status, type 
-		FROM commitments 
-		WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL ? DAY) AND project_number = ?
-		ORDER BY due_by, promiser");
+	$stmt = $comm_db->prepare($q);
 	
 	if (!$stmt)
 	{
@@ -23,8 +37,8 @@
 	
 	try 
 	{
-		$stmt->bindParam(1, $planning_horizon, PDO::PARAM_INT);
-		$stmt->bindParam(2, $project_number, PDO::PARAM_STR);
+		if ($planning_horizon != 'all') $stmt->bindParam(':horizon', $planning_horizon, PDO::PARAM_INT);
+		$stmt->bindParam(':projnum', $project_number, PDO::PARAM_STR);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
@@ -53,6 +67,7 @@
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('is_closed', '?', 'boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 

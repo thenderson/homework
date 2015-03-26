@@ -43,7 +43,6 @@
 		$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
 		$stmt->execute();		
 		$commitments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		//var_dump($commitments);
 	} 
 	catch(PDOException $e) 
 	{
