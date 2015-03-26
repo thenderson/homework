@@ -73,7 +73,10 @@ margin-bottom: 0;
 }
 
 @media screen and (min-device-width:481px) {
-	.grid {
+	#commitments,
+	#requests,
+	#projects,
+	#project_commitments {
 		margin-bottom: 2px; 
 		margin-top: 2px;
 		border-collapse: collapse; 
@@ -92,7 +95,10 @@ margin-bottom: 0;
 }
 
 @media screen and (max-device-width:480px) {
-	.grid {
+	#commitments,
+	#requests,
+	#projects,
+	#project_commitments {
 		margin-bottom: 2px; 
 		margin-top: 2px; 
 		border-collapse: collapse; 
@@ -108,7 +114,10 @@ margin-bottom: 0;
 	}
 }
 
-th.grid { /*table header*/
+#commitments th,
+#requests th,
+#projects th,
+#project_commitments th { /*table header*/
 	background: white;
 	padding-left: 1px;
 	padding-right: 1px;
@@ -118,7 +127,10 @@ th.grid { /*table header*/
 	border-bottom: 2px solid rgb(192,192,192);
 }
 
-td.grid {
+#commitments td,
+#requests td,
+#projects td,
+#project_commitments td {
 	padding-top: 6px;
 	padding-bottom: 6px;
 	padding-right: 1px;
@@ -144,7 +156,10 @@ tbody tr.due_future:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
-.grid tr:hover {
+#commitments tr:hover,
+#requests tr:hover,
+#projects tr:hover,
+#project_commitments tr:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
@@ -347,7 +362,10 @@ color: #337ab7;
 	color: rgb(192, 0, 0);
 }
 
-.grid i { /* fontawesome icons */
+#commitments i,
+#requests i,
+#projects i,
+#project_commitments i { /* fontawesome icons */
   cursor: pointer;
 }
 
