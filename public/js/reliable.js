@@ -136,7 +136,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
 				highlight(rowId, "ok");
-				console.log('Test modify: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount()');
+				console.log('Test modify: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
 				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 			};
 		},
@@ -177,7 +177,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 			rowSelector.fadeOut(function() { 
 				self.grid.remove(index);
 			});
-			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount()');
+			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -216,7 +216,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
-			console.log('Test Addrow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount()');
+			console.log('Test Addrow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -252,7 +252,7 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(newRowId, "ok");
-			console.log('Test duplicate: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount()');
+			console.log('Test duplicate: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
