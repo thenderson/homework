@@ -73,9 +73,7 @@ margin-bottom: 0;
 }
 
 @media screen and (min-device-width:481px) {
-	#commitments,
-	#requests,
-	#projects {
+	.grid {
 		margin-bottom: 2px; 
 		margin-top: 2px;
 		border-collapse: collapse; 
@@ -94,9 +92,7 @@ margin-bottom: 0;
 }
 
 @media screen and (max-device-width:480px) {
-	#commitments,
-	#requests,
-	#projects {
+	.grid {
 		margin-bottom: 2px; 
 		margin-top: 2px; 
 		border-collapse: collapse; 
@@ -112,9 +108,7 @@ margin-bottom: 0;
 	}
 }
 
-#commitments th,
-#requests th,
-#projects th { /*table header*/
+.grid th { /*table header*/
 	background: white;
 	padding-left: 1px;
 	padding-right: 1px;
@@ -124,9 +118,7 @@ margin-bottom: 0;
 	border-bottom: 2px solid rgb(192,192,192);
 }
 
-#commitments td,
-#requests td,
-#projects td {
+.grid td {
 	padding-top: 6px;
 	padding-bottom: 6px;
 	padding-right: 1px;
@@ -152,9 +144,7 @@ tbody tr.due_future:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
-#commitments tr:hover,
-#requests tr:hover,
-#projects tr:hover {
+.grid tr:hover {
 	background-color: rgba(228, 228, 228, .5);
 }
 
@@ -357,9 +347,7 @@ color: #337ab7;
 	color: rgb(192, 0, 0);
 }
 
-#commitments i,
-#requests i,
-#projects i { /* fontawesome icons */
+.grid i { /* fontawesome icons */
   cursor: pointer;
 }
 
@@ -504,15 +492,6 @@ margin: 0 15;
 #header-proj {
 background: rgb(207, 174, 114); /*tan, darker, 25%*/
 margin: 0 15;
-}
-
-#com_total-above,
-#req_total-above,
-#proj_total-above,
-#spacer-com_total-above,
-#spacer-req_total-above,
-#spacer-proj_total-above {
-/*display: none;*/
 }
 
 .pg-size {
