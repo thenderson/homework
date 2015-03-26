@@ -5,8 +5,8 @@
 			<div class='container-fluid' id='header-com'>
 				<form class='form-inline'>
 					<div class='form-group table-title'><h3><strong>YOUR COMMITMENTS</strong></h3></div>
-					<div class="form-group" id='spacer-com_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
-					<div class="form-group" id="com_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
+					<div class="form-group" id='spacer-commitments_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+					<div class="form-group" id="commitments_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
 			<div class="container-fluid">
@@ -15,7 +15,7 @@
 				</div>
 				<div>
 					<form class='form-inline'>
-						<div class="form-group" id="com_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+						<div class="form-group" id="commitments_total">total: <i class='fa fa-spinner fa-spin'></i></div>
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
@@ -38,8 +38,8 @@
 			<div class="container-fluid" id='header-req'>
 				<form class='form-inline'>
 					<div class='form-group'><h3><strong>YOUR REQUESTS</strong></h3></div>
-					<div class="form-group spacer" id='spacer-req_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
-					<div class="form-group" id="req_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
+					<div class="form-group spacer" id='spacer-requests_total-above'>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+					<div class="form-group" id="requests_total-above">total: <i class='fa fa-spinner fa-spin'></i></div>
 				</form>
 			</div>
 			<div class="container-fluid">
@@ -48,7 +48,7 @@
 				</div>
 				<div>
 					<form class='form-inline'>
-						<div class="form-group" id="req_total">total: <i class='fa fa-spinner fa-spin'></i></div>
+						<div class="form-group" id="requests_total">total: <i class='fa fa-spinner fa-spin'></i></div>
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
@@ -100,10 +100,10 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			$('#com_total-above').hide();
-			$('#spacer-com_total-above').hide();
-			$('#req_total-above').hide();
-			$('#spacer-req_total-above').hide();
+			$('#commitments_total-above').hide();
+			$('#spacer-commitments_total-above').hide();
+			$('#requests_total-above').hide();
+			$('#spacer-requests_total-above').hide();
 			$('#proj_total-above').hide();
 			$('#spacer-proj_total-above').hide();
 		</script>	
@@ -149,7 +149,7 @@
 					{
 						commitments.grid.loadXMLFromString(response); //synchronous function
 						commitments.grid.tableLoaded();
-						$('[id^=com_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
+						$('[id^=commitments_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -172,7 +172,7 @@
 					{ //process response as xml, then call tableLoaded
 						requests.grid.loadXMLFromString(response); //synchronous function
 						requests.grid.tableLoaded();
-						$('[id^=req_total]').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
+						$('[id^=requests_total]').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -187,8 +187,8 @@
 				heightStyle: 'content',
 				collapsible: true,
 				beforeActivate: function(event, ui) {
-					$('#com_total-above').toggle('slow');
-					$('#spacer-com_total-above').toggle('slow');
+					$('#commitments_total-above').toggle('slow');
+					$('#spacer-commitments_total-above').toggle('slow');
 				}
 			});
 			
@@ -196,8 +196,8 @@
 				heightStyle: 'content',
 				collapsible: true,
 				beforeActivate: function(event, ui) {
-					$('#req_total-above').toggle('slow');
-					$('#spacer-req_total-above').toggle('slow');
+					$('#requests_total-above').toggle('slow');
+					$('#spacer-requests_total-above').toggle('slow');
 				}
 			});
 			
