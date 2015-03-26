@@ -177,7 +177,5 @@
 				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 			async: true
 		});
-		
-
 	}; 
 </script>
