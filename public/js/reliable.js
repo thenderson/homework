@@ -252,8 +252,8 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(newRowId, "ok");
-			console.log('Test duplicate: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+			console.log('Test duplicate: [id^='+self.name+'_total] = '+self.getTotalRowCount());
+			$('[id^='+self.name+'_total]').html('total: <strong>'+self.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
