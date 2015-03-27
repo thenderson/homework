@@ -198,7 +198,9 @@ img {
 } 
 
 th.editablegrid-unique_id,
-td.editablegrid-unique_id {
+td.editablegrid-unique_id,
+th.is_closed,
+td.is_closed {
 	display: none;
 }
 

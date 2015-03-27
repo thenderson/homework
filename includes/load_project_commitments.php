@@ -61,14 +61,14 @@
 	
 	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
+	$grid->addColumn('is_closed', '?', 'boolean', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
-	$grid->addColumn('is_closed', '?', 'boolean');
-	$grid->addColumn('status','STAT','string',['O'=>'O','C'=>'C','D'=>'D','?'=>'?']);
+	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	//render grid
