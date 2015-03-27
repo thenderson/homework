@@ -83,8 +83,8 @@
 
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
-	$grid->addColumn('is_closed', '?', 'boolean', ['O'=>'open','C'=>'close','D'=>'defer','?'=>'unknown']);
-	$grid->addColumn('status','STAT','string', NULL);
+	$grid->addColumn('is_closed', '?', 'boolean', NULL);
+	$grid->addColumn('status','STAT','string', NULL, ['O'=>'open','C'=>'close','D'=>'defer','?'=>'unknown']);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	//render grid
