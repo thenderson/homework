@@ -104,7 +104,7 @@ function CommitmentGrid(name)
 			
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForRender: function (grid, column, rowIndex) {
-					status = editableGrid.getValueAt(rowIndex, column);
+					status = self.grid.getValueAt(rowIndex, column);
 					if (status == 'O') return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
 					else if (status == 'V?') return { 'V1':'time','V2':'waiting, internal','V3':'waiting, external','V4':'COS','V5':'superseded, internal','V6':'superseded, external','V7':'forgot','V8':'not needed','V9':'tech failure','V?':'unknown'};
 					return 'flap';
