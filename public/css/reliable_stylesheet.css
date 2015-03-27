@@ -179,7 +179,8 @@ tbody tr.due_future:hover {
 }
 
 .status_me_now {
-border: 2px solid red;
+color: red;
+font-weight: bold;
 }
 
 td:focus {
