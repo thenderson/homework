@@ -103,7 +103,6 @@ function CommitmentGrid(name)
 				}}));
 			
 			this.setEnumProvider('status', new EnumProvider({
-				console.log('setEnumProvider');
 				getOptionValuesForRender: function (grid, column, rowIndex) {
 					status = editableGrid.getValueAt(rowIndex, column);
 					console.log('status: '+status);
