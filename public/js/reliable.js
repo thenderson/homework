@@ -116,9 +116,8 @@ function CommitmentGrid(name)
 			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
 				render: function(cell, value) {
 					cell.innerHTML = value;
-					row=self.grid.getRow(cell.rowIndex);
 					if (value == 'V?' || value == '?') {
-						$(row).addClass('status_me_now');
+						$(cell).addClass('status_me_now');
 					}
 				}
 			}));
