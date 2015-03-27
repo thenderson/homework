@@ -110,14 +110,15 @@ function CommitmentGrid(name)
 					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V? need status'};
 					return;
-				}
+				};
+				
 				getOptionValuesForRender: function (grid, column, rowIndex) {
 					status = self.grid.getValueAt(rowIndex, status_col);
 					if (status == 'O') return { 'O' : 'O', 'C' : 'C', 'D':'D', '?':'?'};
 					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V?'};
 					return;
-				}
+				};
 			}));
 				
 			// this.setCellRenderer('status', new CellRenderer ({ //overdue rows
