@@ -111,13 +111,14 @@ function CommitmentGrid(name)
 						'V3':'variance - waiting, external','V4':'variance - COS', 
 						'V5':'variance - superseded, internal','V6':'variance - superseded, external', 
 						'V7':'variance - forgot','V8':'variance - not needed','V9':'variance - tech failure','V?':'variance - unknown'};
-					return status;
+					return 'flap';
 				}
 			}));
 				
 			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
 				render: function(cell, value) {
 					cell.innerHTML = value;
+					console.log('.');
 					if (value == 'V?' || value == '?') {
 						$(row).addClass('status_me_now');
 					}
