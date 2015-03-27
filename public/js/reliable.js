@@ -119,7 +119,7 @@ function CommitmentGrid(name)
 			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
 				render: function(cell, value) {
 					cell.innerHTML = value;
-					console.log('.');
+					row=self.grid.getRow(cell.rowIndex);
 					if (value == 'V?' || value == '?') {
 						$(row).addClass('status_me_now');
 					}
