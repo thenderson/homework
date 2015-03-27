@@ -102,13 +102,13 @@ function CommitmentGrid(name)
 					else $(cell).removeClass('priority-h');
 				}}));
 			
-			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
-				render: function(cell, value) {
-					if (value == 'V?' || value == '?') {
-						$(row).addClass('status_me_now');
-					}
-				}
-			}));
+			// this.setCellRenderer('status', new CellRenderer ({ //overdue rows
+				// render: function(cell, value) {
+					// if (value == 'V?' || value == '?') {
+						// $(row).addClass('status_me_now');
+					// }
+				// }
+			// }));
 			
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {

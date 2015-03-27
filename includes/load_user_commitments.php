@@ -24,7 +24,7 @@
 		else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and requester = :user";
 	}
 	
-	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA')";
+	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA', 'V?')";
 	
 	$q = $q . ' ORDER BY due_by, project_number';
 	
