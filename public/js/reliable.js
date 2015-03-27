@@ -102,6 +102,14 @@ function CommitmentGrid(name)
 					else $(cell).removeClass('priority-h');
 				}}));
 			
+			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
+				render: function(cell, value) {
+					if (value == 'V?' || value == '?') {
+						$(row).addClass('status_me_now');
+					}
+				}
+			}));
+			
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {
 					var status = editableGrid.getValueAt(rowIndex, column);
@@ -111,14 +119,6 @@ function CommitmentGrid(name)
 						'V5':'variance - superseded, internal','V6':'variance - superseded, external', 
 						'V7':'variance - forgot','V8':'variance - not needed','V9':'variance - tech failure','V?':'variance - unknown'};
 					return status;
-				}
-			}));
-			
-			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
-				render: function(cell, value) {
-					if (value == 'V?' || value == '?') {
-						$(row).addClass('status_me_now');
-					}
 				}
 			}));
 			
