@@ -113,6 +113,7 @@ function CommitmentGrid(name)
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {
 					var status = editableGrid.getValueAt(rowIndex, column);
+					console.log('status: '+status);
 					if (status == 'O') return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
 					else if (status == 'V?') return { 'V1':'variance - time','V2':'variance - waiting, internal', 
 						'V3':'variance - waiting, external','V4':'variance - COS', 
