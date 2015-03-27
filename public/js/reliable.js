@@ -61,6 +61,7 @@ function CommitmentGrid(name)
 			var closed_col = self.grid.getColumnIndex('is_closed');
 			//var desc_col = self.grid.getColumnIndex('description');
 			var priority_col = self.grid.getColumnIndex('priority_h');
+			var status_col = self.grid.getColumnIndex('status');
 			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
@@ -104,8 +105,8 @@ function CommitmentGrid(name)
 			
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForRender: function (grid, column, rowIndex) {
-					status = self.grid.getValueAt(rowIndex, column);
-					console.log('rowindex '+rowIndex+' column '+column+' status: '+ status);
+					status = self.grid.getValueAt(rowIndex, status_col);
+					console.log('rowindex '+rowIndex+' column '+status_col+' status: '+ status);
 					if (status == 'O') return { 'O' : 'O', 'C' : 'close', 'D':'defer', '?':'unknown'};
 					else if (status == 'V?') return { 'V1':'1 time','V2':'2 waiting, internal','V3':'3 waiting, external','V4':'4 COS','V5':'5 superseded, internal','V6':'6 superseded, external','V7':'7 forgot','V8':'8 not needed','V9':'9 tech failure','V?':'unknown'};
 					return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
