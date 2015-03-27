@@ -108,28 +108,20 @@ function CommitmentGrid(name)
 					status = self.grid.getValueAt(rowIndex, status_col);
 					if (status == 'O') return { 'O' : 'O', 'C' : 'close', 'D':'defer', '?':'unknown'};
 					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
-						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V? need status'};
-					return;
-				};
-				
-				getOptionValuesForRender: function (grid, column, rowIndex) {
-					status = self.grid.getValueAt(rowIndex, status_col);
-					if (status == 'O') return { 'O' : 'O', 'C' : 'C', 'D':'D', '?':'?'};
-					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V?'};
 					return;
-				};
+				}
 			}));
 				
-			// this.setCellRenderer('status', new CellRenderer ({ //overdue rows
-				// render: function(cell, value) {
-					// cell.innerHTML = value;
-					// row=self.grid.getRow(cell.rowIndex);
-					// if (value == 'V?' || value == '?') {
-						// $(row).addClass('status_me_now');
-					// }
-				// }
-			// }));
+			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
+				render: function(cell, value) {
+					cell.innerHTML = value;
+					row=self.grid.getRow(cell.rowIndex);
+					if (value == 'V?' || value == '?') {
+						$(row).addClass('status_me_now');
+					}
+				}
+			}));
 			
 			this.renderGrid(self.name, 'table', self.name); 
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');

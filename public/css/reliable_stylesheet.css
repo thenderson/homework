@@ -178,6 +178,10 @@ tbody tr.due_future:hover {
 .due_future {
 }
 
+.status_me_now {
+border: 3px solid red;
+}
+
 td:focus {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
