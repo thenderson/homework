@@ -102,19 +102,14 @@ function CommitmentGrid(name)
 					else $(cell).removeClass('priority-h');
 				}}));
 			
-			// this.setEnumProvider('status', new EnumProvider({
-				// getOptionValuesForRender: function (grid, column, rowIndex) {
-					// status = editableGrid.getValueAt(rowIndex, column);
-					// console.log('status: '+status);
-					// return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
-					// if (status == 'O') return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
-					// else if (status == 'V?') return { 'V1':'variance - time','V2':'variance - waiting, internal', 
-						// 'V3':'variance - waiting, external','V4':'variance - COS', 
-						// 'V5':'variance - superseded, internal','V6':'variance - superseded, external', 
-						// 'V7':'variance - forgot','V8':'variance - not needed','V9':'variance - tech failure','V?':'variance - unknown'};
-					// return 'flap';
-				// }
-			// }));
+			this.setEnumProvider('status', new EnumProvider({
+				getOptionValuesForRender: function (grid, column, rowIndex) {
+					status = editableGrid.getValueAt(rowIndex, column);
+					if (status == 'O') return { 'O' : 'open', 'C' : 'close', 'D':'defer', '?':'unknown'};
+					else if (status == 'V?') return { 'V1':'time','V2':'waiting, internal','V3':'waiting, external','V4':'COS','V5':'superseded, internal','V6':'superseded, external','V7':'forgot','V8':'not needed','V9':'tech failure','V?':'unknown'};
+					return 'flap';
+				}
+			}));
 				
 			// this.setCellRenderer('status', new CellRenderer ({ //overdue rows
 				// render: function(cell, value) {
