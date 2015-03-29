@@ -59,16 +59,17 @@ switch ($column_name) {
 	   old  new	O	C	D	?	V?	V#
 		O		-	1	2	3	X	X		
 		C_		4	-	X	X	X	X
-		D		5	X	-	6	X	X
+		D		5	5a	-	6	X	X
 		?		7	8	9	-	X	X
 		V?		10	X	X	X	-	11
 		V#		12	X	X	X	13	-
 		
-		1. open --> closed: calculate closing status value; enter closed_on; increment PPC & TA to project & individual *TODO: closed_on
-		2. open --> deferred: set due_by to NULL, set status to D *TODO: fix display of null date
+		1. open --> closed: calculate closing status value; enter closed_on; increment PPC & TA to project & individual 
+		2. open --> deferred: set due_by to NULL, set status to D 
 		3. open --> unknown: set status to ?
 		4. closed --> open: decrement PPC & TA to project & individual; set status to O
 		5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
+		5a. deferred -> closed: (same as 1) calculate closing status value = C0; enter closed_on; increment PPC & TA to project & individual
 		6. deferred --> unknown: set status to ? [should this be allowed?]
 		7. unknown --> open: set status to O
 		8. unknown --> closed: (same as 1)
@@ -80,10 +81,10 @@ switch ($column_name) {
 		
 	/* TESTING STATUS	(x=basic function restored; X=stat update functional; *=todo listed above
 	   old new	O	C	D	?	V?	V#
-		O			*	*	3		
-		C_		4	
-		D		5			6
-		?		7	8	9
+		O			x	x	x		
+		C_		4*	
+		D		5*	5a*		6*
+		?		7*	8*	9*
 		V?		10					11
 		V#		12					13		*/
 		
@@ -145,7 +146,7 @@ switch ($column_name) {
 			case 'CL':
 				if ($new_value == 'O') {
 					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O
-					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
+					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					
 					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
 								BEGIN
@@ -171,6 +172,42 @@ switch ($column_name) {
 					$now = new DateTime();
 					$q = "UPDATE commitments SET status = ?, requested_on = $now WHERE unique_id = ?";
 				}
+				else if ($new_value == 'C') {
+					// 5a. deferred --> closed: closing status value = C0; enter closed_on; increment PPC & TA to project & individual
+					$new_value = 'C0'; // assume zero foresight; sorry!
+					$now = new DateTime();
+					$q='UPDATE commitments SET status = ?, requested_on = $now, closed_on = CURDATE() WHERE unique_id = ?';
+					
+					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
+					
+					if (!$promiser_q) trigger_error('Statement failed : ' . E_USER_ERROR);
+					else 
+					{
+						$promiser_res = $promiser_q->fetchAll(PDO::FETCH_ASSOC);
+						$promiser = $promiser_res[0]['promiser'];
+					}
+					
+					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
+								BEGIN
+								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
+								END;
+							ELSE 
+								BEGIN
+								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
+								END;
+							END IF;";
+					$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
+								BEGIN
+								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
+								END;
+							ELSE
+								BEGIN
+								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
+								END;
+							END IF;";
+
+					$update_stats = 2;
+				}
 				else if ($new_value == '?') {
 					// 6. deferred --> unknown: set status to ? [should this be allowed?]
 					$q='UPDATE commitments SET status = ? WHERE unique_id = ?';
@@ -184,12 +221,12 @@ switch ($column_name) {
 			case '?':
 				if ($new_value == 'O') {
 					// 7. unknown --> open: set status to O
-					$q = "UPDATE commitments SET status = ? WHERE unique_id = ?";
+					$q = "UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?";
 				}
 				else if ($new_value == 'C') {
 					// 8. unknown --> closed: calculate closing status value; increment PPC & TA to project & individual
 					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
-					$q='UPDATE commitments SET status = ? WHERE unique_id = ?';
+					$q='UPDATE commitments SET status = ?, closed_on = CURDATE() WHERE unique_id = ?';
 					
 					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
 					
@@ -234,7 +271,7 @@ switch ($column_name) {
 			case 'V?':
 				if ($new_value == 'O') {
 					// 10. V? --> open: decrement PPC & TA to project & individual; set status to O
-					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
+					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					$update_stats = -1;
 				}
 				else if (preg_match('/^V[1-9]$/', $new_value)) {
@@ -259,7 +296,7 @@ switch ($column_name) {
 			case 'V9':
 				if ($new_value == 'O') {
 					// 12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
-					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
+					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					$update_stats = -1;
 				}
 				else if (preg_match('/^V[1-9]$/', $new_value)) {

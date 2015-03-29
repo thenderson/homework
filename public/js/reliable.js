@@ -78,8 +78,6 @@ function CommitmentGrid(name)
 			
 			this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
 				render: function(cell, value) {
-					console.log('due_by value: '+value);
-					
 					row=self.grid.getRow(cell.rowIndex);
 					
 					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
@@ -124,7 +122,9 @@ function CommitmentGrid(name)
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {
 					status = self.grid.getValueAt(rowIndex, status_col);
-					if (status == 'O') return { 'O' : 'O', 'C' : 'close', 'D':'defer', '?':'unknown'};
+					if (status == 'O') return {'O':'O', 'C':'close','D':'defer', '?':'unknown'};
+					else if (status == 'D') return {'O':'O', 'C':'close', '?':'unknown'};
+					else if (status == '?') return {'O':'O', 'C':'close', 'D':'defer'};
 					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V?'};
 					return;
@@ -171,7 +171,6 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 		},
 		success: function (response) 
 		{ 
-			console.debug(response);
 			// reset old value if failed then highlight row
 			if (response == 'error' || response == "") {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
@@ -179,13 +178,11 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			}
 			else {
 				values = response[0];
-				console.debug(values);
 				$.each(values, function(key, value) {
 					columnIndex = grid.getColumnIndex(key);
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
 				highlight(rowId, "ok");
-				console.log('Test modify: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
 				$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 			};
 		},
