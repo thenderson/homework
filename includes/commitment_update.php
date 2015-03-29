@@ -319,7 +319,7 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
-dbug('query results:'); dbug($new_comm); dbug('done'); error_log(echo dbug('print'));
+dbug('query results:'); dbug($new_comm); dbug('done'); error_log(dbug('print'));
 exit;
 
 // functions
