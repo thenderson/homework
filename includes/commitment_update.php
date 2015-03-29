@@ -319,10 +319,13 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+error_log('nearly done');
 dbug($new_comm);
 dbug('print');
 
 echo json_encode($new_comm);
+
+error_log('done');
 exit;
 
 // functions
