@@ -13,6 +13,9 @@ $date_due = strip_tags($_POST['date_due']);
 $last_monday = date('Y-m-d', strtotime('last Monday'));
 $update_stats = 0; // 1 = run $q2 query; 2 = run both $q2 and $q3 queries
 
+error_log('commitment_update started!');
+error_log($column_name);
+
 // Update database
 switch ($column_name) {
 	case 'project_number': // this column isn't currently editable
