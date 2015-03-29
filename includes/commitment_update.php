@@ -170,7 +170,7 @@ switch ($column_name) {
 				else if ($new_value == 'C') {
 					// 5a. deferred --> closed: closing status value = C0; enter closed_on; increment PPC & TA to project & individual
 					$new_value = 'C0'; // assume zero foresight; sorry!
-					$q="UPDATE commitments SET status = ?, requested_on = CURDATE(), closed_on = CURDATE() WHERE unique_id = ?";
+					$q="UPDATE commitments SET status = ?, due_by = CURDATE(), requested_on = CURDATE(), closed_on = CURDATE() WHERE unique_id = ?";
 					
 					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
 					

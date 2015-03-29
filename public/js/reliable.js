@@ -84,10 +84,12 @@ function CommitmentGrid(name)
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
 							cell.innerHTML = '-';
 							$(row).addClass('deferred');
+							$(cell).removeClass('status_me_now');
 						}
 						else {
 							cell.innerHTML = '!';
 							$(cell).addClass('status_me_now');
+							$(row).removeClass('deferred');
 						}
 					}
 					else {
@@ -125,7 +127,7 @@ function CommitmentGrid(name)
 					if (status == 'O') return {'O':'O', 'C':'Close','D':'Defer', '?':'Unknown'};
 					else if (status == 'D') return {'D':'D', 'O':'Open', 'C':'Close', '?':'Unknown'};
 					else if (status == '?') return {'?':'?', 'O':'O', 'C':'Close', 'D':'Defer'};
-					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
+					else if (status == 'V?') return {'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V?'};
 					return;
 				}
