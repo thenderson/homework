@@ -346,10 +346,10 @@ function calc_closed_status($id, $duedate, $dbase) {
 	}
 	
 	// calculate closed status
-	$due = DateTime::createFromFormat('Y-m-d', $duedate);
-	$foresight = date_diff($requested_on, $due)->format('%r%a');
+	$duedate = DateTime::createFromFormat('Y-m-d', $duedate);
+	$foresight = date_diff($requested_on, $duedate)->format('%r%a');
 	$now = new DateTime();
-	$when_due = date_diff($now, $due)->format('%r%a');
+	$when_due = date_diff($now, $duedate)->format('%r%a');
 	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 	return $closed_status;
 }
