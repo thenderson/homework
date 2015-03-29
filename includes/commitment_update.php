@@ -345,7 +345,10 @@ function calc_closed_status($id, $duedate, $dbase) {
 		$requested_on = new DateTime($r[0]['requested_on']) ;
 	}
 	
-	dbug($id, $duedate, $requested_on, $dbase);
+	dbug($id);
+	dbug($duedate);
+	dbug($requested_on);
+	dbug($dbase);
 	error_log(dbug('print'));
 	
 	// calculate closed status
