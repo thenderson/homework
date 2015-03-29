@@ -122,9 +122,9 @@ function CommitmentGrid(name)
 			this.setEnumProvider('status', new EnumProvider({
 				getOptionValuesForEdit: function (grid, column, rowIndex) {
 					status = self.grid.getValueAt(rowIndex, status_col);
-					if (status == 'O') return {'O':'O', 'C':'close','D':'defer', '?':'unknown'};
-					else if (status == 'D') return {'O':'O', 'C':'close', '?':'unknown'};
-					else if (status == '?') return {'O':'O', 'C':'close', 'D':'defer'};
+					if (status == 'O') return {'O':'O', 'C':'Close','D':'Defer', '?':'Unknown'};
+					else if (status == 'D') return {'D':'D', 'O':'Open', 'C':'Close', '?':'Unknown'};
+					else if (status == '?') return {'?':'?', 'O':'O', 'C':'Close', 'D':'Defer'};
 					else if (status == 'V?') return { 'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','V?':'V?'};
 					return;

@@ -12,9 +12,6 @@ $date_due = strip_tags($_POST['date_due']);
 $last_monday = date('Y-m-d', strtotime('last Monday'));
 $update_stats = 0; // 1 = run $q2 query; 2 = run both $q2 and $q3 queries
 
-error_log('commitment_update started!');
-error_log($column_name);
-
 // Update database
 switch ($column_name) {
 	case 'project_number': // this column isn't currently editable
@@ -49,7 +46,6 @@ switch ($column_name) {
 	   break;
 	   
 	case 'priority_h':
-		error_log('case priority_h');
 		
 		$q='UPDATE commitments SET priority_h = ? WHERE unique_id = ?';
 		$new_value = ($new_value == 'true') ? 1 : 0;
@@ -175,7 +171,7 @@ switch ($column_name) {
 				else if ($new_value == 'C') {
 					// 5a. deferred --> closed: closing status value = C0; enter closed_on; increment PPC & TA to project & individual
 					$new_value = 'C0'; // assume zero foresight; sorry!
-					$now = new DateTime();
+					$now = date('Y-m-d', new DateTime());
 					$q='UPDATE commitments SET status = ?, requested_on = $now, closed_on = CURDATE() WHERE unique_id = ?';
 					
 					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
@@ -324,7 +320,6 @@ switch ($column_name) {
 }
 
 $stmt = $comm_db->prepare($q);
-error_log($q);
 
 if (!$stmt)
 {
@@ -353,8 +348,6 @@ $q4 = "SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id,
 	FROM (SELECT * FROM commitments WHERE unique_id = $unique_id) a, 
 	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"; 
 
-error_log($q4);
-
 $stmt = $comm_db->query($q4); 
 	
 if (!$stmt)
@@ -366,7 +359,6 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
-dbug('query results:'); dbug($new_comm); dbug('done'); error_log(dbug('print'));
 exit;
 
 // functions
