@@ -20,7 +20,7 @@
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
-								<select class="input-sm pg-size" id="comm_page_size" onchange="project_commitments.grid.setPageSize('project_commitmentsPageSize', this.value)">
+								<select class="input-sm pg-size" id="comm_page_size" onchange="commitments.grid.setPageSize('project_commitmentsPageSize', this.value)">
 									<option value=5>5</option>
 									<option value=10 selected>10</option>
 									<option value=25>25</option>
@@ -49,7 +49,7 @@
 		pnum = getparam('project');
 		
 		// load commitments
-		project_commitments = new CommitmentGrid('project_commitments');
+		commitments = new CommitmentGrid('project_commitments');
 
 		load_comms = function (horizon, showClosed) {
 			if (typeof(horizon) === 'undefined') {
