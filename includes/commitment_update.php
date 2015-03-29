@@ -64,8 +64,8 @@ switch ($column_name) {
 		V?		10	X	X	X	-	11
 		V#		12	X	X	X	13	-
 		
-		1. open --> closed: calculate closing status value; increment PPC & TA to project & individual
-		2. open --> deferred: set due_by to NULL, set status to D
+		1. open --> closed: calculate closing status value; enter closed_on; increment PPC & TA to project & individual *TODO: closed_on
+		2. open --> deferred: set due_by to NULL, set status to D *TODO: fix display of null date
 		3. open --> unknown: set status to ?
 		4. closed --> open: decrement PPC & TA to project & individual; set status to O
 		5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
@@ -78,16 +78,22 @@ switch ($column_name) {
 		12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
 		13. variance --> V?: decrement V to project & individual; set status to V_ */
 		
+	/* TESTING STATUS	(x=basic function restored; X=stat update functional; *=todo listed above
+	   old new	O	C	D	?	V?	V#
+		O			*	*	3		
+		C_		4	
+		D		5			6
+		?		7	8	9
+		V?		10					11
+		V#		12					13		*/
+		
 	case 'status': 
-		error_log('case status');
 		switch($old_value) {
 			case 'O':
-				error_log('case O');
 				if ($new_value == 'C') {
-					error_log('new value = C');
-					// 1. open --> closed: calculate closing status value; increment PPC & TA to project & individual
+					// 1. open --> closed: calculate closing status value; set closed_on value; increment PPC & TA to project & individual
 					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
-					$q='UPDATE commitments SET status = ? WHERE unique_id = ?';
+					$q='UPDATE commitments SET status = ?, closed_on = CURDATE() WHERE unique_id = ?';
 					
 					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
 					

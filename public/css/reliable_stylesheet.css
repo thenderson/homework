@@ -178,6 +178,10 @@ tbody tr.due_future:hover {
 .due_future {
 }
 
+.deferred {
+font-style: italic;
+}
+
 .status_me_now {
 color: red;
 font-weight: bold;
