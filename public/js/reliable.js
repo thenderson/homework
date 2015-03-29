@@ -189,8 +189,8 @@ ConfirmDeleteRow = function(index)
 
 CommitmentGrid.prototype.DeleteRow = function(index) 
 {
-	var uniqueid_col = grid.getColumnIndex('unique_id');
 	var self = this;
+	var uniqueid_col = self.grid.getColumnIndex('unique_id');
 	var uniqueId = self.grid.getValueAt(index, uniqueid_col);
 	var rowId = self.grid.getRowId(index);
 	
@@ -247,7 +247,6 @@ CommitmentGrid.prototype.AddRow = function(values)
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
-			console.log('Test Addrow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
