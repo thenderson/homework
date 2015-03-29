@@ -82,7 +82,7 @@ function CommitmentGrid(name)
 					
 					row=self.grid.getRow(cell.rowIndex);
 					
-					if (value = '0000-00-00') { //handle deferred & recently un-deferred items
+					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
 							cell.innerHTML = '-';
 							$(row).addClass('deferred');
