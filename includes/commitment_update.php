@@ -345,7 +345,8 @@ function calc_closed_status($id, $duedate, $dbase) {
 		$requested_on = new DateTime($r[0]['requested_on']) ;
 	}
 	
-	print_r($id, $duedate, $requested_on, $dbase);
+	dbug($id, $duedate, $requested_on, $dbase);
+	error_log(dbug('print'));
 	
 	// calculate closed status
 	$duedate = DateTime::createFromFormat('Y-m-d', $duedate);

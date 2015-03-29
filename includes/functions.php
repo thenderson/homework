@@ -21,9 +21,6 @@
 	* Author : dcz
 	* usage :
 	* dbug($scalar, $array, $object, $resource, CONSTANT);
-	* //.. 
-	* dbug($other);
-	* //..
 	* echo dbug('print'); // actually output the result of all previous calls
 	*/
 
