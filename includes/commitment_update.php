@@ -165,7 +165,7 @@ switch ($column_name) {
 			case 'D':
 				if ($new_value == 'O') {
 					// 5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
-					$now = date('Y-m-d', new DateTime());
+					$now = new DateTime()->format('Y-m-d');
 					$q = "UPDATE commitments SET status = ?, requested_on = $now WHERE unique_id = ?";
 				}
 				else if ($new_value == 'C') {
