@@ -104,7 +104,7 @@ switch ($column_name) {
 									BEGIN
 									INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
 									END;
-								END IF;"
+								END IF;";
 						$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 									BEGIN
 									UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
@@ -113,7 +113,7 @@ switch ($column_name) {
 									BEGIN
 									INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
 									END;
-								END IF;"
+								END IF;";
 
 						$update_stats = 2;
 					}
@@ -143,12 +143,12 @@ switch ($column_name) {
 									BEGIN
 									UPDATE user_metrics SET P = P - 1, $new_value = $new_value - 1 WHERE user_id = @User AND `date` = $last_monday;
 									END;
-								END IF;"
+								END IF;";
 						$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 									BEGIN
 									UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
 									END;
-								END IF;"
+								END IF;";
 						$update_stats = 2;
 					}
 					else {
@@ -200,7 +200,7 @@ switch ($column_name) {
 									BEGIN
 									INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
 									END;
-								END IF;"
+								END IF;";
 						$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 									BEGIN
 									UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
@@ -209,7 +209,7 @@ switch ($column_name) {
 									BEGIN
 									INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
 									END;
-								END IF;"
+								END IF;";
 
 						$update_stats = 2;
 					}
