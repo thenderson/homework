@@ -1,39 +1,5 @@
 <?php    
 require_once('config.php');         
-
-// functions
-function calc_closed_status($id, $duedate, $dbase) {
-	// lookup when the commitment was first requested
-	$s = $dbase->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
-
-	if (!$s) {
-		trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
-		echo 'error';
-		exit;
-	}
-	try {
-		$s->bindParam(1, $id, PDO::PARAM_INT);	
-		$s->execute();
-	}             
-	catch(PDOException $e) {
-		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
-		echo 'error';
-		exit;
-	} 		
-	if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
-	else {
-		$r = $s->fetchAll(PDO::FETCH_ASSOC);
-		$requested_on = new DateTime($r[0]['requested_on']) ;
-	}
-	
-	// calculate closed status
-	$due_date = DateTime::createFromFormat('Y-m-d', $duedate);
-	$foresight = date_diff($requested_on, $due_date)->format('%r%a');
-	$now = new DateTime();
-	$when_due = date_diff($now, $due_date)->format('%r%a');
-	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
-	return $closed_status;
-}
                       
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
@@ -154,8 +120,8 @@ switch ($column_name) {
 					$update_stats = 2;
 				}
 				else if ($new_value == 'D') {
-					// 2. open --> deferred: set requested_on and date_due to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, date_due = NULL WHERE unique_id = ?'; 
+					// 2. open --> deferred: set requested_on and due_on to NULL, set status to D
+					$q='UPDATE commitments SET status = ?, due_on = NULL WHERE unique_id = ?'; 
 				}
 				else if ($new_value == '?') {
 					// 3. open --> unknown: set status to ?
@@ -251,7 +217,7 @@ switch ($column_name) {
 				}
 				else if ($new_value == 'D') {
 					// 9. unknown --> deferred: set requested_on and date_due to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, date_due = NULL WHERE unique_id = ?';
+					$q='UPDATE commitments SET status = ?, due_on = NULL WHERE unique_id = ?';
 				}
 				else {
 					echo 'error';
@@ -353,5 +319,39 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
-dbug($new_comm); dbug('print');
+dbug('query results:'); dbug($new_comm); dbug('done'); dbug('print');
 exit;
+
+// functions
+function calc_closed_status($id, $duedate, $dbase) {
+	// lookup when the commitment was first requested
+	$s = $dbase->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
+
+	if (!$s) {
+		trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+	try {
+		$s->bindParam(1, $id, PDO::PARAM_INT);	
+		$s->execute();
+	}             
+	catch(PDOException $e) {
+		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+		echo 'error';
+		exit;
+	} 		
+	if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
+	else {
+		$r = $s->fetchAll(PDO::FETCH_ASSOC);
+		$requested_on = new DateTime($r[0]['requested_on']) ;
+	}
+	
+	// calculate closed status
+	$due_date = DateTime::createFromFormat('Y-m-d', $duedate);
+	$foresight = date_diff($requested_on, $due_date)->format('%r%a');
+	$now = new DateTime();
+	$when_due = date_diff($now, $due_date)->format('%r%a');
+	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
+	return $closed_status;
+}
