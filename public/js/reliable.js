@@ -135,6 +135,7 @@ function CommitmentGrid(name)
 function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {     
 	var rowId = grid.getRowId(rowIndex);
+	var date_due_col = self.grid.getColumnIndex('date_due');
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
@@ -146,7 +147,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			newvalue: newValue, 
 			oldvalue: oldValue,
 			colname: grid.getColumnName(columnIndex),
-			date_due: grid.getValueAt(rowIndex, 6)
+			date_due: grid.getValueAt(rowIndex, date_due_col)
 		},
 		success: function (response) 
 		{ 
