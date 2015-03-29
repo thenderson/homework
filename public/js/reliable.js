@@ -208,8 +208,8 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 			rowSelector.fadeOut(function() { 
 				self.grid.remove(index);
 			});
-			console.log('Test deleterow: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
+			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
+			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
