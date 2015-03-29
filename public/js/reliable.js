@@ -144,6 +144,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			uniqueid: grid.getValueAt(rowIndex, 0), 
 			projectnumber: grid.getValueAt(rowIndex, 1),
 			newvalue: newValue, 
+			oldvalue: oldValue,
 			colname: grid.getColumnName(columnIndex),
 			date_due: grid.getValueAt(rowIndex, 6)
 		},
