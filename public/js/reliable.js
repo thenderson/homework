@@ -136,15 +136,16 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 {     
 	var rowId = grid.getRowId(rowIndex);
 	var date_due_col = grid.getColumnIndex('due_by');
-	var projnum_col = grid.hasColumn('project_number') ? grid.getColumnIndex('project_number') : getparam('project');
 	var uniqueid_col = grid.getColumnIndex('unique_id');
+	var projnumber = grid.hasColumn('project_number') ? grid.getValueAt(rowIndex, grid.getColumnIndex('project_number')) : getparam('project');
+	
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "json",
 		data: {
 			uniqueid: grid.getValueAt(rowIndex, uniqueid_col), 
-			projectnumber: grid.getValueAt(rowIndex, projnum_col),
+			projectnumber: projnumber,
 			newvalue: newValue, 
 			oldvalue: oldValue,
 			colname: grid.getColumnName(columnIndex),
