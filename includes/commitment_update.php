@@ -305,11 +305,15 @@ catch(PDOException $e)
 }      
 
 // Retrieve newly revised commitment from database and send back to JS
-$stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
+$q4 = "SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
 	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
 	FROM (SELECT * FROM commitments WHERE unique_id = $unique_id) a, 
-	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"); 
+	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"; 
 
+error_log($q4);
+
+$stmt = $comm_db->query($q4); 
+	
 if (!$stmt)
 {
 	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
