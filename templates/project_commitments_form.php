@@ -172,7 +172,7 @@
 			data: { p: pnum },
 			success: function (response) {
 				$('#table_title').html("<h3><strong>PROJECT COMMITMENTS: "+response+"</strong> | #"+pnum+"</h3>");
-				$('#inp-proj').append($("<option>").attr('value',response).text(response)).selectmenu('refresh').selectmenu('disable');
+				$('#inp-proj').append($("<option>").attr('value',response).text(response)).selectmenu('refresh');
 			},
 			error: function(XMLHttpRequest, textStatus, exception) { 
 				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
