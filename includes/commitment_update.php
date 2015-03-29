@@ -65,10 +65,10 @@ switch ($column_name) {
 		V#		12	X	X	X	13	-
 		
 		1. open --> closed: calculate closing status value; increment PPC & TA to project & individual
-		2. open --> deferred: set date_due to NULL, set status to D
+		2. open --> deferred: set due_by to NULL, set status to D
 		3. open --> unknown: set status to ?
 		4. closed --> open: decrement PPC & TA to project & individual; set status to O
-		5. deferred --> open: set requested_on to current date, set status to O, solicit new date_due
+		5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
 		6. deferred --> unknown: set status to ? [should this be allowed?]
 		7. unknown --> open: set status to O
 		8. unknown --> closed: (same as 1)
@@ -120,8 +120,8 @@ switch ($column_name) {
 					$update_stats = 2;
 				}
 				else if ($new_value == 'D') {
-					// 2. open --> deferred: set requested_on and due_on to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, due_on = NULL WHERE unique_id = ?'; 
+					// 2. open --> deferred: set requested_on and due_by to NULL, set status to D
+					$q='UPDATE commitments SET status = ?, due_by = NULL WHERE unique_id = ?'; 
 				}
 				else if ($new_value == '?') {
 					// 3. open --> unknown: set status to ?
@@ -161,7 +161,7 @@ switch ($column_name) {
 				
 			case 'D':
 				if ($new_value == 'O') {
-					// 5. deferred --> open: set requested_on to current date, set status to O, solicit new date_due
+					// 5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
 					$now = new DateTime();
 					$q = "UPDATE commitments SET status = ?, requested_on = $now WHERE unique_id = ?";
 				}
@@ -216,8 +216,8 @@ switch ($column_name) {
 					$update_stats = 2;
 				}
 				else if ($new_value == 'D') {
-					// 9. unknown --> deferred: set requested_on and date_due to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, due_on = NULL WHERE unique_id = ?';
+					// 9. unknown --> deferred: set requested_on and due_by to NULL, set status to D
+					$q='UPDATE commitments SET status = ?, due_by = NULL WHERE unique_id = ?';
 				}
 				else {
 					echo 'error';
