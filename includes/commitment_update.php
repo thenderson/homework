@@ -1,6 +1,39 @@
-<?php
-      
+<?php    
 require_once('config.php');         
+
+// functions
+function calc_closed_status($id, $duedate, $dbase) {
+	// lookup when the commitment was first requested
+	$s = $dbase->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
+
+	if (!$s) {
+		trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+	try {
+		$s->bindParam(1, $id, PDO::PARAM_INT);	
+		$s->execute();
+	}             
+	catch(PDOException $e) {
+		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+		echo 'error';
+		exit;
+	} 		
+	if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
+	else {
+		$r = $s->fetchAll(PDO::FETCH_ASSOC);
+		$requested_on = new DateTime($r[0]['requested_on']) ;
+	}
+	
+	// calculate closed status
+	$due_date = DateTime::createFromFormat('Y-m-d', $duedate);
+	$foresight = date_diff($requested_on, $due_date)->format('%r%a');
+	$now = new DateTime();
+	$when_due = date_diff($now, $due_date)->format('%r%a');
+	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
+	return $closed_status;
+}
                       
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
@@ -319,46 +352,5 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error_log('nearly done');
-dbug($new_comm);
-dbug('print');
-
 echo json_encode($new_comm);
-
-error_log('done');
 exit;
-
-// functions
-
-function calc_closed_status($id, $duedate, $dbase) {
-		// lookup when the commitment was first requested
-	$s = $dbase->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
-
-	if (!$s) {
-		trigger_error('Statement failed : ' . $q->error, E_USER_ERROR);
-		echo 'error';
-		exit;
-	}
-	try {
-		$s->bindParam(1, $id, PDO::PARAM_INT);	
-		$s->execute();
-	}             
-	catch(PDOException $e) {
-		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
-		echo 'error';
-		exit;
-	} 		
-	if (!$s) trigger_error('Statement failed : ' . E_USER_ERROR);
-	else {
-		$r = $s->fetchAll(PDO::FETCH_ASSOC);
-		$requested_on = new DateTime($r[0]['requested_on']) ;
-	}
-	
-	// calculate closed status
-	$due_date = DateTime::createFromFormat('Y-m-d', $duedate);
-	$foresight = date_diff($requested_on, $due_date)->format('%r%a');
-	$now = new DateTime();
-	$when_due = date_diff($now, $due_date)->format('%r%a');
-	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
-	return $closed_status;
-}
