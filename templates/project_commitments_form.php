@@ -49,7 +49,7 @@
 		pnum = getparam('project');
 		
 		// load commitments
-		commitments = new CommitmentGrid('project_commitments');
+		project_commitments = new CommitmentGrid('project_commitments');
 
 		load_comms = function (horizon, showClosed) {
 			if (typeof(horizon) === 'undefined') {
