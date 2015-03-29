@@ -189,8 +189,9 @@ ConfirmDeleteRow = function(index)
 
 CommitmentGrid.prototype.DeleteRow = function(index) 
 {
+	var uniqueid_col = grid.getColumnIndex('unique_id');
 	var self = this;
-	var uniqueId = self.grid.getValueAt(index, 0);
+	var uniqueId = self.grid.getValueAt(index, uniqueid_col);
 	var rowId = self.grid.getRowId(index);
 	
     $.ajax({
@@ -207,8 +208,8 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 			rowSelector.fadeOut(function() { 
 				self.grid.remove(index);
 			});
-			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+			console.log('Test deleterow: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
+			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
@@ -246,8 +247,8 @@ CommitmentGrid.prototype.AddRow = function(values)
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(newRowId, "ok");
-			console.log('Test Addrow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+			console.log('Test Addrow: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
+			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
@@ -263,13 +264,14 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 {
 	var self = this;
 	var rowId = self.grid.getRowId(index);
-
+	var uniqueid_col = grid.getColumnIndex('unique_id');
+	
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
 		type: 'POST',
 		dataType: "json",
 		data: {
-			uniqueId: self.grid.getValueAt(index, 0),
+			uniqueId: self.grid.getValueAt(index, uniqueid_col),
 			projectnumber: getparam('project')
 		},
 		success: function (response) 
