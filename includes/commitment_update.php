@@ -47,11 +47,13 @@ switch ($column_name) {
 	   break;
 	   
 	case 'priority_h':
+		error_log('case priority_h');
+		
 		$q='UPDATE commitments SET priority_h = ? WHERE unique_id = ?';
 		$new_value = ($new_value == 'true') ? 1 : 0;
 		break;
 		
-/*		MAPPING COMMITMENT STATUS CHANGES OLD --> NEW
+	/*	MAPPING COMMITMENT STATUS CHANGES OLD --> NEW
 	   old  new	O	C	D	?	V?	V#
 		O		-	1	2	3	X	X		
 		C_		4	-	X	X	X	X
@@ -72,18 +74,15 @@ switch ($column_name) {
 		10. V? --> open: (same as 4)
 		11. V? --> variance: increment V to project & individual; set status to V#
 		12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
-		13. variance --> V?: decrement V to project & individual; set status to V_
+		13. variance --> V?: decrement V to project & individual; set status to V_ */
 		
-		1 & 4 are opposite
-		2 & 5 are opposite
-		3 & 7 are opposite
-		6 & 9 should be opposite, but aren't quite.
-		11 & 13 are opposite
-*/	
 	case 'status': 
+		error_log('case status');
 		switch($old_value) {
 			case 'O':
+				error_log('case O');
 				if ($new_value == 'C') {
+					error_log('new value = C');
 					// 1. open --> closed: calculate closing status value; increment PPC & TA to project & individual
 					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
 					$q='UPDATE commitments SET status = ? WHERE unique_id = ?';
