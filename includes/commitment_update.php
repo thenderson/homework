@@ -344,18 +344,16 @@ function calc_closed_status($id, $duedate, $dbase) {
 		$r = $s->fetchAll(PDO::FETCH_ASSOC);
 		$requested_on = new DateTime($r[0]['requested_on']) ;
 	}
-	
-	dbug($id);
+
 	dbug($duedate);
-	dbug($requested_on);
 	dbug($dbase);
 	error_log(dbug('print'));
 	
 	// calculate closed status
-	$duedate = DateTime::createFromFormat('Y-m-d', $duedate);
-	$foresight = date_diff($requested_on, $duedate)->format('%r%a');
+	$due_date = DateTime::createFromFormat('Y-m-d', $duedate);
+	$foresight = date_diff($requested_on, $due_date)->format('%r%a');
 	$now = new DateTime();
-	$when_due = date_diff($now, $duedate)->format('%r%a');
+	$when_due = date_diff($now, $due_date)->format('%r%a');
 	$closed_status = $when_due < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 	return $closed_status;
 }
