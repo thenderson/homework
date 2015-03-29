@@ -344,7 +344,7 @@ function calc_closed_status($id, $duedate, $dbase) {
 		$r = $s->fetchAll(PDO::FETCH_ASSOC);
 		$requested_on = new DateTime($r[0]['requested_on']) ;
 	}
-	error_log("id: $id, due: $duedate, dbase: $dbase, requested: $requested_on");
+	error_log("id: $id, due: $duedate, requested: $requested_on");
 	
 	// calculate closed status
 	$duedate = DateTime::createFromFormat('Y-m-d', $duedate);
