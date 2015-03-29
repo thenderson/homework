@@ -353,4 +353,5 @@ if (!$stmt)
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($new_comm);
+dbug($new_comm); dbug('print');
 exit;

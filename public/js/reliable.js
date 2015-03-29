@@ -153,12 +153,13 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 		{ 
 			console.debug(response);
 			// reset old value if failed then highlight row
-			if (response == 'error') {
+			if (response == 'error' || response == "") {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
 				highlight(rowId, "error"); 
 			}
 			else {
 				values = response[0];
+				console.debug(values);
 				$.each(values, function(key, value) {
 					columnIndex = grid.getColumnIndex(key);
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
