@@ -85,6 +85,7 @@ switch ($column_name) {
 				case 'O':
 					if ($new_value == 'C') {
 						// 1. open --> closed: calculate closing status value; increment PPC & TA to project & individual
+						error_log($date_due);
 						$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
 						$q='UPDATE commitments SET status = ? WHERE unique_id = ?';
 						$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
@@ -346,7 +347,6 @@ function calc_closed_status($id, $duedate, $dbase) {
 	}
 
 	dbug($duedate);
-	dbug($dbase);
 	error_log(dbug('print'));
 	
 	// calculate closed status
