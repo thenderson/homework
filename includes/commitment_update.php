@@ -65,8 +65,8 @@ switch ($column_name) {
 		3. open --> unknown: set status to ?
 		4. closed --> open: decrement PPC & TA to project & individual; set status to O
 		5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
-		5a. deferred -> closed: (same as 1) calculate closing status value = C0; enter closed_on; increment PPC & TA to project & individual
-		6. deferred --> unknown: set status to ? [should this be allowed?]
+		5a. deferred -> closed: set closing status = C0; set due_by, requested_on & closed_on to current date; increment PPC & TA to project & individual
+		6. deferred --> unknown: set status to ?
 		7. unknown --> open: set status to O
 		8. unknown --> closed: (same as 1)
 		9. unknown --> deferred: (same as 2)
@@ -79,8 +79,8 @@ switch ($column_name) {
 	   old new	O	C	D	?	V?	V#
 		O			x	x	x		
 		C_		4*	
-		D		5*	5a*		6*
-		?		7*	8*	9*
+		D		x	x		x
+		?		x	x	x
 		V?		10					11
 		V#		12					13		*/
 		
