@@ -319,6 +319,9 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+dbug($new_comm);
+dbug('print');
+
 echo json_encode($new_comm);
 exit;
 
