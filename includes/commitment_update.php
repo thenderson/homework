@@ -10,7 +10,7 @@ $old_value = strip_tags($_POST['oldvalue']);
 $column_name = strip_tags($_POST['colname']);
 $date_due = strip_tags($_POST['date_due']);
 
-$last_monday = date("Y-m-d", strtotime("Previous Monday", new DateTime()));
+$last_monday = date('Y-m-d', strtotime('last Monday'));
 $update_stats = 0; // 1 = run $q2 query; 2 = run both $q2 and $q3 queries
 
 // Update database
