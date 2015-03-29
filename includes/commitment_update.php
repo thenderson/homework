@@ -164,15 +164,13 @@ switch ($column_name) {
 				
 			case 'D':
 				if ($new_value == 'O') {
-					// 5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
-					$now = new DateTime()->format('Y-m-d');
-					$q = "UPDATE commitments SET status = ?, requested_on = $now WHERE unique_id = ?";
+					// 5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by					
+					$q = "UPDATE commitments SET status = ?, requested_on = CURDATE() WHERE unique_id = ?";
 				}
 				else if ($new_value == 'C') {
 					// 5a. deferred --> closed: closing status value = C0; enter closed_on; increment PPC & TA to project & individual
 					$new_value = 'C0'; // assume zero foresight; sorry!
-					$now = date('Y-m-d', new DateTime());
-					$q="UPDATE commitments SET status = ?, requested_on = $now, closed_on = CURDATE() WHERE unique_id = ?";
+					$q="UPDATE commitments SET status = ?, requested_on = CURDATE(), closed_on = CURDATE() WHERE unique_id = ?";
 					
 					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
 					
