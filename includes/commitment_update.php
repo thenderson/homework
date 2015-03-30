@@ -57,23 +57,24 @@ switch ($column_name) {
 		C_		4	-	X	X	X	X
 		D		5	5a	-	6	X	X
 		?		7	8	9	-	X	X
-		V?		10	X	X	X	-	11
-		V#		12	X	X	X	13	-
+		V?		X	X	X	X	-	11
+		V#		X	X	X	X	13	14
 		
 		1. open --> closed: calculate closing status value; enter closed_on; increment PPC & TA to project & individual 
 		2. open --> deferred: set due_by to NULL, set status to D 
 		3. open --> unknown: set status to ?
-		4. closed --> open: decrement PPC & TA to project & individual; set status to O
+		4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 		5. deferred --> open: set requested_on to current date, set status to O, solicit new due_by
 		5a. deferred -> closed: set closing status = C0; set due_by, requested_on & closed_on to current date; increment PPC & TA to project & individual
 		6. deferred --> unknown: set status to ?
 		7. unknown --> open: set status to O
 		8. unknown --> closed: (same as 1)
 		9. unknown --> deferred: (same as 2)
-		10. V? --> open: (same as 4)
+		x10. V? --> open: (same as 4) [DEPRECATED: BAD IDEA]
 		11. V? --> variance: increment V to project & individual; set status to V#
-		12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
-		13. variance --> V?: decrement V to project & individual; set status to V_ */
+		x12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0 [DEPRECATED: BAD IDEA]
+		13. variance --> V?: decrement V to project & individual; set status to V? 
+		14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
 		
 	/* TESTING STATUS	(x=basic function restored; X=stat update functional; *=todo listed above
 	   old new	O	C	D	?	V?	V#
@@ -81,8 +82,8 @@ switch ($column_name) {
 		C_		4*	
 		D		x	x		x
 		?		x	x	x
-		V?		10					11
-		V#		12					13		*/
+		V?							x
+		V#		12				13*	14	*/
 		
 	case 'status': 
 		switch($old_value) {
@@ -141,7 +142,7 @@ switch ($column_name) {
 			case 'C2':
 			case 'CL':
 				if ($new_value == 'O') {
-					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O
+					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					
 					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
@@ -263,12 +264,12 @@ switch ($column_name) {
 				break;
 				
 			case 'V?':
-				if ($new_value == 'O') {
-					// 10. V? --> open: decrement PPC & TA to project & individual; set status to O
-					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
-					$update_stats = -1;
-				}
-				else if (preg_match('/^V[1-9]$/', $new_value)) {
+				// if ($new_value == 'O') {
+					// // 10. V? --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
+					// $q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
+					// $update_stats = -1;
+				// }
+				if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 11. V? --> variance: increment V to project & individual; set status to V#
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					$update_stats = 1;
@@ -288,15 +289,19 @@ switch ($column_name) {
 			case 'V7':
 			case 'V8':
 			case 'V9':
-				if ($new_value == 'O') {
-					// 12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
-					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
-					$update_stats = -1;
-				}
-				else if (preg_match('/^V[1-9]$/', $new_value)) {
+				// if ($new_value == 'O') {
+					// // 12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
+					// $q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
+					// $update_stats = -1;
+				// }
+				if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 13. variance --> V?: update V to project & individual; set status to V_
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					$update_stats = -1;
+				}
+				else if ($new_value == 'V?') {
+					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
+					$q = 'UPDATE commitments SET status= ? WHERE unique_id = ?';
 				}
 				else {
 					echo 'error';
