@@ -1,6 +1,8 @@
 <?php    
 require_once('config.php');         
-                      
+error_log(""); // make a break
+error_log("------------------------------");
+                   
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
 $project_number = strip_tags($_POST['projectnumber']);
@@ -348,6 +350,9 @@ if ($q_user_metrics != "" && $q_proj_metrics != "") {
 		echo 'error';
 		exit;
 	}
+	
+	error_log($q_user_metrics);
+	error_log($q_proj_metrics);
 }
 
 echo json_encode($new_comm);
