@@ -79,6 +79,7 @@ function CommitmentGrid(name)
 			this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
 				render: function(cell, value) {
 					row=self.grid.getRow(cell.rowIndex);
+					is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
 					
 					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
@@ -96,7 +97,6 @@ function CommitmentGrid(name)
 					else {
 						date_due=moment(value, 'YYYY-MM-DD')
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
-						is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
 						how_soon=date_due.diff(moment(),'days');
 						if (is_closed == 1) {
 							$(row).addClass('closed');
