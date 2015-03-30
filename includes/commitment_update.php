@@ -105,10 +105,10 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 
 					// INSERT INTO user_metrics (user_id, date, P, C0)  VALUES(1, '2015-03-23', 1, 1)
