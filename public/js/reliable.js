@@ -79,37 +79,31 @@ function CommitmentGrid(name)
 			this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
 				render: function(cell, value) {
 					row=self.grid.getRow(cell.rowIndex);
-					is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
 					
 					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
 							cell.innerHTML = '-';
-							$(row).addClass('deferred').removeClass('closed');
+							$(row).addClass('deferred');
 							$(cell).removeClass('status_me_now');
 						}
 						else {
 							cell.innerHTML = '!';
 							$(cell).addClass('status_me_now');
 							$(row).removeClass('deferred');
-							if (is_closed == 1) $(row).addClass('closed');
 						}
 					}
-					else {
+					else { // assign due_class based on how overdue / soon due the task is
 						date_due=moment(value, 'YYYY-MM-DD')
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						how_soon=date_due.diff(moment(),'days');
-						if (is_closed == 1) {
-							$(row).addClass('closed');
-						}
-						else {
-							due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
-							$(cell).addClass(due_class);
-							$(row).removeClass('closed');
-						}
-						
-						$(cell).removeClass('status_me_now');
+						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+						$(cell).addClass(due_class).removeClass('status_me_now');
 						$(row).removeClass('deferred');
 					}
+					
+					is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
+					if (is_closed == 1) $(row).addClass('closed');
+					else $(row).removeClass('closed');
 				}}));
 				
 			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
