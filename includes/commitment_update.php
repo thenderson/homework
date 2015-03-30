@@ -10,9 +10,8 @@ $column_name = strip_tags($_POST['colname']);
 $date_due = strip_tags($_POST['date_due']);
 
 $last_monday = date('Y-m-d', strtotime('last Monday'));
-$update_stats = 0; // 1 = run $q2 query; 2 = run both $q2 and $q3 queries
 
-// Update database
+// COMPOSE QUERIES
 switch ($column_name) {
 	case 'project_number': // this column isn't currently editable
 		// todo: validate input reflects an existing project number.
@@ -79,11 +78,11 @@ switch ($column_name) {
 	/* TESTING STATUS	(x=basic function restored; X=stat update functional; *=todo listed above
 	   old new	O	C	D	?	V?	V#
 		O			x	x	x		
-		C_		4*	
+		C_		x	
 		D		x	x		x
 		?		x	x	x
 		V?							x
-		V#		12				13*	14	*/
+		V#						x	x	*/
 		
 	case 'status': 
 		switch($old_value) {
@@ -102,7 +101,7 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
+					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
 								BEGIN
 								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
 								END;
@@ -111,7 +110,7 @@ switch ($column_name) {
 								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
 								END;
 							END IF;";
-					$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
+					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 								BEGIN
 								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
 								END;
@@ -120,8 +119,6 @@ switch ($column_name) {
 								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
 								END;
 							END IF;";
-
-					$update_stats = 2;
 				}
 				else if ($new_value == 'D') {
 					// 2. open --> deferred: set requested_on and due_by to NULL, set status to D
@@ -145,17 +142,16 @@ switch ($column_name) {
 					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					
-					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
+					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
 								BEGIN
 								UPDATE user_metrics SET P = P - 1, $new_value = $new_value - 1 WHERE user_id = @User AND `date` = $last_monday;
 								END;
 							END IF;";
-					$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
+					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 								BEGIN
 								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
 								END;
 							END IF;";
-					$update_stats = 2;
 				}
 				else {
 					echo 'error';
@@ -182,7 +178,7 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
+					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
 								BEGIN
 								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
 								END;
@@ -191,7 +187,7 @@ switch ($column_name) {
 								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
 								END;
 							END IF;";
-					$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
+					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 								BEGIN
 								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
 								END;
@@ -200,8 +196,6 @@ switch ($column_name) {
 								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
 								END;
 							END IF;";
-
-					$update_stats = 2;
 				}
 				else if ($new_value == '?') {
 					// 6. deferred --> unknown: set status to ? [should this be allowed?]
@@ -232,7 +226,7 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q2 = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
+					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
 								BEGIN
 								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
 								END;
@@ -241,7 +235,7 @@ switch ($column_name) {
 								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
 								END;
 							END IF;";
-					$q3 = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
+					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
 								BEGIN
 								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
 								END;
@@ -250,8 +244,6 @@ switch ($column_name) {
 								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
 								END;
 							END IF;";
-
-					$update_stats = 2;
 				}
 				else if ($new_value == 'D') {
 					// 9. unknown --> deferred: set requested_on and due_by to NULL, set status to D
@@ -297,7 +289,6 @@ switch ($column_name) {
 				if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 13. variance --> V?: update V to project & individual; set status to V_
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
-					$update_stats = -1;
 				}
 				else if ($new_value == 'V?') {
 					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
@@ -322,6 +313,7 @@ switch ($column_name) {
 		exit;
 }
 
+// UPDATE COMMITMENT DATABASE
 $stmt = $comm_db->prepare($q);
 
 if (!$stmt)
@@ -346,12 +338,12 @@ catch(PDOException $e)
 }      
 
 // Retrieve newly revised commitment from database and send back to JS
-$q4 = "SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
+$q2 = "SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
 	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
 	FROM (SELECT * FROM commitments WHERE unique_id = $unique_id) a, 
 	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"; 
 
-$stmt = $comm_db->query($q4); 
+$stmt = $comm_db->query($q2); 
 	
 if (!$stmt)
 {
@@ -361,10 +353,29 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// UPDATE USER_METRICS & PROJECT_METRICS DATABASES, IF NEEDED
+if ($q_user_metrics != "" && $q_proj_metrics != "") {
+	$stmt_user = $comm_db->query($q_user_metrics);
+	
+	if (!$stmt_user) {
+		trigger_error('Statement failed: ' . $stmt_user->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+
+	$stmt_proj = $comm_db->query($q_proj_metrics);
+		
+	if (!$stmt_proj) {
+		trigger_error('Statement failed: ' . $stmt_proj->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+}
+
 echo json_encode($new_comm);
 exit;
 
-// functions
+// FUNCTIONS
 function calc_closed_status($id, $duedate, $dbase) {
 	// lookup when the commitment was first requested
 	$s = $dbase->prepare("SELECT requested_on FROM commitments WHERE unique_id = ?");
