@@ -97,7 +97,7 @@ function CommitmentGrid(name)
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
 						how_soon=date_due.diff(moment(),'days');
-						if (is_closed == 'true') {
+						if (is_closed == 1) {
 							$(row).addClass('closed');
 						}
 						else {

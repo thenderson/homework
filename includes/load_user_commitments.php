@@ -73,7 +73,7 @@
 	
 	//declare grid columns TODO add columns for due/overdue, variance
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
-	$grid->addColumn('is_closed', '?', 'boolean', NULL, false);
+	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
 	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);

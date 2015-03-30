@@ -276,6 +276,7 @@ switch ($column_name) {
 
 // UPDATE COMMITMENT DATABASE
 $stmt = $comm_db->prepare($q);
+error_log($q);
 
 if (!$stmt)
 {
