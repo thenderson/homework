@@ -103,24 +103,14 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
-								BEGIN
-								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
-								END;
-							ELSE 
-								BEGIN
-								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
-								END;
-							END IF;";
-					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
-								BEGIN
-								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
-								END;
-							ELSE
-								BEGIN
-								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
-								END;
-							END IF;";
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
+
+					// INSERT INTO user_metrics (user_id, date, P, C0)  VALUES(1, '2015-03-23', 1, 1)
+					// ON DUPLICATE KEY UPDATE P = P + 1, C0 = C0 + 1;	
 				}
 				else if ($new_value == 'D') {
 					// 2. open --> deferred: set requested_on and due_by to NULL, set status to D
@@ -143,17 +133,12 @@ switch ($column_name) {
 				if ($new_value == 'O') {
 					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
-					
-					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
-								BEGIN
-								UPDATE user_metrics SET P = P - 1, $new_value = $new_value - 1 WHERE user_id = @User AND `date` = $last_monday;
-								END;
-							END IF;";
-					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
-								BEGIN
-								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
-								END;
-							END IF;";
+
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 0, 0)
+						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 0, 0)
+						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";
 				}
 				else {
 					echo 'error';
@@ -180,24 +165,11 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
-								BEGIN
-								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
-								END;
-							ELSE 
-								BEGIN
-								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
-								END;
-							END IF;";
-					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
-								BEGIN
-								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
-								END;
-							ELSE
-								BEGIN
-								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
-								END;
-							END IF;";
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == '?') {
 					// 6. deferred --> unknown: set status to ? [should this be allowed?]
@@ -228,24 +200,11 @@ switch ($column_name) {
 						$promiser = $promiser_res[0]['promiser'];
 					}
 					
-					$q_user_metrics = "IF EXISTS(SELECT 1 FROM user_metrics WHERE `date` = $last_monday AND user_id = $promiser LIMIT 1) THEN
-								BEGIN
-								UPDATE user_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE user_id = @User AND `date` = $last_monday;
-								END;
-							ELSE 
-								BEGIN
-								INSERT INTO user_metrics `date` = $last_monday, P = 1, C0 = 1, user_id = $promiser;
-								END;
-							END IF;";
-					$q_proj_metrics = "IF EXISTS(SELECT 1 FROM project_metrics WHERE `date` = $last_monday AND project_number = $project_number LIMIT 1) THEN
-								BEGIN
-								UPDATE project_metrics SET P = P + 1, $new_value = $new_value + 1 WHERE project_number = $project_number, `date` = $last_monday;
-								END;
-							ELSE
-								BEGIN
-								INSERT INTO project_metrics `date` = $last_monday, P = 1, $new_value = 1, project_number = $project_number;
-								END;
-							END IF;";
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == 'D') {
 					// 9. unknown --> deferred: set requested_on and due_by to NULL, set status to D
@@ -266,7 +225,12 @@ switch ($column_name) {
 				if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 11. V? --> variance: increment V to project & individual; set status to V#
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
-					$update_stats = 1;
+					
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value)  VALUES($promiser, $last_monday, 1)
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value)  VALUES($project_number, $last_monday, 1)
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";
 				}
 				else {
 					echo 'error';
@@ -288,13 +252,25 @@ switch ($column_name) {
 					// $q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 					// $update_stats = -1;
 				// }
-				if (preg_match('/^V[1-9]$/', $new_value)) {
-					// 13. variance --> V?: update V to project & individual; set status to V_
-					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
-				}
-				else if ($new_value == 'V?') {
-					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
+				if ($new_value == 'V?') {
+					// 13. variance --> V?: decrement old V to project & individual; set status to V_
 					$q = 'UPDATE commitments SET status= ? WHERE unique_id = ?';
+					
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $old_value)  VALUES($promiser, $last_monday, 0)
+						ON DUPLICATE KEY UPDATE $old_value = $old_value - 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES($project_number, $last_monday, 0)
+						ON DUPLICATE KEY UPDATE $old_value = $old_value -1;";
+				}
+				else if (preg_match('/^V[1-9]$/', $new_value)) {
+					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
+					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
+					
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value, $old_value) VALUES($promiser, $last_monday, 1, 0)
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES($project_number, $last_monday, 1, 0)
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";
 				}
 				else {
 					echo 'error';
