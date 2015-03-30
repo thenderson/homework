@@ -5,15 +5,23 @@ error_log("------------------------------");
                    
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
-$project_number = strip_tags($_POST['projectnumber']);
 $new_value = strip_tags($_POST['newvalue']);
 $old_value = strip_tags($_POST['oldvalue']);
 $column_name = strip_tags($_POST['colname']);
 $date_due = strip_tags($_POST['date_due']);
 
+
 $last_monday = date('Y-m-d', strtotime('last Monday'));
 $q_user_metrics = "";
 $q_proj_metrics = "";
+
+$q = $comm_db->query("SELECT project_number, promiser FROM commitments WHERE unique_id = $unique_id");				
+if (!$q) trigger_error('Statement failed : ' . E_USER_ERROR);
+else {
+	$res = $q->fetchAll(PDO::FETCH_ASSOC);
+	$promiser = $res[0]['promiser'];
+	$project_number = $res[0]['project_number'];
+}
 
 // COMPOSE QUERIES
 switch ($column_name) {
@@ -95,16 +103,7 @@ switch ($column_name) {
 					// 1. open --> closed: calculate closing status value; set closed_on value; increment PPC & TA to project & individual
 					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
 					$q='UPDATE commitments SET status = ?, closed_on = CURDATE() WHERE unique_id = ?';
-					
-					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
-					
-					if (!$promiser_q) trigger_error('Statement failed : ' . E_USER_ERROR);
-					else 
-					{
-						$promiser_res = $promiser_q->fetchAll(PDO::FETCH_ASSOC);
-						$promiser = $promiser_res[0]['promiser'];
-					}
-					
+
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
@@ -136,10 +135,10 @@ switch ($column_name) {
 					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 0, 0)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 0, 0)
 						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 0, 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 0, 0)
 						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";
 				}
 				else {
@@ -158,19 +157,10 @@ switch ($column_name) {
 					$new_value = 'C0'; // assume zero foresight; sorry!
 					$q="UPDATE commitments SET status = ?, due_by = CURDATE(), requested_on = CURDATE(), closed_on = CURDATE() WHERE unique_id = ?";
 					
-					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
-					
-					if (!$promiser_q) trigger_error('Statement failed : ' . E_USER_ERROR);
-					else 
-					{
-						$promiser_res = $promiser_q->fetchAll(PDO::FETCH_ASSOC);
-						$promiser = $promiser_res[0]['promiser'];
-					}
-					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == '?') {
@@ -193,19 +183,10 @@ switch ($column_name) {
 					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
 					$q='UPDATE commitments SET status = ?, closed_on = CURDATE() WHERE unique_id = ?';
 					
-					$promiser_q = $comm_db->query("SELECT promiser FROM commitments WHERE unique_id = $unique_id");
-					
-					if (!$promiser_q) trigger_error('Statement failed : ' . E_USER_ERROR);
-					else 
-					{
-						$promiser_res = $promiser_q->fetchAll(PDO::FETCH_ASSOC);
-						$promiser = $promiser_res[0]['promiser'];
-					}
-					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, $last_monday, 1, 1)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, $last_monday, 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == 'D') {
@@ -228,10 +209,10 @@ switch ($column_name) {
 					// 11. V? --> variance: increment V to project & individual; set status to V#
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value)  VALUES($promiser, $last_monday, 1)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value)  VALUES($promiser, '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value)  VALUES($project_number, $last_monday, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value)  VALUES($project_number, '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";
 				}
 				else {
@@ -258,20 +239,20 @@ switch ($column_name) {
 					// 13. variance --> V?: decrement old V to project & individual; set status to V_
 					$q = 'UPDATE commitments SET status= ? WHERE unique_id = ?';
 					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $old_value)  VALUES($promiser, $last_monday, 0)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $old_value)  VALUES($promiser, '$last_monday', 0)
 						ON DUPLICATE KEY UPDATE $old_value = $old_value - 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES($project_number, $last_monday, 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES($project_number, '$last_monday', 0)
 						ON DUPLICATE KEY UPDATE $old_value = $old_value -1;";
 				}
 				else if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value, $old_value) VALUES($promiser, $last_monday, 1, 0)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value, $old_value) VALUES($promiser, '$last_monday', 1, 0)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES($project_number, $last_monday, 1, 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES($project_number, '$last_monday', 1, 0)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";
 				}
 				else {
@@ -353,6 +334,7 @@ if ($q_user_metrics != "" && $q_proj_metrics != "") {
 	
 	error_log($q_user_metrics);
 	error_log($q_proj_metrics);
+	error_log('');
 }
 
 echo json_encode($new_comm);
