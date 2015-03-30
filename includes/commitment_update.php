@@ -135,11 +135,11 @@ switch ($column_name) {
 					// 4. closed --> open: decrement PPC & TA to project & individual; set status to O, set closed_on to NULL
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 0, 0)
-						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";						
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $old_value)  VALUES($promiser, '$last_monday', 0, 0)
+						ON DUPLICATE KEY UPDATE P = P - 1, $old_value = $old_value - 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 0, 0)
-						ON DUPLICATE KEY UPDATE P = P - 1, $new_value = $new_value - 1;";
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $old_value)  VALUES($project_number, '$last_monday', 0, 0)
+						ON DUPLICATE KEY UPDATE P = P - 1, $old_value = $old_value - 1;";
 				}
 				else {
 					echo 'error';
@@ -334,7 +334,8 @@ if ($q_user_metrics != "" && $q_proj_metrics != "") {
 	
 	error_log($q_user_metrics);
 	error_log($q_proj_metrics);
-	error_log('');
+	error_log(""); // make a break
+	error_log("------------------------------");
 }
 
 echo json_encode($new_comm);
