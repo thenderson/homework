@@ -136,10 +136,10 @@ switch ($column_name) {
 					$q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
 
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $old_value)  VALUES($promiser, '$last_monday', 0, 0)
-						ON DUPLICATE KEY UPDATE P = P - 1, $old_value = $old_value - 1;";						
+						ON DUPLICATE KEY UPDATE P = GREATEST(0, P - 1), $old_value = GREATEST(0, $old_value - 1);";						
 	
 					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $old_value)  VALUES($project_number, '$last_monday', 0, 0)
-						ON DUPLICATE KEY UPDATE P = P - 1, $old_value = $old_value - 1;";
+						ON DUPLICATE KEY UPDATE P = GREATEST(0, P - 1), $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else {
 					echo 'error';
@@ -240,20 +240,20 @@ switch ($column_name) {
 					$q = 'UPDATE commitments SET status= ? WHERE unique_id = ?';
 					
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $old_value)  VALUES($promiser, '$last_monday', 0)
-						ON DUPLICATE KEY UPDATE $old_value = $old_value - 1;";						
+						ON DUPLICATE KEY UPDATE $old_value = GREATEST(0, $old_value - 1);";						
 	
 					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES($project_number, '$last_monday', 0)
-						ON DUPLICATE KEY UPDATE $old_value = $old_value -1;";
+						ON DUPLICATE KEY UPDATE $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else if (preg_match('/^V[1-9]$/', $new_value)) {
 					// 14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value, $old_value) VALUES($promiser, '$last_monday', 1, 0)
-						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";						
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = GREATEST(0, $old_value - 1);";						
 	
 					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES($project_number, '$last_monday', 1, 0)
-						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = $old_value - 1;";
+						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else {
 					echo 'error';
