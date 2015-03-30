@@ -10,6 +10,8 @@ $column_name = strip_tags($_POST['colname']);
 $date_due = strip_tags($_POST['date_due']);
 
 $last_monday = date('Y-m-d', strtotime('last Monday'));
+$q_user_metrics = "";
+$q_proj_metrics = "";
 
 // COMPOSE QUERIES
 switch ($column_name) {
