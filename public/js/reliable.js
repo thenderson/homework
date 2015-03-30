@@ -83,13 +83,14 @@ function CommitmentGrid(name)
 					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
 							cell.innerHTML = '-';
-							$(row).addClass('deferred');
+							$(row).addClass('deferred').removeClass('closed');
 							$(cell).removeClass('status_me_now');
 						}
 						else {
 							cell.innerHTML = '!';
 							$(cell).addClass('status_me_now');
 							$(row).removeClass('deferred');
+							if (is_closed == 1) $(row).addClass('closed');
 						}
 					}
 					else {
