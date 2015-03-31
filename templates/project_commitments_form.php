@@ -137,7 +137,6 @@
 			
 		commPageSize = getCookie(commitments.name+'PageSize') || 10; 
 		$('#comm_page_size').val(commPageSize);
-		console.log('initial pagesize: '+commPageSize);
 		
 		// Load data first time
 		load_comms(horizon, show_closed);

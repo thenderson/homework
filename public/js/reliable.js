@@ -131,7 +131,7 @@ function CommitmentGrid(name)
 				} // V1, V2, V3, V4, V5, V6, V7, & V9 all suggest replanning the task. V2 & V3 suggest logging requests of others; V4 suggests a better description; V7 suggests reminders
 			}));
 				
-			this.setCellRenderer('status', new CellRenderer ({ //overdue rows
+			this.setCellRenderer('status', new CellRenderer ({ 
 				render: function(cell, value) {
 					cell.innerHTML = value;
 					if (value == 'V?' || value == '?') {
