@@ -10,7 +10,7 @@
 				</form>
 			</div>
 			<div class="container-fluid">
-				<div id="comm" class='grid'>
+				<div id="commitments_d" class='grid'>
 					<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 				</div>
 				<div>
@@ -43,7 +43,7 @@
 				</form>
 			</div>
 			<div class="container-fluid">
-				<div id="req" class='grid'>
+				<div id="requests_d" class='grid'>
 					<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 				</div>
 				<div>
@@ -76,7 +76,7 @@
 				</form>
 			</div>
 			<div class='container-fluid'>
-				<div id="user_projects" class='grid'>
+				<div id="projects_d" class='grid'>
 					<br><br><br><i class='fa fa-spinner fa-spin text-center'></i>
 				</div>
 				<div>
@@ -277,7 +277,7 @@
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
 						}
 					}));
-					this.renderGrid('user_projects', 'table', 'projects'); }
+					this.renderGrid('projects_d', 'table', 'projects'); }
 			});
 			
 			// Load data first time

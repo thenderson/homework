@@ -141,7 +141,7 @@ function CommitmentGrid(name)
 				}
 			}));
 			
-			this.renderGrid(self.name, 'table', self.name); 
+			this.renderGrid(self.name+'_d', 'table', self.name); 
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
