@@ -11,7 +11,7 @@
 				<h3><strong>PROJECT COMMITMENTS &nbsp;&nbsp;</strong><i class='fa fa-spinner fa-spin'></i></h3>
 			</div>
 			<div class="container-fluid">
-				<div id="project_commitments" class='grid'>
+				<div id="project_commitments_d" class='grid'>
 					<div class="col-sm-12"><br><br><br><i class='fa fa-spinner fa-spin fa-2x text-center'></i><br><br><br></div>
 				</div>
 				<div>
