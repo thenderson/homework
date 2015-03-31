@@ -169,9 +169,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			date_due: grid.getValueAt(rowIndex, date_due_col)
 		},
 		success: function (response) 
-		{ 
-			console.debug(response);
-			
+		{
 			// reset old value if failed then highlight row
 			if (response == 'error' || response == "") {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
@@ -185,6 +183,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 				});
 				highlight(rowId, "ok");
 				$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
+				console.log('self.name: '+self.name);
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
