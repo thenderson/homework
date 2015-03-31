@@ -3,9 +3,9 @@ var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':
 	'V5':'variance - superseded, internal', 'V6':'variance - superseded, external', 'V7':'variance - forgot', 'V8':'variance - not needed', 
 	'V9':'variance - tech failure', 'D':'deferred', '?':'unknown', 'NA':'n/a'};
 
-function highlightRow(rowId, bgColor, after)
+function highlightRow(gridname, rowId, bgColor, after)
 {
-	var rowSelector = $("#grid_" + rowId);
+	var rowSelector = $("#"+gridname+"_" + rowId);
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("fast", 0.5, function() { 
 		rowSelector.fadeTo("fast", 1, function() { 
@@ -173,7 +173,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 			// reset old value if failed then highlight row
 			if (response == 'error' || response == "") {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
-				highlight(rowId, "error"); 
+				highlight(grid.name, rowId, "error"); 
 			}
 			else {
 				values = response[0];
@@ -181,13 +181,13 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					columnIndex = grid.getColumnIndex(key);
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
-				highlight(rowId, "ok");
+				highlight(grid.name, rowId, "ok");
 				console.log('rowId: '+rowId);
 				$('[id^='+grid.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
-			highlight(rowId, "error");
+			highlight(grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
 		},
 		async: true
@@ -229,7 +229,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(rowId, "error");
+			highlight(grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
@@ -262,7 +262,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 			
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
-			highlight(newRowId, "ok");
+			highlight(grid.name, newRowId, "ok");
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -298,13 +298,13 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
-			highlight(newRowId, "ok");
+			highlight(grid.name, newRowId, "ok");
 			console.log('Test duplicate: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(rowId, "error");
+			highlight(grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
