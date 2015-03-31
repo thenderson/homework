@@ -182,7 +182,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
 				highlight(grid.name, rowId, "ok");
-				console.log('rowId: '+rowId);
+				console.log('grid.name: '+grid.name+' rowId: '+rowId);
 				$('[id^='+grid.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 			};
 		},
