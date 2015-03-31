@@ -31,7 +31,7 @@ function CommitmentGrid(name)
 		showAnim: 'puff'
 	});
 	
-	self.grid = new EditableGrid('grid', {
+	self.grid = new EditableGrid(name, {
 		enableSort: true,
 		dateFormat: $.datepicker.W3C,
       	pageSize: getCookie(self.name+'PageSize') || 10,
