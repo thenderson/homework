@@ -182,8 +182,8 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
 				highlight(rowId, "ok");
-				$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
-				console.log('self.name: '+self.name);
+				console.log('rowId: '+rowId);
+				$('[id^='+grid.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
