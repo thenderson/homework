@@ -170,6 +170,8 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 		},
 		success: function (response) 
 		{ 
+			console.debug(response);
+			
 			// reset old value if failed then highlight row
 			if (response == 'error' || response == "") {
 				grid.setValueAt(rowIndex, columnIndex, oldValue);
