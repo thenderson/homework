@@ -219,7 +219,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		},
 		success: function (response) 
 		{
-			var rowSelector = $("#grid_" + rowId);
+			var rowSelector = $('#' + self.name+'_' + rowId);
 			rowSelector.css("text-decoration", "line-through");
 			rowSelector.fadeOut(function() { 
 				self.grid.remove(index);
@@ -229,7 +229,7 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(grid.name, rowId, "error");
+			highlight(self.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		async: true
@@ -262,7 +262,7 @@ CommitmentGrid.prototype.AddRow = function(values)
 			
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
-			highlight(grid.name, newRowId, "ok");
+			highlight(self.name, newRowId, "ok");
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
@@ -298,7 +298,7 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
-			highlight(grid.name, newRowId, "ok");
+			highlight(self.name, newRowId, "ok");
 			console.log('Test duplicate: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
 			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 		},
