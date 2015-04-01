@@ -4,7 +4,13 @@ require_once('config.php');
                       
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueId']);
-$project_number = strip_tags($_POST['projectnumber']);
+
+$q = $comm_db->query("SELECT project_number FROM commitments WHERE unique_id = $unique_id");				
+if (!$q) trigger_error('Statement failed : ' . E_USER_ERROR);
+else {
+	$res = $q->fetchAll(PDO::FETCH_ASSOC);
+	$project_number = $res[0]['project_number'];
+}
 
 // Determine task_id for new commitment
 $stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 

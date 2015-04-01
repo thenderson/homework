@@ -135,7 +135,7 @@
 			load_comms(undefined, this.checked);
 		});
 			
-		commPageSize = getCookie(commitments.name+'PageSize') || 10; 
+		commPageSize = getCookie(commitments.name+'PageSize') || 9; 
 		$('#comm_page_size').val(commPageSize);
 		
 		// Load data first time

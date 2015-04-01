@@ -149,7 +149,6 @@
 					{
 						commitments.grid.loadXMLFromString(response); //synchronous function
 						commitments.grid.tableLoaded();
-						//$('[id^=commitments_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -172,7 +171,6 @@
 					{ //process response as xml, then call tableLoaded
 						requests.grid.loadXMLFromString(response); //synchronous function
 						requests.grid.tableLoaded();
-						//$('[id^=requests_total]').html('total: <strong>'+requests.grid.getTotalRowCount()+'</strong>');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) 
 					{ 
@@ -256,11 +254,11 @@
 				load_comms(undefined, this.checked);
 			});
 				
-			commPageSize = getCookie(commitments.name+'PageSize') || 10; 
+			commPageSize = getCookie(commitments.name+'PageSize') || 9; 
 			$('#comm_page_size').val(commPageSize);
-			reqPageSize = getCookie(requests.name+'PageSize') || 10; 
+			reqPageSize = getCookie(requests.name+'PageSize') || 9; 
 			$('#req_page_size').val(reqPageSize);
-			projPageSize = getCookie('projectsPageSize') || 10; 
+			projPageSize = getCookie('projectsPageSize') || 9; 
 			$('#proj_page_size').val(projPageSize);
 	
 			projects = new EditableGrid("Projects", {

@@ -221,13 +221,13 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		success: function (response) {
 			var rowSelector = $('#' + self.name+'_' + rowId);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.fadeOut(400, function() { 
+			rowSelector.fadeOut(500, function() { 
 				self.grid.remove(index);
 			});
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(self.name, rowId, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception: " + exception); 
 		},
 		complete: function () {
 			$('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
@@ -295,7 +295,6 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 		dataType: "json",
 		data: {
 			uniqueId: self.grid.getValueAt(index, uniqueid_col),
-			projectnumber: getparam('project')
 		},
 		success: function (response) 
 		{ 
@@ -310,7 +309,7 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
-			highlight(grid.name, rowId, "error");
+			highlight(self.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		complete: function () {
