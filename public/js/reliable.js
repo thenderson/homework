@@ -230,10 +230,11 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		},
 		complete: function () {
 			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
+			
 			$('[id^='+self.name+'_total]').fadeTo('fast', 0, function() {
 				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 				$('[id^='+self.name+'_total]').fadeTo('fast', 1);
-			};
+			});
 		},
 		async: true
 	});
