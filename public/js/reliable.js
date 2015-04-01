@@ -3,10 +3,8 @@ var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':
 	'V5':'variance - superseded, internal', 'V6':'variance - superseded, external', 'V7':'variance - forgot', 'V8':'variance - not needed', 
 	'V9':'variance - tech failure', 'D':'deferred', '?':'unknown', 'NA':'n/a'};
 
-function highlightRow(gridname, rowId, bgColor, after)
-{
+function highlightRow(gridname, rowId, bgColor, after) {
 	var rowSelector = $("#"+gridname+"_" + rowId);
-	console.log("#"+gridname+"_" + rowId + ': ' + bgColor); 
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("fast", 0.5, function() { 
 		rowSelector.fadeTo("fast", 1, function() { 
@@ -20,8 +18,7 @@ function highlight(gridname, div_id, style) {
 }
    
 
-function CommitmentGrid(name) 
-{ 	
+function CommitmentGrid(name) { 	
 	var self = this;
 	this.name = name;
 	
