@@ -20,7 +20,7 @@
 						<div class="form-group spacer">&nbsp;&nbsp;|&nbsp;&nbsp;page size:&nbsp;</div>
 						<div class="form-group">
 							<div class="controls">
-								<select class="input-sm pg-size" id="comm_page_size" onchange="commitments.grid.setPageSize('project_commitmentsPageSize', this.value)">
+								<select class="input-sm pg-size" id="proj_page_size" onchange="commitments.grid.setPageSize('project_commitmentsPageSize', this.value)">
 									<option value=5>5</option>
 									<option value=10 selected>10</option>
 									<option value=25>25</option>
@@ -135,8 +135,9 @@
 			load_comms(undefined, this.checked);
 		});
 			
-		commPageSize = getCookie(commitments.name+'PageSize') || 9; 
-		$('#comm_page_size').val(commPageSize);
+		commPageSize = getCookie(commitments.name+'PageSize') || 10; 
+		$('#proj_page_size').val(commPageSize);
+		console.log('cookie ' + commitments.name+'PageSize' + ' = '+ commPageSize);
 		
 		// Load data first time
 		load_comms(horizon, show_closed);
