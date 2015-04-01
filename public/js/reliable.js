@@ -6,6 +6,7 @@ var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':
 function highlightRow(gridname, rowId, bgColor, after)
 {
 	var rowSelector = $("#"+gridname+"_" + rowId);
+	console.log("#"+gridname+"_" + rowId + ': ' + bgColor); 
 	rowSelector.css("background-color", bgColor);
 	rowSelector.fadeTo("fast", 0.5, function() { 
 		rowSelector.fadeTo("fast", 1, function() { 
@@ -83,13 +84,11 @@ function CommitmentGrid(name)
 					if (value == '0000-00-00') { //handle deferred & recently un-deferred items
 						if (self.grid.getValueAt(cell.rowIndex, status_col) == 'D') {
 							cell.innerHTML = '-';
-							$(row).addClass('deferred');
 							$(cell).removeClass('status_me_now');
 						}
 						else {
 							cell.innerHTML = '!';
 							$(cell).addClass('status_me_now');
-							$(row).removeClass('deferred');
 						}
 					}
 					else { // assign due_class based on how overdue / soon due the task is
@@ -98,12 +97,7 @@ function CommitmentGrid(name)
 						how_soon=date_due.diff(moment(),'days');
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 						$(cell).addClass(due_class).removeClass('status_me_now');
-						$(row).removeClass('deferred');
 					}
-					
-					is_closed=self.grid.getValueAt(cell.rowIndex, closed_col);
-					if (is_closed == 1) $(row).addClass('closed');
-					else $(row).removeClass('closed');
 				}}));
 				
 			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
@@ -134,10 +128,16 @@ function CommitmentGrid(name)
 			this.setCellRenderer('status', new CellRenderer ({ 
 				render: function(cell, value) {
 					cell.innerHTML = value;
-					if (value == 'V?' || value == '?') {
-						$(cell).addClass('status_me_now');
-					}
+					row=self.grid.getRow(cell.rowIndex);
+					
+					if (value == 'D') $(row).addClass('deferred');
+					else $(row).removeClass('deferred');
+					
+					if (value == 'V?' || value == '?') $(cell).addClass('status_me_now');
 					else $(cell).removeClass('status_me_now');
+					
+					if (/C[L012]/.test(value) || /V[0123456789]/.test(value)) $(row).addClass('closed');
+					else $(row).removeClass('closed');
 				}
 			}));
 			
@@ -230,7 +230,10 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		},
 		complete: function () {
 			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+			$('[id^='+self.name+'_total]').fadeTo('fast', 0, function() {
+				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				$('[id^='+self.name+'_total]').fadeTo('fast', 1);
+			}
 		},
 		async: true
 	});
@@ -279,7 +282,7 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 {
 	var self = this;
 	var rowId = self.grid.getRowId(index);
-	var uniqueid_col = grid.getColumnIndex('unique_id');
+	var uniqueid_col = self.grid.getColumnIndex('unique_id');
 	
     $.ajax({
 		url: '../includes/commitment_duplicate.php',
