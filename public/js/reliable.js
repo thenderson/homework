@@ -217,20 +217,20 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 		data: {
 			uniqueid: uniqueId
 		},
-		success: function (response) 
-		{
+		success: function (response) {
 			var rowSelector = $('#' + self.name+'_' + rowId);
 			rowSelector.css("text-decoration", "line-through");
-			rowSelector.fadeOut(function() { 
+			rowSelector.fadeOut(400, function() { 
 				self.grid.remove(index);
 			});
-			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
-		error: function(XMLHttpRequest, textStatus, exception) 
-		{ 
+		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(self.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+		},
+		complete: function () {
+			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
+			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		async: true
 	});
