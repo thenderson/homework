@@ -15,8 +15,8 @@ function highlightRow(gridname, rowId, bgColor, after)
 	});
 }
 
-function highlight(div_id, style) {
-	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
+function highlight(gridname, div_id, style) {
+	highlightRow(gridname, div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
 }
    
 
@@ -182,13 +182,17 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
 				});
 				highlight(grid.name, rowId, "ok");
-				console.log('grid.name: '+grid.name+' rowId: '+rowId);
-				$('[id^='+grid.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			highlight(grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
+		},
+		complete: function () {
+			$('[id^='+self.name+'_total]').animate({opacity: .8}, 500, function() {
+				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
+			});
 		},
 		async: true
 	});
@@ -229,11 +233,9 @@ CommitmentGrid.prototype.DeleteRow = function(index)
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
 		complete: function () {
-			console.log('Test deleterow: [id^='+self.name+'_total] = '+self.grid.getTotalRowCount());
-			
-			$('[id^='+self.name+'_total]').fadeTo('fast', 0, function() {
+			$('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
 				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
-				$('[id^='+self.name+'_total]').fadeTo('fast', 1);
+				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
 			});
 		},
 		async: true
@@ -267,12 +269,17 @@ CommitmentGrid.prototype.AddRow = function(values)
 			// add new row
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(self.name, newRowId, "ok");
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
 			//highlight(rowId, "error");
 			alert("Ajax failure\n" + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+		},
+		complete: function () {
+			$('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
+				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
+			});
 		},
 		async: true
 	});		
@@ -303,13 +310,17 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 			// add new row
 			self.grid.insertAfter(index, newRowId, response[0]);
 			highlight(self.name, newRowId, "ok");
-			console.log('Test duplicate: [id^='+self.name+'_total] = '+grid.getTotalRowCount());
-			$('[id^='+self.name+'_total]').html('total: <strong>'+grid.getTotalRowCount()+'</strong>');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) 
 		{ 
 			highlight(grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+		},
+		complete: function () {
+			$('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
+				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
+			});
 		},
 		async: true
 	});
