@@ -20,7 +20,7 @@ if (!$q) trigger_error('Statement failed : ' . E_USER_ERROR);
 else {
 	$res = $q->fetchAll(PDO::FETCH_ASSOC);
 	dbug($res); 
-	error_log(dbug('print');
+	error_log(dbug('print'));
 	$promiser = $res[0]['promiser'];
 	$project_number = $res[0]['project_number'];
 }
