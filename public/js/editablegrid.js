@@ -2052,6 +2052,7 @@ EditableGrid.prototype.filter = function(filterString, cols)
 EditableGrid.prototype.setPageSize = function(pageSize)
 {
 	this.pageSize = parseInt(pageSize);
+	console.log('setPageSize: pageSize: '+pageSize+' this.pageSize: '+this.pageSize);
 	if (isNaN(this.pageSize)) this.pageSize = 0;
 	this.currentPageIndex = 0;
 	this.refreshGrid();
@@ -2088,8 +2089,6 @@ EditableGrid.prototype.setPageIndex = function(pageIndex)
 {
 	this.currentPageIndex = pageIndex;
 	this.localset('pageIndex', pageIndex);
-	console.log('setPageIndex = '+pageIndex);
-	console.debug(this);
 	this.refreshGrid();
 };
 
