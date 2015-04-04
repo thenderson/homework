@@ -52,6 +52,9 @@ function CommitmentGrid(name) {
 			
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
+console.log('tableRendered');
+console.debug(self.grid);
+console.debug(self.name);
 			updatePaginator(self.grid, self.name+'_paginator'); 
 		},
 		tableLoaded: function() { 
