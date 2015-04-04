@@ -2088,6 +2088,8 @@ EditableGrid.prototype.setPageIndex = function(pageIndex)
 {
 	this.currentPageIndex = pageIndex;
 	this.localset('pageIndex', pageIndex);
+	console.log('setPageIndex = '+pageIndex);
+	console.debug(this);
 	this.refreshGrid();
 };
 
