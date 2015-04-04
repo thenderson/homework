@@ -135,7 +135,7 @@
 			load_comms(undefined, this.checked);
 		});
 			
-		commPageSize = getCookie(commitments.name+'PageSize') || 10; 
+		commPageSize = getCookie(commitments.name+'PageSize'); 
 		$('#proj_page_size').val(commPageSize);
 		console.log('cookie ' + commitments.name+'PageSize' + ' = '+ commPageSize);
 		
