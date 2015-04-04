@@ -420,7 +420,7 @@ EditableGrid.prototype.setPageSize = function(cookiename, pageSize)
 	this.refreshGrid();
 	
 	setCookie(cookiename, this.pageSize, 90);
-	console.log('changepagesize: cookie '+cookiename+' value '+this.pageSize);
+	console.log('changepagesize: cookie: '+cookiename+' pageSize: '+pageSize+' result: '+this.pageSize);
 };
 
 function setCookie(cookieName,cookieValue,nDays) {

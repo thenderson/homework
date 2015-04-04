@@ -2052,7 +2052,6 @@ EditableGrid.prototype.filter = function(filterString, cols)
 EditableGrid.prototype.setPageSize = function(pageSize)
 {
 	this.pageSize = parseInt(pageSize);
-	console.log('setPageSize: pageSize: '+pageSize+' this.pageSize: '+this.pageSize);
 	if (isNaN(this.pageSize)) this.pageSize = 0;
 	this.currentPageIndex = 0;
 	this.refreshGrid();
