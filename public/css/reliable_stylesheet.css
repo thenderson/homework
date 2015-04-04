@@ -530,4 +530,6 @@ padding: 0px, 0px;
 
 .dialog {
 position: fixed;
+top: 50%;
+left: 50%;
 }
