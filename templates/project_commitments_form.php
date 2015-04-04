@@ -2,10 +2,11 @@
 	require '../includes/config.php';
 	require 'header.html'; 
 	require 'header_nav.html';
-	require 'dialogs.html'; 
 ?>
 	</head>
-	<body>
+	<body <body style='height: 100%; min-height: 100%;'>
+	<?php require 'dialogs.html'; ?>
+	
 		<div class="container-fluid nopadding">
 			<div class='container-fluid' id='table_title'>
 				<h3><strong>PROJECT COMMITMENTS &nbsp;&nbsp;</strong><i class='fa fa-spinner fa-spin'></i></h3>
