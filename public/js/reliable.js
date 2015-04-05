@@ -329,8 +329,8 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 function updatePaginator(grid, divId)
 {
 	
-console.log('updatePaginator. divID: '+divId);
-console.debug(grid);
+console.log('updatePaginator--divID: '+divId);
+//console.debug(grid);
 
     divId = divId || "paginator";	
 	var paginator = $("#" + divId).empty();
@@ -339,8 +339,8 @@ console.log('grid.getPageCount: '+nbPages);
 	
 	// get interval
 	var interval = grid.getSlidingPageInterval(20);
-console.log('interval: ');
-console.debug(interval);
+//console.log('interval: ');
+//console.debug(interval);
 
 	if (interval == null) return;
 	
