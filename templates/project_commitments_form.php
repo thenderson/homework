@@ -50,7 +50,7 @@
 		pnum = getparam('project');
 		
 		// load commitments
-		p_commitments = new CommitmentGrid('project_commitments');
+		commitments = new CommitmentGrid('project_commitments');
 
 		load_comms = function (horizon, showClosed) {
 			if (typeof(horizon) === 'undefined') {
@@ -77,9 +77,9 @@
 				},
 				success: function (response) 
 				{
-					p_commitments.grid.loadXMLFromString(response); //synchronous function
-					p_commitments.grid.tableLoaded();
-					//$('[id^=commitments_total]').html('total: <strong>'+p_commitments.grid.getTotalRowCount()+'</strong>');
+					commitments.grid.loadXMLFromString(response); //synchronous function
+					commitments.grid.tableLoaded();
+					//$('[id^=commitments_total]').html('total: <strong>'+commitments.grid.getTotalRowCount()+'</strong>');
 				},
 				error: function(XMLHttpRequest, textStatus, exception) 
 				{ 
@@ -136,18 +136,18 @@
 			load_comms(undefined, this.checked);
 		});
 			
-		commPageSize = getCookie(p_commitments.name+'PageSize'); 
+		commPageSize = getCookie(commitments.name+'PageSize'); 
 		$('#proj_page_size').val(commPageSize);
-		console.log('cookie ' + p_commitments.name+'PageSize' + ' = '+ commPageSize);
+		console.log('cookie ' + commitments.name+'PageSize' + ' = '+ commPageSize);
 		
 		// Load data first time
 		load_comms(horizon, show_closed);
 		
 		// Set-up filters
-		p_commitments.grid.filter(""); //clear any leftover filtering
+		commitments.grid.filter(""); //clear any leftover filtering
 			
 		$("#filter_all").keyup(function() { //one filter to rule them all
-			p_commitments.grid.filter($(this).val());
+			commitments.grid.filter($(this).val());
 		});
 		
 		// populate new commitment requester and promiser select menus with project team members
