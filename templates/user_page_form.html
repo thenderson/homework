@@ -256,7 +256,7 @@
 				
 			commPageSize = parseInt(getCookie(commitments.name+'PageSize') || 10); 
 			$('#comm_page_size').val(commPageSize);
-			reqPageSize = parseIn(getCookie(requests.name+'PageSize') || 10); 
+			reqPageSize = parseInt(getCookie(requests.name+'PageSize') || 10); 
 			$('#req_page_size').val(reqPageSize);
 			projPageSize = parseInt(getCookie('projectsPageSize') || 10); 
 			$('#proj_page_size').val(projPageSize);
