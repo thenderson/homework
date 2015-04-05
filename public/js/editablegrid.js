@@ -1690,6 +1690,7 @@ console.log('render whole new table');
 				endRowIndex = Math.min(getRowCount(), startRowIndex + pageSize); 
 console.log('startRowIndex: '+startRowIndex+' endRowIndex: '+endRowIndex);
 console.log('getRowCount: '+getRowCount()+' pageSize: '+pageSize);
+console.log(typeOf(getRowCount())+' '+typeOf(pageSize));
 			}
 
 			// create editablegrid table and add it to our container 
