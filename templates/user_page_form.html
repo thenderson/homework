@@ -254,11 +254,11 @@
 				load_comms(undefined, this.checked);
 			});
 				
-			commPageSize = getCookie(commitments.name+'PageSize') || 9; 
+			commPageSize = parseInt(getCookie(commitments.name+'PageSize') || 10); 
 			$('#comm_page_size').val(commPageSize);
-			reqPageSize = getCookie(requests.name+'PageSize') || 9; 
+			reqPageSize = parseIn(getCookie(requests.name+'PageSize') || 10); 
 			$('#req_page_size').val(reqPageSize);
-			projPageSize = getCookie('projectsPageSize') || 9; 
+			projPageSize = parseInt(getCookie('projectsPageSize') || 10); 
 			$('#proj_page_size').val(projPageSize);
 	
 			projects = new EditableGrid("Projects", {

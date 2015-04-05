@@ -1610,9 +1610,6 @@ EditableGrid.prototype.getScrollYOffset = function(oElement)
  */
 EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 {
-	
-console.log('containerid: '+containerid+' className: '+className+' tableid: '+tableid);
-
 	with (this) {
 
 		lastSelectedRowIndex = -1;
@@ -1620,7 +1617,6 @@ console.log('containerid: '+containerid+' className: '+className+' tableid: '+ta
 
 		// if we are already attached to an existing table, just update the cell contents
 		if (typeof table != "undefined" && table != null) {
-console.log('updating cell contents');
 			var _data = dataUnfiltered == null ? data : dataUnfiltered; 
 
 			// render headers
@@ -1673,7 +1669,6 @@ console.log('updating cell contents');
 
 		// we must render a whole new table
 		else {
-console.log('render whole new table');
 			if (!containerid) return console.error("The container ID not specified (renderGrid not called yet ?)");
 			if (!_$(containerid)) return console.error("Unable to get element [" + containerid + "]");
 
@@ -1688,9 +1683,6 @@ console.log('render whole new table');
 			if (pageSize > 0) {
 				startRowIndex = _currentPageIndex * pageSize;
 				endRowIndex = Math.min(getRowCount(), startRowIndex + pageSize); 
-console.log('startRowIndex: '+startRowIndex+' endRowIndex: '+endRowIndex);
-console.log('getRowCount: '+getRowCount()+' pageSize: '+pageSize);
-console.log(typeof(getRowCount())+' '+typeof(pageSize));
 			}
 
 			// create editablegrid table and add it to our container 

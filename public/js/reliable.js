@@ -52,9 +52,6 @@ function CommitmentGrid(name) {
 			
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
-console.log('tableRendered');
-// console.debug(self.grid);
-// console.debug(self.name);
 			updatePaginator(self.grid, self.name+'_paginator'); 
 		},
 		tableLoaded: function() { 
@@ -328,20 +325,12 @@ CommitmentGrid.prototype.DuplicateRow = function(index)
 
 function updatePaginator(grid, divId)
 {
-	
-console.log('updatePaginator--divID: '+divId);
-//console.debug(grid);
-
     divId = divId || "paginator";	
 	var paginator = $("#" + divId).empty();
 	var nbPages = grid.getPageCount();
-console.log('grid.getPageCount: '+nbPages);
 	
 	// get interval
 	var interval = grid.getSlidingPageInterval(20);
-//console.log('interval: ');
-//console.debug(interval);
-
 	if (interval == null) return;
 	
 	// get pages in interval (with links except for the current page)
@@ -428,7 +417,6 @@ EditableGrid.prototype.setPageSize = function(cookiename, pageSize)
 	this.refreshGrid();
 	
 	setCookie(cookiename, this.pageSize, 90);
-	console.log('changepagesize: cookie: '+cookiename+' pageSize: '+pageSize+' result: '+this.pageSize);
 };
 
 function setCookie(cookieName,cookieValue,nDays) {
