@@ -55,7 +55,8 @@ function CommitmentGrid(name) {
 			// add event listeners to delete and duplicate spans
 			$('i.duplicate').not('i.eventAttached').click(function() { 
 				var cell = $(this).closest('td');
-				var uniqueid_col = grid.getColumnIndex('unique_id');
+				//var uniqueid_col = grid.getColumnIndex('unique_id');
+				console.debug(self);
 				console.log('duplicate cell =');
 				console.debug(cell);
 			});
@@ -64,7 +65,7 @@ function CommitmentGrid(name) {
 			$('i.delete').not('i.eventAttached').click(function () {
 				var row = $(this).closest('tr');
 				var rowIndex = getRowIndex(row);
-				var uniqueid_col = grid.getColumnIndex('unique_id');
+				//var uniqueid_col = grid.getColumnIndex('unique_id');
 				console.log('delete row =');
 				console.debug(row);
 				console.log('rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+getValueAt(rowIndex, uniqueid_col));
