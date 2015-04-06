@@ -5,6 +5,7 @@ require_once('config.php');
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueId']);
 
+// Get project number
 $q = $comm_db->query("SELECT project_number FROM commitments WHERE unique_id = $unique_id");				
 if (!$q) trigger_error('Statement failed : ' . E_USER_ERROR);
 else {
@@ -53,9 +54,10 @@ catch(PDOException $e)
 
 // Retrieve newly created commitment from database and send back to JS
 $id = $comm_db->lastInsertId('unique_id');
-$stmt = $comm_db->query("SELECT unique_id, project_number, task_id, description, requester, 
-		promiser, due_by, requested_on, status, type, metric 
-		FROM commitments WHERE unique_id = $id"); 
+$stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
+	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
+	FROM (SELECT * FROM commitments WHERE unique_id = $id) a, 
+	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"); 
 
 if (!$stmt)
 {
