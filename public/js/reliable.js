@@ -52,6 +52,17 @@ function CommitmentGrid(name) {
 			
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
+			// add event listeners to delete and duplicate spans
+			$('span.duplicate').click(function() { 
+				var cell = $(this).closest('td');
+				console.log('duplicate cell =');
+				console.debug(cell);
+			}
+			$('span.delete').click(function () {
+				var cell = $(this).closest('td');
+				console.log('delete cell =');
+				console.debug(cell);
+			
 			updatePaginator(self.grid, self.name+'_paginator'); 
 		},
 		tableLoaded: function() { 
@@ -70,8 +81,9 @@ function CommitmentGrid(name) {
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					//cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
+					//cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
+					cell.innerHTML+= "<i class='duplicate fa fa-files-o' >&nbsp;</i><i class='delete fa fa-minus-square-o' ></i>";
 				}}));
 			
 			this.setCellRenderer('due_by', new CellRenderer({ //shades cells based on how soon commitment is due
