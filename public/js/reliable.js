@@ -57,7 +57,7 @@ function CommitmentGrid(name) {
 				var row = $(this).closest('tr');
 				var rowId = row[0].rowId;
 				var rowIndex = self.grid.getRowIndex(rowId);
-				self.grid.DuplicateRow(rowIndex);
+				self.DuplicateRow(rowIndex);
 			});
 			$('i.duplicate').addClass('eventAttached');
 			
@@ -65,7 +65,7 @@ function CommitmentGrid(name) {
 				var row = $(this).closest('tr');
 				var rowId = row[0].rowId;
 				var rowIndex = self.grid.getRowIndex(rowId);
-				self.grid.ConfirmDeleteRow(rowIndex);
+				ConfirmDeleteRow(self, rowIndex);
 			});
 			$('i.delete').addClass('eventAttached');
 
@@ -214,16 +214,15 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-CommitmentGrid.prototype.ConfirmDeleteRow = function(rowIndex) 
-{
+CommitmentGrid.prototype.ConfirmDeleteRow = function(commitmentgrid, rowIndex) {
 	$("#delete-confirm")
-		.data("rowIndex", rowIndex)
+		.data('rowIndex', rowIndex)
+		.data('commitmentgrid', commitmentgrid)
 		.dialog("open");
 }
 
 
-CommitmentGrid.prototype.DeleteRow = function(index) 
-{
+CommitmentGrid.prototype.DeleteRow = function(index) {
 	var self = this;
 	var uniqueid_col = self.grid.getColumnIndex('unique_id');
 	var uniqueId = self.grid.getValueAt(index, uniqueid_col);
