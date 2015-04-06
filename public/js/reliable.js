@@ -53,12 +53,12 @@ function CommitmentGrid(name) {
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
 			// add event listeners to delete and duplicate spans
-			$('span.duplicate').click(function() { 
+			$('i.duplicate').click(function() { 
 				var cell = $(this).closest('td');
 				console.log('duplicate cell =');
 				console.debug(cell);
 			});
-			$('span.delete').click(function () {
+			$('i.delete').click(function () {
 				var cell = $(this).closest('td');
 				console.log('delete cell =');
 				console.debug(cell);
