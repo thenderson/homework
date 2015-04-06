@@ -57,11 +57,12 @@ function CommitmentGrid(name) {
 				var cell = $(this).closest('td');
 				console.log('duplicate cell =');
 				console.debug(cell);
-			}
+			});
 			$('span.delete').click(function () {
 				var cell = $(this).closest('td');
 				console.log('delete cell =');
 				console.debug(cell);
+			});
 			
 			updatePaginator(self.grid, self.name+'_paginator'); 
 		},
