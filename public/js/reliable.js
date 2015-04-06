@@ -64,9 +64,10 @@ console.debug(row);
 			
 			$('i.delete').not('i.eventAttached').click(function () {
 				var row = $(this).closest('tr');
-				var rowIndex = self.grid.getRowIndex(row);
+				var rowId = row.id;
+				var rowIndex = self.grid.getRowIndex(rowID);
 				var uniqueid_col = self.grid.getColumnIndex('unique_id');
-console.log('DELETE rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+self.grid.getValueAt(rowIndex, uniqueid_col));
+console.log('DELETE rowid: '+rowId+' rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+self.grid.getValueAt(rowIndex, uniqueid_col));
 			});
 			$('i.delete').addClass('eventAttached');
 
