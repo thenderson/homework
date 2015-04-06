@@ -122,6 +122,7 @@
 			// load commitments
 			commitments = new CommitmentGrid('commitments');
 			requests = new CommitmentGrid('requests');
+			
 			load_comms = function (horizon, showClosed) {
 				if (typeof(horizon) === 'undefined') {
 					hor = getCookie('horizon');

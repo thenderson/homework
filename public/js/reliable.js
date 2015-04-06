@@ -53,17 +53,24 @@ function CommitmentGrid(name) {
 			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
 			// add event listeners to delete and duplicate spans
-			$('i.duplicate').click(function() { 
+			$('i.duplicate').not('i.eventAttached').click(function() { 
 				var cell = $(this).closest('td');
+				var uniqueid_col = grid.getColumnIndex('unique_id');
 				console.log('duplicate cell =');
 				console.debug(cell);
 			});
-			$('i.delete').click(function () {
-				var cell = $(this).closest('td');
-				console.log('delete cell =');
-				console.debug(cell);
-			});
+			$('i.duplicate').addClass('eventAttached');
 			
+			$('i.delete').not('i.eventAttached').click(function () {
+				var row = $(this).closest('tr');
+				var rowIndex = getRowIndex(row);
+				var uniqueid_col = grid.getColumnIndex('unique_id');
+				console.log('delete row =');
+				console.debug(row);
+				console.log('rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+getValueAt(rowIndex, uniqueid_col));
+			});
+			$('i.delete').addClass('eventAttached');
+
 			updatePaginator(self.grid, self.name+'_paginator'); 
 		},
 		tableLoaded: function() { 
