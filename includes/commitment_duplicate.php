@@ -27,7 +27,7 @@ $new_Id = $result[0]['task_id'] + 1;
 
 // Duplicate selected record in database
 $stmt = $comm_db->prepare('INSERT INTO `commitments` ( project_number, task_id, description, requester, promiser, due_by, priority_h, status )
-							SELECT project_number, ?, description, requester, promiser, due_by, high_priority, "O"
+							SELECT project_number, ?, description, requester, promiser, due_by, priority_h, "O"
 							FROM `commitments` WHERE `unique_id`=?');
 
 if (!$stmt)

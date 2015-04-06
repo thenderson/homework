@@ -214,7 +214,7 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-CommitmentGrid.prototype.ConfirmDeleteRow = function(commitmentgrid, rowIndex) {
+ConfirmDeleteRow = function(commitmentgrid, rowIndex) {
 	$("#delete-confirm")
 		.data('rowIndex', rowIndex)
 		.data('commitmentgrid', commitmentgrid)
