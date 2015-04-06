@@ -55,10 +55,9 @@ function CommitmentGrid(name) {
 			// add event listeners to delete and duplicate spans
 			$('i.duplicate').not('i.eventAttached').click(function() { 
 				var row = $(this).closest('tr');
-				var rowIndex = self.grid.getRowIndex(row);
-				var uniqueid_col = self.grid.getColumnIndex('unique_id');
-console.log('DUPLICATE rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+self.grid.getValueAt(rowIndex, uniqueid_col));
-console.debug(row);
+				var rowId = row[0].rowId;
+				var rowIndex = self.grid.getRowIndex(rowId);
+				self.grid.DuplicateRow(rowIndex);
 			});
 			$('i.duplicate').addClass('eventAttached');
 			
@@ -66,9 +65,7 @@ console.debug(row);
 				var row = $(this).closest('tr');
 				var rowId = row[0].rowId;
 				var rowIndex = self.grid.getRowIndex(rowId);
-				var uniqueid_col = self.grid.getColumnIndex('unique_id');
-console.log('DELETE rowid: '+rowId+' rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+self.grid.getValueAt(rowIndex, uniqueid_col));
-console.debug(row);
+				self.grid.ConfirmDeleteRow(rowIndex);
 			});
 			$('i.delete').addClass('eventAttached');
 
@@ -217,10 +214,10 @@ function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, o
 }
 
 
-ConfirmDeleteRow = function(index) 
+CommitmentGrid.prototype.ConfirmDeleteRow = function(rowIndex) 
 {
 	$("#delete-confirm")
-		.data("id", index)
+		.data("rowIndex", rowIndex)
 		.dialog("open");
 }
 

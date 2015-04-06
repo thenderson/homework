@@ -71,7 +71,7 @@
 		buttons: {
 			"Delete": function() {
 				$(this).dialog("close");
-				commitments.DeleteRow($(this).data('id'));
+				commitments.DeleteRow($(this).data('rowIndex'));
 			},
 			Cancel: function() {
 				$(this).dialog("close");
