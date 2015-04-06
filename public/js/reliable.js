@@ -68,6 +68,7 @@ console.debug(row);
 				var rowIndex = self.grid.getRowIndex(rowId);
 				var uniqueid_col = self.grid.getColumnIndex('unique_id');
 console.log('DELETE rowid: '+rowId+' rowindex: '+rowIndex+' colindex: '+uniqueid_col+' value: '+self.grid.getValueAt(rowIndex, uniqueid_col));
+console.debug(row);
 			});
 			$('i.delete').addClass('eventAttached');
 
