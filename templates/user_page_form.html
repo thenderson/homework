@@ -273,7 +273,7 @@
 				tableLoaded: function() { 
 					projects.setCellRenderer('project_number_2', new CellRenderer({ 
 						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+value+"); return false;\">"+value+"</a>";
+							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view("+String(value)+"); return false;\">"+value+"</a>";
 						}
 					}));
 					this.renderGrid('projects_d', 'table', 'projects'); }
