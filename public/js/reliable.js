@@ -203,7 +203,6 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 	
 	$("#add-commitment")
 		.data('replan', 1)
-		.data('oldId', oldId)
 		.data('msg-general', msg_general)
 		.data('msg-description', msg_description)
 		.data('msg-date-due', msg_date_due)
