@@ -91,13 +91,16 @@
 		modal: true,
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
-console.log('open function');
 			if ($(this).data('replan') == 1) {
 console.log('replan == 1');
+console.log('desc: '+$(this).data('msg-description'));
+console.log('desc: '+$(this).data('description'));
+				oldRowValues = $(this).data('oldRowValues');
+console.debug(oldRowValues);
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
-				$('#inp-comm').val($(this).data('description'));
+				$('#inp-comm').val(oldRowValues['description');
 				// todo: preset other parameters
 			}
 			else $('[id^=msg]').hide();

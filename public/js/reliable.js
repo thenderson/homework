@@ -166,14 +166,12 @@ function CommitmentGrid(name) {
 
 
 function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
-	var rowId = grid.getRowId(rowIndex);
-	var uniqueid_col = grid.getColumnIndex('unique_id');
-	var taskid_col = grid.getColumnIndex('task_id');
+	
+	var oldRowValues = grid.getRowValues(rowIndex);
 	
 	var msg_general = 'Please replan this task or press cancel (esc) to record its closing status as V8 - Not Needed.';
 	var msg_date_due = 'Enter a new due date.';
 	var msg_description = '';
-	var oldId = grid.getValueAt(rowIndex, taskid_col);
 
 	switch (newValue) {
 		case 'V1': // time: replan w/ sufficient time
@@ -214,6 +212,7 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 		.data('columnIndex', columnIndex)
 		.data('oldValue', oldValue)
 		.data('newValue', newValue)
+		.data('oldRowValues', oldRowValues)
 		.dialog({show: { effect: "puff", duration: 150 }})
 		.dialog("open"); 
 }
