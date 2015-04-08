@@ -322,7 +322,8 @@ CommitmentGrid.prototype.AddRow = function(values)
 			prom: values['promiser'],
 			req: values['requester'],
 			due: values['date_due'],
-			stat: values['status']
+			stat: values['status'],
+			replan: values['replan'] ? values['task_id'] : -1
 		},
 		success: function (response) 
 		{ 

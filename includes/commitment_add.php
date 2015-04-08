@@ -9,6 +9,7 @@ $promiser = strip_tags($_POST['prom']);
 $requester = strip_tags($_POST['req']);
 $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
+$replan = strip_tags($_POST['replan']);
 
 if ($status == 'OH') 
 {
@@ -19,18 +20,23 @@ if ($status == 'OH')
 else $priority = 0;
 
 // Determine task_id for new commitment
-$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
-
-if (!$stmt)
-{
-	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
-	echo 'error';
-	exit;
+if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID
+	$new_id = $replan + 0.01;
+	// todo: deal with extreme case where a task has been replanned 99 times
 }
-else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+else {
+	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
-$new_Id = $result[0]['task_id'] + 1; 
+	if (!$stmt)
+	{
+		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+	else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+	$new_Id = $result[0]['task_id'] + 1; 
+}
 
 // Insert new commitment into database
 $stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, requester, promiser, due_by, status, priority_h) VALUES (?,?,?,?,?,?,?,?)');
