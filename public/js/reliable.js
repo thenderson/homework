@@ -323,7 +323,7 @@ console.debug(values);
 			req: values['requester'],
 			due: values['date_due'],
 			stat: values['status'],
-			replan: values['replan'] ? values['task_id'] : -1
+			replan: (values['replan']) ? values['replan'] : -1
 		},
 		success: function (response) 
 		{ 
