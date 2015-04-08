@@ -158,15 +158,14 @@ function CommitmentGrid(name) {
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-			if (/V[012345679]/.test(newValue)) replanCommitment(this, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
+			if (/V[012345679]/.test(newValue)) requestReplan(this, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
    	    	else updateCellValue(this, rowIndex, columnIndex, oldValue, newValue);
        	}
  	});
 }
 
 
-function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue)
-{     
+function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 	var rowId = grid.getRowId(rowIndex);
 	var uniqueid_col = grid.getColumnIndex('unique_id');
 	var taskid_col = grid.getColumnIndex('task_id');
@@ -175,6 +174,8 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue)
 	var msg_date_due = 'Enter a new due date.';
 	var msg_description = '';
 	var oldId = grid.getValueAt(rowIndex, taskid_col);
+
+console.log('request replan '+newValue);	
 
 	switch (newValue) {
 		case 'V1': // time: replan w/ sufficient time
@@ -220,8 +221,7 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue)
 }
 
 
-function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue)
-{     
+function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue) {     
 	var rowId = grid.getRowId(rowIndex);
 	var date_due_col = grid.getColumnIndex('due_by');
 	var uniqueid_col = grid.getColumnIndex('unique_id');
