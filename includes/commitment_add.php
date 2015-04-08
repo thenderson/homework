@@ -21,7 +21,7 @@ else $priority = 0;
 
 // Determine task_id for new commitment
 if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID
-	$new_id = $replan + 0.01;
+	$new_Id = $replan + 0.01;
 	// todo: deal with extreme case where a task has been replanned 99 times
 }
 else {
@@ -63,7 +63,7 @@ try
 
 catch(PDOException $e) 
 {
-	trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	trigger_error('Wrong SQL: ' . $e . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	echo 'error';
 	exit;
 }      
