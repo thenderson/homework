@@ -6,7 +6,8 @@
 		
 		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
 			<form class='form-horizontal' id='comm_form'>
-			
+				<p class="form-control-static" id='message-general'></p>
+				
 				<div class="control-group">
 					<label class="control-label" for="inp-proj">Project</label>
 					<div class="controls">
@@ -20,6 +21,7 @@
 					<div class="controls">
 						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5" tabindex=2></textarea>
 					</div>
+					<p class="form-control-static" id='message-description'></p>
 				</div>
 
 				<div class="control-group">
@@ -28,6 +30,7 @@
 						<select class="input-sm" id="inp-req" name="requester" style="width: 200px" tabindex=3>
 						</select>
 					</div>
+					<p class="form-control-static" id='message-requester'></p>
 				</div>
 				
 				<div class="control-group">
@@ -36,7 +39,7 @@
 						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px" multiple tabindex=4>
 						</select>
 					</div>
-					<p class="form-control-static">If promiser = requester, this will be considered a personal workplan item.</p>
+					<p class="form-control-static" id='message-promiser'>If promiser = requester, this will be personal workplan item.</p>
 				</div>
 				
 				<div class="control-group">
@@ -44,6 +47,7 @@
 					<div class="controls">
 						<input type="text" class="input-sm" id="inp-due" name="date_due" style="width: 200px" tabindex=5>
 					</div>
+					<p class="form-control-static" id='message-date-due'></p>
 				</div>
 				
 				<div class="control-group">
@@ -86,6 +90,15 @@
 		width: 300,
 		modal: true,
 		position: {my: "center", at: "center", of: window},
+		open: function( event, ui ) {
+			if ($(this).data('replan') == 1) {
+				$('#msg-general').html($(this).data('msg-general'));
+				$('#msg-description').html($(this).data('msg-description'));
+				$('#msg-date-due').html($(this).data('msg-date-due'));
+				$('#inp-comm').val($(this).data('description'));
+				// todo: preset other parameters
+			}
+		},
 		buttons: {
 			"Submit": function() {
 				var data = {};
@@ -93,6 +106,10 @@
 					data[field.name] = field.value;
 				});
 				$(this).dialog("close");
+				if ($(this).data('replan' == 1)) { // if replanning a replannable task, we update the old task's variance now
+					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
+					$(this).data('oldValue'), $(this).data('newValue'));
+				}
 				commitments.AddRow(data);
 			},
 			"Submit+": function() {
@@ -100,20 +117,28 @@
 				$.each($('#comm_form').serializeArray(), function(i, field) {
 					data[field.name] = field.value;
 				});
+				if ($(this).data('replan' == 1)) { // if replanning a replannable task, we update the old task's variance now
+					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
+					$(this).data('oldValue'), $(this).data('newValue'));
+				}
 				commitments.AddRow(data);
 				$(this).dialog("close").delay(700).dialog("open");
 			},
 			Cancel: function() {
 				$(this).dialog("close");
+				if ($(this).data('replan' == 1)) { // if user cancels suggestion to replan a replan-worthy task, we conclude that its variance was 8, not needed.
+					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
+					$(this).data('oldValue'), 'V8');
+				}
 			}
 		},
 	});
 	
 	$("#new_com_btn").on("click", function() {
 		$("#add-commitment")
+			.data('replan', 0);
 			.dialog({show: { effect: "puff", duration: 150 }})
 			.dialog("open"); 
-			//return false; // stops page from scrolling to the location of the href anchor of the ID in the selector ... or something
 	});
 	
 	$("#inp-due").datepicker({

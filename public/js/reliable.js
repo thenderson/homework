@@ -87,8 +87,6 @@ function CommitmentGrid(name) {
 					
 			this.setCellRenderer('actions', new CellRenderer({
 				render: function(cell, id) { 
-					//cell.innerHTML+= "<i onclick=\""+self.name+".DuplicateRow("+cell.rowIndex+");\" class='fa fa-files-o' >&nbsp;</i>";
-					//cell.innerHTML+= "<i onclick=\"ConfirmDeleteRow("+cell.rowIndex+");\" class='fa fa-minus-square-o' ></i>";
 					cell.innerHTML+= "<i class='duplicate fa fa-files-o' >&nbsp;</i><i class='delete fa fa-minus-square-o' ></i>";
 				}}));
 			
@@ -160,17 +158,74 @@ function CommitmentGrid(name) {
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-   	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+			if (/V[012345679]/.test(newValue)) replanCommitment(this, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
+   	    	else updateCellValue(this, rowIndex, columnIndex, oldValue, newValue);
        	}
  	});
 }
 
 
-function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
+function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue)
+{     
+	var rowId = grid.getRowId(rowIndex);
+	var uniqueid_col = grid.getColumnIndex('unique_id');
+	var taskid_col = grid.getColumnIndex('task_id');
+	
+	var msg_general = 'Please replan this task or press cancel (esc) to record its closing status as V8 - Not Needed.';
+	var msg_date_due = 'Enter a new due date.';
+	var msg_description = '';
+	var oldId = grid.getValueAt(rowIndex, taskid_col);
+
+	switch (newValue) {
+		case 'V1': // time: replan w/ sufficient time
+			msg_description = 'Consider defining the scope of the task more narrowly if it was too broad.'
+			break;
+			
+		case 'V2': // waiting, internal: same as V3
+		case 'V3': // waiting, external: replan + ask to set commitment for person being waited on
+			msg_general += " Consider requesting a commitment from the person you're waiting on for the information you need in order to meet your commitment.";
+			break;
+			
+		case 'V4': // COS: replan w/ better description
+			msg_description = ' Confirm the commitment description with the requester.';
+			break;
+			
+		case 'V5': // superseded, internal: replan, message about deeper planning
+		case 'V6': // superseded, external: replan, message about broader planning
+			break;
+			
+		case 'V7': // forgot: replan, message about use of workplan to help remember
+			msg_general += ' Consider referring to your workplan more frequently.';
+			break;
+			
+		case 'V9': // tech failure: replan + ask to set commitment for IT/tech person
+			msg_general += ' Consider requesting a commitment to resolve the source of the technical failure.';
+			
+		default:
+	}
+	
+	$("#add-commitment")
+		.data('replan', 1)
+		.data('oldId', oldId)
+		.data('msg-general', msg_general)
+		.data('msg-description', msg_description)
+		.data('msg-date-due', msg_date_due)
+		.data('commitmentgrid', commitmentgrid)
+		.data('rowIndex', rowIndex)
+		.data('columnIndex', columnIndex)
+		.data('oldValue', oldValue)
+		.data('newValue', newValue)
+		.dialog({show: { effect: "puff", duration: 150 }})
+		.dialog("open"); 
+}
+
+
+function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue)
 {     
 	var rowId = grid.getRowId(rowIndex);
 	var date_due_col = grid.getColumnIndex('due_by');
 	var uniqueid_col = grid.getColumnIndex('unique_id');
+	var taskid_col = grid.getColumnIndex('task_id');
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
