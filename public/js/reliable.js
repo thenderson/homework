@@ -211,7 +211,7 @@ console.log('request replan '+newValue);
 		.data('msg-general', msg_general)
 		.data('msg-description', msg_description)
 		.data('msg-date-due', msg_date_due)
-		.data('commitmentgrid', commitmentgrid)
+		.data('commitmentgrid', grid)
 		.data('rowIndex', rowIndex)
 		.data('columnIndex', columnIndex)
 		.data('oldValue', oldValue)
