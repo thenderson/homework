@@ -6,7 +6,7 @@
 		
 		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
 			<form class='form-horizontal' id='comm_form'>
-				<p class="form-control-static" id='message-general'></p>
+				<p class="form-control-static" id='msg-general'></p>
 				
 				<div class="control-group">
 					<label class="control-label" for="inp-proj">Project</label>
@@ -21,7 +21,7 @@
 					<div class="controls">
 						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5" tabindex=2></textarea>
 					</div>
-					<p class="form-control-static" id='message-description'></p>
+					<p class="form-control-static" id='msg-description'></p>
 				</div>
 
 				<div class="control-group">
@@ -30,7 +30,7 @@
 						<select class="input-sm" id="inp-req" name="requester" style="width: 200px" tabindex=3>
 						</select>
 					</div>
-					<p class="form-control-static" id='message-requester'></p>
+					<p class="form-control-static" id='msg-requester'></p>
 				</div>
 				
 				<div class="control-group">
@@ -39,7 +39,7 @@
 						<select class="input-sm" id="inp-prom" name="promiser" style="width: 200px" multiple tabindex=4>
 						</select>
 					</div>
-					<p class="form-control-static" id='message-promiser'>If promiser = requester, this will be personal workplan item.</p>
+					<p class="form-control-static" id='msg-promiser'>If promiser = requester, this will be personal workplan item.</p>
 				</div>
 				
 				<div class="control-group">
@@ -47,7 +47,7 @@
 					<div class="controls">
 						<input type="text" class="input-sm" id="inp-due" name="date_due" style="width: 200px" tabindex=5>
 					</div>
-					<p class="form-control-static" id='message-date-due'></p>
+					<p class="form-control-static" id='msg-date-due'></p>
 				</div>
 				
 				<div class="control-group">
@@ -91,13 +91,16 @@
 		modal: true,
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
+console.log('open function');
 			if ($(this).data('replan') == 1) {
+console.log('replan == 1');
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
 				$('#inp-comm').val($(this).data('description'));
 				// todo: preset other parameters
 			}
+			else $('[id^=msg]').hide();
 		},
 		buttons: {
 			"Submit": function() {

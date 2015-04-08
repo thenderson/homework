@@ -175,8 +175,6 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 	var msg_description = '';
 	var oldId = grid.getValueAt(rowIndex, taskid_col);
 
-console.log('request replan '+newValue);	
-
 	switch (newValue) {
 		case 'V1': // time: replan w/ sufficient time
 			msg_description = 'Consider defining the scope of the task more narrowly if it was too broad.'
