@@ -1,7 +1,9 @@
-<?php
-      
+<?php    
 require_once('config.php');         
-                      
+
+error_log(""); // make a break
+error_log("-----------add-------------");
+                   
 // Get POST data
 $project_number = strip_tags($_POST['projectnumber']);
 $description = strip_tags($_POST['desc']);
@@ -83,4 +85,5 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+error.log('New commitment ID: '.$id);
 echo json_encode($new_comm);

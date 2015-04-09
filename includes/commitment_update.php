@@ -1,7 +1,7 @@
 <?php    
 require_once('config.php');         
 error_log(""); // make a break
-error_log("------------------------------");
+error_log("-----------update-------------");
                    
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
@@ -276,7 +276,7 @@ switch ($column_name) {
 
 // UPDATE COMMITMENT DATABASE
 $stmt = $comm_db->prepare($q);
-error_log($q);
+//error_log($q);
 
 if (!$stmt)
 {
@@ -333,10 +333,10 @@ if ($q_user_metrics != "" && $q_proj_metrics != "") {
 		exit;
 	}
 	
-	error_log($q_user_metrics);
-	error_log($q_proj_metrics);
-	error_log(""); // make a break
-	error_log("------------------------------");
+	// error_log($q_user_metrics);
+	// error_log($q_proj_metrics);
+	// error_log(""); // make a break
+	// error_log("------------------------------");
 }
 
 echo json_encode($new_comm);
