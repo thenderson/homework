@@ -217,9 +217,8 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 }
 
 
-function updateCellValue(commitmentgrid, rowIndex, columnIndex, oldValue, newValue) {
-console.debug(commitmentgrid);
-	var rowId = commitmentgrid.grid.getRowId(rowIndex);
+function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue) {
+	var rowId = grid.getRowId(rowIndex);
 	var date_due_col = grid.getColumnIndex('due_by');
 	var uniqueid_col = grid.getColumnIndex('unique_id');
 	var taskid_col = grid.getColumnIndex('task_id');
