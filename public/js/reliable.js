@@ -217,9 +217,9 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 }
 
 
-function updateCellValue(grid, rowIndex, columnIndex, oldValue, newValue) {
-console.debug(grid);
-	var rowId = grid.getRowId(rowIndex);
+function updateCellValue(comgrid, rowIndex, columnIndex, oldValue, newValue) {
+console.debug(comgrid);
+	var rowId = comgrid.grid.getRowId(rowIndex);
 	var date_due_col = grid.getColumnIndex('due_by');
 	var uniqueid_col = grid.getColumnIndex('unique_id');
 	var taskid_col = grid.getColumnIndex('task_id');
@@ -400,7 +400,7 @@ function updatePaginator(grid, divId)
 	var nbPages = grid.getPageCount();
 	
 	// get interval
-	var interval = grid.getSlidingPageInterval(nbPages);
+	var interval = (nbPages <= 0) ? null : grid.getSlidingPageInterval(nbPages);
 	if (interval == null) return;
 	
 	// get pages in interval (with links except for the current page)
