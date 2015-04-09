@@ -69,7 +69,7 @@ function CommitmentGrid(name) {
 			});
 			$('i.delete').addClass('eventAttached');
 
-			updatePaginator(self.grid, self.name+'_paginator'); 
+			updatePaginator(self.grid, self.name+'_paginator', self.grid.pageSize); 
 		},
 		tableLoaded: function() { 
 
@@ -218,41 +218,40 @@ function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
 
 
 function updateCellValue(comgrid, rowIndex, columnIndex, oldValue, newValue) {
-console.debug(comgrid);
 	var rowId = comgrid.grid.getRowId(rowIndex);
-	var date_due_col = grid.getColumnIndex('due_by');
-	var uniqueid_col = grid.getColumnIndex('unique_id');
-	var taskid_col = grid.getColumnIndex('task_id');
+	var date_due_col = comgrid.grid.getColumnIndex('due_by');
+	var uniqueid_col = comgrid.grid.getColumnIndex('unique_id');
+	var taskid_col = comgrid.grid.getColumnIndex('task_id');
 	
 	$.ajax({
 		url: '../includes/commitment_update.php',
 		type: 'POST',
 		dataType: "json",
 		data: {
-			uniqueid: grid.getValueAt(rowIndex, uniqueid_col),
+			uniqueid: comgrid.grid.getValueAt(rowIndex, uniqueid_col),
 			newvalue: newValue, 
 			oldvalue: oldValue,
-			colname: grid.getColumnName(columnIndex),
-			date_due: grid.getValueAt(rowIndex, date_due_col)
+			colname: comgrid.grid.getColumnName(columnIndex),
+			date_due: comgrid.grid.getValueAt(rowIndex, date_due_col)
 		},
 		success: function (response) 
 		{
 			// reset old value if failed then highlight row
 			if (response == 'error' || response == "") {
-				grid.setValueAt(rowIndex, columnIndex, oldValue);
-				highlight(grid.name, rowId, "error"); 
+				comgrid.grid.setValueAt(rowIndex, columnIndex, oldValue);
+				highlight(comgrid.grid.name, rowId, "error"); 
 			}
 			else {
 				values = response[0];
 				$.each(values, function(key, value) {
-					columnIndex = grid.getColumnIndex(key);
-					if (columnIndex != -1) grid.setValueAt(rowIndex, columnIndex, value);
+					columnIndex = comgrid.grid.getColumnIndex(key);
+					if (columnIndex != -1) comgrid.grid.setValueAt(rowIndex, columnIndex, value);
 				});
-				highlight(grid.name, rowId, "ok");
+				highlight(comgrid.grid.name, rowId, "ok");
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
-			highlight(grid.name, rowId, "error");
+			highlight(comgrid.grid.name, rowId, "error");
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
 		},
 		complete: function () {
