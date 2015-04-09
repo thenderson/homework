@@ -6,8 +6,10 @@ var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':
 function highlightRow(gridname, rowId, bgColor, after) {
 	var rowSelector = $("#"+gridname+"_" + rowId);
 	rowSelector.css("background-color", bgColor);
-	rowSelector.fadeTo("slow", 0.1, function() { 
-		rowSelector.css("background-color", '');
+	rowSelector.fadeTo("fast", 0.9, function() { 
+		rowSelector.fadeTo("fast", 1, function() { 
+			rowSelector.css("background-color", '');
+		});
 	});
 }
 
@@ -204,7 +206,7 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		.data('msg-general', msg_general)
 		.data('msg-description', msg_description)
 		.data('msg-date-due', msg_date_due)
-		.data('commitmentgrid', grid)
+		.data('commitmentgrid', comgrid)
 		.data('rowIndex', rowIndex)
 		.data('columnIndex', columnIndex)
 		.data('oldValue', oldValue)
