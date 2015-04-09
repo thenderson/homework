@@ -158,8 +158,8 @@ function CommitmentGrid(name) {
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-			if (/V[012345679]/.test(newValue)) requestReplan(this, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
-   	    	else updateCellValue(this, rowIndex, columnIndex, oldValue, newValue);
+			if (/V[012345679]/.test(newValue)) requestReplan(self, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
+   	    	else updateCellValue(self, rowIndex, columnIndex, oldValue, newValue);
        	}
  	});
 }
