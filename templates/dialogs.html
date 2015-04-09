@@ -91,6 +91,7 @@
 		modal: true,
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
+			replan = 0;
 			if ($(this).data('replan') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 				$('#msg-general').html($(this).data('msg-general'));
