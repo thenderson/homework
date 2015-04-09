@@ -6,10 +6,8 @@ var statuses = {'O':'open', 'C0':'complete - improvised', 'C1':'complete', 'C2':
 function highlightRow(gridname, rowId, bgColor, after) {
 	var rowSelector = $("#"+gridname+"_" + rowId);
 	rowSelector.css("background-color", bgColor);
-	rowSelector.fadeTo("fast", 0.5, function() { 
-		rowSelector.fadeTo("fast", 1, function() { 
-			rowSelector.css("background-color", '');
-		});
+	rowSelector.fadeTo("slow", 0.1, function() { 
+		rowSelector.css("background-color", '');
 	});
 }
 
@@ -165,9 +163,9 @@ function CommitmentGrid(name) {
 }
 
 
-function requestReplan(grid, rowIndex, columnIndex, oldValue, newValue) {
+function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 	
-	var oldRowValues = grid.getRowValues(rowIndex);
+	var oldRowValues = comgrid.grid.getRowValues(rowIndex);
 	
 	var msg_general = 'Please replan this task or press cancel (esc) to record its closing status as V8 - Not Needed.';
 	var msg_date_due = 'Enter a new due date.';
@@ -255,9 +253,9 @@ function updateCellValue(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
 		},
 		complete: function () {
-			$('[id^='+self.name+'_total]').animate({opacity: .8}, 500, function() {
-				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
-				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
+			$('[id^='+comgrid.name+'_total]').animate({opacity: .8}, 500, function() {
+				$('[id^='+comgrid.name+'_total]').html('total: <strong>'+comgrid.grid.getTotalRowCount()+'</strong>');
+				$('[id^='+comgrid.name+'_total]').animate({opacity: 1}, 100);
 			});
 		},
 		async: true
