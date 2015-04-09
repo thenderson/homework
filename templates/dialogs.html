@@ -98,7 +98,7 @@
 				$('#msg-date-due').html($(this).data('msg-date-due'));
 				//$("#inp-proj").filter('[value='+oldRowValues['project_number']+']').prop('selected', true);
 				//$('#inp-proj').val(oldRowValues['project_number']);
-				$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh");
+				$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh").trigger('select');
 				$('#inp-comm').val(oldRowValues['description']);
 				//$('#inp-req').selectmenu('enable').filter('[value='+oldRowValues['requester']+']').prop('selected', true).selectmenu("refresh");
 				//$('#inp-prom').selectmenu('enable').filter('[value='+oldRowValues['promiser']+']').prop('selected', true).selectmenu("refresh");
