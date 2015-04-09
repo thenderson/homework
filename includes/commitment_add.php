@@ -85,5 +85,5 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error.log('New commitment ID: '.$id);
+error_log('New commitment ID: '.$id);
 echo json_encode($new_comm);
