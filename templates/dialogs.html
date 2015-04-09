@@ -97,10 +97,11 @@
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
 				//$("#inp-proj").filter('[value='+oldRowValues['project_number']+']').prop('selected', true);
-				$('#inp-proj').val(oldRowValues['project_number']);
+				//$('#inp-proj').val(oldRowValues['project_number']);
+				$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']);
 				$('#inp-comm').val(oldRowValues['description']);
-				$('#inp-req').filter('[value='+oldRowValues['requester']+']').prop('selected', true);
-				$('#inp-prom').filter('[value='+oldRowValues['promiser']+']').prop('selected', true);
+				$('#inp-req').selectmenu('enable').filter('[value='+oldRowValues['requester']+']').prop('selected', true);
+				$('#inp-prom').selectmenu('enable').filter('[value='+oldRowValues['promiser']+']').prop('selected', true);
 				// todo: preset other parameters
 			}
 			else $('[id^=msg]').hide();
