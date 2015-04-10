@@ -128,6 +128,7 @@
 				$.each($('#comm_form').serializeArray(), function(i, field) {
 					data[field.name] = field.value;
 				});
+				console.debug(data);
 				$(this).dialog("close");
 				if ($(this).data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
 					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
