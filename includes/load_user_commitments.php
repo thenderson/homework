@@ -62,7 +62,10 @@
 		
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		
+		$x = '---------------------------';
+		dbug($x);
 		dbug($projects);
+		dbug($x);
 		error_log(dbug('print'));
 		
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
