@@ -59,13 +59,14 @@
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		
 		dbug($rows);
+		error_log(dbug('print'));
 		
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		
-		$x = 99999;
-		dbug($x);
+		error_log('break');
+		error_log('--------------------------------------------');
+		
 		dbug($projects);
-		dbug($x);
 		error_log(dbug('print'));
 		
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
