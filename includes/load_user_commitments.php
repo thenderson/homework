@@ -62,7 +62,7 @@
 		
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		
-		$x = '---------------------------';
+		$x = 99999;
 		dbug($x);
 		dbug($projects);
 		dbug($x);
