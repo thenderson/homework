@@ -209,10 +209,10 @@ switch ($column_name) {
 					// 11. V? --> variance: increment V to project & individual; set status to V#
 					$q = 'UPDATE commitments SET status = ? WHERE unique_id = ?';
 					
-					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value)  VALUES($promiser, '$last_monday', 1)
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value) VALUES($promiser, '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value)  VALUES($project_number, '$last_monday', 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value) VALUES($project_number, '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";
 				}
 				else {

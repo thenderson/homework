@@ -96,14 +96,28 @@
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
-				//$("#inp-proj").filter('[value='+oldRowValues['project_number']+']').prop('selected', true);
-				//$('#inp-proj').val(oldRowValues['project_number']);
-				$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh").trigger('select');
+				
+				$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh");
+				$("#inp-proj").filter('[value!='+oldRowValues['project_number']+']').prop('disabled', true);
+				
 				$('#inp-comm').val(oldRowValues['description']);
-				//$('#inp-req').selectmenu('enable').filter('[value='+oldRowValues['requester']+']').prop('selected', true).selectmenu("refresh");
-				//$('#inp-prom').selectmenu('enable').filter('[value='+oldRowValues['promiser']+']').prop('selected', true).selectmenu("refresh");
-				$('#inp-req').selectmenu('enable').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
-				$('#inp-prom').selectmenu('enable').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
+				
+				$.ajax({
+					url: '../includes/load_project_usernames.php',
+					type: 'POST',
+					dataType: 'JSON',
+					data: {p: oldRowValues['project_number']},
+					success: function (proj_users) {
+						populate_select_names("#inp-req", proj_users);
+						populate_select_names("#inp-prom", proj_users);
+						$('#inp-req').selectmenu('enable').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
+						$('#inp-prom').selectmenu('enable').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
+					},
+					error: function(XMLHttpRequest, textStatus, exception) { 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+					async: true
+				});
+
 				// todo: preset other parameters
 			}
 			else $('[id^=msg]').hide();
