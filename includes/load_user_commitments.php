@@ -57,8 +57,14 @@
 	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
 	else {
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
+		
+		dbug($rows);
+		
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
-var_dump($projects);
+		
+		dbug($projects);
+		error_log(dbug('print');
+		
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
 
