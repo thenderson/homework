@@ -19,9 +19,9 @@
 		
 	catch(PDOException $e) {trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);}
 	
-	$project_number = $result[0]['project_number'];
-	$requester = $result[0]['requester'];
-	$promiser = $result[0]['promiser'];
+	$project_number = $result['project_number'];
+	$requester = $result['requester'];
+	$promiser = $result['promiser'];
 	
 	// load commitment data from three tables
 	$q2 = 
