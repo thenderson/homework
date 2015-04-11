@@ -62,7 +62,7 @@
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
 	
-dbug($commitments);
+dbug($projects);
 error_log(dbug('print'));
 
 	// create grid
