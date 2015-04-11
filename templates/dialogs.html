@@ -95,7 +95,7 @@
 				oldRowValues = $(this).data('oldRowValues');
 
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
-				.html(oldRowValues['project_shortname').attr('selected', true)).selectmenu('refresh');
+				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 				
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
