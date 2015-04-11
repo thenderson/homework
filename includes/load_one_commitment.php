@@ -20,7 +20,7 @@
 	catch(PDOException $e) {trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);}
 	
 	dbug($result);
-	error_log(echo dbug('print'));
+	error_log(dbug('print'));
 	
 	$project_number = $result['project_number'];
 	$requester = $result['requester'];
