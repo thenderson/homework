@@ -6,7 +6,7 @@
 	$unique_id = strip_tags($_POST['id']);
 	
 	// load project number, requester & promiser
-	$q1 = 'SELECT a.project_number, requester, promiser FROM commitments WHERE unique_id = ?';
+	$q1 = 'SELECT project_number, requester, promiser FROM commitments WHERE unique_id = ?';
 	
 	if (!($stmt = $comm_db->prepare($q1))) {
 		trigger_error('Statement failed : ' . $p->error, E_USER_ERROR);
