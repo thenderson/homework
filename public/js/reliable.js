@@ -205,7 +205,7 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		url: '../includes/load_one_commitment.php',
 		type: 'POST',
 		dataType: 'JSON',
-		data: {p: oldRowValues['task_id']},
+		data: {id: oldRowValues['task_id']},
 		success: function (response) {
 			$("#add-commitment")
 				.data('replan', 1)
