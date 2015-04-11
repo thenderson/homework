@@ -158,7 +158,8 @@ function CommitmentGrid(name) {
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-			if (/V[012345679]/.test(newValue)) requestReplan(self, rowIndex, columnIndex, oldValue, newValue); // note V8 not included
+			if (/V[012345679]/.test(newValue) && !(/V[012345679]/.test(oldValue))) { // if setting a new variance, unless changing from a previous replannable variance
+				requestReplan(self, rowIndex, columnIndex, oldValue, newValue);} // V8 not included
    	    	else updateCellValue(self, rowIndex, columnIndex, oldValue, newValue);
        	}
  	});
@@ -218,7 +219,7 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 				.data('oldValue', oldValue)
 				.data('newValue', newValue)
 				.data('oldRowValues', response)
-				.dialog({show: { effect: "puff", duration: 150 }})
+				.dialog({show: { effect: "puff", duration: 150, closeOnEscape: false }})
 				.dialog("open"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 

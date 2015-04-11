@@ -93,7 +93,6 @@
 		open: function( event, ui ) {
 			if ($(this).data('replan') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
-console.debug(oldRowValues);
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 				
@@ -136,7 +135,6 @@ console.debug(oldRowValues);
 				$.each($('#comm_form').serializeArray(), function(i, field) {
 					data[field.name] = field.value;
 				});
-				console.debug(data);
 				$(this).dialog("close");
 				if ($(this).data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
 					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
@@ -144,6 +142,7 @@ console.debug(oldRowValues);
 					data['replan'] = oldRowValues['task_id'];
 				}
 				commitments.AddRow(data);
+				$(this).data = {};
 			},
 			"Submit+": function() {
 				var data = {};
@@ -161,9 +160,10 @@ console.debug(oldRowValues);
 			},
 			Cancel: function() {
 				$(this).dialog("close");
-				if ($(this).data('replan' == 1)) { // user cancels suggestion to replan -> we conclude that its variance was 8, not needed.
+				if ($(this).data('replan' == 1)) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
 					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
+					$(this).data = {};
 				}
 			}
 		},
@@ -172,7 +172,7 @@ console.debug(oldRowValues);
 	$("#new_com_btn").on("click", function() {
 		$("#add-commitment")
 			.data('replan', 0)
-			.dialog({show: { effect: "puff", duration: 150 }})
+			.dialog({show: { effect: "puff", duration: 150, closeOnEscape: false }})
 			.dialog("open"); 
 	});
 	
