@@ -201,19 +201,30 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		default:
 	}
 	
-	$("#add-commitment")
-		.data('replan', 1)
-		.data('msg-general', msg_general)
-		.data('msg-description', msg_description)
-		.data('msg-date-due', msg_date_due)
-		.data('commitmentgrid', comgrid)
-		.data('rowIndex', rowIndex)
-		.data('columnIndex', columnIndex)
-		.data('oldValue', oldValue)
-		.data('newValue', newValue)
-		.data('oldRowValues', oldRowValues)
-		.dialog({show: { effect: "puff", duration: 150 }})
-		.dialog("open"); 
+	$.ajax({ //load project name & populate selectmenu
+		url: '../includes/load_one_commitment.php',
+		type: 'POST',
+		dataType: 'JSON',
+		data: {p: oldRowValues['id']},
+		success: function (response) {
+			$("#add-commitment")
+				.data('replan', 1)
+				.data('msg-general', msg_general)
+				.data('msg-description', msg_description)
+				.data('msg-date-due', msg_date_due)
+				.data('commitmentgrid', comgrid)
+				.data('rowIndex', rowIndex)
+				.data('columnIndex', columnIndex)
+				.data('oldValue', oldValue)
+				.data('newValue', newValue)
+				.data('oldRowValues', response)
+				.dialog({show: { effect: "puff", duration: 150 }})
+				.dialog("open"); 
+		},
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+		async: true
+	});
 }
 
 
