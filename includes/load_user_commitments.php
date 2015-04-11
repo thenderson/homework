@@ -61,6 +61,9 @@
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		foreach ($commitments as $commitment) $commitment['project_shortname'] = $projects[$commitment['project_number']];
 	}
+	
+dbug($commitments);
+error_log(dbug('print'));
 
 	// create grid
 	$grid = new EditableGrid();
