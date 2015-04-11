@@ -45,4 +45,4 @@
 	catch(PDOException $e) {
 		trigger_error('Wrong SQL: ' . $qb . ' Error: ' . $e->getMessage(), E_USER_ERROR);}
 
-echo json_encode($result2);
+echo json_encode($result2[0]);
