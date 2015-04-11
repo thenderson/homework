@@ -62,6 +62,7 @@
 		foreach ($commitments as $commitment) {
 			$commitment['project_shortname'] = $projects[$commitment['project_number']];
 			dbug($commitment);
+		}
 	}
 	
 //dbug($projects);
