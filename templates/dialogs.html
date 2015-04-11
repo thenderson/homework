@@ -93,6 +93,21 @@
 		open: function( event, ui ) {
 			if ($(this).data('replan') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
+				
+				$.ajax({ //load project name & populate selectmenu
+					url: '../includes/load_project_name.php',
+					type: 'POST',
+					dataType: 'text',
+					data: {p: oldRowValues['project_number']},
+					success: function (response) {
+						$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
+						.html(response).attr('selected', true)).selectmenu('refresh');
+					},
+					error: function(XMLHttpRequest, textStatus, exception) { 
+						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+					async: true
+				});
+				
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
@@ -100,8 +115,6 @@
 				//$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh");
 				//$("#inp-proj").filter('[value!='+oldRowValues['project_number']+']').prop('disabled', true);
 				//$("#inp-proj").append($("<option>").attr('value',oldRowValues['project_number']).text(oldRowValues['project_name'])).prop('selected', true);
-				
-				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number']).html(oldRowValues['project_name']).attr('selected', true));
 				
 				$('#inp-comm').val(oldRowValues['description']);
 				
@@ -111,10 +124,13 @@
 					dataType: 'JSON',
 					data: {p: oldRowValues['project_number']},
 					success: function (proj_users) {
+						$('#inp-req').selectmenu('enable');
 						populate_select_names("#inp-req", proj_users);
+						$('#inp-req')prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
+						
+						$('#inp-prom').selectmenu('enable');
 						populate_select_names("#inp-prom", proj_users);
-						$('#inp-req').selectmenu('enable').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
-						$('#inp-prom').selectmenu('enable').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
+						$('#inp-prom')prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
 					},
 					error: function(XMLHttpRequest, textStatus, exception) { 
 						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
