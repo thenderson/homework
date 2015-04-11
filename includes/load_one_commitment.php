@@ -5,6 +5,10 @@
     require_once('../includes/config.php');     
 	$unique_id = strip_tags($_POST['id']);
 	
+	error_log('--------------');
+	error_log('--------------');
+	error_log("id: $unique_id");
+	
 	// load project number, requester & promiser
 	$q1 = 'SELECT project_number, requester, promiser FROM commitments WHERE unique_id = ?';
 	
@@ -19,8 +23,10 @@
 		
 	catch(PDOException $e) {trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);}
 	
+	error_log('--------------');
 	dbug($result);
 	error_log(dbug('print'));
+	error_log('--------------');
 	
 	$project_number = $result['project_number'];
 	$requester = $result['requester'];
