@@ -156,10 +156,12 @@ function CommitmentGrid(name) {
 			this.setCellRenderer('task_id', new CellRenderer ({
 				render: function(cell, value) {
 					var floor = Math.floor(value);
-					var dec = value-floor;
+					var dec = (value-floor)*100;
+					if (dec < 10) dec = '.0' + dec;
+					else dec = '.' + dec;
 					
 					if (dec != 0) cell.innerHTML = value;
-					else cell.innerHTML = floor + "<i class='zerozero'>" + dec.toFixed(2);
+					else cell.innerHTML = floor + "<span class='zerozero'>" + dec + '</span>';
 			}}));
 			
 			this.renderGrid(self.name+'_d', 'table', self.name); 
