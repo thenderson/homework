@@ -59,7 +59,8 @@
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		foreach ($commitments as $com) {
-			$com['project_shortname' => $projects[$com['project_number']]];
+			//$com['project_shortname'] = $projects[$com['project_number']];
+			error_log($com['project_shortname'].' -- '.$projects[$com['project_number']]);
 		}
 	}
 
