@@ -153,6 +153,15 @@ function CommitmentGrid(name) {
 				}
 			}));
 			
+			this.setCellRenderer('task_id', new CellRenderer ({
+				render: function(cell, value) {
+					var floor = Math.floor(value);
+					var dec = value-floor;
+					
+					if (dec != 0) cell.innerHTML = value;
+					else cell.innerHTML = floor + "<i class='zerozero'>" + dec.toFixed(2);
+			}}));
+			
 			this.renderGrid(self.name+'_d', 'table', self.name); 
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},

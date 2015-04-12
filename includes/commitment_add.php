@@ -37,9 +37,10 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 
 	$new_Id = $result[0]['task_id'] + .01; 
 
-	// todo: deal with extreme case where a task has been replanned 99 times
+	if (floor($new_Id) > $floor) $replan = -1; // handles oddball case of a task replanned 99 times by assigning a new task Id
 }
-else {
+
+if ($replan = -1) {
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
 	if (!$stmt) {
