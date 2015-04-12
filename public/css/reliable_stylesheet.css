@@ -233,7 +233,7 @@ color: #337ab7;
 
 	th.editablegrid-task_id,
 	td.editablegrid-task_id {
-		text-align: left;
+		text-align: right;
 		min-width: 6em;
 	}
 
@@ -311,7 +311,7 @@ color: #337ab7;
 
 	th.editablegrid-task_id,
 	td.editablegrid-task_id  {
-		text-align: left;
+		text-align: right;
 		min-width: 6em;
 	}
 
