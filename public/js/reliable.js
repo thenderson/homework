@@ -74,7 +74,6 @@ function CommitmentGrid(name) {
 		tableLoaded: function() { 
 
 			var closed_col = self.grid.getColumnIndex('is_closed');
-			//var desc_col = self.grid.getColumnIndex('description');
 			var priority_col = self.grid.getColumnIndex('priority_h');
 			var status_col = self.grid.getColumnIndex('status');
 			

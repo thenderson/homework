@@ -57,15 +57,13 @@
 	if (!$proj_res) trigger_error('Statement failed : ' . E_USER_ERROR);
 	else {
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
-		
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		foreach ($commitments as $commitment) {
 			$commitment['project_shortname'] = $projects[$commitment['project_number']];
-			dbug($commitment);
 		}
 	}
 	
-//dbug($projects);
+dbug($commitments);
 error_log(dbug('print'));
 
 	// create grid
@@ -76,7 +74,7 @@ error_log(dbug('print'));
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
-	$grid->addColumn('task_id', 'ID #', 'string', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'double(NULL, 2, dot, comma)', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
