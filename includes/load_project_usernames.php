@@ -29,6 +29,6 @@
 	}
 	
 	$users = [];
-	foreach ($result as $res) $users["'".$res['user_id']."'"] = $res['name'];
+	foreach ($result as $res) $users[$res['user_id']] = $res['name'];
 	
 	echo json_encode($users);

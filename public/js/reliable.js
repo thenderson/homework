@@ -468,7 +468,7 @@ function populate_select(element, values) {
 
 function populate_select_names(element, values) {
 	$.each(values, function(key, value) {
-		$(element).append($('<option>', {value : key}).text(value));
+		$(element).append($('<option>', {value : key+''}).text(value));
 	});
 };
 
