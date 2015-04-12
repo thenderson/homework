@@ -466,19 +466,11 @@ function populate_select(element, values) {
 	});
 };
 
-function populate_select_names(element, objects) {
-	$.each(objects, function(key, object) {
-		$(element).append($("<option>").attr('value',object['user_id']).text(object['name']));
+function populate_select_names(element, values) {
+	$.each(values, function(key, value) {
+		$(element).append($('<option>', {value : key}).text(value));
 	});
 };
-
-$.each(selectValues, function(key, value) {   
-     $('#mySelect')
-          .append($('<option>', { value : key })
-          .text(value)); 
-});
-
-
 
 function populate_select_projects(element, objects) {
 	$.each(objects, function(key, object) {
