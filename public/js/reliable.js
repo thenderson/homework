@@ -201,12 +201,14 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		default:
 	}
 	
-	$.ajax({ //load project name & populate selectmenu
+	$.ajax({ //load commitment information and pass to dialog box for input.
 		url: '../includes/load_one_commitment.php',
 		type: 'POST',
 		dataType: 'JSON',
 		data: {id: oldRowValues['unique_id']},
 		success: function (response) {
+console.log('results from sql:');
+console.debug(response);
 			$("#add-commitment")
 				.data('replan', 1)
 				.data('msg-general', msg_general)
@@ -218,7 +220,7 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 				.data('oldValue', oldValue)
 				.data('newValue', newValue)
 				.data('oldRowValues', response)
-				.dialog({show: { effect: "puff", duration: 150, closeOnEscape: false }})
+				.dialog({show: { effect: "puff", duration: 150}})
 				.dialog("open"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
@@ -321,6 +323,9 @@ CommitmentGrid.prototype.DeleteRow = function(index) {
 
 CommitmentGrid.prototype.AddRow = function(values) 
 {
+console.log('data received by AddRow:');
+console.debug(values);
+
 	var self = this;
     $.ajax({
 		url: '../includes/commitment_add.php',
