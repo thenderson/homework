@@ -62,6 +62,8 @@
 			$com['project_shortname'] = 'fish'; //$projects[$com['project_number']];
 		}
 	}
+error_log('');
+foreach ($commitments as $c) error_log($c['project_number'].'  '.$c['project_shortname']);
 	
 //dbug($commitments);
 //error_log(dbug('print'));
