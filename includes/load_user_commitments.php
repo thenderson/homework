@@ -74,7 +74,7 @@ error_log(dbug('print'));
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
-	$grid->addColumn('task_id', 'ID #', 'double(NULL,1,dot,comma)', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'double(,1,dot,comma,)', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
