@@ -119,8 +119,6 @@ margin-bottom: 0;
 #projects th,
 #project_commitments th { /*table header*/
 	background: white;
-	padding-left: 1px;
-	padding-right: 1px;
 	padding-top: 4px;
 	padding-bottom: 0px;
 	white-space: nowrap; 
@@ -133,10 +131,7 @@ margin-bottom: 0;
 #project_commitments td {
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-right: 1px;
-	padding-left: 1px;
 	line-height: normal;
-	border-bottom: 1px solid rgb(192,192,192);
 	border-bottom: 1px solid rgb(192,192,192);
 }
 
@@ -222,78 +217,103 @@ color: #337ab7;
 	th.editablegrid-project_number,
 	td.editablegrid-project_number {
 		text-align: left;
-		min-width: 7em;
+		width: 7em;
+		padding-left: 0px;
+		padding-right: 1px;
 	}
 	
 	th.editablegrid-project_shortname,
 	td.editablegrid-project_shortname {
 		text-align: left;
 		min-width: 9em;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 
 	th.editablegrid-task_id,
 	td.editablegrid-task_id {
 		text-align: right;
-		padding-right: 8px;
 		min-width: 6em;
+		padding-left: 2px;
+		padding-right: 8px;
 	}
 
 	th.editablegrid-description,
 	td.editablegrid-description {
 		text-align: left;
 		min-width: 16em;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 
 	th.editablegrid-description-wide,
 	td.editablegrid-description-wide {
 		text-align: left;
 		min-width: 20em;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 
 	th.editablegrid-promiser,
 	td.editablegrid-promiser {
 		text-align: center;
 		min-width: 10em;
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 
 	th.editablegrid-requester,
 	td.editablegrid-requester {
 		text-align: center;
 		min-width: 10em;
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 
 	th.editablegrid-due_by,
 	td.editablegrid-due_by {
 		text-align: center;
 		min-width: 6em;
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 	
 	th.editablegrid-priority_h,
 	td.editablegrid-priority_h {
 		text-align: center;
 		min-width: 3em;
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 
 	th.editablegrid-status,
 	td.editablegrid-status {
 		text-align: center;
 		min-width: 3em;
+		padding-left: 1px;
+		padding-right: 1px;
 	}
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 		text-align: right;
 		min-width: 3em;
+		padding-left: 1px;
+		padding-right: 0px;
 	}
 
 	th.editablegrid-project_number_2,
 	td.editablegrid-project_number_2  { /* for project lists */
 		text-align: left;
 		min-width: 7em;
+		padding-left: 0px;
+		padding-right: 2px;
 	}
 	th.editablegrid-project_name,
 	td.editablegrid-project_name { /* for project lists */
 		text-align: left;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 }
 
