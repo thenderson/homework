@@ -99,12 +99,8 @@
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
-				
-				//$('#inp-proj').prop('selectedIndex', oldRowValues['project_number']).selectmenu("refresh");
-				//$("#inp-proj").filter('[value!='+oldRowValues['project_number']+']').prop('disabled', true);
-				//$("#inp-proj").append($("<option>").attr('value',oldRowValues['project_number']).text(oldRowValues['project_name'])).prop('selected', true);
-				
 				$('#inp-comm').val(oldRowValues['description']);
+				$('#inp-due').datepicker('setDate', 7);
 				
 				$.ajax({
 					url: '../includes/load_project_usernames.php',
@@ -126,8 +122,6 @@
 				});
 			}
 			else $('[id^=msg]').hide();
-			
-			$('#inp-due').datepicker('setDate', +7);
 		},
 		buttons: {
 			"Submit": function() {
@@ -141,6 +135,7 @@
 					$(this).data('oldValue'), $(this).data('newValue'));
 					data['replan'] = oldRowValues['task_id'];
 				}
+console.debug(data);
 				commitments.AddRow(data);
 				$(this).data = {};
 			},
