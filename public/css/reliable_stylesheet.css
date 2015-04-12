@@ -213,110 +213,107 @@ td.editablegrid-project_number_2 a {
 color: #337ab7;
 }
 
-@media screen and (min-device-width:481px) {
-	th.editablegrid-project_number,
-	td.editablegrid-project_number {
-		text-align: left;
-		width: 7em;
-		padding-left: 0px;
-		padding-right: 1px;
-	}
-	
-	th.editablegrid-project_shortname,
-	td.editablegrid-project_shortname {
-		text-align: left;
-		min-width: 9em;
-		padding-left: 2px;
-		padding-right: 2px;
-	}
-
-	th.editablegrid-task_id,
-	td.editablegrid-task_id {
-		text-align: right;
-		width: 6em;
-		padding-left: 2px;
-		padding-right: 8px;
-	}
-
-	th.editablegrid-description,
-	td.editablegrid-description {
-		text-align: left;
-		min-width: 16em;
-		padding-left: 2px;
-		padding-right: 2px;
-	}
-
-	th.editablegrid-description-wide,
-	td.editablegrid-description-wide {
-		text-align: left;
-		min-width: 20em;
-		padding-left: 2px;
-		padding-right: 2px;
-	}
-
-	th.editablegrid-promiser,
-	td.editablegrid-promiser {
-		text-align: center;
-		width: 10em;
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-
-	th.editablegrid-requester,
-	td.editablegrid-requester {
-		text-align: center;
-		width: 10em;
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-
-	th.editablegrid-due_by,
-	td.editablegrid-due_by {
-		text-align: center;
-		width: 6em;
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-	
-	th.editablegrid-priority_h,
-	td.editablegrid-priority_h {
-		text-align: center;
-		width: 3em;
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-
-	th.editablegrid-status,
-	td.editablegrid-status {
-		text-align: center;
-		width: 3em;
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-
-	th.editablegrid-actions,
-	td.editablegrid-actions {
-		text-align: right;
-		width: 4em;
-		padding-left: 1px;
-		padding-right: 0px;
-	}
-
-	th.editablegrid-project_number_2,
-	td.editablegrid-project_number_2  { /* for project lists */
-		text-align: left;
-		min-width: 7em;
-		padding-left: 0px;
-		padding-right: 2px;
-	}
-	th.editablegrid-project_name,
-	td.editablegrid-project_name { /* for project lists */
-		text-align: left;
-		padding-left: 2px;
-		padding-right: 2px;
-	}
+th.editablegrid-project_number,
+td.editablegrid-project_number {
+	text-align: left;
+	width: 7em;
+	padding-left: 0px;
+	padding-right: 1px;
 }
 
+th.editablegrid-project_shortname,
+td.editablegrid-project_shortname {
+	text-align: left;
+	width: 9em;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+th.editablegrid-task_id,
+td.editablegrid-task_id {
+	text-align: right;
+	width: 6em;
+	padding-left: 2px;
+	padding-right: 8px;
+}
+
+th.editablegrid-description,
+td.editablegrid-description {
+	text-align: left;
+	min-width: 16em;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+th.editablegrid-description-wide,
+td.editablegrid-description-wide {
+	text-align: left;
+	min-width: 20em;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+th.editablegrid-promiser,
+td.editablegrid-promiser {
+	text-align: center;
+	width: 10em;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+th.editablegrid-requester,
+td.editablegrid-requester {
+	text-align: center;
+	width: 10em;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+th.editablegrid-due_by,
+td.editablegrid-due_by {
+	text-align: center;
+	width: 6em;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+th.editablegrid-priority_h,
+td.editablegrid-priority_h {
+	text-align: center;
+	width: 3em;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+th.editablegrid-status,
+td.editablegrid-status {
+	text-align: center;
+	width: 3em;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+th.editablegrid-actions,
+td.editablegrid-actions {
+	text-align: right;
+	width: 4em;
+	padding-left: 1px;
+	padding-right: 0px;
+}
+
+th.editablegrid-project_number_2,
+td.editablegrid-project_number_2  { /* for project lists */
+	text-align: left;
+	min-width: 7em;
+	padding-left: 0px;
+	padding-right: 2px;
+}
+th.editablegrid-project_name,
+td.editablegrid-project_name { /* for project lists */
+	text-align: left;
+	padding-left: 2px;
+	padding-right: 2px;
+}
 
 @media screen and (max-device-width:480px) {
 	th.editablegrid-project_number,
@@ -326,33 +323,7 @@ color: #337ab7;
 			
 	th.editablegrid-project_shortname,
 	td.editablegrid-project_shortname {
-		text-align: left;
-		min-width: 9em;
-	}
-
-	th.editablegrid-task_id,
-	td.editablegrid-task_id  {
-		text-align: right;
-		padding-right: 8px;
-		min-width: 6em;
-	}
-
-	th.editablegrid-description,
-	td.editablegrid-description {
-		text-align: left;
-		min-width: 16em;
-	}
-
-	th.editablegrid-description-wide,
-	td.editablegrid-description-wide  {
-		text-align: left;
-		min-width: 20em;
-	}
-
-	th.editablegrid-promiser,
-	td.editablegrid-promiser {
-		text-align: center;
-		min-width: 10em;
+		padding-left: 0px;
 	}
 
 	th.editablegrid-requester,
@@ -360,31 +331,14 @@ color: #337ab7;
 		display: none;
 	}
 
-	th.editablegrid-due_by,
-	td.editablegrid-due_by {
-		text-align: center;
-		min-width: 6em;
-	}
-
 	th.editablegrid-status,
 	td.editablegrid-status {
-		text-align: center;
-		min-width: 3em;
-	}
+	padding-right: 0px;
+}
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 		display: none;
-	}
-
-	th.editablegrid-project_number_2,
-	td.editablegrid-project_number_2  { /* for project lists */
-		text-align: left;
-		min-width: 7em;
-	}
-	th.editablegrid-project_name,
-	td.editablegrid-project_name { /* for project lists */
-		text-align: left;
 	}
 }
 
