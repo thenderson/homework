@@ -64,7 +64,7 @@
 	}
 	
 //dbug($commitments);
-error_log(dbug('print'));
+//error_log(dbug('print'));
 
 	// create grid
 	$grid = new EditableGrid();
@@ -72,8 +72,8 @@ error_log(dbug('print'));
 	//declare grid columns
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
-	$grid->addColumn('project_number', 'PROJECT #', 'string');
-	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
+	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
+	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	
