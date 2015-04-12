@@ -36,21 +36,21 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
-			// activate tooltips onto rendered grid
-			$('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+			// // activate tooltips onto rendered grid
+			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
-			$('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
+			// $('th.editablegrid-is_closed').attr('title', 'close a completed commitment').attr('data-placement', 'left').attr('data-container', 'body').tooltip();	
 
-			$('th.editablegrid-status').attr('title', 
-				'<strong>O:</strong> Open commitment\n\
-				<strong>C0:</strong> Closed, improvised\n\
-				<strong>C1:</strong> Closed, 1 week plan\n\
-				<strong>C2:</strong> Closed, anticipated\n\
-				<strong>D:</strong> Deferred indefinitely\n\
-				<strong>V*:</strong> Variance for plan failure.\n\
-				<strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip({html: true}).tooltip();
+			// $('th.editablegrid-status').attr('title', 
+				// '<strong>O:</strong> Open commitment\n\
+				// <strong>C0:</strong> Closed, improvised\n\
+				// <strong>C1:</strong> Closed, 1 week plan\n\
+				// <strong>C2:</strong> Closed, anticipated\n\
+				// <strong>D:</strong> Deferred indefinitely\n\
+				// <strong>V*:</strong> Variance for plan failure.\n\
+				// <strong>?:</strong> Status unknown').attr('data-placement', 'left').attr('data-container', 'body').tooltip({html: true}).tooltip();
 			
-			$('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
+			// $('th.editablegrid-actions').attr('title', 'Duplicate / Delete').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
 			// add event listeners to delete and duplicate spans
 			$('i.duplicate').not('i.eventAttached').click(function() { 

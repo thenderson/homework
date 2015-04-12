@@ -123,8 +123,8 @@ console.debug(proj_users);
 						$('#inp-prom').selectmenu('enable').empty();
 						populate_select_names("#inp-prom", proj_users);
 						//$('#inp-prom').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
-						//$('#inp-req').val("'"+oldRowValues['promiser']+"'");
-						$('#inp-req').val(oldRowValues['promiser']).selectmenu('refresh');
+						//$('#inp-prom').val("'"+oldRowValues['promiser']+"'");
+						$('#inp-prom').val(oldRowValues['promiser']).selectmenu('refresh');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) { 
 						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
