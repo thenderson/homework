@@ -507,7 +507,7 @@ padding: 0px, 0px;
 
 div.ui-dialog {position:fixed;}
 
-.zerozero { //decimal portion of replanned tasks when = 00
+.zerozero { /*decimal portion of replanned tasks when = 00 */
 color: rgb(192, 192, 192);
 }
 }
