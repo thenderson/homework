@@ -157,11 +157,11 @@ function CommitmentGrid(name) {
 				render: function(cell, value) {
 					var floor = Math.floor(value);
 					var dec = (value-floor)*100;
-					if (dec < 10) dec = '.0' + dec;
-					else dec = '.' + dec;
+					if (dec < 10) decstr = '.0' + dec;
+					else decstr = '.' + dec;
 					
 					if (dec != 0) cell.innerHTML = value;
-					else cell.innerHTML = floor + "<span class='zerozero'>" + dec + '</span>';
+					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
 			
 			this.renderGrid(self.name+'_d', 'table', self.name); 
