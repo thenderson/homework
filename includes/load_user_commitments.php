@@ -58,23 +58,23 @@
 	else {
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
-		foreach ($commitments as $commitment) {
-			$commitment['project_shortname'] = $projects[$commitment['project_number']];
+		foreach ($commitments as $com) {
+			$com['project_shortname'] = 'fish'; //$projects[$com['project_number']];
 		}
 	}
 	
-dbug($commitments);
+//dbug($commitments);
 error_log(dbug('print'));
 
 	// create grid
 	$grid = new EditableGrid();
 	
-	//declare grid columns TODO add columns for due/overdue, variance
+	//declare grid columns
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string');
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string');
-	$grid->addColumn('task_id', 'ID #', 'double(,1,dot,comma,)', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
