@@ -11,7 +11,7 @@ $promiser = strip_tags($_POST['prom']);
 $requester = strip_tags($_POST['req']);
 $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
-$replan = strip_tags($_POST['replan']);
+$replan = strip_tags($_POST['replan']); // = replanned task ID if true, -1 if false
 
 if ($status == 'OH') 
 {
@@ -23,14 +23,26 @@ else $priority = 0;
 
 // Determine task_id for new commitment
 if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID
-	$new_Id = $replan + 0.01;
+	$floor = floor($replan);
+	$ceiling = $floor + .999;
+	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments 
+	WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
+	
+	if (!$stmt) {
+		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+	else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	$new_Id = $result[0]['task_id'] + .01; 
+
 	// todo: deal with extreme case where a task has been replanned 99 times
 }
 else {
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
-	if (!$stmt)
-	{
+	if (!$stmt) {
 		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 		echo 'error';
 		exit;
