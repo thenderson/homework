@@ -207,8 +207,6 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		dataType: 'JSON',
 		data: {id: oldRowValues['unique_id']},
 		success: function (response) {
-console.log('results from sql:');
-console.debug(response);
 			$("#add-commitment")
 				.data('replan', 1)
 				.data('msg-general', msg_general)
@@ -321,11 +319,7 @@ CommitmentGrid.prototype.DeleteRow = function(index) {
 };
 
 
-CommitmentGrid.prototype.AddRow = function(values) 
-{
-console.log('data received by AddRow:');
-console.debug(values);
-
+CommitmentGrid.prototype.AddRow = function(values) {
 	var self = this;
     $.ajax({
 		url: '../includes/commitment_add.php',
@@ -340,8 +334,7 @@ console.debug(values);
 			stat: values['status'],
 			replan: (values['replan']) ? values['replan'] : -1
 		},
-		success: function (response) 
-		{ 
+		success: function (response) { 
 			// get id for new row (max id + 1)
 			var newRowId = 0;
 			var rowCount = self.grid.getRowCount();
@@ -351,8 +344,7 @@ console.debug(values);
 			self.grid.insertAfter(rowCount, newRowId, response[0]);
 			highlight(self.name, newRowId, "ok");
 		},
-		error: function(XMLHttpRequest, textStatus, exception) 
-		{ 
+		error: function(XMLHttpRequest, textStatus, exception) { 
 			//highlight(rowId, "error");
 			alert("Ajax failure\n" + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
 		},
@@ -479,6 +471,14 @@ function populate_select_names(element, objects) {
 		$(element).append($("<option>").attr('value',object['user_id']).text(object['name']));
 	});
 };
+
+$.each(selectValues, function(key, value) {   
+     $('#mySelect')
+          .append($('<option>', { value : key })
+          .text(value)); 
+});
+
+
 
 function populate_select_projects(element, objects) {
 	$.each(objects, function(key, object) {

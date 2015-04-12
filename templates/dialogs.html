@@ -113,15 +113,16 @@ console.debug(oldRowValues);
 					data: {p: oldRowValues['project_number']},
 					success: function (proj_users) {
 console.debug(proj_users);
-console.log('req: '+oldRowValues['requester']+' prom: '+oldRowValues['promiser']);
 
 						$('#inp-req').selectmenu('enable').empty();
 						populate_select_names("#inp-req", proj_users);
-						$('#inp-req').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
+						//$('#inp-req').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
+						$('#inp-req').val("'"+oldRowValues['requester']+"'");
 						
 						$('#inp-prom').selectmenu('enable').empty();
 						populate_select_names("#inp-prom", proj_users);
-						$('#inp-prom').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
+						//$('#inp-prom').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
+						$('#inp-req').val("'"+oldRowValues['promiser']+"'");
 					},
 					error: function(XMLHttpRequest, textStatus, exception) { 
 						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
