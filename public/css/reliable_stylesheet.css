@@ -54,22 +54,22 @@ margin-bottom: 0;
 }
 
 .nopadding {
-	padding-left: 1px;
-	padding-right: 1px;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 .login {
-	max-width: 15em;
+max-width: 15em;
 }
 
 .priority-h { 
-	font-weight: bold;
+font-weight: bold;
 }
 
 .closed {
-	color: rgb(192, 192, 192);
-	font-weight: normal;
-	background-color: none;
+color: rgb(192, 192, 192);
+font-weight: normal;
+background-color: none;
 }
 
 @media screen and (min-device-width:481px) {
@@ -118,56 +118,60 @@ margin-bottom: 0;
 #requests th,
 #projects th,
 #project_commitments th { /*table header*/
-	background: white;
-	padding-top: 4px;
-	padding-bottom: 0px;
-	white-space: nowrap; 
-	border-bottom: 2px solid rgb(192,192,192);
+background: white;
+padding-top: 4px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+white-space: nowrap; 
+border-bottom: 2px solid rgb(192,192,192);
 }
 
 #commitments td,
 #requests td,
 #projects td,
 #project_commitments td {
-	padding-top: 6px;
-	padding-bottom: 6px;
-	line-height: normal;
-	border-bottom: 1px solid rgb(192,192,192);
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 0px;
+padding-right: 0px;
+line-height: normal;
+border-bottom: 1px solid rgb(192,192,192);
 }
 
 tbody tr.overdue_2w:hover {
-	background-color: rgba(221, 128, 71, .25);
+background-color: rgba(221, 128, 71, .25);
 }
 
 tbody tr.overdue_1w:hover {
-	background-color: rgba(216, 178, 92, .2);
+background-color: rgba(216, 178, 92, .2);
 }
 
 tbody tr.due_nextweek:hover {
-	background-color: rgba(228, 228, 228, .5);
+background-color: rgba(228, 228, 228, .5);
 }
 
 tbody tr.due_future:hover {
-	background-color: rgba(228, 228, 228, .5);
+background-color: rgba(228, 228, 228, .5);
 }
 
 #commitments tr:hover,
 #requests tr:hover,
 #projects tr:hover,
 #project_commitments tr:hover {
-	background-color: rgba(228, 228, 228, .5);
+background-color: rgba(228, 228, 228, .5);
 }
 
 .overdue_2w {/* for table rows > 2 weeks overdue */
-	background-color: rgba(221, 128, 71, .45);
+background-color: rgba(221, 128, 71, .45);
 }
 
 .overdue_1w {/* for table rows < 2 weeks overdue */
-	background-color: rgba(216, 178, 92, .4);
+background-color: rgba(216, 178, 92, .4);
 }
 
 .due_nextweek {/* for table rows due next week */
-	background-color: rgb(228, 228, 228);
+background-color: rgb(228, 228, 228);
 }
 
 .due_future {
@@ -183,29 +187,29 @@ font-weight: bold;
 }
 
 td:focus {
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
-	outline: rgb(91, 157, 217) auto 5px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3;	
+outline: rgb(91, 157, 217) auto 5px;
 }
 
 th a { /*column headers*/
-	color: black;
+color: black;
 }
 
 a:hover {
-	text-decoration: underline;
+text-decoration: underline;
 }
 
 img {
-	border: 0;
+border: 0;
 } 
 
 th.editablegrid-unique_id,
 td.editablegrid-unique_id,
 th.editablegrid-is_closed,
 td.editablegrid-is_closed {
-	display: none;
+display: none;
 }
 
 td.editablegrid-project_number a,
@@ -215,104 +219,109 @@ color: #337ab7;
 
 th.editablegrid-project_number,
 td.editablegrid-project_number {
-	text-align: left;
-	width: 7em;
-	padding-left: 0px;
-	padding-right: 1px;
+text-align: left;
+width: 7em;
+padding-left: 0px;
+padding-right: 1px;
 }
 
 th.editablegrid-project_shortname,
 td.editablegrid-project_shortname {
-	text-align: left;
-	width: 9em;
-	padding-left: 2px;
-	padding-right: 2px;
+text-align: left;
+width: 9em;
+padding-left: 2px;
+padding-right: 2px;
 }
 
 th.editablegrid-task_id,
 td.editablegrid-task_id {
-	text-align: right;
-	width: 6em;
-	padding-left: 2px;
-	padding-right: 8px;
+text-align: right;
+width: 5em;
+padding-left: 2px;
+padding-right: 8px;
+}
+
+#project_commitments.th.editablegrid-task_id,
+#project_commitments.td.editablegrid-task_id {
+padding-left: 0px;
 }
 
 th.editablegrid-description,
 td.editablegrid-description {
-	text-align: left;
-	min-width: 16em;
-	padding-left: 2px;
-	padding-right: 2px;
+text-align: left;
+min-width: 16em;
+padding-left: 2px;
+padding-right: 2px;
 }
 
 th.editablegrid-description-wide,
 td.editablegrid-description-wide {
-	text-align: left;
-	min-width: 20em;
-	padding-left: 2px;
-	padding-right: 2px;
+text-align: left;
+min-width: 20em;
+padding-left: 2px;
+padding-right: 2px;
 }
 
 th.editablegrid-promiser,
 td.editablegrid-promiser {
-	text-align: center;
-	width: 10em;
-	padding-left: 1px;
-	padding-right: 1px;
+text-align: center;
+width: 10em;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-requester,
 td.editablegrid-requester {
-	text-align: center;
-	width: 10em;
-	padding-left: 1px;
-	padding-right: 1px;
+text-align: center;
+width: 10em;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-due_by,
 td.editablegrid-due_by {
-	text-align: center;
-	width: 6em;
-	padding-left: 1px;
-	padding-right: 1px;
+text-align: center;
+width: 6em;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-priority_h,
 td.editablegrid-priority_h {
-	text-align: center;
-	width: 3em;
-	padding-left: 1px;
-	padding-right: 1px;
+text-align: center;
+width: 3em;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-status,
 td.editablegrid-status {
-	text-align: center;
-	width: 3em;
-	padding-left: 1px;
-	padding-right: 1px;
+text-align: center;
+width: 3em;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-actions,
 td.editablegrid-actions {
-	text-align: right;
-	width: 4em;
-	padding-left: 1px;
-	padding-right: 0px;
+text-align: right;
+width: 4em;
+padding-left: 1px;
+padding-right: 0px;
 }
 
 th.editablegrid-project_number_2,
 td.editablegrid-project_number_2  { /* for project lists */
-	text-align: left;
-	min-width: 7em;
-	padding-left: 0px;
-	padding-right: 2px;
+text-align: left;
+min-width: 7em;
+padding-left: 0px;
+padding-right: 2px;
 }
 th.editablegrid-project_name,
 td.editablegrid-project_name { /* for project lists */
-	text-align: left;
-	padding-left: 2px;
-	padding-right: 2px;
+text-align: left;
+padding-left: 2px;
+padding-right: 2px;
 }
 
 @media screen and (max-device-width:480px) {
@@ -343,69 +352,69 @@ td.editablegrid-project_name { /* for project lists */
 }
 
 .fa-files-o { /* duplicate */
-	color: rgb(0, 0, 0);
+color: rgb(0, 0, 0);
 }
 
 .fa-minus-square-o { /* delete */
-	color: rgb(192, 0, 0);
+color: rgb(192, 0, 0);
 }
 
 #commitments i,
 #requests i,
 #projects i,
 #project_commitments i { /* fontawesome icons */
-  cursor: pointer;
+cursor: pointer;
 }
 
 #bar-top {
-	margin-top: 8px;
-	margin-bottom: 6px;
-	width: 100%;
+margin-top: 8px;
+margin-bottom: 6px;
+width: 100%;
 }
 
 .paginator {
-	text-align: right;
-	font-size: 90%;
-	padding: 0px;
-	vertical-align: middle;
+text-align: right;
+font-size: 90%;
+padding: 0px;
+vertical-align: middle;
 }
 
 .paginator a{
-	padding: 1 1;
-	margin: 0 5;
+padding: 1 1;
+margin: 0 5;
 }
 
 a.nobg {  
-	color: black;
-	text-decoration: none;
-	padding: 0px 2px; 
+color: black;
+text-decoration: none;
+padding: 0px 2px; 
 }
-	
+
 a.nobg:hover { color: #000; }
 
 a.nobg:active, #currentpageindex { 
-	background-color: rgb(192,0,0); 
-	color: #fff; 
-	border-radius: 3px;
-	padding: 1 3;
-	margin: 0 5;
+background-color: rgb(192,0,0); 
+color: #fff; 
+border-radius: 3px;
+padding: 1 3;
+margin: 0 5;
 }
 
 a.nobg:focus { outline: 1px; }
-   
+
 /*form input:hover, form textarea:hover, form input:focus, form textarea:focus */
 input, textarea { 
-	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
-	-moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
-	padding: 6px;
-	border: 1px solid rgb(200, 204, 179);
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
-	-ms-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	line-height: normal;
-	background-color: white;
+-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+-moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+padding: 6px;
+border: 1px solid rgb(200, 204, 179);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+-ms-border-radius: 5px;
+-khtml-border-radius: 5px;
+line-height: normal;
+background-color: white;
 }
 
 .ui-widget { /*datepicker*/

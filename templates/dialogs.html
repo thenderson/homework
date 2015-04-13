@@ -4,7 +4,7 @@
 			</div>
 		</div>
 		
-		<div id="add-commitment" class="dialog" title="Record New Commitment" data-role="dialog">
+		<div id="add-commitment" class="dialog" title="commitment modal" data-role="dialog">
 			<form class='form-horizontal' id='comm_form'>
 				<p class="form-control-static" id='msg-general'></p>
 				
@@ -86,7 +86,6 @@
 	$("#add-commitment").dialog({
 		resizable: true,
 		autoOpen: false,
-		height: 550,
 		width: 300,
 		modal: true,
 		closeOnEscape: false, 
@@ -97,8 +96,7 @@
 
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
-				
-				$('#add-commitment').prop('title', 'Replan Commitment');
+
 				$('#msg-general').html($(this).data('msg-general'));
 				$('#msg-description').html($(this).data('msg-description'));
 				$('#msg-date-due').html($(this).data('msg-date-due'));
@@ -175,7 +173,11 @@
 	$("#new_com_btn").on("click", function() {
 		$("#add-commitment")
 			.data('replan', 0)
-			.dialog({show: { effect: "puff", duration: 150}})
+			.dialog({
+				show: { effect: "puff", duration: 150},
+				height: 550,
+				title: 'Record New Commitment'
+			})
 			.dialog("open"); 
 	});
 	

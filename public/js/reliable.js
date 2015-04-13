@@ -229,7 +229,11 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 				.data('oldValue', oldValue)
 				.data('newValue', newValue)
 				.data('oldRowValues', response)
-				.dialog({show: { effect: "puff", duration: 150}})
+				.dialog({
+					show: { effect: "puff", duration: 150},
+					title: 'Replan this Commitment',
+					height: 600
+				})
 				.dialog("open"); 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
