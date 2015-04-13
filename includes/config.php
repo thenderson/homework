@@ -15,7 +15,7 @@
     require('functions.php');
 
     // enable sessions
-    //session_start();
+    session_start();
 
 	// manage existing sessions as recommended by Gumbo @ 
 	// http://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes/1270960#1270960
