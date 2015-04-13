@@ -63,11 +63,11 @@
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
-	$grid->addColumn('description', 'COMMITMENT', 'string');
-	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
-	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
-	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('description', 'COMMITMENT', 'string');
+	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
+	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
+	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 

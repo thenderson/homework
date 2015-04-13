@@ -13,13 +13,16 @@ $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
 $replan = strip_tags($_POST['replan']); // = replanned task ID if true, -1 if false
 
-if ($status == 'OH') 
-{
+// Validate input
+$description = trim($description);
+
+if ($status == 'OH') {
 	$status = 'O';
 	$priority = 1;
 }
-
 else $priority = 0;
+
+if ($status == 'D') $due = NULL;
 
 // Determine task_id for new commitment
 if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID

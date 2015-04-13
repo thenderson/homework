@@ -72,13 +72,13 @@
 	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
+	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
 
 	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
