@@ -1,8 +1,5 @@
 <?php    
-require_once('config.php');         
-
-error_log(""); // make a break
-error_log("-----------add-------------");
+require_once('config.php');
                    
 // Get POST data
 $project_number = strip_tags($_POST['projectnumber']);
@@ -22,7 +19,7 @@ if ($status == 'OH') {
 }
 else $priority = 0;
 
-if ($status == 'D') $due = NULL;
+if ($status == 'D') $due = '0000-00-00';
 
 // Determine task_id for new commitment
 if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID
@@ -101,5 +98,4 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error_log('New commitment ID: '.$id);
 echo json_encode($new_comm);

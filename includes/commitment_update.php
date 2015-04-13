@@ -1,7 +1,5 @@
 <?php    
 require_once('config.php');         
-error_log(""); // make a break
-error_log("-----------update-------------");
                    
 // Get POST data
 $unique_id = strip_tags($_POST['uniqueid']);
