@@ -163,7 +163,7 @@
 			Cancel: function() {
 				$(this).dialog("close");
 		
-				if ($('#add-commitment').data('replan' == 1)) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
+				if ($('#add-commitment').data('replan') == 1) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
 					$('#add-commitment').data('replan', null);
