@@ -385,7 +385,8 @@ CommitmentGrid.prototype.AddRow = function(values) {
 
 CommitmentGrid.prototype.DuplicateRow = function(rowIndex) 
 {
-	var oldRowValues = comgrid.grid.getRowValues(rowIndex);
+	var self = this;
+	var oldRowValues = self.grid.getRowValues(rowIndex);
 	
 	var msg_general = "Please replan this task or cancel to record its closing status as V8 'Not Needed.'";
 	var msg_date_due = 'Enter new due date.';
@@ -400,7 +401,7 @@ CommitmentGrid.prototype.DuplicateRow = function(rowIndex)
 			$("#add-commitment")
 				.data('replan', 0)
 				.data('msg-general', msg_general)
-				.data('commitmentgrid', comgrid)
+				.data('commitmentgrid', self)
 				.data('rowIndex', rowIndex)
 				.data('columnIndex', columnIndex)
 				.data('oldValue', oldValue)
