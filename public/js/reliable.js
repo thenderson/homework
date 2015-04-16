@@ -368,6 +368,15 @@ CommitmentGrid.prototype.AddRow = function(values) {
 				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
 			});
+			if values['recordanother'] == 1 { // capture another new commitment if the user hit the 'submit+' button
+				$("#add-commitment")
+					.data('replan', 0)
+					.dialog({
+						show: { effect: "puff", duration: 150},
+						height: 550,
+						title: 'Record New Commitment' })
+					.dialog("open"); 
+			}
 		},
 		async: true
 	});		
