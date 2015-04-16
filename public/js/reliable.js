@@ -180,8 +180,8 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 	
 	var oldRowValues = comgrid.grid.getRowValues(rowIndex);
 	
-	var msg_general = 'Please replan this task or press cancel (esc) to record its closing status as V8 - Not Needed.';
-	var msg_date_due = 'Enter a new due date.';
+	var msg_general = "Please replan this task or cancel to record its closing status as V8 'Not Needed.'";
+	var msg_date_due = 'Enter new due date.';
 	var msg_description = '';
 
 	switch (newValue) {
@@ -191,11 +191,11 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 			
 		case 'V2': // waiting, internal: same as V3
 		case 'V3': // waiting, external: replan + ask to set commitment for person being waited on
-			msg_general += " Consider requesting a commitment from the person you're waiting on for the information you need in order to meet your commitment.";
+			msg_general += " <strong>Consider requesting a commitment from the person you're waiting on for the information you need.</strong>";
 			break;
 			
 		case 'V4': // COS: replan w/ better description
-			msg_description = ' Confirm the commitment description with the requester.';
+			msg_description = ' <strong>Confirm the commitment description with the requester.</strong>';
 			break;
 			
 		case 'V5': // superseded, internal: replan, message about deeper planning
@@ -383,44 +383,80 @@ CommitmentGrid.prototype.AddRow = function(values) {
 }; 
 
 
-CommitmentGrid.prototype.DuplicateRow = function(index) 
+CommitmentGrid.prototype.DuplicateRow = function(rowIndex) 
 {
-	var self = this;
-	var rowId = self.grid.getRowId(index);
-	var uniqueid_col = self.grid.getColumnIndex('unique_id');
+	var oldRowValues = comgrid.grid.getRowValues(rowIndex);
 	
-    $.ajax({
-		url: '../includes/commitment_duplicate.php',
+	var msg_general = "Please replan this task or cancel to record its closing status as V8 'Not Needed.'";
+	var msg_date_due = 'Enter new due date.';
+	var msg_description = '';
+
+	$.ajax({ //load commitment information and pass to dialog box for input.
+		url: '../includes/load_one_commitment.php',
 		type: 'POST',
-		dataType: "json",
-		data: {
-			uniqueId: self.grid.getValueAt(index, uniqueid_col),
+		dataType: 'JSON',
+		data: {id: oldRowValues['unique_id']},
+		success: function (response) {
+			$("#add-commitment")
+				.data('replan', 0)
+				.data('msg-general', msg_general)
+				.data('commitmentgrid', comgrid)
+				.data('rowIndex', rowIndex)
+				.data('columnIndex', columnIndex)
+				.data('oldValue', oldValue)
+				.data('newValue', newValue)
+				.data('oldRowValues', response)
+				.dialog({
+					show: { effect: "puff", duration: 150},
+					title: 'Duplicate Commitment',
+					height: 600
+				})
+				.dialog("open"); 
 		},
-		success: function (response) 
-		{ 
-			// get index for new row (max index + 1)
-			var newRowId = 0;
-			var rowcount = self.grid.getRowCount();
-			for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
-			
-			// add new row
-			self.grid.insertAfter(index, newRowId, response[0]);
-			highlight(self.name, newRowId, "ok");
-		},
-		error: function(XMLHttpRequest, textStatus, exception) 
-		{ 
-			highlight(self.name, rowId, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
-		},
-		complete: function () {
-			$('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
-				$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
-				$('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
-			});
-		},
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
-};
+
+
+// CommitmentGrid.prototype.DuplicateRow_old = function(index) 
+// {
+	// var self = this;
+	// var rowId = self.grid.getRowId(index);
+	// var uniqueid_col = self.grid.getColumnIndex('unique_id');
+	
+    // $.ajax({
+		// url: '../includes/commitment_duplicate.php',
+		// type: 'POST',
+		// dataType: "json",
+		// data: {
+			// uniqueId: self.grid.getValueAt(index, uniqueid_col),
+		// },
+		// success: function (response) 
+		// { 
+			// // get index for new row (max index + 1)
+			// var newRowId = 0;
+			// var rowcount = self.grid.getRowCount();
+			// for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
+			
+			// // add new row
+			// self.grid.insertAfter(index, newRowId, response[0]);
+			// highlight(self.name, newRowId, "ok");
+		// },
+		// error: function(XMLHttpRequest, textStatus, exception) 
+		// { 
+			// highlight(self.name, rowId, "error");
+			// alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
+		// },
+		// complete: function () {
+			// $('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
+				// $('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				// $('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
+			// });
+		// },
+		// async: true
+	// });
+// };
 
 
 function updatePaginator(grid, divId)

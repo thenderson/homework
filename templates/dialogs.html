@@ -91,17 +91,25 @@
 		closeOnEscape: false, 
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
-			if ($('#add-commitment').data('replan') == 1) {
+			if ($('#add-commitment').data('replan') == 1 || $('#add-commitment').data('duplicate') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 
 				$('#msg-general').html($('#add-commitment').data('msg-general'));
-				$('#msg-description').html($('#add-commitment').data('msg-description'));
-				$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
 				$('#inp-comm').val(oldRowValues['description']);
-				$('#inp-due').datepicker('setDate', 7);
+				
+				if ($('add-commitment').data('replan') == 1) {
+					$('#msg-description').html($('#add-commitment').data('msg-description'));
+					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
+					$('#inp-due').datepicker('setDate', 7);
+				}
+				else {// duplicate
+					$('#inp-due').datepicker('setDate', $('#add-commitment').data('due_on'));
+					$('#msg-date-due').hide();
+					$('#msg-description').hide();
+				}
 				
 				$.ajax({
 					url: '../includes/load_project_usernames.php',
@@ -112,14 +120,10 @@
 
 						$('#inp-req').selectmenu('enable').empty();
 						populate_select_names("#inp-req", proj_users);
-						//$('#inp-req').prop('selectedIndex', oldRowValues['requester']).selectmenu("refresh");
-						//$('#inp-req').val("'"+oldRowValues['requester']+"'");
 						$('#inp-req').val(oldRowValues['requester']).selectmenu('refresh');
 						
 						$('#inp-prom').selectmenu('enable').empty();
 						populate_select_names("#inp-prom", proj_users);
-						//$('#inp-prom').prop('selectedIndex', oldRowValues['promiser']).selectmenu("refresh");
-						//$('#inp-prom').val("'"+oldRowValues['promiser']+"'");
 						$('#inp-prom').val(oldRowValues['promiser']).selectmenu('refresh');
 					},
 					error: function(XMLHttpRequest, textStatus, exception) { 
@@ -143,6 +147,7 @@
 				}
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
+				$('$add-commitment').data('duplicate', null);
 			},
 			"Submit+": function() {
 				var data = {};
@@ -158,7 +163,7 @@
 				data['recordanother'] = 1; //triggers AddRow function to request reopen the modal for another new commitment
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
-	console.log($(this).data('replan'));
+				$('$add-commitment').data('duplicate', null);
 			},
 			Cancel: function() {
 				$(this).dialog("close");
@@ -167,6 +172,7 @@
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
 					$('#add-commitment').data('replan', null);
+					$('$add-commitment').data('duplicate', null);
 				}
 			}
 		},
