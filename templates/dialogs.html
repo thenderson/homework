@@ -106,7 +106,7 @@
 					$('#inp-due').datepicker('setDate', 7);
 				}
 				else {// duplicate
-					$('#inp-due').datepicker('setDate', new Date($('#add-commitment').data('due_by')));
+					$('#inp-due').datepicker('setDate', new Date(oldRowValues['due_by']));
 					$('#msg-date-due').hide();
 					$('#msg-description').hide();
 				}

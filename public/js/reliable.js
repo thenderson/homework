@@ -387,10 +387,7 @@ CommitmentGrid.prototype.DuplicateRow = function(rowIndex)
 {
 	var self = this;
 	var oldRowValues = self.grid.getRowValues(rowIndex);
-	
-	var msg_general = "Please replan this task or cancel to record its closing status as V8 'Not Needed.'";
-	var msg_date_due = 'Enter new due date.';
-	var msg_description = '';
+	var msg_general = "Make any needed changes before adding this as a new commitment.";
 
 	$.ajax({ //load commitment information and pass to dialog box for input.
 		url: '../includes/load_one_commitment.php',
