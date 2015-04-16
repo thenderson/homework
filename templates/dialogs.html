@@ -147,7 +147,7 @@
 		console.log('adding new commitment');
 		console.debug(data);
 				commitments.AddRow(data);
-				$(this).data = {};
+				$(this).removeData();
 		console.log('done. cleaning up');
 		console.debug(data);
 			},
