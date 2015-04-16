@@ -91,15 +91,15 @@
 		closeOnEscape: false, 
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
-			if ($(this).data('replan') == 1) {
+			if ($('#add-commitment').data('replan') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 
-				$('#msg-general').html($(this).data('msg-general'));
-				$('#msg-description').html($(this).data('msg-description'));
-				$('#msg-date-due').html($(this).data('msg-date-due'));
+				$('#msg-general').html($('#add-commitment').data('msg-general'));
+				$('#msg-description').html($('#add-commitment').data('msg-description'));
+				$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
 				$('#inp-comm').val(oldRowValues['description']);
 				$('#inp-due').datepicker('setDate', 7);
 				
@@ -136,19 +136,19 @@
 					data[field.name] = field.value;
 				});
 				$(this).dialog("close");
-				if ($(this).data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
+				if ($('#add-commitment').data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
 		console.log('updating old task variance');
 		//console.log((this).data('commitmentgrid'));
-		console.log($(this).data('rowIndex'), $(this).data('columnIndex'), $(this).data('oldValue'), $(this).data('newValue'));
-					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
-					$(this).data('oldValue'), $(this).data('newValue'));
+		console.log($('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), $('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
+					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
+					$('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
 					data['replan'] = oldRowValues['task_id'];
 				}
 				
 		console.log('adding new commitment');
 		console.debug(data);
 				commitments.AddRow(data);
-				$(this).removeData().removeAttr('data');
+				$('#add-commitment').data('replan', -1);
 		console.log('done. cleaning up');
 		console.debug(data);
 			},

@@ -10,6 +10,8 @@ $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
 $replan = strip_tags($_POST['replan']); // = replanned task ID if true, -1 if false
 
+error_log("replan: $replan");
+
 // Validate input
 $description = trim($description);
 
