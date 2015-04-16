@@ -158,13 +158,15 @@
 				data['recordanother'] = 1; //triggers AddRow function to request reopen the modal for another new commitment
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
+				console.log($(this).data('replan');
 			},
 			Cancel: function() {
 				$(this).dialog("close");
-				if ($(this).data('replan' == 1)) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
-					updateCellValue($(this).data('commitmentgrid'), $(this).data('rowIndex'), $(this).data('columnIndex'), 
+		
+				if ($('#add-commitment').data('replan' == 1)) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
+					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
-					$(this).data = {};
+					$('#add-commitment').data('replan', null);
 				}
 			}
 		},
