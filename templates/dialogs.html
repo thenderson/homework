@@ -148,7 +148,7 @@
 		console.log('adding new commitment');
 		console.debug(data);
 				commitments.AddRow(data);
-				$('#add-commitment').data('replan', -1);
+				$('#add-commitment').removeData('replan');
 		console.log('done. cleaning up');
 		console.debug(data);
 			},

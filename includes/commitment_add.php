@@ -8,7 +8,7 @@ $promiser = strip_tags($_POST['prom']);
 $requester = strip_tags($_POST['req']);
 $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
-$replan = strip_tags($_POST['replan']); // = replanned task ID if true, -1 if false
+$replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true, -1 if false
 
 error_log("replan: $replan");
 
