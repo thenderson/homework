@@ -417,7 +417,7 @@ CommitmentGrid.prototype.DuplicateRow = function(rowIndex)
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
-
+};
 
 // CommitmentGrid.prototype.DuplicateRow_old = function(index) 
 // {
