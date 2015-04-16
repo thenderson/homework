@@ -137,9 +137,6 @@
 				});
 				$(this).dialog("close");
 				if ($('#add-commitment').data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
-		console.log('updating old task variance');
-		//console.log((this).data('commitmentgrid'));
-		console.log($('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), $('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
 					data['replan'] = oldRowValues['task_id'];
@@ -148,7 +145,7 @@
 		console.log('adding new commitment');
 		console.debug(data);
 				commitments.AddRow(data);
-				$('#add-commitment').removeData('replan');
+				$('#add-commitment').data('replan', null);
 		console.log('done. cleaning up');
 		console.debug(data);
 			},

@@ -10,8 +10,6 @@ $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
 $replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true, -1 if false
 
-error_log("replan: $replan");
-
 // Validate input
 $description = trim($description);
 
@@ -42,7 +40,7 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 	if (floor($new_Id) > $floor) $replan = -1; // handles oddball case of a task replanned 99 times by assigning a new task Id
 }
 
-if ($replan = -1) {
+if ($replan == -1) {
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
 	if (!$stmt) {
