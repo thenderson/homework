@@ -106,7 +106,7 @@
 					$('#inp-due').datepicker('setDate', 7);
 				}
 				else {// duplicate
-					$('#inp-due').datepicker('setDate', $('#add-commitment').data('due_on'));
+					$('#inp-due').datepicker('setDate', $('#add-commitment').data('due_by'));
 					$('#msg-date-due').hide();
 					$('#msg-description').hide();
 				}
@@ -147,7 +147,7 @@
 				}
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
-				$('$add-commitment').data('duplicate', null);
+				$('#add-commitment').data('duplicate', null);
 			},
 			"Submit+": function() {
 				var data = {};
@@ -163,7 +163,7 @@
 				data['recordanother'] = 1; //triggers AddRow function to request reopen the modal for another new commitment
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
-				$('$add-commitment').data('duplicate', null);
+				$('#add-commitment').data('duplicate', null);
 			},
 			Cancel: function() {
 				$(this).dialog("close");
