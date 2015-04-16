@@ -400,12 +400,10 @@ CommitmentGrid.prototype.DuplicateRow = function(rowIndex)
 		success: function (response) {
 			$("#add-commitment")
 				.data('replan', 0)
+				.data('duplicate', 1)
 				.data('msg-general', msg_general)
 				.data('commitmentgrid', self)
 				.data('rowIndex', rowIndex)
-				.data('columnIndex', columnIndex)
-				.data('oldValue', oldValue)
-				.data('newValue', newValue)
 				.data('oldRowValues', response)
 				.dialog({
 					show: { effect: "puff", duration: 150},
