@@ -29,7 +29,7 @@
 	$pnums = "";
 	foreach ($user_projects as $proj) $pnums = $pnums.$proj['project_number'].',';
 
-	$stmt = $comm_dp->prepare("SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
+	$stmt = $comm_db->prepare("SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
 	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()");
 	
 	if (!$stmt) {
