@@ -31,8 +31,12 @@
 	$pnums = rtrim($pnums, ',');
 error_log($pnums);
 
-	$stmt = $comm_db->prepare("SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
-	WHERE project_number IN ('$pnums') AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()");
+	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
+	WHERE project_number IN ('$pnums') AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
+	
+error_log($q);
+
+	$stmt = $comm_db->prepare($q);
 	
 	if (!$stmt) {
 		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
