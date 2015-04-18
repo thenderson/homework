@@ -300,11 +300,12 @@
 				url: '../includes/load_user_project_list.php',
 				type: 'POST',
 				dataType: 'JSON',
-				success: function (user_proj_list) {
+				success: function (user_proj_list, user_metrics) {
 					//populate_select_projects("#inp-proj", user_proj_list);
 					$.each(user_proj_list, function(key, object) {
 						$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 					});
+	console.debug(user_metrics);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},

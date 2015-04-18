@@ -28,11 +28,22 @@
 	// load performance metrics for user projects
 	$pnums = "";
 	foreach ($user_projects as $proj) $pnums = $pnums.$proj['project_number'].',';
-	
-error_log('pnums = '.$pnums);
 
-	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
-	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
+	$stmt = $comm_dp->prepare("SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
+	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()");
 	
-		
+	if (!$stmt) {
+		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
+		exit;
+	}
+	
+	try {
+		$stmt->execute();		
+		$project_metrics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	} 
+	catch(PDOException $e) {
+		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	}
+	
 	echo json_encode($user_projects);
+	echo json_encode($project_metrics);
