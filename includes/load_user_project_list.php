@@ -48,4 +48,4 @@
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$project_metrics);
+	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$project_metrics));
