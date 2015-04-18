@@ -27,12 +27,12 @@
 	
 	// load performance metrics for user projects
 	$pnums = "";
-	foreach ($user_projects as $proj) $pnums = $pnums.$proj['project_number'].',';
+	foreach ($user_projects as $proj) $pnums = $pnums."'".$proj['project_number']."',";
 	$pnums = rtrim($pnums, ',');
 error_log($pnums);
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
-	WHERE project_number IN ('$pnums') AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
+	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
 	
 error_log($q);
 
