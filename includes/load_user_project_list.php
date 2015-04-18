@@ -27,7 +27,7 @@
 	
 	// load performance metrics for user projects
 	$pnums = "";
-	foreach ($user_projects as $proj) $pnums += $proj['project_number'].',';
+	foreach ($user_projects as $proj) $pnums = $pnums.$proj['project_number'].',';
 	
 error_log('pnums = '.$pnums);
 
