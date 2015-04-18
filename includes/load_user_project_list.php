@@ -29,12 +29,9 @@
 	$pnums = "";
 	foreach ($user_projects as $proj) $pnums = $pnums."'".$proj['project_number']."',";
 	$pnums = rtrim($pnums, ',');
-error_log($pnums);
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
 	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
-	
-error_log($q);
 
 	$stmt = $comm_db->prepare($q);
 	
@@ -51,5 +48,4 @@ error_log($q);
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	echo json_encode($user_projects);
-	echo json_encode($project_metrics);
+	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$project_metrics);
