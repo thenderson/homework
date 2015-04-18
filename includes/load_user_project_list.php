@@ -29,7 +29,7 @@
 	$pnums = "";
 	foreach ($user_projects as $proj) $pnums += $proj['project_number'].',';
 	
-error.log('pnums = '.$pnums);
+error_log('pnums = '.$pnums);
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
 	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
