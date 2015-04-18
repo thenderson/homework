@@ -301,11 +301,11 @@
 				type: 'POST',
 				dataType: 'JSON',
 				success: function (result) {
+	console.debug(result);
 					//populate_select_projects("#inp-proj", user_proj_list);
 					$.each(result.user_projects, function(key, object) {
 						$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 					});
-	console.debug(result.user_metrics);
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
