@@ -50,8 +50,11 @@
 	
 	$last_monday = date('Y-m-d', strtotime('last Monday'));
 	
+error.log('last monday was '.$last_monday);
+
 	foreach ($rows as $row) {
 		$weeknum = date_diff($last_monday, strtotime($row['date']))->format('%r%a') / 7;
+error.log($weeknum);
 		$project_metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
 		$project_metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
 		$project_metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
