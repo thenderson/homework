@@ -292,7 +292,7 @@
 							
 							var yScale = d3.scale.linear()
 								.domain([0, 1])
-								.range([h, 0]);
+								.range([0, h]);
 							
 							svg.selectAll('rect')
 								.data(data)
@@ -300,9 +300,9 @@
 								.append('rect')
 								.attr('class', 'bar')
 								.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
-								.attr('y', function(d, i) { return parseInt(d[i]) == -1 ? h : (yScale(parseInt(d[i])) + "px");})
+								.attr('y', function(d, i) { return parseInt(d) == -1 ? h - yScale(0) : h - (yScale(parseInt(d)));})
 								.attr('width', function(d, i) { return w / data.length - pad + 'px';})
-								.attr('height', function(d, i) { return parseInt(d[i]) == -1 ? 0 : (yScale(parseInt(d[i])) + "px"); });
+								.attr('height', function(d, i) { return parseInt(d) == -1 ? yScale(0) : (yScale(parseInt(d))); });
 						}
 					}));
 					/*
