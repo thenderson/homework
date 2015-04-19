@@ -49,8 +49,6 @@
 	}
 	
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
-	
-error_log('last monday was '.$last_monday);
 
 	foreach ($rows as $row) {
 		$weeknum = date_diff($last_monday, strtotime($row['date']))->format('%r%a') / 7;
