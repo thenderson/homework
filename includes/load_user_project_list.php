@@ -60,8 +60,8 @@
 	}
 	
 	$project_metrics = array();
-debug($project_metrics);
-error_log(debug('print'));
+dbug($project_metrics);
+error_log(dbug('print'));
 
 	for ($x = 0; $x < count($metrics); $x++) {
 		$pnum = $metrics[$x];
