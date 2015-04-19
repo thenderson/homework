@@ -59,17 +59,14 @@
 		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
 	}
 
-	foreach ($metrics as $metric) {
-		$metric['PPC_CSV'] = "";
-dbug($metric);
-error_log(dbug('print'));
-
+	foreach ($metrics as &$metric) {
 		for ($i=$lookback-1; $i>-1; $i--) {
-			//$metric['PPC_CSV'] = $metric['PPC_CSV'].','.(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : 'x');
-			$metric['PPC_CSV'] = $metric['PPC_CSV'].','.'x';
+			$metric['PPC_CSV'] = $metric['PPC_CSV'].','.(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : 'x');
 			//$project_metrics[$pnum]['PTA'] = $project_metrics[$pnum]['PTA'].','.(isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : null);
 			//$project_metrics[$pnum]['PTI'] = $project_metrics[$pnum]['PTI'].','.(isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : null);
 		}
+dbug($metric);
+error_log(dbug('print'));		
 	}
 	
 	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$metrics));
