@@ -97,6 +97,7 @@
 		$project['PPC'] = (isset($metrics[$pnum]['PPC_CSV']) ? $metrics[$pnum]['PPC_CSV'] : null);
 		$project['PTA'] = (isset($metrics[$pnum]['PTA_CSV']) ? $metrics[$pnum]['PTA_CSV'] : null);
 		$project['PTI'] = (isset($metrics[$pnum]['PTI_CSV']) ? $metrics[$pnum]['PTI_CSV'] : null);
+error_log("PPC: $project['PPC'] PTA: $project['PTA'] PTI: $project['PTI']");
 	}
 
 	// create grid
