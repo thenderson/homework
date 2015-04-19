@@ -42,10 +42,19 @@
 	
 	try {
 		$stmt->execute();		
-		$project_metrics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} 
 	catch(PDOException $e) {
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
+	}
+	
+	$last_monday = date('Y-m-d', strtotime('last Monday'));
+	
+	foreach ($rows as $row) {
+		$weeknum = date_diff($last_monday, $row['date'])->format('%r%a') / 7;
+		$project_metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
+		$project_metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
+		$project_metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
 	}
 	
 	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$project_metrics));
