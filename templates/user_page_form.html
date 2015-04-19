@@ -278,6 +278,12 @@
 						}
 					}));
 					this.renderGrid('projects_d', 'table', 'projects'); }
+					
+					projects.setCellRenderer('PPC', new CellRenderer ({
+						render: function(cell, value) {
+							cell.innerHTML = value;
+						}
+					}));
 			});
 			
 			// Load data first time
