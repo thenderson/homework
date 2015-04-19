@@ -79,7 +79,6 @@
 	// using -1 to stand for an empty value since 0 is a value and null won't work
 	foreach ($projects as &$project) {
 		$pnum = (string) $project['project_number_2'];
-		$metric = $metrics[$pnum];
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'][$i] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
 			$project['PTA'][$i] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
