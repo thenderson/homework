@@ -91,14 +91,14 @@
 		$metric['PTA_CSV'] = rtrim($metric['PTA_CSV'], ',');
 		$metric['PTI_CSV'] = rtrim($metric['PTI_CSV'], ',');
 	}
-	
+dbug($metrics);
 	foreach ($projects as &$project) {
-		$project['PPC'] = $metrics[$project['project_number_2']]['PPC_CSV'];
-		$project['PTA'] = $metrics[$project['project_number_2']]['PTA_CSV'];
-		$project['PTI'] = $metrics[$project['project_number_2']]['PTI_CSV'];
-dbug($project);
+		$pnum = $project['project_number_2'];
+		$project['PPC'] = $metrics[$pnum]['PPC_CSV'];
+		$project['PTA'] = $metrics[$pnum]['PTA_CSV'];
+		$project['PTI'] = $metrics[$pnum]['PTI_CSV'];
 	}
-	
+dbug($projects);
 error_log(dbug('print'));
 
 	// create grid
