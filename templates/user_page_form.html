@@ -294,10 +294,10 @@
 							.enter()
 							.append('rect')
 							.attr('class', 'bar')
-							.attr('x', function(d, i) { return w / values.length;})
-							.attr('y', function(d) { return h - Math.max(1, d*5) + "px";})
+							.attr('x', function(d, i) { return i * (w / values.length;)})
+							.attr('y', function(d, i) { return h - Math.max(1, d*5) + "px";})
 							.attr('width', function(d, i) { return w / values.length - pad;})
-							.attr('height', function(d) { return Math.max(1, d*5) + "px"; });
+							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
 							
 						}
 					}));
