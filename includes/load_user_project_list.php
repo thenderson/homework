@@ -51,7 +51,7 @@
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
 
 	foreach ($rows as $row) {
-		$date = new DateTime(date('Y-m-d', $row['date']));
+		$date = new DateTime($row['date']);
 		$weeknum = date_diff($last_monday, $date)->format('%r%a') / 7;
 error_log($weeknum);
 		$project_metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
