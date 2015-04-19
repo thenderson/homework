@@ -62,12 +62,15 @@
 	foreach ($metrics as &$metric) {
 		$metric['PPC_CSV'] = '';
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$metric['PPC_CSV'] = $metric['PPC_CSV'].','.(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : null);
-			//$project_metrics[$pnum]['PTA'] = $project_metrics[$pnum]['PTA'].','.(isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : null);
-			//$project_metrics[$pnum]['PTI'] = $project_metrics[$pnum]['PTI'].','.(isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : null);
+			$metric['PPC_CSV'] = $metric['PPC_CSV'].(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : null).',';
+			$metric['PTA_CSV'] = $metric['PTA_CSV'].(isset($metric['PTA'][$i]) ? $metric['PTA'][$i] : null).',';
+			$metric['PTI_CSV'] = $metric['PTI_CSV'].(isset($metric['PTI'][$i]) ? $metric['PTI'][$i] : null).',';
 		}
-dbug($metric);
-error_log(dbug('print'));		
+		$metric['PPC_CSV'] = rtrim($metric['PPC_CSV'], ',');
+		$metric['PTA_CSV'] = rtrim($metric['PTA_CSV'], ',');
+		$metric['PTI_CSV'] = rtrim($metric['PTI_CSV'], ',');
+		$metric['PPC'] = null;
+		$metric['PTA'] = null;
 	}
 	
 	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$metrics));
