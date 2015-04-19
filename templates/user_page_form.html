@@ -289,15 +289,19 @@
 							.attr('width', w)
 							.attr('height', h);
 							
+							var yScale = d3.scale.linear()
+							.domain([0, d3.max(values)])
+							.range([0, h]);
+							
 							svg.selectAll('rect')
 							.data(values)
 							.enter()
 							.append('rect')
 							.attr('class', 'bar')
 							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - d*5 + "px";})
+							.attr('y', function(d, i) { return h - yScale(Math.max(1, d*5)) + "px";})
 							.attr('width', function(d, i) { return w / values.length - pad;})
-							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
+							.attr('height', function(d, i) { return yScale(Math.max(1, d*5)) + "px"; });
 							
 						}
 					}));
@@ -319,7 +323,7 @@
 							.append('rect')
 							.attr('class', 'bar')
 							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - d*5 + "px";})
+							.attr('y', function(d, i) { return h - Math.max(1, d*5) + "px";})
 							.attr('width', function(d, i) { return w / values.length - pad;})
 							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
 							
@@ -329,7 +333,7 @@
 					projects.setCellRenderer('PTI', new CellRenderer ({
 						render: function(cell, values) {
 							var w = 100;
-							var h = 50;
+							var h = 30;
 							var pad = 0;
 							
 							var svg = d3.select(cell)
@@ -343,7 +347,7 @@
 							.append('rect')
 							.attr('class', 'bar')
 							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - d*5 + "px";})
+							.attr('y', function(d, i) { return h - Math.max(1, d*5) + "px";})
 							.attr('width', function(d, i) { return w / values.length - pad;})
 							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
 							
