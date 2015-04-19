@@ -60,10 +60,10 @@
 	}
 	
 	foreach ($metrics as $metric) {
-		for (i=$lookback; i<1; i--) {
-			$project_metrics[$metric['project_number']]['PPC'] = (isset($metric['project_number']['PPC'][i]) ? $metric['project_number']['PPC'][i] : null);
-			$project_metrics[$metric['project_number']]['PTA'] = (isset($metric['project_number']['PTA'][i]) ? $metric['project_number']['PTA'][i] : null);
-			$project_metrics[$metric['project_number']]['PTI'] = (isset($metric['project_number']['PTI'][i]) ? $metric['project_number']['PTI'][i] : null);
+		for ($i=$lookback; $i<1; $i--) {
+			$project_metrics[$metric['project_number']]['PPC'] = (isset($metric['project_number']['PPC'][$i]) ? $metric['project_number']['PPC'][$i] : null);
+			$project_metrics[$metric['project_number']]['PTA'] = (isset($metric['project_number']['PTA'][$i]) ? $metric['project_number']['PTA'][$i] : null);
+			$project_metrics[$metric['project_number']]['PTI'] = (isset($metric['project_number']['PTI'][$i]) ? $metric['project_number']['PTI'][$i] : null);
 		}
 	}
 	
