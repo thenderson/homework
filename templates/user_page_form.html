@@ -277,13 +277,14 @@
 							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 						}
 					}));
-					this.renderGrid('projects_d', 'table', 'projects'); }
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, value) {
 							cell.innerHTML = value;
 						}
 					}));
+					
+					this.renderGrid('projects_d', 'table', 'projects'); }
 			});
 			
 			// Load data first time
