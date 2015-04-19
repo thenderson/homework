@@ -283,8 +283,9 @@
 							var w = 100;
 							var h = 20;
 							var pad = 0;
-							var data = d3.csv.parseRows(csv_data);
-				console.debug(data);
+							var values = d3.csv.parseRows(csv_data);
+				console.debug(values);
+				console.log(values.length);
 							var svg = d3.select(cell)
 								.append('svg')
 								.attr('width', w)
@@ -295,13 +296,13 @@
 								.range([0, h]);
 							
 							svg.selectAll('rect')
-								.data(data)
+								.data(values)
 								.enter()
 								.append('rect')
 								.attr('class', 'bar')
-								.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
+								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
 								.attr('y', function(d, i) { return parseInt(d) == -1 ? h - yScale(0) : h - (yScale(parseInt(d)));})
-								.attr('width', function(d, i) { return w / data.length - pad + 'px';})
+								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
 								.attr('height', function(d, i) { return parseInt(d) == -1 ? yScale(0) : (yScale(parseInt(d))); });
 						}
 					}));
