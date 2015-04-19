@@ -286,24 +286,23 @@
 							var data = d3.csv.parseRows(csv_data);
 				console.debug(data);
 							var svg = d3.select(cell)
-							.append('svg')
-							.attr('width', w)
-							.attr('height', h);
+								.append('svg')
+								.attr('width', w)
+								.attr('height', h);
 							
 							var yScale = d3.scale.linear()
-							.domain([0, 1])
-							.range([h, 0]);
+								.domain([0, 1])
+								.range([h, 0]);
 							
 							svg.selectAll('rect')
-							.data(data)
-							.enter()
-							.append('rect')
-							.attr('class', 'bar')
-							.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
-							.attr('y', function(d, i) { return parseInt(d) == -1 ? h : (yScale(parseInt(d)) + "px");})
-							.attr('width', function(d, i) { return w / data.length - pad + 'px';})
-							.attr('height', function(d, i) { return parseInt(d) == -1 ? 0 : (yScale(parseInt(d)) + "px"); });
-							
+								.data(data)
+								.enter()
+								.append('rect')
+								.attr('class', 'bar')
+								.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
+								.attr('y', function(d, i) { return parseInt(d[i]) == -1 ? h : (yScale(parseInt(d[i])) + "px");})
+								.attr('width', function(d, i) { return w / data.length - pad + 'px';})
+								.attr('height', function(d, i) { return parseInt(d[i]) == -1 ? 0 : (yScale(parseInt(d[i])) + "px"); });
 						}
 					}));
 					/*
