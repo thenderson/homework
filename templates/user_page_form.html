@@ -279,14 +279,26 @@
 					}));
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
-						render: function(cell, value) {
-							d3.select(cell)
-							.selectAll('div')
-							.data(value)
+						render: function(cell, values) {
+							var w = 100;
+							var h = 50;
+							var pad = 1;
+							
+							var svg = d3.select(cell)
+							.append('svg')
+							.attr('width', w)
+							.attr('height', h);
+							
+							svg.selectAll('rect')
+							.data(values)
 							.enter()
-							.append('div')
+							.append('rect')
 							.attr('class', 'bar')
-							.style("height", function(d) { return Math.max(1, d*5) + "px"; });
+							.attr('x', function(d, i) { return w / values.length;})
+							.attr('y', function(d) { return h - Math.max(1, d*5) + "px";})
+							.attr('width', function(d, i) { return w / values.length - pad;})
+							.attr('height', function(d) { return Math.max(1, d*5) + "px"; });
+							
 						}
 					}));
 					
