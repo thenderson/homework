@@ -49,8 +49,8 @@
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
+	// organize sql data by how long ago it occurred
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
-
 	foreach ($rows as $row) {
 		$date = new DateTime($row['date']);
 		$weeknum = date_diff($date, $last_monday)->format('%r%a') / 7;
@@ -58,19 +58,25 @@
 		$metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
 		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
 	}
-
+	
+	// reorganize sql data into CSV time series for last $lookback number of weeks
 	foreach ($metrics as &$metric) {
 		$metric['PPC_CSV'] = '';
+		$metric['PTA_CSV'] = '';
+		$metric['PTI_CSV'] = '';
+		
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$metric['PPC_CSV'] = $metric['PPC_CSV'].(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : null).',';
 			$metric['PTA_CSV'] = $metric['PTA_CSV'].(isset($metric['PTA'][$i]) ? $metric['PTA'][$i] : null).',';
 			$metric['PTI_CSV'] = $metric['PTI_CSV'].(isset($metric['PTI'][$i]) ? $metric['PTI'][$i] : null).',';
 		}
+		
 		$metric['PPC_CSV'] = rtrim($metric['PPC_CSV'], ',');
 		$metric['PTA_CSV'] = rtrim($metric['PTA_CSV'], ',');
 		$metric['PTI_CSV'] = rtrim($metric['PTI_CSV'], ',');
 		$metric['PPC'] = null;
 		$metric['PTA'] = null;
+		$metric['PTI'] = null;
 	}
 	
 	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$metrics));
