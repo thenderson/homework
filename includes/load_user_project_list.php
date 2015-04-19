@@ -59,7 +59,7 @@
 		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
 	}
 	
-	$project_metrics = new array();
+	$project_metrics = array();
 	
 	foreach ($metrics as $metric) {
 		for ($i=$lookback; $i<1; $i--) {
