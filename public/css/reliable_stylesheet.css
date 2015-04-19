@@ -520,10 +520,10 @@ div.ui-dialog {position:fixed;}
 color: rgb(192, 192, 192);
 }
 
-div.bar { /* bar graph for testing */
+/* div.bar { /* bar graph for testing 
     display: inline-block;
     width: 8%;
     margin-right: 1%;
     background-color: teal;
-}
+} */
 }
