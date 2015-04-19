@@ -2,6 +2,7 @@
 
     // configuration
     require_once('../includes/config.php');
+	$lookback = (int) 10; //number of weeks to chart
 
 	/*	RETRIEVE USERNAME LIST */
 	$stmt = $comm_db->prepare('
@@ -31,7 +32,7 @@
 	$pnums = rtrim($pnums, ',');
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
-	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL 6 WEEK) and CURDATE()";
+	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback WEEK) and CURDATE() ORDER BY date";
 
 	$stmt = $comm_db->prepare($q);
 	
@@ -52,11 +53,18 @@
 
 	foreach ($rows as $row) {
 		$date = new DateTime($row['date']);
-		$weeknum = date_diff($last_monday, $date)->format('%r%a') / 7;
-error_log($weeknum);
-		$project_metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
-		$project_metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
-		$project_metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
+		$weeknum = date_diff($date, $last_monday)->format('%r%a') / 7;
+		$metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
+		$metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
+		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
+	}
+	
+	foreach ($metrics as $metric) {
+		for (i=$lookback; i<1; i--) {
+			$project_metrics[$metric['project_number']]['PPC'] = (isset($metric['project_number']['PPC'][i]) ? $metric['project_number']['PPC'][i] : null);
+			$project_metrics[$metric['project_number']]['PTA'] = (isset($metric['project_number']['PTA'][i]) ? $metric['project_number']['PTA'][i] : null);
+			$project_metrics[$metric['project_number']]['PTI'] = (isset($metric['project_number']['PTI'][i]) ? $metric['project_number']['PTI'][i] : null);
+		}
 	}
 	
 	echo json_encode(array('user_projects'=>$user_projects, 'project_metrics'=>$project_metrics));
