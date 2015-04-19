@@ -59,6 +59,8 @@
 		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
 	}
 	
+	$project_metrics = new array();
+	
 	foreach ($metrics as $metric) {
 		for ($i=$lookback; $i<1; $i--) {
 			$project_metrics[$metric['project_number']]['PPC'] = (isset($metric['project_number']['PPC'][$i]) ? $metric['project_number']['PPC'][$i] : null);
