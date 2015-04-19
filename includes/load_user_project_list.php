@@ -60,12 +60,12 @@
 	}
 	
 	$project_metrics = array();
-dbug($metrics);
-error_log(dbug('print'));
 
 	foreach ($metrics as $metric) {
 		//$pnum = $metrics[$x];
-error_log($metric);
+dbug($metric);
+error_log(dbug('print'));
+
 		for ($i=$lookback; $i<1; $i--) {
 			$project_metrics[$pnum]['PPC'] = $project_metrics[$pnum]['PPC'].','.(isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : null);
 			$project_metrics[$pnum]['PTA'] = $project_metrics[$pnum]['PTA'].','.(isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : null);
