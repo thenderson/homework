@@ -48,7 +48,7 @@
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	$last_monday = date('Y-m-d', strtotime('last Monday'));
+	$last_monday = DateTime::createFromFormat('Y-m-d', strtotime('last Monday'));
 	
 error_log('last monday was '.$last_monday);
 
