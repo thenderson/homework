@@ -279,10 +279,11 @@
 					}));
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
-						render: function(cell, values) {
+						render: function(cell, csv_data) {
 							var w = 100;
 							var h = 20;
 							var pad = 0;
+							var data = d3.csv.parseRows(csv_data);
 							
 							var svg = d3.select(cell)
 							.append('svg')
@@ -294,18 +295,18 @@
 							.range([0, h]);
 							
 							svg.selectAll('rect')
-							.data(values)
+							.data(data)
 							.enter()
 							.append('rect')
 							.attr('class', 'bar')
-							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - yScale(Math.max(1, d*5)) + "px";})
-							.attr('width', function(d, i) { return w / values.length - pad;})
-							.attr('height', function(d, i) { return yScale(Math.max(1, d*5)) + "px"; });
+							.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
+							.attr('y', function(d, i) { return h - yScale(d) + "px";})
+							.attr('width', function(d, i) { return w / data.length - pad + 'px';})
+							.attr('height', function(d, i) { return yScale(d) + "px"; });
 							
 						}
 					}));
-					
+					/*
 					projects.setCellRenderer('PTA', new CellRenderer ({
 						render: function(cell, values) {
 							var w = 100;
@@ -352,7 +353,7 @@
 							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
 							
 						}
-					}));
+					})); */
 					
 					this.renderGrid('projects_d', 'table', 'projects'); }
 			});
