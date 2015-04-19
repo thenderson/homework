@@ -78,11 +78,11 @@
 	// add data to $projects & fill-in missing values so that resulting arrays cover $lookback number of weeks
 	// using -1 to stand for an empty value since 0 is a value and null won't work
 	foreach ($projects as &$project) {
-		$metric = $metrics[$project['project_number_2']];
+		$metric = $metrics["'".$project['project_number_2']."'"];
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$project['PPC'][$i] = isset($metric[PPC][$i]) ? $metric[PPC][$i] : -1;
-			$project['PTA'][$i] = isset($metric[PTA][$i]) ? $metric[PTA][$i] : -1;
-			$project['PTI'][$i] = isset($metric[PTI][$i]) ? $metric[PTI][$i] : -1;
+			$project['PPC'][$i] = isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : -1;
+			$project['PTA'][$i] = isset($metric['PTA'][$i]) ? $metric['PTA'][$i] : -1;
+			$project['PTI'][$i] = isset($metric['PTI'][$i]) ? $metric['PTI'][$i] : -1;
 		}
 	}
 	
