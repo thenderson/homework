@@ -280,8 +280,12 @@
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, value) {
-							cell.innerHTML = value;
-		console.log(value);
+							d3.select(cell)
+							.selectAll("p")
+							.data(value)
+							.enter()
+							.append("p")
+							.text("!");
 						}
 					}));
 					
