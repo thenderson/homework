@@ -61,11 +61,11 @@
 	
 	$project_metrics = array();
 	
-	foreach ($metrics as $metric) {
+	for ($x = 0; $x < count($metrics; $x++) {
 		for ($i=$lookback; $i<1; $i--) {
-			$project_metrics[$metric['project_number']]['PPC'] = (isset($metric['project_number']['PPC'][$i]) ? $metric['project_number']['PPC'][$i] : null);
-			$project_metrics[$metric['project_number']]['PTA'] = (isset($metric['project_number']['PTA'][$i]) ? $metric['project_number']['PTA'][$i] : null);
-			$project_metrics[$metric['project_number']]['PTI'] = (isset($metric['project_number']['PTI'][$i]) ? $metric['project_number']['PTI'][$i] : null);
+			$project_metrics[$metrics[$x]['project_number']]['PPC'] = (isset($metrics[$x]['project_number']['PPC'][$i]) ? $metrics[$x]['project_number']['PPC'][$i] : null);
+			$project_metrics[$metrics[$x]['project_number']]['PTA'] = (isset($metrics[$x]['project_number']['PTA'][$i]) ? $metrics[$x]['project_number']['PTA'][$i] : null);
+			$project_metrics[$metrics[$x]['project_number']]['PTI'] = (isset($metrics[$x]['project_number']['PTI'][$i]) ? $metrics[$x]['project_number']['PTI'][$i] : null);
 		}
 	}
 	
