@@ -300,9 +300,9 @@
 							.append('rect')
 							.attr('class', 'bar')
 							.attr('x', function(d, i) { return i * (w / data.length) + 'px';})
-							.attr('y', function(d, i) { return d == -1 ? null : (h - yScale(d) + "px");})
+							.attr('y', function(d, i) { return d == -1 ? 0 : (h - yScale(d) + "px");})
 							.attr('width', function(d, i) { return w / data.length - pad + 'px';})
-							.attr('height', function(d, i) { return d == -1 ? null : (yScale(d) + "px"); });
+							.attr('height', function(d, i) { return d == -1 ? 0 : (yScale(d) + "px"); });
 							
 						}
 					}));
