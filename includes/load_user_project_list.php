@@ -64,9 +64,9 @@
 dbug($metric);
 error_log(dbug('print'));
 
-		for ($i=$lookback; $i>0; $i--) {
-error_log($i);
-			$metric['PPC_CSV'] = $metric['PPC_CSV'].','.(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : 'x');
+		for ($i=$lookback-1; $i>-1; $i--) {
+			//$metric['PPC_CSV'] = $metric['PPC_CSV'].','.(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : 'x');
+			$metric['PPC_CSV'] = $metric['PPC_CSV'].','.'x';
 			//$project_metrics[$pnum]['PTA'] = $project_metrics[$pnum]['PTA'].','.(isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : null);
 			//$project_metrics[$pnum]['PTI'] = $project_metrics[$pnum]['PTI'].','.(isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : null);
 		}
