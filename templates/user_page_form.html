@@ -286,7 +286,6 @@
 							var values = d3.csv.parseRows(csv_data);
 							var values = values[0];
 				console.debug(values);
-				console.log(values.length);
 							var svg = d3.select(cell)
 								.append('svg')
 								.attr('width', w)
@@ -302,9 +301,9 @@
 								.append('rect')
 								.attr('class', 'bar')
 								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-								.attr('y', function(d, i) { return parseInt(d) == -1 ? h - yScale(0) : h - (yScale(parseInt(d)));})
+								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
 								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
-								.attr('height', function(d, i) { return parseInt(d) == -1 ? yScale(0) : (yScale(parseInt(d))); });
+								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 						}
 					}));
 					/*
