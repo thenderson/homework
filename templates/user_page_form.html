@@ -286,7 +286,31 @@
 							.enter()
 							.append('div')
 							.attr('class', 'bar')
-							.style("height", function(d) { return d*5 + "px"; });
+							.style("height", function(d) { return Math.min(1, d*5) + "px"; });
+						}
+					}));
+					
+					projects.setCellRenderer('PTA', new CellRenderer ({
+						render: function(cell, value) {
+							d3.select(cell)
+							.selectAll('div')
+							.data(value)
+							.enter()
+							.append('div')
+							.attr('class', 'bar')
+							.style("height", function(d) { return Math.min(1, d*5) + "px"; });
+						}
+					}));
+					
+					projects.setCellRenderer('PTI', new CellRenderer ({
+						render: function(cell, value) {
+							d3.select(cell)
+							.selectAll('div')
+							.data(value)
+							.enter()
+							.append('div')
+							.attr('class', 'bar')
+							.style("height", function(d) { return Math.min(1, d*5) + "px"; });
 						}
 					}));
 					

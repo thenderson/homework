@@ -522,7 +522,7 @@ color: rgb(192, 192, 192);
 
 div.bar { /* bar graph for testing */
     display: inline-block;
-    width: 10px;
+    width: 9%;
     margin-right: 2px;
     background-color: teal;
 }
