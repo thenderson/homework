@@ -60,7 +60,7 @@
 	}
 	
 	$project_metrics = array();
-dbug($project_metrics);
+dbug($metrics);
 error_log(dbug('print'));
 
 	for ($x = 0; $x < count($metrics); $x++) {
