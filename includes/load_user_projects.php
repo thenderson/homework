@@ -81,9 +81,9 @@
 		$pnum = (string) $project['project_number_2'];
 		$metric = $metrics[$pnum];
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$project['PPC'][$i] = isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : -1;
-			$project['PTA'][$i] = isset($metric['PTA'][$i]) ? $metric['PTA'][$i] : -1;
-			$project['PTI'][$i] = isset($metric['PTI'][$i]) ? $metric['PTI'][$i] : -1;
+			$project['PPC'][$i] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
+			$project['PTA'][$i] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
+			$project['PTI'][$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
 		}
 	}
 	
