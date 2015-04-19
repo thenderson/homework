@@ -285,7 +285,7 @@
 							.data(value)
 							.enter()
 							.append("p")
-							.text("!");
+							.text(function(d) { return d; });
 						}
 					}));
 					
