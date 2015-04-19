@@ -62,7 +62,7 @@
 	$project_metrics = array();
 	
 	for ($x = 0; $x < count($metrics); $x++) {
-		$pnum = $metrics[$x]['project_number'];
+		$pnum = $metrics[$x];
 error_log($pnum);
 		for ($i=$lookback; $i<1; $i--) {
 			$project_metrics[$pnum]['PPC'] = $project_metrics[$pnum]['PPC'].','.(isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : null);
