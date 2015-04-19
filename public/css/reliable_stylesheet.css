@@ -519,4 +519,11 @@ div.ui-dialog {position:fixed;}
 .zerozero { /*decimal portion of replanned tasks when = 00 */
 color: rgb(192, 192, 192);
 }
+
+div.bar { /* bar graph for testing */
+    display: inline-block;
+    width: 10px;
+    margin-right: 2px;
+    background-color: teal;
+}
 }
