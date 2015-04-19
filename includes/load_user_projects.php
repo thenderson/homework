@@ -97,7 +97,7 @@
 		$project['PPC'] = (isset($metrics[$pnum]['PPC_CSV']) ? $metrics[$pnum]['PPC_CSV'] : null);
 		$project['PTA'] = (isset($metrics[$pnum]['PTA_CSV']) ? $metrics[$pnum]['PTA_CSV'] : null);
 		$project['PTI'] = (isset($metrics[$pnum]['PTI_CSV']) ? $metrics[$pnum]['PTI_CSV'] : null);
-error_log("PPC: ".$project['PPC']." PTA: ".$project['PTA']." PTI: ".$project['PTI']);
+//error_log("PPC: ".$project['PPC']." PTA: ".$project['PTA']." PTI: ".$project['PTI']);
 	}
 
 	// create grid
@@ -108,9 +108,9 @@ error_log("PPC: ".$project['PPC']." PTA: ".$project['PTA']." PTI: ".$project['PT
 	$grid->addColumn('project_name', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('user_belongs', 'MEMBER OF TEAM', 'boolean', NULL, false);
 	$grid->addColumn('num_open', 'OPEN', 'string', NULL, false);
-	$grid->addColumn('ppc', 'PPC', 'string', NULL, false);
-	$grid->addColumn('pta', 'PTA', 'string', NULL, false);
-	$grid->addColumn('pti', 'PTI', 'string', NULL, false);
+	$grid->addColumn('PPC', 'PPC', 'string', NULL, false);
+	$grid->addColumn('PTA', 'PTA', 'string', NULL, false);
+	$grid->addColumn('PTI', 'PTI', 'string', NULL, false);
 
 	//render grid
 	$grid->renderXML($projects);
