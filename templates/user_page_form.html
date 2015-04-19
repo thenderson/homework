@@ -281,11 +281,13 @@
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, value) {
 							d3.select(cell)
-							.selectAll("p")
+							.selectAll('div')
 							.data(value)
 							.enter()
-							.append("p")
-							.text(function(d) { return d; });
+							.append('div')
+							.attr('class', 'bar')
+							.style("height", function(d) { return d*5 + "px"; })
+							.style('width', '5px');
 						}
 					}));
 					
