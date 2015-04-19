@@ -62,10 +62,12 @@
 	$project_metrics = array();
 	
 	for ($x = 0; $x < count($metrics); $x++) {
+		$pnum = $metrics[$x]['project_number'];
+error_log($pnum);
 		for ($i=$lookback; $i<1; $i--) {
-			$project_metrics[$metrics[$x]['project_number']]['PPC'] = (isset($metrics[$x]['project_number']['PPC'][$i]) ? $metrics[$x]['project_number']['PPC'][$i] : null);
-			$project_metrics[$metrics[$x]['project_number']]['PTA'] = (isset($metrics[$x]['project_number']['PTA'][$i]) ? $metrics[$x]['project_number']['PTA'][$i] : null);
-			$project_metrics[$metrics[$x]['project_number']]['PTI'] = (isset($metrics[$x]['project_number']['PTI'][$i]) ? $metrics[$x]['project_number']['PTI'][$i] : null);
+			$project_metrics[$pnum]['PPC'] = $project_metrics[$pnum]['PPC'].','.(isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : null);
+			$project_metrics[$pnum]['PTA'] = $project_metrics[$pnum]['PTA'].','.(isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : null);
+			$project_metrics[$pnum]['PTI'] = $project_metrics[$pnum]['PTI'].','.(isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : null);
 		}
 	}
 	
