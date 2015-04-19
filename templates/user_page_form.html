@@ -284,6 +284,7 @@
 							var h = 20;
 							var pad = 0;
 							var values = d3.csv.parseRows(csv_data);
+							var values = values[0];
 				console.debug(values);
 				console.log(values.length);
 							var svg = d3.select(cell)
