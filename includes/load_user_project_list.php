@@ -52,7 +52,7 @@
 
 	foreach ($rows as $row) {
 		$date = new DateTime(date('Y-m-d', $row['date']));
-		$weeknum = date_diff($last_monday, $date) / 7;
+		$weeknum = date_diff($last_monday, $date)->format('%r%a') / 7;
 error_log($weeknum);
 		$project_metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
 		$project_metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
