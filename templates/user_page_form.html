@@ -280,7 +280,7 @@
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, csv_data) {
-							var pad = 5;
+							var pad = 15;
 							var w = 100;
 							var h = 30;
 							var values = d3.csv.parseRows(csv_data);
@@ -301,7 +301,7 @@
 								
 							var xAxis = d3.svg.axis()
 								.scale(xScale)
-								.tickSize(0,2)
+								.tickSize(2,0)
 								.orient('bottom');
 							
 							svg.selectAll('rect')
