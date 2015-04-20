@@ -308,7 +308,7 @@
 								.attr('class', 'bar')
 								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
 								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
-								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
+								.attr('width', function(d, i) { return w / values.length + 'px';})
 								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 								
 							svg.append("g")
@@ -340,7 +340,7 @@
 								.attr('class', 'bar')
 								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
 								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
-								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
+								.attr('width', function(d, i) { return w / values.length + 'px';})
 								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 						}
 					}));
@@ -368,7 +368,7 @@
 								.attr('class', 'bar')
 								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
 								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
-								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
+								.attr('width', function(d, i) { return w / values.length + 'px';})
 								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 						}
 					})); 
