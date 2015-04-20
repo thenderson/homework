@@ -105,7 +105,7 @@
 		
 		for ($i = 1; $i < 10; $i++) { // build key-value array of variances
 			$v = "'V$i'";
-			$variances[$v => isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0];
+			$variances[$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0];
 		}
 		
 		$project['V'] = json_encode($variances);
