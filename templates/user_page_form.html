@@ -288,7 +288,7 @@ window.onload = function() {
 						.x(function(d) { return d; })
 						.y(function(d) { return d; });
 					
-					sparkline(cell, values, 'bar-ppc');
+					//sparkline(cell, values, 'bar-ppc');
 					
 					
 					/*var svg = d3.select(cell)
@@ -515,29 +515,6 @@ window.onload = function() {
 			async: true
 		});
 	});
-	
 
-	function sparkline(element, data, class) {
-		var pad = 5;
-		var w = 100;
-		var h = 30;
-
-
-		var svg = d3.select(element)
-			.append('svg')
-			.attr('width', w)
-			.attr('height', h)
-			.append('g')
-			.attr('transform', 'translate(0, 2)');
-		svg.append('path')
-			.datum(data)
-			.attr('class', class)
-			.attr('d', line);
-		svg.append('circle')
-			.attr('class', 'sparkcircle')
-			.attr('cx', d)
-			.attr('cy', d)
-			.attr('r', 1.5);  
-	}
 };
 </script>
