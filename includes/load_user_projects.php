@@ -76,9 +76,9 @@
 		$metrics[$pnum]['PTA'][$weeknum] = $row['PTA'];
 		$metrics[$pnum]['PTI'][$weeknum] = $row['PTI'];
 		
-		for ($i = 1; $i<10; $i++) { //total variances for each project across $lookback
+		for ($i = 1; $i<10; $i++) { //sum variances for each project across $lookback
 			$v = 'V'.$i;
-			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : (isset($row[$v]) ? $row[$v] : 0);
+			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : $row[$v];
 		}
 	}
 	
@@ -99,9 +99,15 @@
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
 		
-		$variances = ['V1'=>$metrics[$pnum]['V1'], 'V2'=>$metrics[$pnum]['V2'], 'V3'=>$metrics[$pnum]['V3'], 
-		'V4'=>$metrics[$pnum]['V4'], 'V5'=>$metrics[$pnum]['V5'], 'V6'=>$metrics[$pnum]['V6'], 
-		'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
+		//$variances = ['V1'=>$metrics[$pnum]['V1'], 'V2'=>$metrics[$pnum]['V2'], 'V3'=>$metrics[$pnum]['V3'], 
+		//'V4'=>$metrics[$pnum]['V4'], 'V5'=>$metrics[$pnum]['V5'], 'V6'=>$metrics[$pnum]['V6'], 
+		//'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
+		
+		for ($i = 1; $i < 10; $i++) { // build key-value array of variances
+			$v = "'V$i'";
+			$variances[$v => isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0];
+		}
+		
 		$project['V'] = json_encode($variances);
 	}
 
