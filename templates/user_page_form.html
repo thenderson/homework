@@ -280,6 +280,7 @@
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, csv_data) {
+							var pad = 5;
 							var w = 100;
 							var h = 20;
 							var values = d3.csv.parseRows(csv_data);
@@ -291,15 +292,21 @@
 								.attr('height', h);
 								
 							var xScale = d3.scale.ordinal()
-								.domain([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+								.domain([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+								.range([0, w-pad]);
 							
 							var yScale = d3.scale.linear()
 								.domain([0, 1])
-								.rangeRound([0, h]);
+								.rangeRound([0, h-pad]);
 								
 							var xAxis = d3.svg.axis()
 								.scale(xScale)
 								.orient('bottom');
+								
+							var yAxis = d3.svg.axis()
+								.scale(yScale)
+								.orient("left")
+								.ticks(4);
 							
 							svg.selectAll('rect')
 								.data(values)
@@ -311,9 +318,15 @@
 								.attr('width', function(d, i) { return w / values.length;})
 								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 								
-							svg.append("g")
+							svg.append('g')
 								.attr('class', 'axis')
+								.attr("transform", "translate(0," + (h - pad) + ")")
 								.call(xAxis);
+								
+							svg.append("g")
+								.attr("class", "axis")
+								.attr("transform", "translate(" + pad + ",0)")
+								.call(yAxis);
 						}
 					}));
 					
