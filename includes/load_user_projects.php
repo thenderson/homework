@@ -69,16 +69,16 @@
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
 
 	foreach ($rows as $row) {
-		$pnum = $row['project_number'];
+		$pnum = (string) $row['project_number'];
 		$date = new DateTime($row['date']);
 		$weeknum = date_diff($date, $last_monday)->format('%r%a') / 7;
 		$metrics[$pnum]['PPC'][$weeknum] = $row['PPC'];
 		$metrics[$pnum]['PTA'][$weeknum] = $row['PTA'];
 		$metrics[$pnum]['PTI'][$weeknum] = $row['PTI'];
 		
-		for ($i = 1; $i<10; $i++) {
+		for ($i = 1; $i<10; $i++) { //total variances for each project across $lookback
 			$v = 'V'.$i;
-			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : $row[$v];
+			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : (isset($row[$v]) ? $row[$v] : 0);
 		}
 	}
 	
