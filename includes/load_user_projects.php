@@ -47,7 +47,7 @@
 	foreach ($projects as $proj) $pnums = $pnums."'".$proj['project_number_2']."',";
 	$pnums = rtrim($pnums, ',');
 
-	$q = "SELECT project_number, date, PPC, PTA, PTI FROM `project_metrics` 
+	$q = "SELECT project_number, date, PPC, PTA, PTI, V1, V2, V3, V4, V5, V6, V7, V8, V9 FROM `project_metrics` 
 	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback WEEK) and CURDATE() ORDER BY date";
 
 	$stmt = $comm_db->prepare($q);
@@ -65,7 +65,7 @@
 		trigger_error('Wrong SQL: ' . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	// organize sql data by how long ago it occurred
+	// organize sql data by how long ago it occurred & sum variances over the period $lookback
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
 	foreach ($rows as $row) {
 		$date = new DateTime($row['date']);
@@ -73,6 +73,15 @@
 		$metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
 		$metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
 		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
+		$metrics[$row['project_number']]['V1'] += $row['V1'];
+		$metrics[$row['project_number']]['V2'] += $row['V2'];
+		$metrics[$row['project_number']]['V3'] += $row['V3'];
+		$metrics[$row['project_number']]['V4'] += $row['V4'];
+		$metrics[$row['project_number']]['V5'] += $row['V5'];
+		$metrics[$row['project_number']]['V6'] += $row['V6'];
+		$metrics[$row['project_number']]['V7'] += $row['V7'];
+		$metrics[$row['project_number']]['V8'] += $row['V8'];
+		$metrics[$row['project_number']]['V9'] += $row['V9'];
 	}
 	
 	// add data to $projects & fill-in missing values so that resulting arrays cover $lookback number of weeks
@@ -91,6 +100,10 @@
 		$project['PPC'] = rtrim($project['PPC'], ',');
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
+		$variances = ['V1'->$metrics[$pnum]['V1'], 'V2'->$metrics[$pnum]['V2'], 'V3'->$metrics[$pnum]['V3'], 
+		'V4'->$metrics[$pnum]['V4'], 'V5'->$metrics[$pnum]['V5'], 'V6'->$metrics[$pnum]['V6'], 
+		'V7'->$metrics[$pnum]['V7'], 'V8'->$metrics[$pnum]['V8'], 'V9'->$metrics[$pnum]['V9']];
+		$project['V'] = json_encode($variances);
 	}
 
 	// create grid
@@ -104,6 +117,7 @@
 	$grid->addColumn('PPC', 'PPC', 'string', NULL, false);
 	$grid->addColumn('PTA', 'PTA', 'string', NULL, false);
 	$grid->addColumn('PTI', 'PTI', 'string', NULL, false);
+	$grid->addColumn('V', 'Variance', 'string', NULL, false);
 
 	//render grid
 	$grid->renderXML($projects);
