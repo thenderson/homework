@@ -283,11 +283,6 @@ window.onload = function() {
 					var values = d3.csv.parseRows(csv_data);
 					var values = values[0];
 					
-					var line = d3.svg.line()
-						.interpolate("basis")
-						.x(function(d) { return d; })
-						.y(function(d) { return d; });
-					
 					sparkline(cell, values, 'bar-ppc');
 					
 					
@@ -422,7 +417,7 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-					
+		console.debug(json_data);
 					var svg = d3.select(cell)
 						.append('svg')
 						.attr('width', w)
@@ -522,6 +517,11 @@ window.onload = function() {
 		var w = 100;
 		var h = 30;
 		
+		var line = d3.svg.line()
+			.interpolate("basis")
+			.x(function(d) { return d; })
+			.y(function(d) { return d; });
+						
 		var svg = d3.select(element)
 			.append('svg')
 			.attr('width', w)
