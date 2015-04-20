@@ -280,9 +280,9 @@
 					
 					projects.setCellRenderer('PPC', new CellRenderer ({
 						render: function(cell, csv_data) {
-							var pad = 5;
+							var pad = 10;
 							var w = 100;
-							var h = 20;
+							var h = 25;
 							var values = d3.csv.parseRows(csv_data);
 							var values = values[0];
 							
@@ -292,8 +292,8 @@
 								.attr('height', h);
 								
 							var xScale = d3.scale.ordinal()
-								.domain([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
-								.range([0, w-pad]);
+								.domain([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
+								//.range([0, w-pad]);
 							
 							var yScale = d3.scale.linear()
 								.domain([0, 1])
