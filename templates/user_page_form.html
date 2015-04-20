@@ -118,396 +118,426 @@
 	</body>
 	
 	<script type="text/javascript">
-		window.onload = function() {
-			
-			// load commitments
-			commitments = new CommitmentGrid('commitments');
-			requests = new CommitmentGrid('requests');
-			
-			load_comms = function (horizon, showClosed) {
-				if (typeof(horizon) === 'undefined') {
-					hor = getCookie('horizon');
-					horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
-				}
-				
-				if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') == 'true' ? true : false);
-				
-				$('#show-closed').prop('checked', showClosed);
-				
-				setCookie('horizon', horizon);
-				setCookie('showClosed', showClosed);
-				
-				// load user commitments
-				$.ajax({
-					url: '../includes/load_user_commitments.php',
-					type: 'POST',
-					dataType: "text",
-					data: {
-						horizon: horizon,
-						showClosed: showClosed,
-						p_or_r: 'promises'
-					},
-					success: function (response) 
-					{
-						commitments.grid.loadXMLFromString(response); //synchronous function
-						commitments.grid.tableLoaded();
-					},
-					error: function(XMLHttpRequest, textStatus, exception) 
-					{ 
-						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-					},
-					async: true
-				});
-
-				// load user requests
-				$.ajax({ 
-					url: '../includes/load_user_commitments.php',
-					type: 'POST',
-					dataType: "text",
-					data: {
-						horizon: horizon,
-						showClosed: showClosed,
-						p_or_r: 'requests'
-					},
-					success: function (response) 
-					{ //process response as xml, then call tableLoaded
-						requests.grid.loadXMLFromString(response); //synchronous function
-						requests.grid.tableLoaded();
-					},
-					error: function(XMLHttpRequest, textStatus, exception) 
-					{ 
-						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
-					},
-					async: true
-				});
-			};
-		
-			// configure accordions, sliders, cookies & misc. stuff
-			$('#accordion-com').accordion({
-				heightStyle: 'content',
-				collapsible: true,
-				beforeActivate: function(event, ui) {
-					$('#commitments_total-above').toggle('slow');
-					$('#spacer-commitments_total-above').toggle('slow');
-				}
-			});
-			
-			$('#accordion-req').accordion({
-				heightStyle: 'content',
-				collapsible: true,
-				beforeActivate: function(event, ui) {
-					$('#requests_total-above').toggle('slow');
-					$('#spacer-requests_total-above').toggle('slow');
-				}
-			});
-			
-			$('#accordion-proj').accordion({
-				heightStyle: 'content',
-				collapsible: true,
-				beforeActivate: function(event, ui) {
-					$('#proj_total-above').toggle('slow');
-					$('#spacer-proj_total-above').toggle('slow');
-				}
-			});
-			
+window.onload = function() {
+	
+	// load commitments
+	commitments = new CommitmentGrid('commitments');
+	requests = new CommitmentGrid('requests');
+	
+	load_comms = function (horizon, showClosed) {
+		if (typeof(horizon) === 'undefined') {
 			hor = getCookie('horizon');
 			horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
-			setCookie('horizon', horizon);
-			var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
-			
-			$('#horizon-slider').slider({
-				min: 0,
-				max: 10,
-				step: 1,
-				range: 'min',
-				value: weeks,
-				create: function(event, ui) {
-					if (weeks < 1) $('#horizon-text').html('overdue only');
-					else if (weeks < 10) $('#horizon-text').html('lookahead: '+weeks+' wk');
-					else $('#horizon-text').html('lookahead: all');
-				},
-				slide: function(event, ui) {
-					if (ui.value < 1) $('#horizon-text').html('overdue only');
-					else if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
-					else $('#horizon-text').html('lookahead: all');
-				},
-				change: function( event, ui ) {
-					if (ui.value < 1) {
-						horizon = 0;
-						$('#horizon-text').html('overdue only');
-					}
-					else if (ui.value < 10) {
-						horizon = ui.value * 7;
-						$('#horizon-text').html('lookahead: '+ui.value+' wk');
-					}
-					else {
-						horizon = 'all';
-						$('#horizon-text').html('lookahead: all');
-					}
-					load_comms(horizon);
-				}
-			});
-
-			show_closed = getCookie('showClosed') == 'true' ? true : false;
-			$('#show-closed').prop('checked', show_closed);
-			setCookie('showClosed', show_closed);
-			
-			$('#show-closed').change(function() {
-				load_comms(undefined, this.checked);
-			});
-				
-			commPageSize = parseInt(getCookie(commitments.name+'PageSize') || 10); 
-			$('#comm_page_size').val(commPageSize);
-			reqPageSize = parseInt(getCookie(requests.name+'PageSize') || 10); 
-			$('#req_page_size').val(reqPageSize);
-			projPageSize = parseInt(getCookie('projectsPageSize') || 10); 
-			$('#proj_page_size').val(projPageSize);
-	
-			projects = new EditableGrid("Projects", {
-				enableSort: true,
-				dateFormat: "US",
-				pageSize: projPageSize,
-				tableRendered:  function() { 
-					updatePaginator(this, "projects_paginator"); 
-					$('[id^=proj_total]').html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
-				},
-				tableLoaded: function() { 
-					projects.setCellRenderer('project_number_2', new CellRenderer({ 
-						render: function(cell, value) { 
-							cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
-						}
-					}));
-					
-					projects.setCellRenderer('PPC', new CellRenderer ({
-						render: function(cell, csv_data) {
-							var pad = 5;
-							var w = 100;
-							var h = 30;
-							var values = d3.csv.parseRows(csv_data);
-							var values = values[0];
-							
-							var svg = d3.select(cell)
-								.append('svg')
-								.attr('width', w)
-								.attr('height', h);
-								
-							var xScale = d3.scale.linear()
-								.domain([0,9])
-								.range([0, w]);
-							
-							var yScale = d3.scale.linear()
-								.domain([0,1])
-								.rangeRound([0, h-pad]);
-								
-							var xAxis = d3.svg.axis()
-								.scale(xScale)
-								.tickSize(2,2)
-								.tickFormat("") // hide labels
-								.orient('bottom');
-							
-							svg.selectAll('rect')
-								.data(values)
-								.enter()
-								.append('rect')
-								.attr('class', 'bar-ppc')
-								.attr('x', function(d, i) { return xScale(i);})
-								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
-								.attr('width', function(d, i) { return w / values.length;})
-								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
-								
-							svg.append('g')
-								.attr('class', 'axis')
-								.attr("transform", "translate(0," + (h - pad) + " )")
-								.call(xAxis);
-						}
-					}));
-					
-					projects.setCellRenderer('PTA', new CellRenderer ({
-						render: function(cell, csv_data) {
-							var pad = 5;
-							var w = 100;
-							var h = 30;
-							var values = d3.csv.parseRows(csv_data);
-							var values = values[0];
-							
-							var svg = d3.select(cell)
-								.append('svg')
-								.attr('width', w)
-								.attr('height', h);
-								
-							var xScale = d3.scale.linear()
-								.domain([0,9])
-								.range([0, w]);
-							
-							var yScale = d3.scale.linear()
-								.domain([0,1])
-								.rangeRound([0, h-pad]);
-								
-							var xAxis = d3.svg.axis()
-								.scale(xScale)
-								.tickSize(2,1)
-								.tickFormat("") // hide labels
-								.orient('bottom');
-							
-							svg.selectAll('rect')
-								.data(values)
-								.enter()
-								.append('rect')
-								.attr('class', 'bar-pta')
-								.attr('x', function(d, i) { return xScale(i);})
-								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
-								.attr('width', function(d, i) { return w / values.length;})
-								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
-								
-							svg.append('g')
-								.attr('class', 'axis')
-								.attr("transform", "translate(0," + (h - pad) + " )")
-								.call(xAxis);
-						}
-					}));
-					
-					projects.setCellRenderer('PTI', new CellRenderer ({
-						render: function(cell, csv_data) {
-							var pad = 5;
-							var w = 100;
-							var h = 30;
-							var values = d3.csv.parseRows(csv_data);
-							var values = values[0];
-							
-							var svg = d3.select(cell)
-								.append('svg')
-								.attr('width', w)
-								.attr('height', h);
-								
-							var xScale = d3.scale.linear()
-								.domain([0,9])
-								.range([0,w]);
-							
-							var yScale = d3.scale.linear()
-								.domain([0,1])
-								.rangeRound([0, h-pad]);
-								
-							var xAxis = d3.svg.axis()
-								.scale(xScale)
-								.tickSize(2,1)
-								.tickFormat("") // hide labels
-								.orient('bottom');
-							
-							svg.selectAll('rect')
-								.data(values)
-								.enter()
-								.append('rect')
-								.attr('class', 'bar-pti')
-								.attr('x', function(d, i) { return xScale(i);})
-								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
-								.attr('width', function(d, i) { return w / values.length;})
-								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
-								
-							svg.append('g')
-								.attr('class', 'axis')
-								.attr("transform", "translate(0," + (h - pad) + " )")
-								.call(xAxis);
-						}
-					})); 
-					
-					projects.setCellRenderer('V', new CellRenderer ({
-						render: function(cell, json_data) {
-							var pad = 10;
-							var w = 100;
-							var h = 30;
-							var values = JSON.parse(json_data);
-							
-							var svg = d3.select(cell)
-								.append('svg')
-								.attr('width', w)
-								.attr('height', h);
-								
-							var xScale = d3.scale.linear()
-								.domain([0,9])
-								.range([0, w]);
-							
-							var yScale = d3.scale.linear()
-								.domain([0,d3.max(values)])
-								.rangeRound([0, h-pad]);
-								
-							var xAxis = d3.svg.axis()
-								.scale(xScale)
-								.tickSize(2,2)
-								//.tickFormat("") // hide labels
-								.orient('bottom');
-							
-							svg.selectAll('rect')
-								.data(values)
-								.enter()
-								.append('rect')
-								.attr('class', 'bar-v')
-								.attr('x', function(d, i) { return xScale(i);})
-								.attr('y', function(d, i) { return h - pad -(yScale(d[i][1]));})
-								.attr('width', function(d, i) { return w / values.length;})
-								.attr('height', function(d, i) { return (yScale(d[i][1])); });
-								
-							svg.append('g')
-								.attr('class', 'axis')
-								.attr("transform", "translate(0," + (h - pad) + " )")
-								.call(xAxis);
-						}
-					}));
-					
-					this.renderGrid('projects_d', 'table', 'projects'); }
-			});
-			
-			// Load data first time
-			projects.loadXML("../includes/load_user_projects.php");
-			load_comms(horizon, show_closed);
-			
-			// Set-up filters
-			commitments.grid.filter(""); //clear any leftover filtering
-			requests.grid.filter("");
-			projects.filter("");
-				
-			$("#filter_all").keyup(function() { //one filter to rule them all
- 				commitments.grid.filter($(this).val());
-				requests.grid.filter($(this).val());
-				projects.filter($(this).val());
-			});
-			
-			// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
-			$.ajax({
-				url: '../includes/load_user_project_list.php',
-				type: 'POST',
-				dataType: 'JSON',
-				success: function (result) {
-					//populate_select_projects("#inp-proj", user_proj_list);
-					$.each(result, function(key, object) {
-						$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
-					});
-				},
-				error: function(XMLHttpRequest, textStatus, exception) { 
-					alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-				async: true
-			});
-			
-			$('#inp-req').selectmenu('disable');
-			$('#inp-prom').selectmenu('disable');
-			
-			// populate new commitment requester and promiser select menus with project team members
-			$('#inp-proj').on("selectmenuselect", function( event, object ) 
+		}
+		
+		if (typeof(showClosed)==='undefined') showClosed = (getCookie('showClosed') == 'true' ? true : false);
+		
+		$('#show-closed').prop('checked', showClosed);
+		
+		setCookie('horizon', horizon);
+		setCookie('showClosed', showClosed);
+		
+		// load user commitments
+		$.ajax({
+			url: '../includes/load_user_commitments.php',
+			type: 'POST',
+			dataType: "text",
+			data: {
+				horizon: horizon,
+				showClosed: showClosed,
+				p_or_r: 'promises'
+			},
+			success: function (response) 
 			{
-				$.ajax({
-					url: '../includes/load_project_usernames.php',
-					type: 'POST',
-					dataType: 'JSON',
-					data: { p: $('#inp-proj').val() },
-					success: function (proj_users) {
-						populate_select_names("#inp-req", proj_users);
-						$('#inp-req').selectmenu('enable');
-						populate_select_names("#inp-prom", proj_users);
-						$('#inp-prom').selectmenu('enable');
-					},
-					error: function(XMLHttpRequest, textStatus, exception) { 
-						alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-					async: true
-				});
-			} );
-		}; 
-	</script>
+				commitments.grid.loadXMLFromString(response); //synchronous function
+				commitments.grid.tableLoaded();
+			},
+			error: function(XMLHttpRequest, textStatus, exception) 
+			{ 
+				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+			},
+			async: true
+		});
+
+		// load user requests
+		$.ajax({ 
+			url: '../includes/load_user_commitments.php',
+			type: 'POST',
+			dataType: "text",
+			data: {
+				horizon: horizon,
+				showClosed: showClosed,
+				p_or_r: 'requests'
+			},
+			success: function (response) 
+			{ //process response as xml, then call tableLoaded
+				requests.grid.loadXMLFromString(response); //synchronous function
+				requests.grid.tableLoaded();
+			},
+			error: function(XMLHttpRequest, textStatus, exception) 
+			{ 
+				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception); 
+			},
+			async: true
+		});
+	};
+
+	// configure accordions, sliders, cookies & misc. stuff
+	$('#accordion-com').accordion({
+		heightStyle: 'content',
+		collapsible: true,
+		beforeActivate: function(event, ui) {
+			$('#commitments_total-above').toggle('slow');
+			$('#spacer-commitments_total-above').toggle('slow');
+		}
+	});
+	
+	$('#accordion-req').accordion({
+		heightStyle: 'content',
+		collapsible: true,
+		beforeActivate: function(event, ui) {
+			$('#requests_total-above').toggle('slow');
+			$('#spacer-requests_total-above').toggle('slow');
+		}
+	});
+	
+	$('#accordion-proj').accordion({
+		heightStyle: 'content',
+		collapsible: true,
+		beforeActivate: function(event, ui) {
+			$('#proj_total-above').toggle('slow');
+			$('#spacer-proj_total-above').toggle('slow');
+		}
+	});
+	
+	hor = getCookie('horizon');
+	horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
+	setCookie('horizon', horizon);
+	var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
+	
+	$('#horizon-slider').slider({
+		min: 0,
+		max: 10,
+		step: 1,
+		range: 'min',
+		value: weeks,
+		create: function(event, ui) {
+			if (weeks < 1) $('#horizon-text').html('overdue only');
+			else if (weeks < 10) $('#horizon-text').html('lookahead: '+weeks+' wk');
+			else $('#horizon-text').html('lookahead: all');
+		},
+		slide: function(event, ui) {
+			if (ui.value < 1) $('#horizon-text').html('overdue only');
+			else if (ui.value < 10) $('#horizon-text').html('lookahead: '+ui.value+' wk');
+			else $('#horizon-text').html('lookahead: all');
+		},
+		change: function( event, ui ) {
+			if (ui.value < 1) {
+				horizon = 0;
+				$('#horizon-text').html('overdue only');
+			}
+			else if (ui.value < 10) {
+				horizon = ui.value * 7;
+				$('#horizon-text').html('lookahead: '+ui.value+' wk');
+			}
+			else {
+				horizon = 'all';
+				$('#horizon-text').html('lookahead: all');
+			}
+			load_comms(horizon);
+		}
+	});
+
+	show_closed = getCookie('showClosed') == 'true' ? true : false;
+	$('#show-closed').prop('checked', show_closed);
+	setCookie('showClosed', show_closed);
+	
+	$('#show-closed').change(function() {
+		load_comms(undefined, this.checked);
+	});
+		
+	commPageSize = parseInt(getCookie(commitments.name+'PageSize') || 10); 
+	$('#comm_page_size').val(commPageSize);
+	reqPageSize = parseInt(getCookie(requests.name+'PageSize') || 10); 
+	$('#req_page_size').val(reqPageSize);
+	projPageSize = parseInt(getCookie('projectsPageSize') || 10); 
+	$('#proj_page_size').val(projPageSize);
+
+	projects = new EditableGrid("Projects", {
+		enableSort: true,
+		dateFormat: "US",
+		pageSize: projPageSize,
+		tableRendered:  function() { 
+			updatePaginator(this, "projects_paginator"); 
+			$('[id^=proj_total]').html('total: <strong>'+projects.getTotalRowCount()+'</strong>');
+		},
+		tableLoaded: function() { 
+			projects.setCellRenderer('project_number_2', new CellRenderer({ 
+				render: function(cell, value) { 
+					cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+				}
+			}));
+			
+			projects.setCellRenderer('PPC', new CellRenderer ({
+				render: function(cell, csv_data) {
+					var values = d3.csv.parseRows(csv_data);
+					var values = values[0];
+					
+					var line = d3.svg.line()
+						.interpolate("basis")
+						.x(function(d) { return d; })
+						.y(function(d) { return d; });
+					
+					sparkline(cell, values, 'bar-ppc');
+					
+					
+					/*var svg = d3.select(cell)
+						.append('svg')
+						.attr('width', w)
+						.attr('height', h);
+						
+					var xScale = d3.scale.linear()
+						.domain([0,9])
+						.range([0, w]);
+					
+					var yScale = d3.scale.linear()
+						.domain([0,1])
+						.rangeRound([0, h-pad]);
+						
+					var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.tickSize(2,2)
+						.tickFormat("") // hide labels
+						.orient('bottom');
+					
+					svg.selectAll('rect')
+						.data(values)
+						.enter()
+						.append('rect')
+						.attr('class', 'bar-ppc')
+						.attr('x', function(d, i) { return xScale(i);})
+						.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+						.attr('width', function(d, i) { return w / values.length;})
+						.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+						
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (h - pad) + " )")
+						.call(xAxis); */
+				}
+			}));
+			
+			projects.setCellRenderer('PTA', new CellRenderer ({
+				render: function(cell, csv_data) {
+					var pad = 5;
+					var w = 100;
+					var h = 30;
+					var values = d3.csv.parseRows(csv_data);
+					var values = values[0];
+					
+					var svg = d3.select(cell)
+						.append('svg')
+						.attr('width', w)
+						.attr('height', h);
+						
+					var xScale = d3.scale.linear()
+						.domain([0,9])
+						.range([0, w]);
+					
+					var yScale = d3.scale.linear()
+						.domain([0,1])
+						.rangeRound([0, h-pad]);
+						
+					var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.tickSize(2,1)
+						.tickFormat("") // hide labels
+						.orient('bottom');
+					
+					svg.selectAll('rect')
+						.data(values)
+						.enter()
+						.append('rect')
+						.attr('class', 'bar-pta')
+						.attr('x', function(d, i) { return xScale(i);})
+						.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+						.attr('width', function(d, i) { return w / values.length;})
+						.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+						
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (h - pad) + " )")
+						.call(xAxis);
+				}
+			}));
+			
+			projects.setCellRenderer('PTI', new CellRenderer ({
+				render: function(cell, csv_data) {
+					var pad = 5;
+					var w = 100;
+					var h = 30;
+					var values = d3.csv.parseRows(csv_data);
+					var values = values[0];
+					
+					var svg = d3.select(cell)
+						.append('svg')
+						.attr('width', w)
+						.attr('height', h);
+						
+					var xScale = d3.scale.linear()
+						.domain([0,9])
+						.range([0,w]);
+					
+					var yScale = d3.scale.linear()
+						.domain([0,1])
+						.rangeRound([0, h-pad]);
+						
+					var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.tickSize(2,1)
+						.tickFormat("") // hide labels
+						.orient('bottom');
+					
+					svg.selectAll('rect')
+						.data(values)
+						.enter()
+						.append('rect')
+						.attr('class', 'bar-pti')
+						.attr('x', function(d, i) { return xScale(i);})
+						.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+						.attr('width', function(d, i) { return w / values.length;})
+						.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+						
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (h - pad) + " )")
+						.call(xAxis);
+				}
+			})); 
+			
+			projects.setCellRenderer('V', new CellRenderer ({
+				render: function(cell, json_data) {
+					var xpad = 10;
+					var ypad = 5
+					var w = 100;
+					var h = 30;
+					var values = JSON.parse(json_data);
+					
+					var svg = d3.select(cell)
+						.append('svg')
+						.attr('width', w)
+						.attr('height', h);
+						
+					var xScale = d3.scale.linear()
+						.domain([0,9])
+						.range([ypad, w-ypad]);
+					
+					var yScale = d3.scale.linear()
+						.domain([0,d3.max(values)])
+						.rangeRound([0, h-pad]);
+						
+					var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.tickSize(2,2)
+						//.tickFormat("") // hide labels
+						.orient('bottom');
+					
+					svg.selectAll('rect')
+						.data(values)
+						.enter()
+						.append('rect')
+						.attr('class', 'bar-v')
+						.attr('x', function(d, i) { return xScale(i);})
+						.attr('y', function(d, i) { return h - pad -(yScale(d[i]));})
+						.attr('width', function(d, i) { return w / values.length;})
+						.attr('height', function(d, i) { return (yScale(d[i])); });
+						
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (h - pad) + " )")
+						.call(xAxis);
+				}
+			}));
+			
+			this.renderGrid('projects_d', 'table', 'projects'); }
+	});
+	
+	// Load data first time
+	projects.loadXML("../includes/load_user_projects.php");
+	load_comms(horizon, show_closed);
+	
+	// Set-up filters
+	commitments.grid.filter(""); //clear any leftover filtering
+	requests.grid.filter("");
+	projects.filter("");
+		
+	$("#filter_all").keyup(function() { //one filter to rule them all
+		commitments.grid.filter($(this).val());
+		requests.grid.filter($(this).val());
+		projects.filter($(this).val());
+	});
+	
+	// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
+	$.ajax({
+		url: '../includes/load_user_project_list.php',
+		type: 'POST',
+		dataType: 'JSON',
+		success: function (result) {
+			//populate_select_projects("#inp-proj", user_proj_list);
+			$.each(result, function(key, object) {
+				$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
+			});
+		},
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+		async: true
+	});
+	
+	$('#inp-req').selectmenu('disable');
+	$('#inp-prom').selectmenu('disable');
+	
+	// populate new commitment requester and promiser select menus with project team members
+	$('#inp-proj').on("selectmenuselect", function( event, object ) 
+	{
+		$.ajax({
+			url: '../includes/load_project_usernames.php',
+			type: 'POST',
+			dataType: 'JSON',
+			data: { p: $('#inp-proj').val() },
+			success: function (proj_users) {
+				populate_select_names("#inp-req", proj_users);
+				$('#inp-req').selectmenu('enable');
+				populate_select_names("#inp-prom", proj_users);
+				$('#inp-prom').selectmenu('enable');
+			},
+			error: function(XMLHttpRequest, textStatus, exception) { 
+				alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+			async: true
+		});
+	} );
+	
+
+	function sparkline(element, data, class) {
+		var pad = 5;
+		var w = 100;
+		var h = 30;
+
+
+		var svg = d3.select(element)
+			.append('svg')
+			.attr('width', w)
+			.attr('height', h)
+			.append('g')
+			.attr('transform', 'translate(0, 2)');
+		svg.append('path')
+			.datum(data)
+			.attr('class', class)
+			.attr('d', line);
+		svg.append('circle')
+			.attr('class', 'sparkcircle')
+			.attr('cx', d)
+			.attr('cy', d)
+			.attr('r', 1.5);  
+	}
+};
+</script>
