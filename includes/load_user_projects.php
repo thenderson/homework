@@ -104,7 +104,7 @@
 		//'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
 		
 		for ($i = 1; $i < 10; $i++) { // build key-value array of variances
-			$v = "'V$i'";
+			$v = "V$i";
 			$variances[$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0;
 		}
 		
@@ -122,7 +122,7 @@
 	$grid->addColumn('PPC', 'PPC', 'string', NULL, false);
 	$grid->addColumn('PTA', 'PTA', 'string', NULL, false);
 	$grid->addColumn('PTI', 'PTI', 'string', NULL, false);
-	$grid->addColumn('V', 'Variance', 'string', NULL, false);
+	$grid->addColumn('V', 'VARIANCE', 'string', NULL, false);
 
 	//render grid
 	$grid->renderXML($projects);
