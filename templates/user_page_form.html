@@ -282,10 +282,49 @@
 						render: function(cell, csv_data) {
 							var w = 100;
 							var h = 20;
-							var pad = 0;
 							var values = d3.csv.parseRows(csv_data);
 							var values = values[0];
-				console.debug(values);
+							
+							var svg = d3.select(cell)
+								.append('svg')
+								.attr('width', w)
+								.attr('height', h);
+								
+							var xScale = d3.scale.ordinal()
+								.domain([10, 0])
+								.rangeRound([0, w]);
+							
+							var yScale = d3.scale.linear()
+								.domain([0, 1])
+								.rangeRound([0, h]);
+								
+							var xAxis = d3.svg.axis()
+								.scale(xScale)
+								.orient('bottom');
+							
+							svg.selectAll('rect')
+								.data(values)
+								.enter()
+								.append('rect')
+								.attr('class', 'bar')
+								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
+								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
+								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
+								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+								
+							svg.append("g")
+								.attr('class', 'axis')
+								.call(xAxis);
+						}
+					}));
+					
+					projects.setCellRenderer('PTA', new CellRenderer ({
+						render: function(cell, csv_data) {
+							var w = 100;
+							var h = 20;
+							var values = d3.csv.parseRows(csv_data);
+							var values = values[0];
+							
 							var svg = d3.select(cell)
 								.append('svg')
 								.attr('width', w)
@@ -306,54 +345,34 @@
 								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 						}
 					}));
-					/*
-					projects.setCellRenderer('PTA', new CellRenderer ({
-						render: function(cell, values) {
-							var w = 100;
-							var h = 50;
-							var pad = 0;
-							
-							var svg = d3.select(cell)
-							.append('svg')
-							.attr('width', w)
-							.attr('height', h);
-							
-							svg.selectAll('rect')
-							.data(values)
-							.enter()
-							.append('rect')
-							.attr('class', 'bar')
-							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - Math.max(1, d*5) + "px";})
-							.attr('width', function(d, i) { return w / values.length - pad;})
-							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
-							
-						}
-					}));
 					
 					projects.setCellRenderer('PTI', new CellRenderer ({
-						render: function(cell, values) {
+						render: function(cell, csv_data) {
 							var w = 100;
-							var h = 30;
-							var pad = 0;
+							var h = 20;
+							var values = d3.csv.parseRows(csv_data);
+							var values = values[0];
 							
 							var svg = d3.select(cell)
-							.append('svg')
-							.attr('width', w)
-							.attr('height', h);
+								.append('svg')
+								.attr('width', w)
+								.attr('height', h);
+							
+							var yScale = d3.scale.linear()
+								.domain([0, 1])
+								.range([0, h]);
 							
 							svg.selectAll('rect')
-							.data(values)
-							.enter()
-							.append('rect')
-							.attr('class', 'bar')
-							.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
-							.attr('y', function(d, i) { return h - Math.max(1, d*5) + "px";})
-							.attr('width', function(d, i) { return w / values.length - pad;})
-							.attr('height', function(d, i) { return Math.max(1, d*5) + "px"; });
-							
+								.data(values)
+								.enter()
+								.append('rect')
+								.attr('class', 'bar')
+								.attr('x', function(d, i) { return i * (w / values.length) + 'px';})
+								.attr('y', function(d, i) { return d == '-1' ? null : h - (yScale(d));})
+								.attr('width', function(d, i) { return w / values.length - pad + 'px';})
+								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
 						}
-					})); */
+					})); 
 					
 					this.renderGrid('projects_d', 'table', 'projects'); }
 			});
