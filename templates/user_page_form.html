@@ -410,6 +410,51 @@
 						}
 					})); 
 					
+					projects.setCellRenderer('V', new CellRenderer ({
+						render: function(cell, json_data) {
+							var pad = 5;
+							var w = 100;
+							var h = 30;
+							var values = JSON.parse(json_data);
+							//var values = values[0];
+			console.debug(values);
+							
+							var svg = d3.select(cell)
+								.append('svg')
+								.attr('width', w)
+								.attr('height', h);
+								
+							var xScale = d3.scale.linear()
+								.domain([0,9])
+								.range([0, w]);
+							
+							var yScale = d3.scale.linear()
+								.domain([0,1])
+								.rangeRound([0, h-pad]);
+								
+							var xAxis = d3.svg.axis()
+								.scale(xScale)
+								.tickSize(2,2)
+								.tickFormat("") // hide labels
+								.orient('bottom');
+							
+							svg.selectAll('rect')
+								.data(values)
+								.enter()
+								.append('rect')
+								.attr('class', 'bar-ppc')
+								.attr('x', function(d, i) { return xScale(i);})
+								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+								.attr('width', function(d, i) { return w / values.length;})
+								.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+								
+							svg.append('g')
+								.attr('class', 'axis')
+								.attr("transform", "translate(0," + (h - pad) + " )")
+								.call(xAxis);
+						}
+					}));
+					
 					this.renderGrid('projects_d', 'table', 'projects'); }
 			});
 			
