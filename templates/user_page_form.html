@@ -302,7 +302,7 @@
 							var xAxis = d3.svg.axis()
 								.scale(xScale)
 								.tickSize(2,0)
-								.tickFormat(""); // hide labels
+								.tickFormat("") // hide labels
 								.orient('bottom');
 							
 							svg.selectAll('rect')
@@ -345,14 +345,15 @@
 								
 							var xAxis = d3.svg.axis()
 								.scale(xScale)
-								.tickSize(0,2)
+								.tickSize(2,0)
+								.tickFormat("") // hide labels
 								.orient('bottom');
 							
 							svg.selectAll('rect')
 								.data(values)
 								.enter()
 								.append('rect')
-								.attr('class', 'bar-pta')
+								.attr('class', 'bar-ppc')
 								.attr('x', function(d, i) { return xScale(i);})
 								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
 								.attr('width', function(d, i) { return w / values.length;})
@@ -388,14 +389,15 @@
 								
 							var xAxis = d3.svg.axis()
 								.scale(xScale)
-								.tickSize(0,2)
+								.tickSize(2,0)
+								.tickFormat("") // hide labels
 								.orient('bottom');
 							
 							svg.selectAll('rect')
 								.data(values)
 								.enter()
 								.append('rect')
-								.attr('class', 'bar-pti')
+								.attr('class', 'bar-ppc')
 								.attr('x', function(d, i) { return xScale(i);})
 								.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
 								.attr('width', function(d, i) { return w / values.length;})
