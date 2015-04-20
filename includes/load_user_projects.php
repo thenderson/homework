@@ -100,9 +100,9 @@
 		$project['PPC'] = rtrim($project['PPC'], ',');
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
-		$variances = ['V1'->$metrics[$pnum]['V1'], 'V2'->$metrics[$pnum]['V2'], 'V3'->$metrics[$pnum]['V3'], 
-		'V4'->$metrics[$pnum]['V4'], 'V5'->$metrics[$pnum]['V5'], 'V6'->$metrics[$pnum]['V6'], 
-		'V7'->$metrics[$pnum]['V7'], 'V8'->$metrics[$pnum]['V8'], 'V9'->$metrics[$pnum]['V9']];
+		$variances = ['V1'=>$metrics[$pnum]['V1'], 'V2'=>$metrics[$pnum]['V2'], 'V3'=>$metrics[$pnum]['V3'], 
+		'V4'=>$metrics[$pnum]['V4'], 'V5'=>$metrics[$pnum]['V5'], 'V6'=>$metrics[$pnum]['V6'], 
+		'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
 		$project['V'] = json_encode($variances);
 	}
 
