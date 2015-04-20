@@ -91,6 +91,15 @@
 		$project['PPC'] = "";
 		$project['PTA'] = "";
 		$project['PTI'] = "";
+		$project['V1'] = 0;
+		$project['V2'] = 0;
+		$project['V3'] = 0;
+		$project['V4'] = 0;
+		$project['V5'] = 0;
+		$project['V6'] = 0;
+		$project['V7'] = 0;
+		$project['V8'] = 0;
+		$project['V9'] = 0;
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
