@@ -92,31 +92,6 @@
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
 	}
-	
-	// // reorganize sql data into CSV time series for last $lookback number of weeks
-	// foreach ($metrics as &$metric) {
-		// $metric['PPC_CSV'] = '';
-		// $metric['PTA_CSV'] = '';
-		// $metric['PTI_CSV'] = '';
-		
-		// for ($i=$lookback-1; $i>-1; $i--) {
-			// $metric['PPC_CSV'] = $metric['PPC_CSV'].(isset($metric['PPC'][$i]) ? $metric['PPC'][$i] : null).',';
-			// $metric['PTA_CSV'] = $metric['PTA_CSV'].(isset($metric['PTA'][$i]) ? $metric['PTA'][$i] : null).',';
-			// $metric['PTI_CSV'] = $metric['PTI_CSV'].(isset($metric['PTI'][$i]) ? $metric['PTI'][$i] : null).',';
-		// }
-		
-		// $metric['PPC_CSV'] = rtrim($metric['PPC_CSV'], ',');
-		// $metric['PTA_CSV'] = rtrim($metric['PTA_CSV'], ',');
-		// $metric['PTI_CSV'] = rtrim($metric['PTI_CSV'], ',');
-	// }
-
-	// foreach ($projects as &$project) {
-		// $pnum = (string) $project['project_number_2'];
-		// $project['PPC'] = (isset($metrics[$pnum]['PPC_CSV']) ? $metrics[$pnum]['PPC_CSV'] : null);
-		// $project['PTA'] = (isset($metrics[$pnum]['PTA_CSV']) ? $metrics[$pnum]['PTA_CSV'] : null);
-		// $project['PTI'] = (isset($metrics[$pnum]['PTI_CSV']) ? $metrics[$pnum]['PTI_CSV'] : null);
-// //error_log("PPC: ".$project['PPC']." PTA: ".$project['PTA']." PTI: ".$project['PTI']);
-	//}
 
 	// create grid
 	$grid = new EditableGrid();
