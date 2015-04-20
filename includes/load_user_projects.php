@@ -67,21 +67,19 @@
 	
 	// organize sql data by how long ago it occurred & sum variances over the period $lookback
 	$last_monday = new DateTime(date('Y-m-d', strtotime('last Monday')));
+
 	foreach ($rows as $row) {
+		$pnum = $row['project_number'];
 		$date = new DateTime($row['date']);
 		$weeknum = date_diff($date, $last_monday)->format('%r%a') / 7;
-		$metrics[$row['project_number']]['PPC'][$weeknum] = $row['PPC'];
-		$metrics[$row['project_number']]['PTA'][$weeknum] = $row['PTA'];
-		$metrics[$row['project_number']]['PTI'][$weeknum] = $row['PTI'];
-		$metrics[$row['project_number']]['V1'] += $row['V1'];
-		$metrics[$row['project_number']]['V2'] += $row['V2'];
-		$metrics[$row['project_number']]['V3'] += $row['V3'];
-		$metrics[$row['project_number']]['V4'] += $row['V4'];
-		$metrics[$row['project_number']]['V5'] += $row['V5'];
-		$metrics[$row['project_number']]['V6'] += $row['V6'];
-		$metrics[$row['project_number']]['V7'] += $row['V7'];
-		$metrics[$row['project_number']]['V8'] += $row['V8'];
-		$metrics[$row['project_number']]['V9'] += $row['V9'];
+		$metrics[$pnum]['PPC'][$weeknum] = $row['PPC'];
+		$metrics[$pnum]['PTA'][$weeknum] = $row['PTA'];
+		$metrics[$pnum]['PTI'][$weeknum] = $row['PTI'];
+		
+		for ($i = 1; $i<10; $i++) {
+			$v = 'V'.$i;
+			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : $row[$v];
+		}
 	}
 	
 	// add data to $projects & fill-in missing values so that resulting arrays cover $lookback number of weeks
@@ -91,15 +89,6 @@
 		$project['PPC'] = "";
 		$project['PTA'] = "";
 		$project['PTI'] = "";
-		$project['V1'] = 0;
-		$project['V2'] = 0;
-		$project['V3'] = 0;
-		$project['V4'] = 0;
-		$project['V5'] = 0;
-		$project['V6'] = 0;
-		$project['V7'] = 0;
-		$project['V8'] = 0;
-		$project['V9'] = 0;
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
@@ -109,6 +98,7 @@
 		$project['PPC'] = rtrim($project['PPC'], ',');
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
+		
 		$variances = ['V1'=>$metrics[$pnum]['V1'], 'V2'=>$metrics[$pnum]['V2'], 'V3'=>$metrics[$pnum]['V3'], 
 		'V4'=>$metrics[$pnum]['V4'], 'V5'=>$metrics[$pnum]['V5'], 'V6'=>$metrics[$pnum]['V6'], 
 		'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
