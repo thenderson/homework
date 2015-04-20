@@ -434,7 +434,7 @@ window.onload = function() {
 					
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(values)])
-						.rangeRound([0, h-pad]);
+						.rangeRound([0, h-ypad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
@@ -515,6 +515,28 @@ window.onload = function() {
 			async: true
 		});
 	});
+	
 
+	function sparkline(element, data, class) {
+		var pad = 5;
+		var w = 100;
+		var h = 30;
+		
+		var svg = d3.select(element)
+			.append('svg')
+			.attr('width', w)
+			.attr('height', h)
+			.append('g')
+			.attr('transform', 'translate(0, 2)');
+		svg.append('path')
+			.datum(data)
+			.attr('class', class)
+			.attr('d', line);
+		svg.append('circle')
+			.attr('class', 'sparkcircle')
+			.attr('cx', d)
+			.attr('cy', d)
+			.attr('r', 1.5);  
+	}
 };
 </script>
