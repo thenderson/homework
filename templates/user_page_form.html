@@ -517,7 +517,7 @@ window.onload = function() {
 	});
 	
 
-	function sparkline(element, data, class) {
+	function sparkline(element, data, CSSclass) {
 		var pad = 5;
 		var w = 100;
 		var h = 30;
@@ -530,7 +530,7 @@ window.onload = function() {
 			.attr('transform', 'translate(0, 2)');
 		svg.append('path')
 			.datum(data)
-			.attr('class', class)
+			.attr('class', CSSclass)
 			.attr('d', line);
 		svg.append('circle')
 			.attr('class', 'sparkcircle')
