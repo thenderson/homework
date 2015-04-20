@@ -282,7 +282,7 @@
 						render: function(cell, csv_data) {
 							var pad = 10;
 							var w = 100;
-							var h = 25;
+							var h = 35;
 							var values = d3.csv.parseRows(csv_data);
 							var values = values[0];
 							
@@ -291,9 +291,9 @@
 								.attr('width', w)
 								.attr('height', h);
 								
-							var xScale = d3.scale.ordinal()
-								.domain([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
-								//.range([0, w-pad]);
+							var xScale = d3.scale.linear()
+								.domain([0, 9]);
+								.range([0, w-pad]);
 							
 							var yScale = d3.scale.linear()
 								.domain([0, 1])
@@ -306,7 +306,6 @@
 							var yAxis = d3.svg.axis()
 								.scale(yScale)
 								.orient("left")
-								.ticks(4);
 							
 							svg.selectAll('rect')
 								.data(values)
@@ -320,7 +319,7 @@
 								
 							svg.append('g')
 								.attr('class', 'axis')
-								.attr("transform", "translate(0," + (h - pad) + ")")
+								.attr("transform", "translate(0," + (h - pad) + " )")
 								.call(xAxis);
 								
 							svg.append("g")
