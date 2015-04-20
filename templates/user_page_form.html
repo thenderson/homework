@@ -287,33 +287,33 @@ window.onload = function() {
 					var values = values[0];
 					
 					//Append an SVG to the document body
-				var svg = d3.select(cell)
-					.append("svg")
-					.attr("width", w)
-					.attr("height", h)
-					.append("g");
+					var svg = d3.select(cell)
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h)
+						.append("g");
 
-				var x = d3.scale.ordinal()
-					.domain(values.map(function(d) { return d; }))
-					.rangeRoundBands([0, w], .04);
+					var x = d3.scale.ordinal()
+						.domain(values.map(function(d) { return d; }))
+						.rangeRoundBands([0, w], .04);
 
-				var y = d3.scale.linear()
-					.domain([0, d3.max(values, function(d) { return d; })])
-					.range([h, 0]);
+					var y = d3.scale.linear()
+						.domain([0, d3.max(values, function(d) { return d; })])
+						.range([h, 0]);
 
-				//Draw the line graph
-				var line = d3.svg.line()
-					.interpolate("basis")
-					.x(function(d) { return x(d); })
-					.y(function(d) { return y(d); })
+					//Draw the line graph
+					var line = d3.svg.line()
+						.interpolate("basis")
+						.x(function(d) { return x(d); })
+						.y(function(d) { return y(d); })
 
-				//Append a path to the SVG
-				svg.append("path")
-					.attr("d", line(values))
-					.attr("class", "linePath")
-					.attr("fill", "none")
-					.attr("stroke", "#FF0000")
-					.attr("stroke-width", 1);
+					//Append a path to the SVG
+					svg.append("path")
+						.attr("d", line(values))
+						.attr("class", "linePath")
+						.attr("fill", "none")
+						.attr("stroke", "#FF0000")
+						.attr("stroke-width", 1);
 				}
 			}));
 			
@@ -419,7 +419,7 @@ window.onload = function() {
 						.attr('height', h);
 						
 					var xScale = d3.scale.linear()
-						.domain([0,9])
+						.domain(['V1','V2','V3','V4','V5','V6','V7','V8','V9'])
 						.range([xpad, w-xpad]);
 					
 					var yScale = d3.scale.linear()
