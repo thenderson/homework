@@ -78,7 +78,7 @@
 		
 		for ($i = 1; $i<10; $i++) { //sum variances for each project across $lookback
 			$v = 'V'.(string) $i;
-			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$i] : $row[$i];
+			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : $row[$v];
 		}
 	}
 	
