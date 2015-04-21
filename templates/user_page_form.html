@@ -302,8 +302,8 @@ window.onload = function() {
 						.data([values])
 						.enter().append("svg:path")
 						.attr("d", d3.svg.line()
-						.x((d,i) -> x(i))
-						.y(y))
+							.x(function(d,i) {return x(i);})
+							.y(function(d,i) {return y(d);}))
 
 
 
