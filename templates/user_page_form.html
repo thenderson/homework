@@ -287,14 +287,18 @@ window.onload = function() {
 					var max = d3.max(values);
 
 					// Scales
-					x  = d3.scale.linear().domain([0, values.length - 1]).range [0, w]
-					y  = d3.scale.linear().domain([0, max]).range [h, 0]
+					x  = d3.scale.linear()
+						.domain([0, values.length - 1])
+						.range ([0, w]);
+					y  = d3.scale.linear()
+						.domain([0, max])
+						.range ([h, 0]);
 
 					// Base vis layer
 					vis = d3.select(cell)
 						.append('svg:svg')
 						.attr('width', w)
-						.attr('height', h)
+						.attr('height', h);
 
 					// Add path layer
 					vis.selectAll('path.line')
@@ -302,7 +306,7 @@ window.onload = function() {
 						.enter().append("svg:path")
 						.attr("d", d3.svg.line()
 							.x(function(d,i) {return x(i);})
-							.y(function(d,i) {return y(d);}))
+							.y(function(d,i) {return y(+d['y']);}));
 
 
 
@@ -328,7 +332,7 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-		console.debug(values);				
+		//console.debug(values);				
 					var svg = d3.select(cell)
 						.append('svg')
 						.attr('width', w)
@@ -371,7 +375,7 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-					
+		console.debug(values);
 					var svg = d3.select(cell)
 						.append('svg')
 						.attr('width', w)
@@ -385,11 +389,11 @@ window.onload = function() {
 						.domain([0,1])
 						.rangeRound([0, h-pad]);
 						
-					var xAxis = d3.svg.axis()
-						.scale(xScale)
-						.tickSize(2,1)
-						.tickFormat("") // hide labels
-						.orient('bottom');
+					//var xAxis = d3.svg.axis()
+					//	.scale(xScale)
+					//	.tickSize(2,1)
+					//	.tickFormat("") // hide labels
+					//	.orient('bottom');
 					
 					svg.selectAll('rect')
 						.data(values)
@@ -401,10 +405,10 @@ window.onload = function() {
 						.attr('width', function(d, i) { return w / 10;})
 						.attr('height', function(d, i) { return d[i] == '-1' ? null : (yScale(d[i])); });
 						
-					svg.append('g')
-						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (h - pad) + " )")
-						.call(xAxis);
+					//svg.append('g')
+					//	.attr('class', 'axis')
+					//	.attr("transform", "translate(0," + (h - pad) + " )")
+					//	.call(xAxis);
 				}
 			})); 
 			
