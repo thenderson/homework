@@ -86,28 +86,37 @@
 	// using -1 to stand for an empty value since 0 is a value and null won't work
 	foreach ($projects as &$project) {
 		$pnum = (string) $project['project_number_2'];
-		$project['PPC'] = "";
-		$project['PTA'] = "";
-		$project['PTI'] = "";
+		
+		// $project['PPC'] = "";
+		// $project['PTA'] = "";
+		// $project['PTI'] = "";
+		
+		// for ($i=$lookback-1; $i>-1; $i--) {
+			// $project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
+			// $project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
+			// $project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';
+		// }
+		// $project['PPC'] = rtrim($project['PPC'], ',');
+		// $project['PTA'] = rtrim($project['PTA'], ',');
+		// $project['PTI'] = rtrim($project['PTI'], ',');
+		
+		$ppc = [];
+		$pta = [];
+		$pti = [];
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
-			$project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
-			$project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';
-		}
-		$project['PPC'] = rtrim($project['PPC'], ',');
-		$project['PTA'] = rtrim($project['PTA'], ',');
-		$project['PTI'] = rtrim($project['PTI'], ',');
-		
-		//$variances = ['V1'=>$metrics[$pnum]['V1'], 'V2'=>$metrics[$pnum]['V2'], 'V3'=>$metrics[$pnum]['V3'], 
-		//'V4'=>$metrics[$pnum]['V4'], 'V5'=>$metrics[$pnum]['V5'], 'V6'=>$metrics[$pnum]['V6'], 
-		//'V7'=>$metrics[$pnum]['V7'], 'V8'=>$metrics[$pnum]['V8'], 'V9'=>$metrics[$pnum]['V9']];
-		
-		for ($i = 1; $i < 10; $i++) { // build key-value array of variances
-			$v = "V$i";
-			$variances[$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0;
+			$ppc[$i] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
+			$pta[$i] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
+			$pti[$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
 		}
 		
+		// build key-value array of variances
+		for ($i = 1; $i < 10; $i++) $variances[$i] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$] : 0;
+		
+		// convert arrays to text so they get through EditableGrid (which doesn't take arrays)
+		$project['PPC'] = json_encode($ppc);
+		$project['PTA'] = json_encode($pta);
+		$project['PTI'] = json_encode($pti);
 		$project['V'] = json_encode($variances);
 	}
 
