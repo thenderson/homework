@@ -110,7 +110,7 @@
 			$pti[$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
 			$ppc[$i]['x'] = $i;
 			$pta[$i]['x'] = $i;
-			$pti[$i] = $i;
+			//$pti[$i] = $i;
 		}
 		
 		// build key-value array of variances

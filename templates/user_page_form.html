@@ -357,7 +357,7 @@ window.onload = function() {
 						.enter()
 						.append('rect')
 						.attr('class', 'bar-pta')
-						.attr('x', function(d, i) { return xScale(d[i]['x']);})
+						.attr('x', function(d, i) { return xScale(i);})
 						.attr('y', function(d, i) { return h - pad -yScale(.75);})
 						.attr('width', function(d, i) { return w / 10;})
 						.attr('height', function(d, i) { return yScale(.75); });
@@ -389,11 +389,11 @@ window.onload = function() {
 						.domain([0,1])
 						.rangeRound([0, h-pad]);
 						
-					//var xAxis = d3.svg.axis()
-					//	.scale(xScale)
-					//	.tickSize(2,1)
-					//	.tickFormat("") // hide labels
-					//	.orient('bottom');
+					var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.tickSize(2,1)
+						.tickFormat("") // hide labels
+						.orient('bottom');
 					
 					svg.selectAll('rect')
 						.data(values)
@@ -402,13 +402,13 @@ window.onload = function() {
 						.attr('class', 'bar-pti')
 						.attr('x', function(d, i) { return xScale(i);})
 						.attr('y', function(d, i) { return d[i] == '-1' ? null : h - pad -(yScale(d[i]));})
-						.attr('width', function(d, i) { return w / 10;})
+						.attr('width', function(d, i) { return 10;})
 						.attr('height', function(d, i) { return d[i] == '-1' ? null : (yScale(d[i])); });
 						
-					//svg.append('g')
-					//	.attr('class', 'axis')
-					//	.attr("transform", "translate(0," + (h - pad) + " )")
-					//	.call(xAxis);
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (h - pad) + " )")
+						.call(xAxis);
 				}
 			})); 
 			
@@ -446,7 +446,7 @@ window.onload = function() {
 						.attr('class', 'bar-v')
 						.attr('x', function(d, i) { return xScale(i);})
 						.attr('y', function(d, i) { return h - ypad -(yScale(d[i]));})
-						.attr('width', function(d, i) { return w / values.length;})
+						.attr('width', function(d, i) { return 10;})
 						.attr('height', function(d, i) { return (yScale(d[i])); });
 						
 					svg.append('g')
