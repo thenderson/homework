@@ -355,9 +355,9 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar-pta')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return h - pad -(yScale(d[i]));})
+						.attr('y', function(d, i) { return h - pad -(yScale(d));})
 						.attr('width', function(d, i) { return w / values.length;})
-						.attr('height', function(d, i) { return (yScale(d[i])); });
+						.attr('height', function(d, i) { return (yScale(d)); });
 						
 					svg.append('g')
 						.attr('class', 'axis')
