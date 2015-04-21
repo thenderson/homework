@@ -355,9 +355,9 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar-pta')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+						.attr('y', function(d, i) { return d[i] == '-1' ? null : h - pad -(yScale(d[i]));})
 						.attr('width', function(d, i) { return w / values.length;})
-						.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+						.attr('height', function(d, i) { return d[i] == '-1' ? null : (yScale(d[i])); });
 						
 					svg.append('g')
 						.attr('class', 'axis')
@@ -398,9 +398,9 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar-pti')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return d == '-1' ? null : h - pad -(yScale(d));})
+						.attr('y', function(d, i) { return d[i] == '-1' ? null : h - pad -(yScale(d[i]));})
 						.attr('width', function(d, i) { return w / values.length;})
-						.attr('height', function(d, i) { return d == '-1' ? null : (yScale(d)); });
+						.attr('height', function(d, i) { return d[i] == '-1' ? null : (yScale(d[i])); });
 						
 					svg.append('g')
 						.attr('class', 'axis')
