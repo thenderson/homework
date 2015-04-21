@@ -285,7 +285,6 @@ window.onload = function() {
 					var h = 30;
 					var values = JSON.parse(json_data);
 					var max = d3.max(values);
-	console.debug(values);	
 
 					// Scales
 					x  = d3.scale.linear().domain([0, values.length - 1]).range [0, w]
@@ -329,7 +328,7 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-					
+		console.debug(values);				
 					var svg = d3.select(cell)
 						.append('svg')
 						.attr('width', w)
@@ -355,9 +354,9 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar-pta')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return h - pad -(yScale(d['y']));})
+						.attr('y', function(d, i) { return h - pad -(yScale(.75);})
 						.attr('width', function(d, i) { return w / values.length;})
-						.attr('height', function(d, i) { return (yScale(d['y'])); });
+						.attr('height', function(d, i) { return (yScale(.75); });
 						
 					svg.append('g')
 						.attr('class', 'axis')
@@ -416,7 +415,7 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-		console.debug(json_data);
+					
 					var svg = d3.select(cell)
 						.append('svg')
 						.attr('width', w)
