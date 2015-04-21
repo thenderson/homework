@@ -77,8 +77,7 @@
 		$metrics[$pnum]['PTI'][$weeknum] = $row['PTI'];
 		
 		for ($i = 1; $i<10; $i++) { //sum variances for each project across $lookback
-			$v = 'V'.$i;
-			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$v] : $row[$v];
+			$metrics[$pnum]['V'.$i] = isset($metrics[$pnum]['V'.$i]) ? $metrics[$pnum]['V'.$i] + $row[$i] : $row[$i];
 		}
 	}
 	
@@ -105,13 +104,19 @@
 		$pti = [];
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$ppc[$i] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
-			$pta[$i] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
-			$pti[$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
+			$ppc[$i]['y'] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
+			$pta[$i]['y'] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
+			$pti[$i]['y'] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
+			$ppc[$i]['x'] = $i;
+			$pta[$i]['x'] = $i;
+			$pti[$i]['x'] = $i;
 		}
 		
 		// build key-value array of variances
-		for ($i = 1; $i < 10; $i++) $variances[$i] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$i] : 0;
+		for ($i = 1; $i < 10; $i++) {
+			$variances[$i]['y'] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$i] : 0;
+			$variances[$i]['x'] = $i;
+		}
 		
 		// convert arrays to text so they get through EditableGrid (which doesn't take arrays)
 		$project['PPC'] = json_encode($ppc);
