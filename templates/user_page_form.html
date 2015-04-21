@@ -284,35 +284,42 @@ window.onload = function() {
 					var w = 100;
 					var h = 30;
 					var values = JSON.parse(json_data);
-			console.debug(values);		
-					//Append an SVG to the document body
-					var svg = d3.select(cell)
-						.append("svg")
-						.attr("width", w)
-						.attr("height", h)
-						.append("g");
+					var max = d3.max(values);
+	console.debug(values);	
 
-					var x = d3.scale.ordinal()
-						.domain(values.map(function(d) { return d; }))
-						.rangeRoundBands([0, w], .04);
+					// Scales
+					x  = d3.scale.linear().domain([0, values.length - 1]).range [0, w]
+					y  = d3.scale.linear().domain([0, max]).range [h, 0]
 
-					var y = d3.scale.linear()
-						.domain([0, d3.max(values, function(d) { return d; })])
-						.range([h, 0]);
+					// Base vis layer
+					vis = d3.select(cell)
+						.append('svg:svg')
+						.attr('width', w)
+						.attr('height', h)
+
+					// Add path layer
+					vis.selectAll('path.line')
+						.data([values])
+						.enter().append("svg:path")
+						.attr("d", d3.svg.line()
+						.x((d,i) -> x(i))
+						.y(y))
+
+
 
 					//Draw the line graph
-					var line = d3.svg.line()
-						.interpolate("basis")
-						.x(function(d) { return x(d); })
-						.y(function(d) { return y(d); })
+				//	var line = d3.svg.line()
+				//		.interpolate("basis")
+				//		.x(function(d, i) { return x(d); })
+				//		.y(function(d, i) { return y(d); })
 
 					//Append a path to the SVG
-					svg.append("path")
-						.attr("d", line(values))
-						.attr("class", "linePath")
-						.attr("fill", "none")
-						.attr("stroke", "#FF0000")
-						.attr("stroke-width", 1);
+				//	svg.append("path")
+				//		.attr("d", line(values))
+				//		.attr("class", "linePath")
+				//		.attr("fill", "none")
+				//		.attr("stroke", "#FF0000")
+				//		.attr("stroke-width", 1);
 				}
 			}));
 			
