@@ -111,7 +111,7 @@
 		}
 		
 		// build key-value array of variances
-		for ($i = 1; $i < 10; $i++) $variances[$i] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$] : 0;
+		for ($i = 1; $i < 10; $i++) $variances[$i] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$i] : 0;
 		
 		// convert arrays to text so they get through EditableGrid (which doesn't take arrays)
 		$project['PPC'] = json_encode($ppc);
