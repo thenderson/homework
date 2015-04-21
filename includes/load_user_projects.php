@@ -107,10 +107,10 @@
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$ppc[$i]['y'] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
 			$pta[$i]['y'] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
-			$pti[$i]['y'] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
+			$pti[$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
 			$ppc[$i]['x'] = $i;
 			$pta[$i]['x'] = $i;
-			$pti[$i]['x'] = $i;
+			$pti[$i] = $i;
 		}
 		
 		// build key-value array of variances

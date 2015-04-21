@@ -340,7 +340,7 @@ window.onload = function() {
 					
 					var yScale = d3.scale.linear()
 						.domain([0,1])
-						.rangeRound([0, h-pad]);
+						.range([0, h-pad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
@@ -353,9 +353,9 @@ window.onload = function() {
 						.enter()
 						.append('rect')
 						.attr('class', 'bar-pta')
-						.attr('x', function(d, i) { return xScale(i);})
+						.attr('x', function(d, i) { return xScale(d[i]['x']);})
 						.attr('y', function(d, i) { return h - pad -yScale(.75);})
-						.attr('width', function(d, i) { return w / values.length;})
+						.attr('width', function(d, i) { return w / 10;})
 						.attr('height', function(d, i) { return yScale(.75); });
 						
 					svg.append('g')
@@ -398,7 +398,7 @@ window.onload = function() {
 						.attr('class', 'bar-pti')
 						.attr('x', function(d, i) { return xScale(i);})
 						.attr('y', function(d, i) { return d[i] == '-1' ? null : h - pad -(yScale(d[i]));})
-						.attr('width', function(d, i) { return w / values.length;})
+						.attr('width', function(d, i) { return w / 10;})
 						.attr('height', function(d, i) { return d[i] == '-1' ? null : (yScale(d[i])); });
 						
 					svg.append('g')
