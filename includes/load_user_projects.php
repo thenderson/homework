@@ -77,7 +77,8 @@
 		$metrics[$pnum]['PTI'][$weeknum] = $row['PTI'];
 		
 		for ($i = 1; $i<10; $i++) { //sum variances for each project across $lookback
-			$metrics[$pnum]['V'.$i] = isset($metrics[$pnum]['V'.$i]) ? $metrics[$pnum]['V'.$i] + $row[$i] : $row[$i];
+			$v = 'V'.(string) $i;
+			$metrics[$pnum][$v] = isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] + $row[$i] : $row[$i];
 		}
 	}
 	
