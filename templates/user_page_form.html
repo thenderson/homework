@@ -285,6 +285,7 @@ window.onload = function() {
 					var hpad = 0;
 					var wpad = 2;
 					var data = d3.csv.parseRows(csv_data);
+					var data = data[0];
 	console.debug(data);
 	console.log('data.length: '+data.length);
 	
@@ -310,7 +311,7 @@ window.onload = function() {
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 2.5);
+						.attr('r', 3);
 				}
 			}));
 			
