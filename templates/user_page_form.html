@@ -280,14 +280,14 @@ window.onload = function() {
 			
 			projects.setCellRenderer('PPC', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var height = $('.editablegrid-PPC').height();
+					var height = $(cell).closest('tr').height();
 					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
 					var xpad = 10;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
-					var data = [0, .5, .5, .85, .85, 1, 0, -1, .85, .5]; // for testing
+					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -324,74 +324,92 @@ window.onload = function() {
 			}));
 			
 			projects.setCellRenderer('PTA', new CellRenderer ({
-				render: function(cell, json_data) {
-					var height = $('.editablegrid-PTA').height();
+				render: function(cell, csv_data) {
+					var height = $(cell).closest('tr').height();
 					var width = $('.editablegrid-PTA').width();
-					var hpad = 0;
-					var wpad = 2;
-					
-					// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
-					var data = [.3, .6, 0, .7, .5, .2, .1, .3, .8, .9];
-					
+					var ypad = 6;
+					var xpad = 10;
+					var data = d3.csv.parseRows(csv_data);
+					var data = data[0];
+	
+					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
+	
 					var graph = d3.select(cell)
 						.append("svg:svg")
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length]).range([0, width - 2*wpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([0, height - hpad]);
+					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(d); })
-						.interpolate("basis");
+						.y(function(d) { return (d == -1 ? -1 : y(d)); });
+						//.interpolate("step");
+						
+					var line_target = d3.svg.line()
+						.x(function(d,i) { return x(i); })
+						.y(function(d) { return y(.85); });
 
+					graph.append('svg:path')
+						.attr('d', line_target(data))
+						.attr('class', 'sparkline_target');
+						
 					graph.append("svg:path")
 						.attr("d", line(data))
-						.attr("class", "sparkline");
+						.attr("class", "sparkline_pta");
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 1.5);
+						.attr('r', 2);
 				}
 			}));
 			
 			projects.setCellRenderer('PTI', new CellRenderer ({
-				render: function(cell, json_data) {
-					var height = $('.editablegrid-PTI').height();
+				render: function(cell, csv_data) {
+					var height = $(cell).closest('tr').height();
 					var width = $('.editablegrid-PTI').width();
-					var hpad = 0;
-					var wpad = 2;
-					
-					// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
-					var data = [.3, .6, 0, .7, .5, .2, .1, .3, .8, .9];
-					
+					var ypad = 6;
+					var xpad = 10;
+					var data = d3.csv.parseRows(csv_data);
+					var data = data[0];
+	
+					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
+	
 					var graph = d3.select(cell)
 						.append("svg:svg")
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length]).range([0, width - 2*wpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([0, height - hpad]);
+					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(d); })
-						.interpolate("basis");
+						.y(function(d) { return (d == -1 ? -1 : y(d)); });
+						//.interpolate("step");
+						
+					var line_target = d3.svg.line()
+						.x(function(d,i) { return x(i); })
+						.y(function(d) { return y(.85); });
 
+					graph.append('svg:path')
+						.attr('d', line_target(data))
+						.attr('class', 'sparkline_target');
+						
 					graph.append("svg:path")
 						.attr("d", line(data))
-						.attr("class", "sparkline");
+						.attr("class", "sparkline_pti");
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 1.5);
+						.attr('r', 2);
 				}
 			})); 
 			

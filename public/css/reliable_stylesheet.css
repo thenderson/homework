@@ -550,24 +550,24 @@ font-size: 8px;
 .sparkline_ppc {
 fill: none;
 stroke: rgb(174, 202, 196);
-stroke-width: 3px;
+stroke-width: 1.5px;
 }
 
 .sparkline_pta {
 fill: none;
 stroke: rgb(165, 171, 129);
-stroke-width: 3px;
+stroke-width: 1.5px;
 }
 
 .sparkline_pti {
 fill: none;
 stroke: rgb(119, 95, 85);
-stroke-width: 2px;
+stroke-width: 1.5px;
 }
 
 .sparkline_target {
 fill: none;
-stroke: #000;
+stroke: rgb(192, 192, 192);
 stroke-width: 1px;
 }
 .sparkcircle {
