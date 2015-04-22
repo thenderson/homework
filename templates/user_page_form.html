@@ -350,7 +350,7 @@ window.onload = function() {
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.85); });
+						.y(function(d) { return y(.5); });
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -395,7 +395,7 @@ window.onload = function() {
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.85); });
+						.y(function(d) { return y(.25); });
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
