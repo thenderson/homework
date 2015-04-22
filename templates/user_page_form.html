@@ -430,11 +430,11 @@ window.onload = function() {
 						
 					var xScale = d3.scale.linear()
 						.domain(['V1','V2','V3','V4','V5','V6','V7','V8','V9'])
-						.range([xpad/2, w - xpad]);
+						.range([xpad / 2, width - xpad]);
 					
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(values)])
-						.rangeRound([ypad/2, h-ypad]);
+						.rangeRound([ypad / 2, height - ypad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
