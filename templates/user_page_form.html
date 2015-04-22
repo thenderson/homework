@@ -302,11 +302,11 @@ window.onload = function() {
 							console.log('y: ' + d + ' at: ' + y(d));
 							// return the Y coordinate where we want to plot this datapoint
 							return y(d); })
-						.interpolate("basis")
+						.interpolate("basis");
 
 					graph.append("svg:path")
-						.attr("d", line(data));
-						.attr("class", "sparkline")
+						.attr("d", line(data))
+						.attr("class", "sparkline");
 					
 					
 /*					var pad = 5;
