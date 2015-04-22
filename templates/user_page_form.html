@@ -293,7 +293,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range(0, [height - ypad]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, 0]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
