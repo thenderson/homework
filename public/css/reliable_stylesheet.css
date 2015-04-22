@@ -547,7 +547,7 @@ font-size: 8px;
 .sparkline {
 fill: none;
 stroke: #000;
-stroke-width: 0.5px;
+stroke-width: 1px;
 }
 .sparkcircle {
 fill: #f00;
