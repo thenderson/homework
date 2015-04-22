@@ -283,9 +283,11 @@ window.onload = function() {
 					var height = $('.editablegrid-PPC').height();
 					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
-					var xpad = 2;
+					var xpad = 10;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
+	
+					var data = [0, .5, .5, .85, .85, 1, 0, -1, .85, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -293,7 +295,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, 0]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
