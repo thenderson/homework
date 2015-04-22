@@ -91,7 +91,7 @@
 		// $project['PTA'] = "";
 		// $project['PTI'] = "";
 		
-		/ for ($i=$lookback-1; $i>-1; $i--) {
+		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
 			// $project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
 			// $project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';

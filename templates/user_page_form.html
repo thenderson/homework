@@ -279,11 +279,12 @@ window.onload = function() {
 			}));
 			
 			projects.setCellRenderer('PPC', new CellRenderer ({
-				render: function(cell, json_data) {
+				render: function(cell, csv_data) {
 					var height = $('.editablegrid-PPC').height();
 					var width = $('.editablegrid-PPC').width();
 					var hpad = 0;
 					var wpad = 2;
+					var data = d3.csv.parseRows(csv_data);
 					
 					// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
 					var data = [.3, .6, 0, .7, .5, .2, .1, .3, .8, .9];
