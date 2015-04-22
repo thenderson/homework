@@ -298,16 +298,16 @@ window.onload = function() {
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? y(0) : y(d)); });
+						.y(function(d) { return (d == -1 ? -1 : y(d)); });
 						//.interpolate("step");
 						
-		//			var line_target = d3.svg.line()
-			//			.x(function(d,i) { return x(i); })
-				//		.y(function(d) { return y(.85); });
+					var line_target = d3.svg.line()
+						.x(function(d,i) { return x(i); })
+						.y(function(d) { return y(.85); });
 
-		//			graph.append('svg:path')
-			//			.attr('d', line_target(data))
-				//		.attr('class', 'sparkline_target');
+					graph.append('svg:path')
+						.attr('d', line_target(data))
+						.attr('class', 'sparkline_target');
 						
 					graph.append("svg:path")
 						.attr("d", line(data))
