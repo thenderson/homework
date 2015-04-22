@@ -286,8 +286,6 @@ window.onload = function() {
 					var wpad = 2;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
-	console.debug(data);
-	console.log('data.length: '+data.length);
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -309,11 +307,11 @@ window.onload = function() {
 
 					graph.append("svg:path")
 						.attr("d", line(data))
-						.attr("class", "sparkline");
+						.attr("class", "sparkline_ppc");
 						
 					graph.append('svg:path')
 						.attr('d', line_target(data))
-						.attr('class', 'sparkline_goal');
+						.attr('class', 'sparkline_target');
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')

@@ -313,13 +313,28 @@ padding-right: 0px;
 th.editablegrid-project_number_2,
 td.editablegrid-project_number_2  { /* for project lists */
 text-align: left;
-min-width: 7em;
+width: 7em;
 padding-left: 0px;
 padding-right: 2px;
 }
+
 th.editablegrid-project_name,
 td.editablegrid-project_name { /* for project lists */
 text-align: left;
+padding-left: 2px;
+padding-right: 2px;
+}
+
+th.editablegrid-PPC,
+td.editablegrid-PPC,
+th.editablegrid-PTA,
+td.editablegrid-PTA,
+th.editablegrid-PTI,
+td.editablegrid-PTI,
+th.editablegrid-V,
+td.editablegrid-V, { /* for project lists */
+text-align: center;
+width: 100px;
 padding-left: 2px;
 padding-right: 2px;
 }
