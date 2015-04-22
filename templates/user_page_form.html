@@ -295,12 +295,12 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
+					var y = d3.scale.linear().domain([0, 1]).range([ypad/2, height - ypad]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? 0 : y(d)); })
+						.y(function(d) { return (d == -1 ? -1 : y(d)); })
 						.interpolate("step");
 						
 					var line_target = d3.svg.line()
@@ -310,7 +310,7 @@ window.onload = function() {
 					var xAxis = d3.svg.axis()
 						.scale(x)
 						.tickSize(2,2)
-						//.tickFormat("") // hide labels
+						.tickFormat("") // hide labels
 						.orient('bottom');
 
 					graph.append('svg:path')
@@ -325,7 +325,7 @@ window.onload = function() {
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 2);
+						.attr('r', 8);
 						
 					graph.append('g')
 						.attr('class', 'axis')
