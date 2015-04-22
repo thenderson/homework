@@ -285,7 +285,9 @@ window.onload = function() {
 					var hpad = 0;
 					var wpad = 2;
 					var data = d3.csv.parseRows(csv_data);
-					
+	console.debug(data);
+	console.log('data.length: '+data.length);
+	
 					var graph = d3.select(cell)
 						.append("svg:svg")
 						.attr("width", width)
