@@ -445,17 +445,16 @@ window.onload = function() {
 					
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(data)])
-						.rangeRound([ypad, height - ypad]);
+						.rangeRound([0, height - ypad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
 						.tickSize(2,2)
 						//.tickFormat("") // hide labels
-						.orient('bottom');
-						.text(function(d) { return d; });
+						.orient('bottom')
+						.text(function(d) { return d; })
 						.attr("x", function(d, i) {
-							return i * (w / data.length) + (w / data.length - barpad) / 2;
-						})
+							return i * (w / data.length) + (w / data.length - barpad) / 2;});
 					
 					svg.selectAll('rect')
 						.data(data)
