@@ -332,7 +332,7 @@ td.editablegrid-PTA,
 th.editablegrid-PTI,
 td.editablegrid-PTI,
 th.editablegrid-V,
-td.editablegrid-V, { /* for project lists */
+td.editablegrid-V { /* for project lists */
 text-align: center;
 width: 100px;
 padding-left: 2px;
