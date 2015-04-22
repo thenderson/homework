@@ -327,7 +327,7 @@ window.onload = function() {
 						.attr('cy', y(data[data.length-1]))
 						.attr('r', 2);
 						
-					svg.append('g')
+					graph.append('g')
 						.attr('class', 'axis')
 						.attr("transform", "translate(0," + (height - ypad) + " )")
 						.call(xAxis);
