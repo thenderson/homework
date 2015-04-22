@@ -325,7 +325,7 @@ window.onload = function() {
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 8);
+						.attr('r', 2);
 						
 					/*graph.append('g')
 						.attr('class', 'axis')
@@ -464,7 +464,7 @@ window.onload = function() {
 						
 					svg.append('g')
 						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (height - ypad) + " )")
+						.attr("transform", "translate(0," + (height - ypad/2) + " )")
 						.call(xAxis);
 				}
 			}));
