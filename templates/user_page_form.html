@@ -305,9 +305,9 @@ window.onload = function() {
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(.85); });
 
-					graph.append('svg:path')
-						.attr('d', line_target(data))
-						.attr('class', 'sparkline_target');
+		//			graph.append('svg:path')
+			//			.attr('d', line_target(data))
+				//		.attr('class', 'sparkline_target');
 						
 					graph.append("svg:path")
 						.attr("d", line(data))
