@@ -280,14 +280,14 @@ window.onload = function() {
 			
 			projects.setCellRenderer('PPC', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var height = $(cell).closest('tr').height();
+					var height = 32;
 					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
 					var xpad = 10;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
-					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
+					//var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -325,14 +325,14 @@ window.onload = function() {
 			
 			projects.setCellRenderer('PTA', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var height = $(cell).closest('tr').height();
+					var height = 32;
 					var width = $('.editablegrid-PTA').width();
 					var ypad = 6;
 					var xpad = 10;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
-					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
+					//var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -370,14 +370,14 @@ window.onload = function() {
 			
 			projects.setCellRenderer('PTI', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var height = $(cell).closest('tr').height();
+					var height = 32.height();
 					var width = $('.editablegrid-PTI').width();
 					var ypad = 6;
 					var xpad = 10;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
-					var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
+					//var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
