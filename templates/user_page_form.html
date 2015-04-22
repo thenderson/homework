@@ -285,35 +285,25 @@ window.onload = function() {
 					var hpad = 8;
 					var wpad = 5;
 					
+					// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
+					var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 3, 6, 3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9];
+					var max = d3.max(data);
+					
 					// create an SVG element inside the #graph div that fills 100% of the div
 					var graph = d3.select(cell).append("svg:svg").attr("width", width).attr("height", height);
 
-					// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
-					var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 3, 6, 3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9, 3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 9];
-
-					// X scale will fit values from 0-10 within pixels 0-100
 					var x = d3.scale.linear().domain([0, 10]).range([0, width - wpad]);
-					// Y scale will fit values from 0-10 within pixels 0-100
-					var y = d3.scale.linear().domain([0, 10]).range([0, height - hpad]);
+					var y = d3.scale.linear().domain([0, max]).range([0, height - hpad]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
-						// assign the X function to plot our line as we wish
-						.x(function(d,i) { 
-							// verbose logging to show what's actually being done
-							console.log('x: ' + d + ' index: ' + i + ' at: ' + x(i));
-							// return the X coordinate where we want to plot this datapoint
-							return x(i); 
-						})
+						.x(function(d,i) { return x(i); })
 						.y(function(d) { 
-							// verbose logging to show what's actually being done
 							console.log('y: ' + d + ' at: ' + y(d));
 							// return the Y coordinate where we want to plot this datapoint
-							return y(d); 
-						})
-				
-						// display the line by appending an svg:path element with the data line we created above
-						graph.append("svg:path").attr("d", line(data));
+							return y(d); })
+
+					graph.append("svg:path").attr("d", line(data));
 					
 					
 					
