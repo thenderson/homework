@@ -430,6 +430,7 @@ window.onload = function() {
 					var width = $('.editablegrid-V').width();
 					var ypad = 14;
 					var xpad = 15;
+					var barpad = 1;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 					
@@ -451,13 +452,17 @@ window.onload = function() {
 						.tickSize(2,2)
 						//.tickFormat("") // hide labels
 						.orient('bottom');
+						.text(function(d) { return d; });
+						.attr("x", function(d, i) {
+							return i * (w / data.length) + (w / data.length - barpad) / 2;
+						})
 					
 					svg.selectAll('rect')
 						.data(data)
 						.enter()
 						.append('rect')
 						.attr('class', 'bar_v')
-						.attr('x', function(d, i) { return xScale(i);})
+						.attr('x', function(d, i) { return xScale(i)-barpad;})
 						.attr('y', function(d, i) { return height - ypad -(yScale(d));})
 						.attr('width', function(d, i) { return 10;})
 						.attr('height', function(d, i) { return (yScale(d)); });
