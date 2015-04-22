@@ -282,8 +282,8 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = $('.editablegrid-PPC').height();
 					var width = $('.editablegrid-PPC').width();
-					var hpad = 6;
-					var wpad = 2;
+					var ypad = 6;
+					var xpad = 2;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
@@ -292,8 +292,8 @@ window.onload = function() {
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length]).range([0, width - 2*wpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - hpad], 0);
+					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - 2*xpad]);
+					var y = d3.scale.linear().domain([0, 1]).range(0, [height - ypad]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
@@ -301,9 +301,9 @@ window.onload = function() {
 						.y(function(d) { return (d == -1 ? 0 : y(d)); });
 						//.interpolate("step");
 						
-					var line_target = d3.svg.line()
-						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.85); });
+		//			var line_target = d3.svg.line()
+			//			.x(function(d,i) { return x(i); })
+				//		.y(function(d) { return y(.85); });
 
 		//			graph.append('svg:path')
 			//			.attr('d', line_target(data))
