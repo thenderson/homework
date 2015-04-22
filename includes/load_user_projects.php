@@ -88,17 +88,17 @@
 		$pnum = (string) $project['project_number_2'];
 		
 		$project['PPC'] = "";
-		// $project['PTA'] = "";
-		// $project['PTI'] = "";
+		$project['PTA'] = "";
+		$project['PTI'] = "";
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
-			// $project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
-			// $project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';
+			$project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
+			$project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';
 		 }
 		$project['PPC'] = rtrim($project['PPC'], ',');
-		// $project['PTA'] = rtrim($project['PTA'], ',');
-		// $project['PTI'] = rtrim($project['PTI'], ',');
+		$project['PTA'] = rtrim($project['PTA'], ',');
+		$project['PTI'] = rtrim($project['PTI'], ',');
 		
 		// $ppc = [];
 		// $pta = [];
