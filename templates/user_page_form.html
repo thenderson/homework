@@ -300,12 +300,18 @@ window.onload = function() {
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? -1 : y(d)); })
+						.y(function(d) { return (d == -1 ? 0 : y(d)); })
 						.interpolate("step");
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(.85); });
+						
+					var xAxis = d3.svg.axis()
+						.scale(x)
+						.tickSize(2,2)
+						//.tickFormat("") // hide labels
+						.orient('bottom');
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -320,6 +326,11 @@ window.onload = function() {
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
 						.attr('r', 2);
+						
+					svg.append('g')
+						.attr('class', 'axis')
+						.attr("transform", "translate(0," + (height - ypad) + " )")
+						.call(xAxis);
 				}
 			}));
 			
