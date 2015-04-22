@@ -87,9 +87,10 @@
 	foreach ($projects as &$project) {
 		$pnum = (string) $project['project_number_2'];
 		
-		$project['PPC'] = "";
-		$project['PTA'] = "";
-		$project['PTI'] = "";
+		$project['PPC'] = '';
+		$project['PTA'] = '';
+		$project['PTI'] = '';
+		$project['V'] = '';
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
 			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
