@@ -397,7 +397,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([1, 0]).range([height - ypad, ypad/2]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
 
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
