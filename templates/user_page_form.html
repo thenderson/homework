@@ -433,7 +433,7 @@ window.onload = function() {
 						.range([xpad / 2, width - xpad]);
 					
 					var yScale = d3.scale.linear()
-						.domain([0,d3.max(values)])
+						.domain([0,d3.max(data)])
 						.rangeRound([ypad / 2, height - ypad]);
 						
 					var xAxis = d3.svg.axis()
@@ -443,7 +443,7 @@ window.onload = function() {
 						.orient('bottom');
 					
 					svg.selectAll('rect')
-						.data(values)
+						.data(data)
 						.enter()
 						.append('rect')
 						.attr('class', 'bar-v')
