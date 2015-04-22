@@ -292,13 +292,13 @@ window.onload = function() {
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - 2*xpad]);
+					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
 					var y = d3.scale.linear().domain([0, 1]).range(0, [height - ypad]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? 0 : y(d)); });
+						.y(function(d) { return (d == -1 ? y(0) : y(d)); });
 						//.interpolate("step");
 						
 		//			var line_target = d3.svg.line()
