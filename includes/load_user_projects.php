@@ -99,31 +99,13 @@
 		$project['PPC'] = rtrim($project['PPC'], ',');
 		$project['PTA'] = rtrim($project['PTA'], ',');
 		$project['PTI'] = rtrim($project['PTI'], ',');
-		
-		// $ppc = [];
-		// $pta = [];
-		// $pti = [];
-		
-		// for ($i=$lookback-1; $i>-1; $i--) {
-			// $ppc[$i]['y'] = isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1;
-			// $pta[$i]['y'] = isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1;
-			// $pti[$i] = isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1;
-			// $ppc[$i]['x'] = $i;
-			// $pta[$i]['x'] = $i;
-			// //$pti[$i] = $i;
-		// }
-		
-		// // build key-value array of variances
-		// for ($i = 1; $i < 10; $i++) {
-			// $variances[$i]['y'] = isset($metrics[$pnum][$i]) ? $metrics[$pnum][$i] : 0;
-			// $variances[$i]['x'] = $i;
-		// }
-		
-		// convert arrays to text so they get through EditableGrid (which doesn't take arrays)
-		// $project['PPC'] = json_encode($ppc);
-		// $project['PTA'] = json_encode($pta);
-		// $project['PTI'] = json_encode($pti);
-		// $project['V'] = json_encode($variances);
+
+		 // build array of variances
+		for ($i = 1; $i < 10; $i++) {
+			$v = 'V'.(string) $i;
+			$project['V'] = $project['V'] . (isset($metrics[$pnum][$v]) ? $metrics[$pnum][$v] : 0).',';
+		}
+		$project['V'] = rtrim($project['V'], ',');
 	}
 
 	// create grid
