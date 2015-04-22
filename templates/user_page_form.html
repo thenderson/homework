@@ -327,10 +327,10 @@ window.onload = function() {
 						.attr('cy', y(data[data.length-1]))
 						.attr('r', 8);
 						
-					graph.append('g')
+					/*graph.append('g')
 						.attr('class', 'axis')
 						.attr("transform", "translate(0," + (height - ypad) + " )")
-						.call(xAxis);
+						.call(xAxis);*/
 				}
 			}));
 			
@@ -356,7 +356,7 @@ window.onload = function() {
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? -1 : y(d)); })
+						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
 						.interpolate('cardinal')
 						.tension(.9);
 						
@@ -400,11 +400,11 @@ window.onload = function() {
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
 					var y = d3.scale.linear().domain([1, 0]).range([height - ypad, ypad/2]);
 
-					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? -1 : y(d)); });
-						//.interpolate("step");
+						.y(function(d) { return (d == -1 ? y(0) : y(d)); });
+						.interpolate('cardinal')
+						.tension(.8);
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
