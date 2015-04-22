@@ -282,7 +282,7 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = $('.editablegrid-PPC').height();
 					var width = $('.editablegrid-PPC').width();
-					var hpad = 2;
+					var hpad = 6;
 					var wpad = 2;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
@@ -298,8 +298,8 @@ window.onload = function() {
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? -1 : y(d)); })
-						.interpolate("step");
+						.y(function(d) { return (d == -1 ? 0 : y(d)); });
+						//.interpolate("step");
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
@@ -317,7 +317,7 @@ window.onload = function() {
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 3);
+						.attr('r', 2);
 				}
 			}));
 			
