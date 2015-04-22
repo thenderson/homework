@@ -301,7 +301,7 @@ window.onload = function() {
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return (d == -1 ? -1 : y(d)); });
-						//.interpolate("step");
+						.interpolate("step");
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
@@ -346,7 +346,7 @@ window.onload = function() {
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return (d == -1 ? -1 : y(d)); });
-						//.interpolate("step");
+						.interpolate("step");
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
@@ -364,13 +364,14 @@ window.onload = function() {
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 2);
+						.attr('r', 2)
+						.text(function (d) {return d});
 				}
 			}));
 			
 			projects.setCellRenderer('PTI', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var height = 32.height();
+					var height = 32;
 					var width = $('.editablegrid-PTI').width();
 					var ypad = 6;
 					var xpad = 10;
@@ -415,11 +416,12 @@ window.onload = function() {
 			
 			projects.setCellRenderer('V', new CellRenderer ({
 				render: function(cell, csv_data) {
-					var xpad = 5;
-					var ypad = 10
-					var w = 100;
-					var h = 30;
-					var values = d3.csv.parseRows(csv_data);
+					var height = 32;
+					var width = $('.editablegrid-V').width();
+					var ypad = 6;
+					var xpad = 10;
+					var data = d3.csv.parseRows(csv_data);
+					var data = data[0];
 					
 					var svg = d3.select(cell)
 						.append('svg')
