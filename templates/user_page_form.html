@@ -425,16 +425,16 @@ window.onload = function() {
 					
 					var svg = d3.select(cell)
 						.append('svg')
-						.attr('width', w)
-						.attr('height', h);
+						.attr('width', width)
+						.attr('height', height);
 						
 					var xScale = d3.scale.linear()
 						.domain(['V1','V2','V3','V4','V5','V6','V7','V8','V9'])
-						.range([xpad, w-xpad]);
+						.range([xpad/2, w - xpad]);
 					
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(values)])
-						.rangeRound([0, h-ypad]);
+						.rangeRound([ypad/2, h-ypad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
@@ -448,7 +448,7 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar-v')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return h - ypad -(yScale(d[i]));})
+						.attr('y', function(d, i) { return height - ypad -(yScale(d[i]));})
 						.attr('width', function(d, i) { return 10;})
 						.attr('height', function(d, i) { return (yScale(d[i])); });
 						
