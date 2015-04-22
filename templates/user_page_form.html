@@ -357,8 +357,7 @@ window.onload = function() {
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
-						.interpolate('cardinal')
-						.tension(.9);
+						.interpolate('step');
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
@@ -403,8 +402,7 @@ window.onload = function() {
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
-						.interpolate('cardinal')
-						.tension(.8);
+						.interpolate('step');
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
