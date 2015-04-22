@@ -554,14 +554,14 @@ stroke-width: 2px;
 }
 
 .sparkline_pta {
-fill: none;
-stroke: rgb(174, 202, 196);
+fill: rgb(174, 202, 196);
+stroke: rgb(0,0,0);
 stroke-width: 2px;
 }
 
 .sparkline_pti {
-fill: none;
-stroke: rgb(207, 174, 114);
+fill: rgb(207, 174, 114);
+stroke: rgb(0,0,0);
 stroke-width: 2px;
 }
 

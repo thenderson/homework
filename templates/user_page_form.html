@@ -444,7 +444,7 @@ window.onload = function() {
 					
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(data)])
-						.rangeRound([ypad / 2, height - ypad]);
+						.rangeRound([ypad, height - ypad]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
@@ -458,13 +458,13 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar_v')
 						.attr('x', function(d, i) { return xScale(i);})
-						.attr('y', function(d, i) { return height - ypad/2 -(yScale(d));})
+						.attr('y', function(d, i) { return height - ypad -(yScale(d));})
 						.attr('width', function(d, i) { return 10;})
 						.attr('height', function(d, i) { return (yScale(d)); });
 						
 					svg.append('g')
 						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (height - ypad/2) + " )")
+						.attr("transform", "translate(0," + (height - ypad) + " )")
 						.call(xAxis);
 				}
 			}));
