@@ -556,8 +556,9 @@ shape-rendering: crispEdges;
 
 .sparkline_pta {
 fill: rgb(174, 202, 196);
-stroke: rgb(174, 202, 196);
+stroke: rgb(0,0,0);
 stroke-width: 1px;
+shape-rendering: crispEdges;
 }
 
 .sparkline_pti {
@@ -586,6 +587,5 @@ fill: red;
 
 .bar_v {
 fill: rgb(119, 95, 85);
-shape-rendering: crispEdges;
 }
 }

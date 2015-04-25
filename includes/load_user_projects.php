@@ -83,7 +83,7 @@
 	}
 	
 	// add data to $projects as a CSV string. Fill-in missing values so that resulting arrays cover $lookback number of weeks
-	// using -1 to stand for an empty value since 0 is a value and null won't work
+	// using -1 to stand for an empty value since 0 is a value and null won't work <=== DEPRECATED; DIDN'T ADD VALUE
 	foreach ($projects as &$project) {
 		$pnum = (string) $project['project_number_2'];
 		
@@ -93,9 +93,9 @@
 		$project['V'] = '';
 		
 		for ($i=$lookback-1; $i>-1; $i--) {
-			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : -1).',';
-			$project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : -1).',';
-			$project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : -1).',';
+			$project['PPC'] = $project['PPC'] . (isset($metrics[$pnum]['PPC'][$i]) ? $metrics[$pnum]['PPC'][$i] : 0).',';
+			$project['PTA'] = $project['PTA'] . (isset($metrics[$pnum]['PTA'][$i]) ? $metrics[$pnum]['PTA'][$i] : 0).',';
+			$project['PTI'] = $project['PTI'] . (isset($metrics[$pnum]['PTI'][$i]) ? $metrics[$pnum]['PTI'][$i] : 0).',';
 		 }
 		$project['PPC'] = rtrim($project['PPC'], ',');
 		$project['PTA'] = rtrim($project['PTA'], ',');

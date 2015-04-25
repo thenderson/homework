@@ -306,12 +306,6 @@ window.onload = function() {
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(.85); });
-						
-//					var xAxis = d3.svg.axis()
-	//					.scale(x)
-		//				.tickSize(2,2)
-			//			.tickFormat("") // hide labels
-				//		.orient('bottom');
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -331,7 +325,8 @@ window.onload = function() {
 						.attr('x', x(data.length-1))
 						.attr('y', y(data[data.length-1]))
 						.text(data[data.length-1])
-						.attr('class', 'sparklabel');
+							.format('.0%')
+							.attr('class', 'sparklabel');
 
 					/*graph.append('g')
 						.attr('class', 'axis')
