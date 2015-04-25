@@ -300,7 +300,7 @@ window.onload = function() {
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
+						.y(function(d) { return y(d); })
 						.interpolate("step");
 						
 					var line_target = d3.svg.line()
@@ -462,8 +462,8 @@ window.onload = function() {
 						.attr("transform", "translate(0," + (height - ypad) + " )")
 						.call(xAxis)
 						.selectAll('text')
-						.attr('dx', (width - xpad) / 18) // 18 = 9*2, half of bar width
-						.attr('dy', -2);
+						.attr('dx', -(width - xpad) / 18) // 18 = 9*2, half of bar width
+						.attr('dy', 0);
 				}
 			}));
 			
