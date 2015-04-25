@@ -462,7 +462,7 @@ window.onload = function() {
 						.attr("transform", "translate(0," + (height - ypad) + " )")
 						.call(xAxis)
 						.selectAll('text')
-						.attr('dx', (width - xpad) / 18); // 18 = 9*2, half of bar width
+						.attr('dx', (width - xpad) / 18) // 18 = 9*2, half of bar width
 						.attr('dy', -2);
 				}
 			}));
