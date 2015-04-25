@@ -283,7 +283,7 @@ window.onload = function() {
 					var height = 32;
 					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
-					var xpad = 15;
+					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
@@ -324,14 +324,8 @@ window.onload = function() {
 					graph.append('text')
 						.attr('x', x(data.length-1))
 						.attr('y', y(data[data.length-1]))
-						.text(data[data.length-1])
-							.format('.0%')
-							.attr('class', 'sparklabel');
-
-					/*graph.append('g')
-						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (height - ypad) + " )")
-						.call(xAxis);*/
+						.text(d3.format(',%')(data[data.length-1]))
+						.attr('class', 'sparklabel');
 				}
 			}));
 			
@@ -453,8 +447,8 @@ window.onload = function() {
 						.tickSize(4,4)
 						//.tickFormat("") // hide labels
 						.orient('bottom')
-		//				.selectAll("text")  
-			//				.attr("dx", -5);
+						.select("text")  
+							.attr("dx", -5);
 			
 					svg.selectAll('rect')
 						.data(data)
