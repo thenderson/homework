@@ -446,9 +446,10 @@ window.onload = function() {
 						.scale(xScale)
 						.tickSize(4,4)
 						//.tickFormat("") // hide labels
-						.orient('bottom')
-						.select("text")  
-							.attr("dx", -5);
+						.orient('bottom');
+						
+					var xAxisText = d3.xAxis.select('text')	  
+						.attr("dx", -5);
 			
 					svg.selectAll('rect')
 						.data(data)
