@@ -48,7 +48,7 @@
 	$pnums = rtrim($pnums, ',');
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI, V1, V2, V3, V4, V5, V6, V7, V8, V9 FROM `project_metrics` 
-	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback+1 WEEK) and date_sub(CURDATE(), INTERVAL 1 WEEK) ORDER BY date";
+	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback+1 WEEK) and date_sub(CURDATE(), INTERVAL 2 WEEK) ORDER BY date";
 
 	$stmt = $comm_db->prepare($q);
 	
