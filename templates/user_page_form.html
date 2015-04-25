@@ -460,7 +460,7 @@ window.onload = function() {
 					svg.append('g')
 						.attr('class', 'axis')
 						.attr("transform", "translate(0," + (height - ypad) + " )")
-						.call(xAxis);
+						.call(xAxis)
 						.selectAll('text')
 						.attr('dx', -5);
 				}
