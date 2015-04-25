@@ -307,11 +307,11 @@ window.onload = function() {
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(.85); });
 						
-					var xAxis = d3.svg.axis()
-						.scale(x)
-						.tickSize(2,2)
-						.tickFormat("") // hide labels
-						.orient('bottom');
+//					var xAxis = d3.svg.axis()
+	//					.scale(x)
+		//				.tickSize(2,2)
+			//			.tickFormat("") // hide labels
+				//		.orient('bottom');
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -455,11 +455,11 @@ window.onload = function() {
 						
 					var xAxis = d3.svg.axis()
 						.scale(xScale)
-						.tickSize(2,2)
+						.tickSize(4,4)
 						//.tickFormat("") // hide labels
 						.orient('bottom')
-						.selectAll("text")  
-							.attr("dx", -5);
+		//				.selectAll("text")  
+			//				.attr("dx", -5);
 			
 					svg.selectAll('rect')
 						.data(data)
