@@ -323,7 +323,7 @@ window.onload = function() {
 						
 					graph.append('text')
 						.attr('x', x(data.length-1)+4)
-						.attr('y', y(data[data.length-1])+4)
+						.attr('y', y(data[data.length-1])-4)
 						.text(d3.format(',%')(data[data.length-1]))
 						.attr('class', 'sparklabel');
 				}
@@ -332,13 +332,11 @@ window.onload = function() {
 			projects.setCellRenderer('PTA', new CellRenderer ({
 				render: function(cell, csv_data) {
 					var height = 32;
-					var width = $('.editablegrid-PTA').width();
+					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
-					var xpad = 15;
+					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
-	
-					//var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -346,13 +344,13 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad/2, ypad/2]);
 
 					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
-						.interpolate('step');
+						.y(function(d) { return y(d); })
+						.interpolate("step");
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
@@ -364,27 +362,30 @@ window.onload = function() {
 						
 					graph.append("svg:path")
 						.attr("d", line(data))
-						.attr("class", "sparkline_pta");
+						.attr("class", "sparkline_ppc");
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
-						.attr('r', 2)
-						.text(function (d) {return d});
+						.attr('r', 2);
+						
+					graph.append('text')
+						.attr('x', x(data.length-1)+4)
+						.attr('y', y(data[data.length-1])-4)
+						.text(d3.format(',%')(data[data.length-1]))
+						.attr('class', 'sparklabel');
 				}
 			}));
 			
 			projects.setCellRenderer('PTI', new CellRenderer ({
 				render: function(cell, csv_data) {
 					var height = 32;
-					var width = $('.editablegrid-PTI').width();
+					var width = $('.editablegrid-PPC').width();
 					var ypad = 6;
-					var xpad = 10;
+					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
-	
-					//var data = [0, 0, .5, .5, .85, .85, 1, 1, 0, .5]; // for testing
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -392,30 +393,37 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad, ypad/2]);
+					var y = d3.scale.linear().domain([0, 1]).range([height - ypad/2, ypad/2]);
 
+					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return (d == -1 ? y(0) : y(d)); })
-						.interpolate('step');
+						.y(function(d) { return y(d); })
+						.interpolate("step");
 						
-					var line_target = d3.svg.line()
-						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.25); });
+					//var line_target = d3.svg.line()
+					//	.x(function(d,i) { return x(i); })
+					//	.y(function(d) { return y(.5); });
 
-					graph.append('svg:path')
-						.attr('d', line_target(data))
-						.attr('class', 'sparkline_target');
+					//graph.append('svg:path')
+					//	.attr('d', line_target(data))
+					//	.attr('class', 'sparkline_target');
 						
 					graph.append("svg:path")
 						.attr("d", line(data))
-						.attr("class", "sparkline_pti");
+						.attr("class", "sparkline_ppc");
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
 						.attr('cx', x(data.length-1))
 						.attr('cy', y(data[data.length-1]))
 						.attr('r', 2);
+						
+					graph.append('text')
+						.attr('x', x(data.length-1)+4)
+						.attr('y', y(data[data.length-1])-4)
+						.text(d3.format(',%')(data[data.length-1]))
+						.attr('class', 'sparklabel');
 				}
 			})); 
 			

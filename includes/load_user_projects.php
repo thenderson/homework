@@ -4,7 +4,7 @@
     require_once('../includes/config.php');     
 	require_once('../includes/EditableGrid.php');     
 	
-	$lookback = (int) 10; //number of weeks to chart
+	$lookback = (int) 16; //number of weeks to chart
 
 	/*	RETRIEVE PROJECT LIST & # OF OPEN COMMITMENTS */
 	
@@ -20,7 +20,7 @@
 					AND b.user_id = :user), 1,0) as user_belongs,
 			(SELECT count(*)
 				FROM commitments c
-				WHERE c.status IN ('O', '?', 'D', 'NA', NULL)
+				WHERE c.status IN ('O', '?', 'NA', NULL)
 				AND a.project_number=c.project_number) as num_open
 		FROM projects a
 		ORDER BY project_number_2");
@@ -48,7 +48,7 @@
 	$pnums = rtrim($pnums, ',');
 
 	$q = "SELECT project_number, date, PPC, PTA, PTI, V1, V2, V3, V4, V5, V6, V7, V8, V9 FROM `project_metrics` 
-	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback WEEK) and CURDATE() ORDER BY date";
+	WHERE project_number IN ($pnums) AND date BETWEEN date_sub(curdate(), INTERVAL $lookback+1 WEEK) and date_add(CURDATE(), INTERVAL 1 WEEK) ORDER BY date";
 
 	$stmt = $comm_db->prepare($q);
 	
