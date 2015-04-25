@@ -332,7 +332,7 @@ window.onload = function() {
 			projects.setCellRenderer('PTA', new CellRenderer ({
 				render: function(cell, csv_data) {
 					var height = 32;
-					var width = $('.editablegrid-PPC').width();
+					var width = $('.editablegrid-PTA').width();
 					var ypad = 6;
 					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
@@ -381,7 +381,7 @@ window.onload = function() {
 			projects.setCellRenderer('PTI', new CellRenderer ({
 				render: function(cell, csv_data) {
 					var height = 32;
-					var width = $('.editablegrid-PPC').width();
+					var width = $('.editablegrid-PTI').width();
 					var ypad = 6;
 					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
@@ -471,7 +471,7 @@ window.onload = function() {
 						.call(xAxis)
 						.selectAll('text')
 						.attr('dx', -(width - xpad) / 18) // 18 = 9*2, half of bar width
-						.attr('dy', 0);
+						.attr('dy', 1);
 				}
 			}));
 			
