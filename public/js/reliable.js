@@ -185,7 +185,7 @@ function CommitmentGrid(name) {
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
-					var midline = height / 2 - ypad;
+					var midline = height / 2;
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")

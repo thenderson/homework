@@ -592,6 +592,7 @@ stroke: none;
 
 .due_circle {
 fill: none;
+stroke: rgb(0,0,0);
 stroke-width: 2px;
 }
 
