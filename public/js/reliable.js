@@ -178,12 +178,13 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
 					var requested_on = moment(value);
 
+console.debug(moment());
 console.debug(last_monday);
 console.debug(min_date);
 console.debug(max_date);
 //console.debug(due_by); //works
-console.debug(value);
-console.debug(requested_on);			
+//console.debug(value); //works
+//console.debug(requested_on); //works		
 					var height = $(row).height();
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
