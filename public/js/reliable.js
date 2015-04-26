@@ -217,13 +217,13 @@ console.debug(requested_on);
 					
 					graph.append('circle')
 						.attr('class', 'req_circle')
-						.attr('cx', x(date_due))
+						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(1));
 						
 					graph.append('circle')
 						.attr('class', 'due_circle')
-						.attr('cx', x(date_due))
+						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(magnitude));
 				}
