@@ -173,9 +173,12 @@ function CommitmentGrid(name) {
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
 					
+					var lookahead = Math.max(3, Math.min(horizon/7 + 1, 52);
+					var lookback = (showClosed == true) ? lookahead : 2;
+					
 					var last_monday = moment().startOf('ISOweek');
-					var min_date = last_monday.clone().subtract(2, 'weeks');
-					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon/7 + 1, 52)), 'weeks');
+					var min_date = last_monday.clone().subtract(lookback, 'weeks');
+					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
 	
 					var height = $(row).height();
@@ -197,17 +200,30 @@ function CommitmentGrid(name) {
 						.domain([0, 100])
 						.range([4, midline]);
 						
-					var xAxis = d3.svg.axis()
-						.scale(x)
-						.tickSize(6,0)
-						.ticks(d3.time.week, 1)
-						.tickFormat('')
-						.orient('bottom');
+//					var xAxis = d3.svg.axis()
+	//					.scale(x)
+		//				.tickSize(midline,0)
+			//			.ticks(d3.time.week, 1)
+				//		.tickFormat('')
+					//	.orient('bottom');
 
-					graph.append('g')
-						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (midline) + " )")
-						.call(xAxis);
+//					graph.append('g')
+	//					.attr('class', 'axis')
+		//				.attr("transform", "translate(0," + (midline) + " )")
+			//			.call(xAxis);
+			
+					y1 = height - ypad;
+					y2 = ypad;
+					
+					for (j=-lookback; j<lookahead+1; j++) {
+						xx = x(last_monday.clone().add(lookahead, 'weeks');
+						graph.append('svg:line')
+							.attr('x1', xx)
+							.attr('x2', xx)
+							.attr('y1', y1)
+							.attr('y2', y2)
+							.attr('class', (xx == last_monday ? 'tick_chart_thiswk' : 'tick_chart'));
+					}
 					
 					graph.append('circle')
 						.attr('class', 'req_circle')
