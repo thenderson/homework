@@ -462,17 +462,18 @@ window.onload = function() {
 						.append('rect')
 						.attr('class', 'bar_v')
 						.attr('x', function(d, i) { return xScale(i+1) + barpad/2;})
-						.attr('y', function(d, i) { return height - ypad_top - (yScale(d));})
+						//.attr('y', function(d, i) { return height - ypad_top - (yScale(d));}) //d(0) = 32-3-0 = 29; d(max) = 32-3-(32-15-3) = 29-14 = 15
+						.attr('x', height - ypad_bot)                                           //d(n) = 32-15 = 17
 						.attr('width', function(d, i) { return (width - xpad) / 9 - barpad/2;})
-						.attr('height', function(d, i) { return (yScale(d)); }); 
+						.attr('height', function(d, i) { return -(yScale(d)); });              //d(0) = 0; -d(max) = 32-15-3 = -14
 						
 					svg.append('g')
 						.attr('class', 'axis')
-						.attr("transform", "translate(0," + (height - ypad_top) + " )")
+						.attr("transform", "translate(0," + (height - ypad_bot) + " )")
 						.call(xAxis)
 						.selectAll('text')
 						.attr('dx', (width - xpad) / 18) // 18 = 9*2, half of bar width
-						.attr('dy', 2);
+						.attr('dy', 0);
 				}
 			}));
 
