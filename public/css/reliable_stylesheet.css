@@ -585,12 +585,12 @@ stroke-width: 1px;
 shape-rendering: crispEdges;
 }
 
-.reqcircle {
+.req_circle {
 fill: rgb(192,192,192);
 stroke: none;
 }
 
-.duecircle {
+.due_circle {
 fill: none;
 stroke-width: 2px;
 }
