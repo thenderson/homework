@@ -164,18 +164,16 @@ function CommitmentGrid(name) {
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
 			
-			
-			
 			this.setCellRenderer('visual', new CellRenderer ({
 				render: function(cell, value) {
 
-					var row=this.grid.getRow(cell.rowIndex);
-					var magnitude_col = this.grid.getColumnIndex('magnitude');
-					var magnitude = this.grid.getValueAt(cell.rowIndex, magnitude_col);
-					var status_col = this.grid.getColumnIndex('status');
-					var status = this.grid.getValueAt(cell.rowIndex, status_col);
-					var date_due_col = this.grid.getColumnIndex('due_by');
-					var due_by = this.grid.getValueAt(cell.rowIndex, date_due_col);
+					var row=self.grid.getRow(cell.rowIndex);
+					var magnitude_col = self.grid.getColumnIndex('magnitude');
+					var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
+					var status_col = self.grid.getColumnIndex('status');
+					var status = self.grid.getValueAt(cell.rowIndex, status_col);
+					var date_due_col = self.grid.getColumnIndex('due_by');
+					var due_by = self.grid.getValueAt(cell.rowIndex, date_due_col);
 					
 					var last_monday = moment().startOf('isoWeek');
 					var min_date = last_monday.subtract(2, 'weeks');
