@@ -547,6 +547,7 @@ color: rgb(192, 192, 192);
 .axis line {
 fill: none;
 stroke: rgb(0,0,0);
+stroke-width: 1px;
 shape-rendering: crispEdges;
 }
 
@@ -561,6 +562,10 @@ shape-rendering: crispEdges;
 stroke: rgb(0,0,0);
 stroke-width: 1px;
 shape-rendering: crispEdges;
+}
+
+.tick path {
+stroke: none;
 }
 
 .axis text {
