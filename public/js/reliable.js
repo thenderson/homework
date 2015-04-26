@@ -173,9 +173,9 @@ function CommitmentGrid(name) {
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
 					
-					var lookahead = Math.max(3, Math.min(horizon/7 + 1, 52));
+					var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
 					var lookback = (show_closed == true) ? lookahead : 2;
-					
+console.log('lookback '+lookback+' lookahead '+lookahead);					
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(lookback, 'weeks');
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
