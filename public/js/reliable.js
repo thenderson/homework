@@ -170,8 +170,6 @@ function CommitmentGrid(name) {
 					var row=self.grid.getRow(cell.rowIndex);
 					var magnitude_col = self.grid.getColumnIndex('magnitude');
 					var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
-					var status_col = self.grid.getColumnIndex('status');
-					var status = self.grid.getValueAt(cell.rowIndex, status_col);
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = self.grid.getValueAt(cell.rowIndex, date_due_col);
 					
@@ -180,7 +178,12 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
 					var date_due=moment(value, 'YYYY-MM-DD');
 					var requested_on = moment(value);
-			
+console.log('mag:'+magnitude);
+console.debug(last_monday);
+console.debug(min_date);
+console.debug(max_date);
+console.debug(date_due);
+console.debug(requested_on);			
 					var height = $(row).height();
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
@@ -216,7 +219,7 @@ function CommitmentGrid(name) {
 						.attr('class', 'req_circle')
 						.attr('cx', x(date_due))
 						.attr('cy', midline)
-						.attr('r', r(2));
+						.attr('r', r(1));
 						
 					graph.append('circle')
 						.attr('class', 'due_circle')
