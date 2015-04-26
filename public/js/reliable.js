@@ -179,7 +179,7 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
 					var requested_on = moment(value);
 
-console.debug(today.format());
+console.log(today.format());
 console.debug(last_monday.format());
 console.debug(min_date.format());
 console.debug(max_date.format());
