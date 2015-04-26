@@ -546,8 +546,12 @@ color: rgb(192, 192, 192);
 .axis path,
 .axis line {
 fill: none;
-stroke: rgb(192, 192, 192);
+stroke: none;
 shape-rendering: crispEdges;
+}
+
+.tick {
+stroke: rgb(0,0,0);
 }
 
 .axis text {
@@ -560,7 +564,7 @@ fill: rgb(192,192,192);
 stroke: none;
 }
 
-.dueircle {
+.duecircle {
 fill: none;
 stroke-width: 2px;
 }
