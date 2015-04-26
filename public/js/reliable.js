@@ -212,7 +212,7 @@ function CommitmentGrid(name) {
 						.scale(x)
 						.tickSize(midline,midline)
 						.ticks(d3.time.week, 1)
-						.tickFormat('');
+						.tickFormat('')
 						.orient('bottom');
 
 					svg.append('g')
