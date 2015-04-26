@@ -177,12 +177,7 @@ function CommitmentGrid(name) {
 					var min_date = last_monday.clone().subtract(2, 'weeks');
 					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon/7 + 1, 52)), 'weeks');
 					var requested_on = moment(value);
-
-console.debug(min_date.format());
-console.debug(max_date.format());
-//console.debug(due_by); //works
-//console.debug(value); //works
-//console.debug(requested_on); //works		
+	
 					var height = $(row).height();
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
@@ -200,11 +195,11 @@ console.debug(max_date.format());
 						
 					var r = d3.scale.linear()
 						.domain([0, 100])
-						.range([1, midline]);
+						.range([4, midline]);
 						
 					var xAxis = d3.svg.axis()
 						.scale(x)
-						.tickSize(midline,midline)
+						.tickSize(6,0)
 						.ticks(d3.time.week, 1)
 						.tickFormat('')
 						.orient('bottom');
