@@ -587,5 +587,8 @@ fill: red;
 
 .bar_v {
 fill: rgb(119, 95, 85);
+stroke: rgb(0,0,0);
+stroke-width: 1px;
+shape-rendering: crispEdges;
 }
 }

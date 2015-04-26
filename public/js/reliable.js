@@ -104,7 +104,7 @@ function CommitmentGrid(name) {
 						}
 					}
 					else { // assign due_class based on how overdue / soon due the task is
-						date_due=moment(value, 'YYYY-MM-DD')
+						date_due=moment(value, 'YYYY-MM-DD');
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						how_soon=date_due.diff(moment(),'days');
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
@@ -163,6 +163,76 @@ function CommitmentGrid(name) {
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
+			
+			
+			
+			this.setCellRenderer('visual', new CellRenderer ({
+				render: function(cell, value) {
+
+					var row=this.grid.getRow(cell.rowIndex);
+					var magnitude_col = this.grid.getColumnIndex('magnitude');
+					var magnitude = this.grid.getValueAt(cell.rowIndex, magnitude_col);
+					var status_col = this.grid.getColumnIndex('status');
+					var status = this.grid.getValueAt(cell.rowIndex, status_col);
+					var date_due_col = this.grid.getColumnIndex('due_by');
+					var due_by = this.grid.getValueAt(cell.rowIndex, date_due_col);
+					
+					var last_monday = moment().startOf('isoWeek');
+					var min_date = last_monday.subtract(2, 'weeks');
+					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
+					var date_due=moment(value, 'YYYY-MM-DD');
+					var requested_on = moment(value);
+			
+					var height = $(row).height();
+					var width = $('.editablegrid-visual').width();
+					var ypad = 6;
+					var xpad = 12;
+					var midline = (height - ypad) / 2;
+	
+					var graph = d3.select(cell)
+						.append("svg:svg")
+						.attr("width", width)
+						.attr("height", height);
+
+					var x = d3.time.scale()
+						.domain([min_date, max_date])
+						.range([0, width - xpad]);
+						
+					var r = d3.scale.linear()
+						.domain([0, 100])
+						.range([1, midline]);
+
+					// create a line object that represents the SVN line we're creating
+					var line = d3.svg.line()
+						.x(function(d,i) { return x(i); })
+						.y(function(d) { return y(d); })
+						.interpolate("step");
+						
+					var xAxis = d3.svg.axis()
+						.scale(x)
+						.tickSize(midline,midline)
+						.ticks(d3.time.week, 1)
+						.tickFormat('');
+						.orient('bottom');
+
+					svg.append('g')
+						.attr('class', 'weekaxis')
+						.attr("transform", "translate(0," + (midline) + " )")
+						.call(xAxis);
+					
+					graph.append('circle')
+						.attr('class', 'req_circle')
+						.attr('cx', x(date_due))
+						.attr('cy', midline)
+						.attr('r', r(2));
+						
+					graph.append('circle')
+						.attr('class', 'due_circle')
+						.attr('cx', x(date_due))
+						.attr('cy', midline)
+						.attr('r', r(magnitude));
+				}
+			}));
 			
 			this.renderGrid(self.name+'_d', 'table', self.name); 
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
