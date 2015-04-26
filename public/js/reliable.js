@@ -171,15 +171,13 @@ function CommitmentGrid(name) {
 					var magnitude_col = self.grid.getColumnIndex('magnitude');
 					var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
 					var date_due_col = self.grid.getColumnIndex('due_by');
-					var due_by = self.grid.getValueAt(cell.rowIndex, date_due_col);
+					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
 					
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(2, 'weeks');
-					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon + 1, 52)), 'weeks');
+					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon/7 + 1, 52)), 'weeks');
 					var requested_on = moment(value);
 
-console.log(horizon);
-console.debug(last_monday.format());
 console.debug(min_date.format());
 console.debug(max_date.format());
 //console.debug(due_by); //works
