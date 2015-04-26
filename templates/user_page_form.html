@@ -285,7 +285,7 @@ window.onload = function() {
 					var ypad_top = 8;
 					var ypad_bot = 2;
 					var xpad_l = 2;
-					var xpad_r = 24;
+					var xpad_r = 28;
 					var xpad = xpad_l + xpad_r;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
@@ -327,8 +327,8 @@ window.onload = function() {
 						.attr('r', 2);
 						
 					graph.append('text')
-						.attr('x', x(data.length-2)+6)
-						.attr('y', y(data[data.length-2]))
+						.attr('x', x(data.length-2)+7)
+						.attr('y', y(data[data.length-2])+1)
 						.text(d3.format(',%')(data[data.length-2]))
 						.attr('class', 'sparklabel');
 				}
