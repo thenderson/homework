@@ -173,7 +173,7 @@ function CommitmentGrid(name) {
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
 					
-					var lookahead = Math.max(3, Math.min(horizon/7 + 1, 52);
+					var lookahead = Math.max(3, Math.min(horizon/7 + 1, 52));
 					var lookback = (showClosed == true) ? lookahead : 2;
 					
 					var last_monday = moment().startOf('ISOweek');
