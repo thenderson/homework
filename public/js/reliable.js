@@ -173,8 +173,8 @@ function CommitmentGrid(name) {
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = self.grid.getValueAt(cell.rowIndex, date_due_col);
 					
-					var today = moment();
-					var last_monday = today.subtract(1, 'weeks').startOf('isoWeek');
+					var today = moment('4/26/2015');
+					var last_monday = today.startOf('isoWeek');
 					var min_date = last_monday.subtract(2, 'weeks');
 					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
 					var requested_on = moment(value);
