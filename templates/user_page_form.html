@@ -287,6 +287,7 @@ window.onload = function() {
 					var xpad_l = 2;
 					var xpad_r = 28;
 					var xpad = xpad_l + xpad_r;
+					var target = .85;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
@@ -302,7 +303,6 @@ window.onload = function() {
 						.domain([0, 1])
 						.range([height - ypad_bot, ypad_top]);
 
-					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(d); })
@@ -310,7 +310,7 @@ window.onload = function() {
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.85); });
+						.y(function(d) { return y(target); });
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -338,8 +338,12 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = 32;
 					var width = $('.editablegrid-PTA').width();
-					var ypad = 6;
-					var xpad = 20;
+					var ypad_top = 8;
+					var ypad_bot = 2;
+					var xpad_l = 2;
+					var xpad_r = 28;
+					var xpad = xpad_l + xpad_r;
+					var target = .5;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
@@ -348,10 +352,13 @@ window.onload = function() {
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad/2, ypad/2]);
+					var x = d3.scale.linear()
+						.domain([0, data.length-1])
+						.range([xpad_l, width - xpad_r]);
+					var y = d3.scale.linear()
+						.domain([0, 1])
+						.range([height - ypad_bot, ypad_top]);
 
-					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(d); })
@@ -359,7 +366,7 @@ window.onload = function() {
 						
 					var line_target = d3.svg.line()
 						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(.5); });
+						.y(function(d) { return y(target); });
 
 					graph.append('svg:path')
 						.attr('d', line_target(data))
@@ -371,14 +378,14 @@ window.onload = function() {
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
-						.attr('cx', x(data.length-1))
-						.attr('cy', y(data[data.length-1]))
+						.attr('cx', x(data.length-2))
+						.attr('cy', y(data[data.length-2]))
 						.attr('r', 2);
 						
 					graph.append('text')
-						.attr('x', x(data.length-1)+4)
-						.attr('y', y(data[data.length-1])-4)
-						.text(d3.format(',%')(data[data.length-1]))
+						.attr('x', x(data.length-2)+7)
+						.attr('y', y(data[data.length-2])+1)
+						.text(d3.format(',%')(data[data.length-2]))
 						.attr('class', 'sparklabel');
 				}
 			}));
@@ -387,8 +394,12 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = 32;
 					var width = $('.editablegrid-PTI').width();
-					var ypad = 6;
-					var xpad = 20;
+					var ypad_top = 8;
+					var ypad_bot = 2;
+					var xpad_l = 2;
+					var xpad_r = 28;
+					var xpad = xpad_l + xpad_r;
+					//var target = .85;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 	
@@ -397,22 +408,18 @@ window.onload = function() {
 						.attr("width", width)
 						.attr("height", height);
 
-					var x = d3.scale.linear().domain([0, data.length-1]).range([0, width - xpad]);
-					var y = d3.scale.linear().domain([0, 1]).range([height - ypad/2, ypad/2]);
+					var x = d3.scale.linear()
+						.domain([0, data.length-1])
+						.range([xpad_l, width - xpad_r]);
+						
+					var y = d3.scale.linear()
+						.domain([0, 1])
+						.range([height - ypad_bot, ypad_top]);
 
-					// create a line object that represents the SVN line we're creating
 					var line = d3.svg.line()
 						.x(function(d,i) { return x(i); })
 						.y(function(d) { return y(d); })
 						.interpolate("step");
-						
-					//var line_target = d3.svg.line()
-					//	.x(function(d,i) { return x(i); })
-					//	.y(function(d) { return y(.5); });
-
-					//graph.append('svg:path')
-					//	.attr('d', line_target(data))
-					//	.attr('class', 'sparkline_target');
 						
 					graph.append("svg:path")
 						.attr("d", line(data))
@@ -420,14 +427,14 @@ window.onload = function() {
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
-						.attr('cx', x(data.length-1))
-						.attr('cy', y(data[data.length-1]))
+						.attr('cx', x(data.length-2))
+						.attr('cy', y(data[data.length-2]))
 						.attr('r', 2);
 						
 					graph.append('text')
-						.attr('x', x(data.length-1)+4)
-						.attr('y', y(data[data.length-1])-4)
-						.text(d3.format(',%')(data[data.length-1]))
+						.attr('x', x(data.length-2)+7)
+						.attr('y', y(data[data.length-2])+1)
+						.text(d3.format(',%')(data[data.length-2]))
 						.attr('class', 'sparklabel');
 				}
 			}));

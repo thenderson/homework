@@ -185,7 +185,7 @@ function CommitmentGrid(name) {
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
-					var midline = (height - ypad) / 2;
+					var midline = height / 2 - ypad;
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -199,26 +199,12 @@ function CommitmentGrid(name) {
 					var r = d3.scale.linear()
 						.domain([0, 100])
 						.range([4, midline]);
-						
-//					var xAxis = d3.svg.axis()
-	//					.scale(x)
-		//				.tickSize(midline,0)
-			//			.ticks(d3.time.week, 1)
-				//		.tickFormat('')
-					//	.orient('bottom');
-
-//					graph.append('g')
-	//					.attr('class', 'axis')
-		//				.attr("transform", "translate(0," + (midline) + " )")
-			//			.call(xAxis);
 			
 					y1 = height - ypad;
 					y2 = ypad;
 					
 					for (j=-lookback; j<lookahead+1; j++) {
-						dd= last_monday.clone().add(j, 'weeks')
 						xx = x(last_monday.clone().add(j, 'weeks'));
-//		console.log('j '+j+' date '+dd.format()+' xx '+xx);
 						graph.append('svg:line')
 							.attr('x1', xx)
 							.attr('x2', xx)
@@ -229,7 +215,7 @@ function CommitmentGrid(name) {
 					
 					graph.append('circle')
 						.attr('class', 'req_circle')
-						.attr('cx', x(due_by))
+						.attr('cx', x(requested_on))
 						.attr('cy', midline)
 						.attr('r', r(1));
 						
