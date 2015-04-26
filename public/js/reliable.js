@@ -216,7 +216,7 @@ function CommitmentGrid(name) {
 					y2 = ypad;
 					
 					for (j=-lookback; j<lookahead+1; j++) {
-						xx = x(last_monday.clone().add(lookahead, 'weeks');
+						xx = x(last_monday.clone().add(lookahead, 'weeks'));
 						graph.append('svg:line')
 							.attr('x1', xx)
 							.attr('x2', xx)
