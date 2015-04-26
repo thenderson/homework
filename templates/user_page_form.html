@@ -253,6 +253,7 @@ window.onload = function() {
 	setCookie('showClosed', show_closed);
 	
 	$('#show-closed').change(function() {
+		show_closed = this.checked;
 		load_comms(undefined, this.checked);
 	});
 		
