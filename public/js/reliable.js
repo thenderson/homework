@@ -175,7 +175,7 @@ function CommitmentGrid(name) {
 					
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(2, 'weeks');
-					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon + 1, 52), 'weeks');
+					var max_date = last_monday.clone().add(Math.max(3, Math.min(horizon + 1, 52)), 'weeks');
 					var requested_on = moment(value);
 
 console.debug(today);
