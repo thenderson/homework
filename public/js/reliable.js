@@ -105,8 +105,6 @@ function CommitmentGrid(name) {
 					}
 					else { // assign due_class based on how overdue / soon due the task is
 						date_due=moment(value, 'YYYY-MM-DD');
-		console.log('dueby');
-		console.debug(date_due);
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						how_soon=date_due.diff(moment(),'days');
 						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
@@ -180,11 +178,13 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.add(Math.max(3, horizon + 1), 'weeks');
 					var date_due=moment(value, 'YYYY-MM-DD');
 					var requested_on = moment(value);
+console.debug(moment());
 console.debug(last_monday);
-console.debug(min_date);
-console.debug(max_date);
+//console.debug(min_date);
+//console.debug(max_date);
+console.log(value);
 console.debug(date_due);
-console.debug(requested_on);			
+//console.debug(requested_on);			
 					var height = $(row).height();
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
