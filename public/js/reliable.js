@@ -218,13 +218,13 @@ function CommitmentGrid(name) {
 					for (j=-lookback; j<lookahead+1; j++) {
 						dd= last_monday.clone().add(j, 'weeks')
 						xx = x(last_monday.clone().add(j, 'weeks'));
-		console.log('j '+j+' date '+dd.format()+' xx '+xx);
+//		console.log('j '+j+' date '+dd.format()+' xx '+xx);
 						graph.append('svg:line')
 							.attr('x1', xx)
 							.attr('x2', xx)
 							.attr('y1', y1)
 							.attr('y2', y2)
-							.attr('class', (xx == last_monday ? 'tick_chart_thiswk' : 'tick_chart'));
+							.attr('class', (j == 0 ? 'tick_chart_thiswk' : 'tick_chart'));
 					}
 					
 					graph.append('circle')
