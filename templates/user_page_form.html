@@ -284,8 +284,8 @@ window.onload = function() {
 					var width = $('.editablegrid-PPC').width();
 					var ypad_top = 8;
 					var ypad_bot = 2;
-					var xpad_l = 5;
-					var xpad_r = 15;
+					var xpad_l = 2;
+					var xpad_r = 20;
 					var xpad = xpad_l + xpad_r;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
@@ -436,10 +436,10 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = 32;
 					var width = $('.editablegrid-V').width();
-					var ypad_top = 3;
+					var ypad_top = 4;
 					var ypad_bot = 3 + 6;
 					var xpad = 10;
-					var barpad = 3;
+					var barpad = 2;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 					
