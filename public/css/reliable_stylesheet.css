@@ -557,7 +557,7 @@ fill: none;
 stroke: none;
 shape-rendering: crispEdges;
 }
-
+/*
 .tick line {
 stroke: rgb(0,0,0);
 stroke-width: 1px;
@@ -566,7 +566,7 @@ shape-rendering: crispEdges;
 
 .tick path {
 stroke: none;
-}
+}*/
 
 .tick text {
 font-family: sans-serif;
