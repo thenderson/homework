@@ -282,8 +282,8 @@ window.onload = function() {
 				render: function(cell, csv_data) {
 					var height = 32;
 					var width = $('.editablegrid-PPC').width();
-					var ypad_top = 6;
-					var ypad_bot = 3;
+					var ypad_top = 8;
+					var ypad_bot = 2;
 					var xpad = 20;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
@@ -468,7 +468,7 @@ window.onload = function() {
 						.attr('height', function(d, i) { return Math.max(1,(yScale(d))); });  //d(0) = 0; d(max) = 32-15-3 = 14
 						
 					svg.append('g')
-						.attr('class', 'axis-nolines')
+						.attr('class', 'axis_nolines')
 						.attr("transform", "translate(0," + (height - ypad_bot) + " )")       //translate(0,32-15=17)
 						.call(xAxis)
 						.selectAll('text')
