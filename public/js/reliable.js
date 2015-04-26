@@ -213,7 +213,7 @@ function CommitmentGrid(name) {
 						.tickFormat('')
 						.orient('bottom');
 
-					svg.append('g')
+					graph.append('g')
 						.attr('class', 'weekaxis')
 						.attr("transform", "translate(0," + (midline) + " )")
 						.call(xAxis);
