@@ -199,12 +199,6 @@ function CommitmentGrid(name) {
 					var r = d3.scale.linear()
 						.domain([0, 100])
 						.range([1, midline]);
-
-					// create a line object that represents the SVN line we're creating
-					var line = d3.svg.line()
-						.x(function(d,i) { return x(i); })
-						.y(function(d) { return y(d); })
-						.interpolate("step");
 						
 					var xAxis = d3.svg.axis()
 						.scale(x)
@@ -214,7 +208,7 @@ function CommitmentGrid(name) {
 						.orient('bottom');
 
 					graph.append('g')
-						.attr('class', 'weekaxis')
+						.attr('class', 'axis')
 						.attr("transform", "translate(0," + (midline) + " )")
 						.call(xAxis);
 					
