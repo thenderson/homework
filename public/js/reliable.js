@@ -184,7 +184,7 @@ function CommitmentGrid(name) {
 					var requested_on = moment(value);
 	
 					var height = $(row).innerHeight();
-console.log($(cell).height()+' '+$(cell).innerHeight()+' '+$(cell).css('padding-top')+' '+$(cell).css('padding-bottom'));
+console.log($(cell).height()+' '+$(row).height());
 
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
@@ -232,11 +232,20 @@ console.log($(cell).height()+' '+$(cell).innerHeight()+' '+$(cell).css('padding-
 						.attr('cx', x(requested_on))
 						.attr('cy', midline)
 						.attr('r', r(1));
-						
+					
+					if (/V[0123456789]/.test(status)) {
+						graph.append('text')
+							.attr('x', x(due_by))
+							.attr('y', midline)
+							.attr('text-anchor', 'middle')
+							.text('X')
+							.attr('class', 'due_variance');
+					}
+
 					graph.append('circle')
 						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
 							(status == 'V?' ? 'due_circle_overdue' : 
-								(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
+								(/V[0123456789]/.test(status) ? 'due_circle_overude' : 'due_circle'))))
 						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(magnitude));
