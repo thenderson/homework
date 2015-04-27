@@ -183,8 +183,7 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
 	
-					var height = $(row).innerHeight();
-console.log($(cell).height()+' '+$(row).height());
+					var height = $(cell).innerHeight();
 
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
@@ -202,7 +201,7 @@ console.log($(cell).height()+' '+$(row).height());
 						
 					var r = d3.scale.linear()
 						.domain([0, 100])
-						.range([4, midline]);
+						.range([3, midline*4]);
 			
 					y1 = midline - 2;
 					y2 = midline + 2;
@@ -236,7 +235,7 @@ console.log($(cell).height()+' '+$(row).height());
 					if (/V[0123456789]/.test(status)) {
 						graph.append('text')
 							.attr('x', x(due_by))
-							.attr('y', midline + 5)
+							.attr('y', midline + 4)
 							.attr('text-anchor', 'middle')
 							.text('X')
 							.attr('class', 'due_variance');
