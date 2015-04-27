@@ -202,7 +202,7 @@ function CommitmentGrid(name) {
 					var r = d3.scale.linear()
 						.domain([0, 100])
 						.clamp(true)
-						.range([3, height*.66]);
+						.range([3, height*.5]);
 			
 					y1 = midline - 2;
 					y2 = midline + 2;
@@ -241,14 +241,15 @@ function CommitmentGrid(name) {
 							.text('X')
 							.attr('class', 'due_variance');
 					}
-
-					graph.append('circle')
-						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
-							(status == 'V?' ? 'due_circle_overdue' : 
-								(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
-						.attr('cx', x(due_by))
-						.attr('cy', midline)
-						.attr('r', r(magnitude));
+					else {
+						graph.append('circle')
+							.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
+								(status == 'V?' ? 'due_circle_overdue' : 
+									(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
+							.attr('cx', x(due_by))
+							.attr('cy', midline)
+							.attr('r', r(magnitude));
+					}
 				}
 			}));
 			
