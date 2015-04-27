@@ -202,17 +202,27 @@ function CommitmentGrid(name) {
 						.domain([0, 100])
 						.range([4, midline]);
 			
-					y1 = midline - 5;
-					y2 = midline + 5;
+					y1 = midline - 2;
+					y2 = midline + 2;
 					
 					for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
 						xx = x(last_monday.clone().add(j, 'weeks'));
-						graph.append('svg:line')
-							.attr('x1', xx)
-							.attr('x2', xx)
-							.attr('y1', y1)
-							.attr('y2', y2)
-							.attr('class', (j == 0 ? 'tick_chart_thiswk' : 'tick_chart'));
+						if (j == 0 || j == 1) {
+							graph.append('svg:line')
+								.attr('x1', xx)
+								.attr('x2', xx)
+								.attr('y1', y1-4)
+								.attr('y2', y2+4)
+								.attr('class', 'tick_chart_thiswk');
+						}
+						else {
+							graph.append('svg:line')
+								.attr('x1', xx)
+								.attr('x2', xx)
+								.attr('y1', y1)
+								.attr('y2', y2)
+								.attr('class', 'tick_chart');
+						}
 					}
 					
 					graph.append('circle')
