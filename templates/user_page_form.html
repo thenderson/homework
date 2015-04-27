@@ -460,6 +460,7 @@ window.onload = function() {
 						.domain([1, 9])
 						.range([xpad/2 + (width-xpad)/9, width - (width-xpad)/9 - xpad/2]); //returns centerline of bar
 	console.log(d3.max(data));
+	console.debug(data);
 					var yScale = d3.scale.linear()
 						.domain([0,d3.max(data)])
 						.range([0, height - ypad_bot - ypad_top]);
