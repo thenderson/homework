@@ -202,7 +202,7 @@ function CommitmentGrid(name) {
 					var r = d3.scale.linear()
 						.domain([0, 100])
 						.clamp(true)
-						.range([3, height*.5]);
+						.range([3, height*.48]);
 			
 					y1 = midline - 2;
 					y2 = midline + 2;

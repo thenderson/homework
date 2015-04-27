@@ -40,6 +40,7 @@
 		<script src="../public/js/editablegrid_editors.js" ></script>
 		<script src="../public/js/editablegrid_validators.js" ></script>
 		<script src="../public/js/editablegrid_utils.js" ></script>
+		<script src="./public/js/d3.js" charset="utf-8"></script>
 		<!--<script src="../public/js/editablegrid_charts.js" ></script>-->
 		<script src="../public/js/reliable.js" ></script>		
 	</body>	
