@@ -183,12 +183,12 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
 	
-					var height = $(cell).innerHeight();
+					var height = 32;
+					var midline = height / 2;
 
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
-					var midline = height / 2;
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
