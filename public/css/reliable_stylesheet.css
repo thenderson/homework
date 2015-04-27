@@ -603,13 +603,13 @@ stroke-width: 2px;
 }
 
 .due_circle_overdue {
-fill: none;
+fill: rgb(192,0,0);
 stroke: rgb(192,0,0);
 stroke-width: 2px;
 }
 
 .due_circle_variance {
-fill: none;
+fill: rgb(174, 202, 196);
 stroke: rgb(192,192,192);
 stroke-width: 2px;
 }

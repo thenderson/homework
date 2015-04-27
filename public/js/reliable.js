@@ -247,7 +247,7 @@ function CommitmentGrid(name) {
 							.attr('class', 'due_variance');
 					}
 					else {
-						graph.append('circle')
+						graph.append('svg:circle')
 							.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
 								(status == 'V?' ? 'due_circle_overdue' : 
 									(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
