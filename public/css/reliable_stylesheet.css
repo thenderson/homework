@@ -608,9 +608,16 @@ stroke: rgb(256,0,0);
 stroke-width: 2px;
 }
 
+.due_circle_variance {
+fill: none;
+stroke: rgb(192,0,0);
+stroke-width: 1px;
+}
+
 .due_variance {
 font-family: sans-serif;
-font-size: 10px;
+font-size: 12px;
+font-weight: bold;
 fill: black;
 }
 
