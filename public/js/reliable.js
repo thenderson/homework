@@ -222,7 +222,7 @@ function CommitmentGrid(name) {
 						.attr('r', r(1));
 						
 					graph.append('circle')
-						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : (status == 'V?' ? 'due_circle_overdue' : 'due_circle')));
+						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : (status == 'V?' ? 'due_circle_overdue' : 'due_circle')))
 						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(magnitude));
