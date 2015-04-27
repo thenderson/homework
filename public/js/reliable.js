@@ -183,7 +183,9 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
 	
-					var height = $(row).innerHeight;
+					var height = $(row).innerHeight();
+console.log($(cell).height()+' '+$(cell).innerHeight()+' '+$(cell).css('padding-top')+' '+$(cell).css('padding-bottom'));
+
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
