@@ -207,7 +207,7 @@ function CommitmentGrid(name) {
 					var op = d3.scale.linear() // fill opacity for circles
 						.domain([0, 100])
 						.clamp(true)
-						.range([1, .33]);
+						.range([1, .4]);
 			
 					y1 = midline - 2;
 					y2 = midline + 2;
