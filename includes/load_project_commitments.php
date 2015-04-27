@@ -10,7 +10,7 @@
 	$project_number = strip_tags($_POST['p']);
 	
 	/*  COMPOSE QUERY */
-	$q = "SELECT unique_id, task_id, description, requester, promiser, due_by, 
+	$q = "SELECT unique_id, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
 		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?'),0,1) as is_closed FROM commitments";
 	
 	if ($planning_horizon == 'all')
@@ -65,10 +65,12 @@
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
+	$grid->addColumn('magnitude', 'MAG', 'double(,2,dot,coma,)');
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
 	$grid->addColumn('status','STAT','string');
+	$grid->addColumn('visual', 'CHART', 'date', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	//render grid
