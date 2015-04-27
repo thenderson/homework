@@ -183,7 +183,7 @@ function CommitmentGrid(name) {
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
 	
-					var height = $(row).height()-16;
+					var height = $(row).innerHeight;
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
@@ -232,7 +232,9 @@ function CommitmentGrid(name) {
 						.attr('r', r(1));
 						
 					graph.append('circle')
-						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : (status == 'V?' ? 'due_circle_overdue' : 'due_circle')))
+						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
+							(status == 'V?' ? 'due_circle_overdue' : 
+								(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))));
 						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(magnitude));

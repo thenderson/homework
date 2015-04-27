@@ -268,6 +268,10 @@ switch ($column_name) {
 		}
 		break;
 		
+	case 'magnitude':
+		$q="UPDATE commitments SET magnitude = ? WHERE unique_id = ?";
+		break;
+		
 	default:
 		// todo: better error handling
 		echo 'error';
