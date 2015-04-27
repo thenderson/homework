@@ -450,6 +450,7 @@ window.onload = function() {
 					var barpad = 2;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
+					var max = d3.max(data, Number);
 					
 					var svg = d3.select(cell)
 						.append('svg')
@@ -461,7 +462,7 @@ window.onload = function() {
 						.range([xpad/2 + (width-xpad)/9, width - (width-xpad)/9 - xpad/2]); //returns centerline of bar
 
 					var yScale = d3.scale.linear()
-						.domain([0,d3.max(data, Number)])
+						.domain([0, max)])
 						.range([0, height - ypad_bot - ypad_top]);
 						
 					var xAxis = d3.svg.axis()
@@ -473,11 +474,13 @@ window.onload = function() {
 						.data(data)
 						.enter()
 						.append('rect')
-						.attr('class', 'bar_v')
-						.attr('x', function(d, i) { return xScale(i+1) + barpad;})
-						.attr('width', function(d, i) { return ((width - xpad) / 9) - barpad*2;})
-						.attr('y', function(d, i) { return height - ypad_bot - (yScale(d));}) //d(0) = 32-15-0 = 17; d(max) = 32-15-(32-15-3) = 17-14 = 3
-						.attr('height', function(d, i) { return yScale(d); });  //d(0) = 0; d(max) = 32-15-3 = 14
+							.attr('class', function(d) { return d == max ? 'bar_v_max' : 'bar_v';})
+							.attr('x', function(d, i) { return xScale(i+1) + barpad;})
+							.attr('width', function(d, i) { return ((width - xpad) / 9) - barpad*2;})
+							.attr('y', function(d, i) { return height - ypad_bot - (yScale(d));}) //d(0) = 32-15-0 = 17; d(max) = 32-15-(32-15-3) = 17-14 = 3
+							.attr('height', function(d, i) { return yScale(d); })  //d(0) = 0; d(max) = 32-15-3 = 14
+						.append("svg:title")
+							.text(function(d) { return d; });
 						
 					svg.append('g')
 						.attr('class', 'axis_nolines')

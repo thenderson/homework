@@ -605,7 +605,7 @@ stroke-width: 2px;
 
 .due_circle_overdue {
 fill: none;
-stroke: rgb(256,0,0);
+stroke: rgb(192,0,0);
 stroke-width: 2px;
 }
 
@@ -663,6 +663,13 @@ fill: red;
 
 .bar_v {
 fill: rgb(119, 95, 85);
+stroke: rgb(0,0,0);
+stroke-width: 1px;
+shape-rendering: crispEdges;
+}
+
+.bar_v_max {
+fill: rgb(192,0,0);
 stroke: rgb(0,0,0);
 stroke-width: 1px;
 shape-rendering: crispEdges;
