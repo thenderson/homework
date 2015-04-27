@@ -199,10 +199,15 @@ function CommitmentGrid(name) {
 						.domain([min_date, max_date])
 						.range([0, width - xpad]);
 						
-					var r = d3.scale.linear()
+					var r = d3.scale.linear() // radius of circles
 						.domain([0, 100])
 						.clamp(true)
-						.range([3, height*.48]);
+						.range([3, height*.47]);
+						
+					var op = d3.scale.linear() // fill opacity for circles
+						.domain([0, 100])
+						.clamp(true)
+						.range([1, .33]);
 			
 					y1 = midline - 2;
 					y2 = midline + 2;
@@ -248,7 +253,8 @@ function CommitmentGrid(name) {
 									(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
 							.attr('cx', x(due_by))
 							.attr('cy', midline)
-							.attr('r', r(magnitude));
+							.attr('r', r(magnitude))
+							.style('fill-opacity', op);
 					}
 				}
 			}));

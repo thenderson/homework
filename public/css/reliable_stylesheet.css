@@ -591,8 +591,8 @@ stroke: none;
 }
 
 .due_circle {
-fill: rgb(200, 204, 179);
-fill-opacity: .5;
+fill: rgb(216,178,192);
+fill-opacity: 1;
 stroke: rgb(0,0,0);
 stroke-width: 2px;
 }
