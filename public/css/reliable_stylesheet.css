@@ -311,7 +311,7 @@ padding-right: 0px;
 th.editablegrid-visual,
 td.editablegrid-visual {
 text-align: right;
-width: 150px;
+width: 100px;
 padding-left: 1px;
 padding-right: 0px;
 }
@@ -593,6 +593,18 @@ stroke: none;
 .due_circle {
 fill: none;
 stroke: rgb(0,0,0);
+stroke-width: 2px;
+}
+
+.due_circle_closed {
+fill: none;
+stroke: rgb(192,192,192);
+stroke-width: 2px;
+}
+
+.due_circle_overdue {
+fill: none;
+stroke: rgb(256,0,0);
 stroke-width: 2px;
 }
 

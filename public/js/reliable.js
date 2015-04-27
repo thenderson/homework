@@ -172,10 +172,12 @@ function CommitmentGrid(name) {
 					var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
 					var date_due_col = self.grid.getColumnIndex('due_by');
 					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
+					var status_col = self.grid.getColumnIndex('status');
+					var status = self.grid.getValueAt(cell.rowIndex, status_col);
 					
 					var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
 					var lookback = (show_closed == true) ? lookahead : 2;
-console.log('lookback '+lookback+' lookahead '+lookahead);					
+				
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(lookback, 'weeks');
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
@@ -200,10 +202,10 @@ console.log('lookback '+lookback+' lookahead '+lookahead);
 						.domain([0, 100])
 						.range([4, midline]);
 			
-					y1 = height - ypad;
-					y2 = ypad;
+					y1 = midline - 5;
+					y2 = midline + 5;
 					
-					for (j=-lookback; j<lookahead+1; j++) {
+					for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
 						xx = x(last_monday.clone().add(j, 'weeks'));
 						graph.append('svg:line')
 							.attr('x1', xx)
@@ -220,7 +222,7 @@ console.log('lookback '+lookback+' lookahead '+lookahead);
 						.attr('r', r(1));
 						
 					graph.append('circle')
-						.attr('class', 'due_circle')
+						.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : (status == 'V?' ? 'due_circle_overdue' : 'due_circle')));
 						.attr('cx', x(due_by))
 						.attr('cy', midline)
 						.attr('r', r(magnitude));
