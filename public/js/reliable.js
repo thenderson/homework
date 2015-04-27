@@ -254,7 +254,9 @@ function CommitmentGrid(name) {
 							.attr('cx', x(due_by))
 							.attr('cy', midline)
 							.attr('r', r(magnitude))
-							.style('fill-opacity', function (d) { return String(op(d));});
+							.style('fill-opacity', function (d) { 
+								return String(op(d));
+								console.log(String(op(d)));});
 					}
 				}
 			}));
