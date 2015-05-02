@@ -624,6 +624,7 @@ function populate_select_names(element, values) {
 	$.each(values, function(key, value) {
 		$(element).append($('<option>', {value : key+''}).text(value));
 	});
+	$(element).prop('selectedIndex', -1);
 	$(element).selectmenu('refresh');
 };
 
