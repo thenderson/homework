@@ -619,7 +619,7 @@ function populate_select(element, values) {
 };
 
 function populate_select_names(element, values) {
-	$(element).empty();
+	$(element).selectmenu("destroy").selectmenu({ style: "dropdown" });
 	$.each(values, function(key, value) {
 		$(element).append($('<option>', {value : key+''}).text(value));
 	});
