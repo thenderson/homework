@@ -149,7 +149,9 @@
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
 				$('#add-commitment').data('duplicate', null);
+				$('#inp-req').prop('selectedIndex', -1);
 				$('#comm_form').trigger('reset');
+				$('#inp-prom').prop('selectedIndex', -1);
 			},
 			"Submit+": function() {
 				var data = {};

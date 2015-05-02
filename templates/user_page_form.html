@@ -532,6 +532,7 @@ window.onload = function() {
 	// populate new commitment requester and promiser select menus with project team members
 	$('#inp-proj').on("selectmenuselect", function( event, object ) 
 	{
+console.log('loading project usernames');
 		$.ajax({
 			url: '../includes/load_project_usernames.php',
 			type: 'POST',
