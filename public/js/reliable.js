@@ -620,13 +620,17 @@ function populate_select(element, values) {
 
 function populate_select_names(element, values) {
 	$(element).empty();
-	//$(element).selectmenu("destroy").selectmenu({ style: "dropdown" });
-	//<option value="" disabled selected>Select your option</option>
-	$(element).append($('<option>', {value: 'placeholder', selected: true, disabled: true}).text(''));
-	$.each(values, function(key, value) {
-		$(element).append($('<option>', {value : key+''}).text(value));
-	});
-	//$(element).prop('selectedIndex', '-1');
+	
+console.debug(values);
+	if (Object.keys(values).length > 1) {
+		$(element).append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+		$.each(values, function(key, value) {
+			$(element).append($('<option>', {value : key+''}).text(value));
+		});
+	}
+	else {
+		$(element).append($('<option>', {values[0]['user_id'], selected: true}).text(values[0]['name']));
+	}
 	$(element).selectmenu('refresh');
 };
 
