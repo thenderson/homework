@@ -4,6 +4,7 @@ require_once('config.php');
 // Get POST data
 $project_number = strip_tags($_POST['projectnumber']);
 $description = strip_tags($_POST['desc']);
+$magnitude = strip_tags($_POST['mag']);
 $promiser = strip_tags($_POST['prom']);
 $requester = strip_tags($_POST['req']);
 $due = strip_tags($_POST['due']);
@@ -22,7 +23,7 @@ else $priority = 0;
 if ($status == 'D') $due = '0000-00-00';
 
 // Determine task_id for new commitment
-if ($replan != -1) { //if this task is a replan of a failed task, increment the old task ID
+if ($replan != -1) { //if this task is a replan of a failed task, increment the task ID by .01
 	$floor = floor($replan);
 	$ceiling = $floor + .999;
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments 
@@ -36,8 +37,11 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 	else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$new_Id = $result[0]['task_id'] + .01; 
+error_log("x");
+error_log("x");
+error_log("max task id: $result[0]['task_id']  new id: $new_id");
 
-	if (floor($new_Id) > $floor) $replan = -1; // handles oddball case of a task replanned 99 times by assigning a new task Id
+	if (floor($new_Id) > $floor) $replan = -1; // handles oddball case of a task replanned 99 times by assigning a fresh new task Id
 }
 
 if ($replan == -1) {
@@ -54,7 +58,7 @@ if ($replan == -1) {
 }
 
 // Insert new commitment into database
-$stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, requester, promiser, due_by, status, priority_h) VALUES (?,?,?,?,?,?,?,?)');
+$stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, magnitude, requester, promiser, due_by, status, priority_h) VALUES (?,?,?,?,?,?,?,?,?)');
 
 if (!$stmt)
 {
@@ -68,11 +72,12 @@ try
 	$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
 	$stmt->bindParam(2, $new_Id, PDO::PARAM_STR);
 	$stmt->bindParam(3, $description, PDO::PARAM_STR);
-	$stmt->bindParam(4, $requester, PDO::PARAM_INT);
-	$stmt->bindParam(5, $promiser, PDO::PARAM_INT);
-	$stmt->bindParam(6, $due, PDO::PARAM_STR);
-	$stmt->bindParam(7, $status, PDO::PARAM_STR);
-	$stmt->bindParam(8, $priority, PDO::PARAM_INT);
+	$stmt->bindParam(4, $magnitude, PDO::PARAM_STR);
+	$stmt->bindParam(5, $requester, PDO::PARAM_INT);
+	$stmt->bindParam(6, $promiser, PDO::PARAM_INT);
+	$stmt->bindParam(7, $due, PDO::PARAM_STR);
+	$stmt->bindParam(8, $status, PDO::PARAM_STR);
+	$stmt->bindParam(9, $priority, PDO::PARAM_INT);
 	$stmt->execute();
 }             
 

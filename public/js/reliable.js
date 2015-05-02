@@ -438,6 +438,7 @@ CommitmentGrid.prototype.AddRow = function(values) {
 		data: {
 			projectnumber: values['projectnumber'],
 			desc: values['description'],
+			mag: 1, //TODO: request magnitute in modal
 			prom: values['promiser'],
 			req: values['requester'],
 			due: values['date_due'],
@@ -618,6 +619,7 @@ function populate_select(element, values) {
 };
 
 function populate_select_names(element, values) {
+	$(element).empty();
 	$.each(values, function(key, value) {
 		$(element).append($('<option>', {value : key+''}).text(value));
 	});

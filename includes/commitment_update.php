@@ -115,7 +115,7 @@ switch ($column_name) {
 				}
 				else if ($new_value == 'D') {
 					// 2. open --> deferred: set requested_on and due_by to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, due_by = NULL WHERE unique_id = ?'; 
+					$q="UPDATE commitments SET status = ?, due_by = '0000-00-00' WHERE unique_id = ?"; 
 				}
 				else if ($new_value == '?') {
 					// 3. open --> unknown: set status to ?
@@ -191,7 +191,7 @@ switch ($column_name) {
 				}
 				else if ($new_value == 'D') {
 					// 9. unknown --> deferred: set requested_on and due_by to NULL, set status to D
-					$q='UPDATE commitments SET status = ?, due_by = NULL WHERE unique_id = ?';
+					$q="UPDATE commitments SET status = ?, due_by = '0000-00-00' WHERE unique_id = ?";
 				}
 				else {
 					echo 'error';
