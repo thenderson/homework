@@ -621,10 +621,12 @@ function populate_select(element, values) {
 function populate_select_names(element, values) {
 	$(element).empty();
 	//$(element).selectmenu("destroy").selectmenu({ style: "dropdown" });
+	//<option value="" disabled selected>Select your option</option>
+	$(element).append($('<option>', {value: 'placeholder', selected: true, disabled: true}).text(''));
 	$.each(values, function(key, value) {
 		$(element).append($('<option>', {value : key+''}).text(value));
 	});
-	$(element).prop('selectedIndex', '-1');
+	//$(element).prop('selectedIndex', '-1');
 	$(element).selectmenu('refresh');
 };
 
