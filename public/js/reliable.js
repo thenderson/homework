@@ -628,8 +628,10 @@ console.debug(values);
 			$(element).append($('<option>', {value : key+''}).text(value));
 		});
 	}
-	else {
-		//$(element).append($('<option>', {values[0]['user_id'], selected: true}).text(values[0]['name']));
+	else { // if only one choice, select it for the user to be nice
+		$.each(values, function(key, value) {
+			$(element).append($('<option>', {value : key+'', selected: true}).text(value));
+		});
 	}
 	$(element).selectmenu('refresh');
 };
