@@ -36,11 +36,7 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 	}
 	else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$new_Id = $result[0]['task_id'] + .01; 
-error_log("x");
-error_log("x");
-error_log("max task id: $result[0]['task_id']  new id: $new_id");
-
+	$new_Id = $result[0]['task_id'] + .01;
 	if (floor($new_Id) > $floor) $replan = -1; // handles oddball case of a task replanned 99 times by assigning a fresh new task Id
 }
 
