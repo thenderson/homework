@@ -666,10 +666,11 @@ shape-rendering: crispEdges;
 
 .len_error { /* length of description text too long */
 color: rgb(192,0,0);
+font-weight: bold;
 }
 
 #inp-comm-count {
 text-align: right;
-font-weight: bold;
+width: 4em;
 }
 }
