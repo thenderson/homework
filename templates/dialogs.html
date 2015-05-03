@@ -112,7 +112,8 @@
 				if ($('add-commitment').data('replan') == 1) {
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
-					$('#inp-due').datepicker('setDate', "+7d");
+					oneweekout = moment().add(7, 'days');
+					$('#inp-due').datepicker('setDate', oneweekout);
 				}
 				else {// duplicate
 					$('#inp-due').datepicker('setDate', new Date(oldRowValues['due_by']));

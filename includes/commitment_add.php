@@ -3,11 +3,11 @@ require_once('config.php');
                    
 // Get POST data
 $project_number = strip_tags($_POST['projectnumber']);
-$description = strip_tags($_POST['desc']);
-$magnitude = strip_tags($_POST['mag']);
-$promiser = strip_tags($_POST['prom']);
-$requester = strip_tags($_POST['req']);
-$due = strip_tags($_POST['due']);
+$description = array_key_exists('desc', $_POST) ? strip_tags($_POST['desc']) : '';
+$magnitude = array_key_exists('mag', $_POST) ? strip_tags($_POST['mag']) : 1;
+$promiser = array_key_exists('prom', $_POST) ? strip_tags($_POST['prom']) : 'NULL';
+$requester = array_key_exists('req', $_POST) ? strip_tags($_POST['req']) : 'NULL';
+$due = array_key_exists('due', $_POST) ? strip_tags($_POST['due']) : '0000-00-00';
 $status = strip_tags($_POST['stat']);
 $replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true, -1 if false
 
