@@ -11,6 +11,10 @@ $due = strip_tags($_POST['due']);
 $status = strip_tags($_POST['stat']);
 $replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true, -1 if false
 
+$last_monday = date('Y-m-d', strtotime('last Monday'));
+$q_user_metrics = "";
+$q_proj_metrics = "";
+
 // Validate input
 $description = trim($description);
 
@@ -29,6 +33,12 @@ if ($status == 'C') {
 	$foresight = date_diff($today, $due_date)->format('%r%a');
 	$status = $foresight < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 	$closed_on = $today;
+	
+	$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
+		ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+
+	$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
+		ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 }
 else $closed_on = '0000-00-00';
 
@@ -52,10 +62,6 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 }
 
 if ($replan == -1) {
-error_log('x');
-error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = '$project_number'");
-error_log('x');
-
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = '$project_number'"); 
 
 	if (!$stmt) {
@@ -72,15 +78,13 @@ error_log('x');
 $stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, magnitude, 
 requester, promiser, due_by, closed_on, status, priority_h) VALUES (?,?,?,?,?,?,?,?,?,?)');
 
-if (!$stmt)
-{
+if (!$stmt) {
 	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 	echo 'error';
 	exit;
 }
 
-try
-{
+try {
 	$stmt->bindParam(1, $project_number, PDO::PARAM_STR);
 	$stmt->bindParam(2, $new_Id, PDO::PARAM_STR);
 	$stmt->bindParam(3, $description, PDO::PARAM_STR);
@@ -94,8 +98,7 @@ try
 	$stmt->execute();
 }             
 
-catch(PDOException $e) 
-{
+catch(PDOException $e) {
 	trigger_error('Wrong SQL: ' . $e . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	echo 'error';
 	exit;
@@ -108,12 +111,30 @@ $stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_shortna
 	FROM (SELECT * FROM commitments WHERE unique_id = $id) a, 
 	(SELECT project_shortname FROM projects WHERE project_number = '$project_number') b"); 
 
-if (!$stmt)
-{
+if (!$stmt) {
 	trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
 	echo 'error';
 	exit;
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// UPDATE USER_METRICS & PROJECT_METRICS DATABASES, IF NEEDED
+if ($q_user_metrics != "" && $q_proj_metrics != "") {
+	$stmt_user = $comm_db->query($q_user_metrics);
+	
+	if (!$stmt_user) {
+		trigger_error('Statement failed: ' . $stmt_user->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+
+	$stmt_proj = $comm_db->query($q_proj_metrics);
+		
+	if (!$stmt_proj) {
+		trigger_error('Statement failed: ' . $stmt_proj->error, E_USER_ERROR);
+		echo 'error';
+		exit;
+	}
+}
 
 echo json_encode($new_comm);
