@@ -629,7 +629,7 @@ console.debug(values);
 		});
 	}
 	else {
-		$(element).append($('<option>', {values[0]['user_id'], selected: true}).text(values[0]['name']));
+		//$(element).append($('<option>', {values[0]['user_id'], selected: true}).text(values[0]['name']));
 	}
 	$(element).selectmenu('refresh');
 };
