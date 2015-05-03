@@ -671,5 +671,6 @@ font-weight: bold;
 
 #inp-comm-count {
 text-align: right;
+width: 100%;
 }
 }
