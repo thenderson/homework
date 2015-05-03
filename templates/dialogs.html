@@ -21,6 +21,7 @@
 					<div class="controls">
 						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5" tabindex=2></textarea>
 					</div>
+					<p class = 'form-control-static' id='inp-comm-count'></p>
 					<p class="form-control-static" id='msg-description'></p>
 				</div>
 
@@ -104,7 +105,7 @@
 				if ($('add-commitment').data('replan') == 1) {
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
-					$('#inp-due').datepicker('setDate', +37);
+					$('#inp-due').datepicker('setDate', '37');
 				}
 				else {// duplicate
 					$('#inp-due').datepicker('setDate', new Date(oldRowValues['due_by']));
@@ -199,6 +200,12 @@
 		numberOfMonths: 2,
 		gotoCurrent: true,
 		showAnim: 'puff'
+	});
+	
+	$("#inp-comm").keyup(function(){
+		len = $(this).val().length;
+		if (len > 410) $("#inp-comm-count").text(510-$(this).val().length);
+		else $('#inp-desc-count').text('');
 	});
 
 	$("#inp-proj").selectmenu({
