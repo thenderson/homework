@@ -670,5 +670,6 @@ color: rgb(192,0,0);
 
 #inp-comm-count {
 text-align: right;
+font-weight: bold;
 }
 }
