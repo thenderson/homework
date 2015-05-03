@@ -170,14 +170,14 @@ function CommitmentGrid(name) {
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
 			
-			this.setCellRenderer('requester', new CellRenderer ({
+	/*		this.setCellRenderer('requester', new CellRenderer ({
 				render: function(cell, value) {
 					if (value == '0') {
 						cell.innerHTML = '!';
 						$(cell).addClass('status_me_now');
 					}
 					else {
-						cell.innerHTML=value;
+						//cell.innerHTML=value;
 						$(cell).removeClass('status_me_now');
 					}
 				}}));
@@ -189,11 +189,11 @@ function CommitmentGrid(name) {
 						$(cell).addClass('status_me_now');
 					}
 					else {
-						cell.innerHTML=value;
+						//cell.innerHTML=value;
 						$(cell).removeClass('status_me_now');
 					}
 				}}));
-			
+	*/		
 			this.setCellRenderer('visual', new CellRenderer ({
 				render: function(cell, value) {
 
