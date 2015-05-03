@@ -34,11 +34,11 @@ if ($status == 'C') {
 	$status = $foresight < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
 	$closed_on = $today;
 	
-	$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
-		ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+	$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $status)  VALUES($promiser, '$last_monday', 1, 1)
+		ON DUPLICATE KEY UPDATE P = P + 1, $status = $status + 1;";						
 
-	$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
-		ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
+	$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $status)  VALUES($project_number, '$last_monday', 1, 1)
+		ON DUPLICATE KEY UPDATE P = P + 1, $status = $status + 1;";
 }
 else $closed_on = '0000-00-00';
 
