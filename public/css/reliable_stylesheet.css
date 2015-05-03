@@ -557,16 +557,6 @@ fill: none;
 stroke: none;
 shape-rendering: crispEdges;
 }
-/*
-.tick line {
-stroke: rgb(0,0,0);
-stroke-width: 1px;
-shape-rendering: crispEdges;
-}
-
-.tick path {
-stroke: none;
-}*/
 
 .tick text {
 font-family: sans-serif;
@@ -672,5 +662,13 @@ fill: rgb(192,0,0);
 stroke: rgb(0,0,0);
 stroke-width: 1px;
 shape-rendering: crispEdges;
+}
+
+.len_error { /* length of description text too long */
+color: rgb(192,0,0);
+}
+
+#inp-comm-count {
+text-align: right;
 }
 }

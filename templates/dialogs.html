@@ -17,11 +17,13 @@
 				</div>
 				
 				<div class="control-group">
-					<label class="control-label" for="inp-comm">Description</label>
+					<form class='form-inline'>
+						<label class="control-label" for="inp-comm">Description</label>
+						<p class = 'form-control-static' id='inp-comm-count'></p>
+					</form>
 					<div class="controls">
 						<textarea class="form-control input-sm" id="inp-comm" name="description" placeholder="Describe what work products will be given to whom, in what form, by what method & at what level of completion." rows="5" tabindex=2></textarea>
 					</div>
-					<p class = 'form-control-static' id='inp-comm-count'></p>
 					<p class="form-control-static" id='msg-description'></p>
 				</div>
 
@@ -206,6 +208,9 @@
 		len = $(this).val().length;
 		if (len > 410) $("#inp-comm-count").text(510-$(this).val().length);
 		else $('#inp-desc-count').text('');
+		
+		if (len > 510) $('#inp-comm-count').addClass('len_error');
+		else $('#inp-comm-count').removeClass('len_error');
 	});
 
 	$("#inp-proj").selectmenu({
