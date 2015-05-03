@@ -120,6 +120,12 @@ function CommitmentGrid(name) {
 						$(cell).addClass('priority-h');
 					}
 					else $(cell).removeClass('priority-h');
+					
+					if (value == '') {
+						cell.innerHTML = '!';
+						$(cell).addClass('status_me_now');
+					}
+					else $(cell).removeClass('status_me_now');
 				}}));
 			
 			this.setEnumProvider('status', new EnumProvider({
@@ -163,6 +169,30 @@ function CommitmentGrid(name) {
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
+			
+			this.setCellRenderer('requester', new CellRenderer ({
+				render: function(cell, value) {
+					if (value == '0') {
+						cell.innerHTML = '!';
+						$(cell).addClass('status_me_now');
+					}
+					else {
+						cell.innerHTML=value;
+						$(cell).removeClass('status_me_now');
+					}
+				}}));
+				
+				this.setCellRenderer('promiser', new CellRenderer ({
+				render: function(cell, value) {
+					if (value == '0') {
+						cell.innerHTML = '!';
+						$(cell).addClass('status_me_now');
+					}
+					else {
+						cell.innerHTML=value;
+						$(cell).removeClass('status_me_now');
+					}
+				}}));
 			
 			this.setCellRenderer('visual', new CellRenderer ({
 				render: function(cell, value) {
