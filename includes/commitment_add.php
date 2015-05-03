@@ -32,7 +32,7 @@ if ($status == 'C') {
 	$today = new DateTime();
 	$foresight = date_diff($today, $due_date)->format('%r%a');
 	$status = $foresight < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
-	$closed_on = $today;
+	$closed_on = $today->format('Y-m-d');
 	
 	$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $status)  VALUES($promiser, '$last_monday', 1, 1)
 		ON DUPLICATE KEY UPDATE P = P + 1, $status = $status + 1;";						
