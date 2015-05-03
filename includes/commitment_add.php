@@ -14,6 +14,8 @@ $replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true
 // Validate input
 $description = trim($description);
 
+$project_number = "'".$project_number."'";
+
 if ($status == 'OH') {
 	$status = 'O';
 	$priority = 1;
