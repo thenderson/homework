@@ -37,9 +37,9 @@ if ($replan != -1) { //if this task is a replan of a failed task, increment the 
 	$floor = floor($replan);
 	$ceiling = $floor + .999;
 	
-console_log('x');
-console_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
-console_log('x');
+error_log('x');
+error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
+error_log('x');
 	
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments 
 	WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
@@ -56,9 +56,9 @@ console_log('x');
 }
 
 if ($replan == -1) {
-console_log('x');
-console_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number");
-console_log('x');
+error_log('x');
+error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number");
+error_log('x');
 
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
