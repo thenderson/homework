@@ -157,9 +157,8 @@
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
 				$('#add-commitment').data('duplicate', null);
-				$('#inp-req').empty();
-				$('#inp-req').prop('selectedIndex', -1);
-				$('#inp-prom').prop('selectedIndex', -1);
+				$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+				$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 				$('#comm_form').trigger('reset');
 			},
 			"Submit+": function() {
@@ -187,9 +186,8 @@
 					$('#add-commitment').data('replan', null);
 					$('$add-commitment').data('duplicate', null);
 				}
-				$('#inp-req').empty();
-				$('#inp-req').prop('selectedIndex', -1);
-				$('#inp-prom').prop('selectedIndex', -1);
+				$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+				$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 				$('#comm_form').trigger('reset');
 			}
 		},
