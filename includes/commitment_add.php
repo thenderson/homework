@@ -14,8 +14,6 @@ $replan = floatval(strip_tags($_POST['replan'])); // = replanned task ID if true
 // Validate input
 $description = trim($description);
 
-$project_number = "'".$project_number."'";
-
 if ($status == 'OH') {
 	$status = 'O';
 	$priority = 1;
@@ -38,11 +36,7 @@ else $closed_on = '0000-00-00';
 if ($replan != -1) { //if this task is a replan of a failed task, increment the task ID by .01
 	$floor = floor($replan);
 	$ceiling = $floor + .999;
-	
-error_log('x');
-error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
-error_log('x');
-	
+
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments 
 	WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
 	
@@ -59,10 +53,10 @@ error_log('x');
 
 if ($replan == -1) {
 error_log('x');
-error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number");
+error_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = '$project_number'");
 error_log('x');
 
-	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
+	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = '$project_number'"); 
 
 	if (!$stmt) {
 		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
@@ -112,7 +106,7 @@ $id = $comm_db->lastInsertId('unique_id');
 $stmt = $comm_db->query("SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
 	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
 	FROM (SELECT * FROM commitments WHERE unique_id = $id) a, 
-	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"); 
+	(SELECT project_shortname FROM projects WHERE project_number = '$project_number') b"); 
 
 if (!$stmt)
 {

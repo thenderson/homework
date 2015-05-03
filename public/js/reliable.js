@@ -581,8 +581,7 @@ function populate_select(element, values) {
 
 function populate_select_names(element, values) {
 	$(element).empty();
-	
-console.debug(values);
+
 	if (Object.keys(values).length > 1) {
 		$(element).append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 		$.each(values, function(key, value) {
