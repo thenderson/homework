@@ -22,10 +22,25 @@ else $priority = 0;
 
 if ($status == 'D') $due = '0000-00-00';
 
+if ($status == 'C') {
+	// calculate closed status
+	$due_date = DateTime::createFromFormat('Y-m-d', $due);
+	$today = new DateTime();
+	$foresight = date_diff($today, $due_date)->format('%r%a');
+	$status = $foresight < 0 ? 'CL': ($foresight > 13 ? 'C2' : ($foresight > 6 ? 'C1' : 'C0'));
+	$closed_on = $today;
+}
+else $closed_on = '0000-00-00';
+
 // Determine task_id for new commitment
 if ($replan != -1) { //if this task is a replan of a failed task, increment the task ID by .01
 	$floor = floor($replan);
 	$ceiling = $floor + .999;
+	
+console_log('x');
+console_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
+console_log('x');
+	
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments 
 	WHERE project_number = $project_number AND task_id BETWEEN $floor AND $ceiling");
 	
@@ -54,7 +69,8 @@ if ($replan == -1) {
 }
 
 // Insert new commitment into database
-$stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, magnitude, requester, promiser, due_by, status, priority_h) VALUES (?,?,?,?,?,?,?,?,?)');
+$stmt = $comm_db->prepare('INSERT INTO commitments (project_number, task_id, description, magnitude, 
+requester, promiser, due_by, closed_on, status, priority_h) VALUES (?,?,?,?,?,?,?,?,?,?)');
 
 if (!$stmt)
 {
@@ -72,8 +88,9 @@ try
 	$stmt->bindParam(5, $requester, PDO::PARAM_INT);
 	$stmt->bindParam(6, $promiser, PDO::PARAM_INT);
 	$stmt->bindParam(7, $due, PDO::PARAM_STR);
-	$stmt->bindParam(8, $status, PDO::PARAM_STR);
-	$stmt->bindParam(9, $priority, PDO::PARAM_INT);
+	$stmt->bindParam(8, $closed_on, PDO::PARAM_STR);
+	$stmt->bindParam(9, $status, PDO::PARAM_STR);
+	$stmt->bindParam(10, $priority, PDO::PARAM_INT);
 	$stmt->execute();
 }             
 

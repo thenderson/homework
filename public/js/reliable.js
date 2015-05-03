@@ -438,7 +438,7 @@ CommitmentGrid.prototype.AddRow = function(values) {
 		data: {
 			projectnumber: values['projectnumber'],
 			desc: values['description'],
-			mag: 1, //TODO: request magnitute in modal
+			mag: 1, //TODO: request magnitude in modal
 			prom: values['promiser'],
 			req: values['requester'],
 			due: values['date_due'],
@@ -510,45 +510,6 @@ CommitmentGrid.prototype.DuplicateRow = function(rowIndex)
 		async: true
 	});
 };
-
-// CommitmentGrid.prototype.DuplicateRow_old = function(index) 
-// {
-	// var self = this;
-	// var rowId = self.grid.getRowId(index);
-	// var uniqueid_col = self.grid.getColumnIndex('unique_id');
-	
-    // $.ajax({
-		// url: '../includes/commitment_duplicate.php',
-		// type: 'POST',
-		// dataType: "json",
-		// data: {
-			// uniqueId: self.grid.getValueAt(index, uniqueid_col),
-		// },
-		// success: function (response) 
-		// { 
-			// // get index for new row (max index + 1)
-			// var newRowId = 0;
-			// var rowcount = self.grid.getRowCount();
-			// for (var r = 0; r < rowcount; r++) newRowId = Math.max(newRowId, parseInt(self.grid.getRowId(r)) + 1);
-			
-			// // add new row
-			// self.grid.insertAfter(index, newRowId, response[0]);
-			// highlight(self.name, newRowId, "ok");
-		// },
-		// error: function(XMLHttpRequest, textStatus, exception) 
-		// { 
-			// highlight(self.name, rowId, "error");
-			// alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception); 
-		// },
-		// complete: function () {
-			// $('[id^='+self.name+'_total]').animate({opacity: 0}, 500, function() {
-				// $('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
-				// $('[id^='+self.name+'_total]').animate({opacity: 1}, 100);
-			// });
-		// },
-		// async: true
-	// });
-// };
 
 
 function updatePaginator(grid, divId)
