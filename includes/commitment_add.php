@@ -56,6 +56,10 @@ console_log('x');
 }
 
 if ($replan == -1) {
+console_log('x');
+console_log("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number");
+console_log('x');
+
 	$stmt = $comm_db->query("SELECT MAX(task_id) AS task_id FROM commitments WHERE project_number = $project_number"); 
 
 	if (!$stmt) {
