@@ -112,12 +112,12 @@
 				if ($('add-commitment').data('replan') == 1) {
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
-					oneweekout = moment().add(7, 'days').format('YY-MM-DD');
+					oneweekout = moment().add(7, 'days').format('YYYY-MM-DD');
 	console.log(oneweekout);
 					$('#inp-due').datepicker('setDate', oneweekout);
 				}
 				else {// duplicate
-					olddate = moment(oldRowValues['due_by']).format('YY-MM-DD');
+					olddate = moment(oldRowValues['due_by']).format('YYYY-MM-DD');
 	console.log(oldRowValues['due_by']+'   '+olddate);
 					$('#inp-due').datepicker('setDate', olddate);
 					$('#msg-date-due').hide();
