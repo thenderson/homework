@@ -102,7 +102,7 @@
 			if ($('#add-commitment').data('replan') == 1 || $('#add-commitment').data('duplicate') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 				$('[id^=msg]').show();
-	console.debug(data);			
+	console.debug($(this).data);			
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 
