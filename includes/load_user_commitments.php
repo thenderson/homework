@@ -8,6 +8,7 @@
 	$planning_horizon = strip_tags($_POST['horizon']); // days
 	$showClosed = strip_tags($_POST['showClosed']);
 	$p_or_r = strip_tags($_POST['p_or_r']); // load promises or requests
+	$showDeferred = $planning_horizon == 'all' ? 'true' : 'false';
 
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
@@ -17,13 +18,19 @@
 		if ($p_or_r == 'promises') $q = $q . ' WHERE promiser = :user';
 		else $q = $q . ' WHERE requester = :user';
 	}
-	else {
+	else { // horizon <= 9 weeks
 		if ($p_or_r == 'promises') $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and promiser = :user";
 		else $q = $q . " WHERE due_by <= DATE_ADD(CURDATE(), INTERVAL :horizon DAY) and requester = :user";
 	}
 	
-	if ($showClosed == 'false') $q = $q . " and status IN ('O', '?', 'D', 'NA', 'V?')";
-	
+	if ($showClosed == 'false') {
+		if ($showDeferred == 'true') $q = $q . " and status IN ('O', '?', 'D', 'NA', 'V?')";
+		else $q = $q . " and status IN ('O', '?', 'NA', 'V?')";
+	}
+	else { // showClosed = true
+		if ($showDeferred == 'false') $q = $q . " and status != 'D'";
+	} // if showClosed & showDeferred == true, then we're showing everything, so no filter needed.
+		
 	$q = $q . ' ORDER BY due_by, project_number';
 	
 	/*	RETRIEVE COMMITMENTS */
