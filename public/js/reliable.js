@@ -345,6 +345,7 @@ function requestReplan(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		success: function (response) {
 			$("#add-commitment")
 				.data('replan', 1)
+				.data('duplicate', 0)
 				.data('msg-general', msg_general)
 				.data('msg-description', msg_description)
 				.data('msg-date-due', msg_date_due)

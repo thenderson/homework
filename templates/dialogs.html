@@ -109,14 +109,14 @@
 				$('#msg-general').html($('#add-commitment').data('msg-general'));
 				$('#inp-comm').val(oldRowValues['description']);
 				
-				if ($('add-commitment').data('replan') == 1) {
+				if ($('#add-commitment').data('replan') == 1) {
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
 					oneweekout = moment().add(7, 'days').format('YYYY-MM-DD');
 		console.log(oneweekout);
 					$('#inp-due').datepicker('setDate', oneweekout);
 				}
-				else {// duplicate
+				else if ($('#add-commitment').data('duplicate') == 1 {// duplicate
 					//olddate = moment(oldRowValues['due_by']).format('YYYY-MM-DD');
 					$('#inp-due').datepicker('setDate', oldRowValues['due_by']);
 					$('#msg-date-due').hide();
