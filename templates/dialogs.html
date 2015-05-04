@@ -113,6 +113,7 @@
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
 					oneweekout = moment().add(7, 'days').format('YYYY-MM-DD');
+		console.log(oneweekout);
 					$('#inp-due').datepicker('setDate', oneweekout);
 				}
 				else {// duplicate
@@ -186,7 +187,7 @@
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
 					$('#add-commitment').data('replan', null);
-					$('$add-commitment').data('duplicate', null);
+					$('#add-commitment').data('duplicate', null);
 				}
 				$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 				$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
