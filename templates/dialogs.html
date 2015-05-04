@@ -102,7 +102,7 @@
 			if ($('#add-commitment').data('replan') == 1 || $('#add-commitment').data('duplicate') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 				$('[id^=msg]').show();
-				
+	console.debug(data);			
 				$('#inp-proj').empty().append($("<option>").val(oldRowValues['project_number'])
 				.html(oldRowValues['project_shortname']).attr('selected', true)).selectmenu('refresh');
 
@@ -112,12 +112,12 @@
 				if ($('add-commitment').data('replan') == 1) {
 					$('#msg-description').html($('#add-commitment').data('msg-description'));
 					$('#msg-date-due').html($('#add-commitment').data('msg-date-due'));
-					oneweekout = moment().add(7, 'days').format('Y-mm-dd');
+					oneweekout = moment().add(7, 'days').format('YY-MM-DD');
 	console.log(oneweekout);
 					$('#inp-due').datepicker('setDate', oneweekout);
 				}
 				else {// duplicate
-					olddate = moment(oldRowValues['due_by']).format('Y-mm-dd');
+					olddate = moment(oldRowValues['due_by']).format('YY-MM-DD');
 	console.log(oldRowValues['due_by']+'   '+olddate);
 					$('#inp-due').datepicker('setDate', olddate);
 					$('#msg-date-due').hide();
