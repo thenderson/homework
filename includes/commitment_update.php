@@ -107,7 +107,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES('$project_number', '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 
 					// INSERT INTO user_metrics (user_id, date, P, C0)  VALUES(1, '2015-03-23', 1, 1)
@@ -138,7 +138,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $old_value)  VALUES($promiser, '$last_monday', 0, 0)
 						ON DUPLICATE KEY UPDATE P = GREATEST(0, P - 1), $old_value = GREATEST(0, $old_value - 1);";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $old_value)  VALUES($project_number, '$last_monday', 0, 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $old_value)  VALUES('$project_number', '$last_monday', 0, 0)
 						ON DUPLICATE KEY UPDATE P = GREATEST(0, P - 1), $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else {
@@ -160,7 +160,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES('$project_number', '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == '?') {
@@ -186,7 +186,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES($project_number, '$last_monday', 1, 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES('$project_number', '$last_monday', 1, 1)
 						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				}
 				else if ($new_value == 'D') {
@@ -212,7 +212,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value) VALUES($promiser, '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value) VALUES($project_number, '$last_monday', 1)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value) VALUES('$project_number', '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";
 				}
 				else {
@@ -242,7 +242,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $old_value)  VALUES($promiser, '$last_monday', 0)
 						ON DUPLICATE KEY UPDATE $old_value = GREATEST(0, $old_value - 1);";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES($project_number, '$last_monday', 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $old_value) VALUES('$project_number', '$last_monday', 0)
 						ON DUPLICATE KEY UPDATE $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else if (preg_match('/^V[1-9]$/', $new_value)) {
@@ -252,7 +252,7 @@ switch ($column_name) {
 					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, $new_value, $old_value) VALUES($promiser, '$last_monday', 1, 0)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = GREATEST(0, $old_value - 1);";						
 	
-					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES($project_number, '$last_monday', 1, 0)
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value, $old_value) VALUES('$project_number', '$last_monday', 1, 0)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1, $old_value = GREATEST(0, $old_value - 1);";
 				}
 				else {
@@ -306,7 +306,7 @@ catch(PDOException $e)
 $q2 = "SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, 
 	a.description, a.requester, a.promiser, a.due_by, a.priority_h, a.status 
 	FROM (SELECT * FROM commitments WHERE unique_id = $unique_id) a, 
-	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b"; 
+	(SELECT project_shortname FROM projects WHERE project_number = '$project_number') b"; 
 
 $stmt = $comm_db->query($q2); 
 	

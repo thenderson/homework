@@ -27,7 +27,7 @@
 	$q2 = 
 	"SELECT a.unique_id, a.project_number, b.project_shortname, a.task_id, a.description, a.requester, c.requester_name, a.promiser, d.promiser_name, a.due_by, a.priority_h, a.status FROM 
 	(SELECT unique_id, project_number, task_id, description, requester, promiser, due_by, priority_h, status FROM commitments WHERE unique_id = $unique_id) a, 
-	(SELECT project_shortname FROM projects WHERE project_number = $project_number) b,
+	(SELECT project_shortname FROM projects WHERE project_number = '$project_number') b,
 	(SELECT name as requester_name FROM users WHERE user_id = $requester) c,
 	(SELECT name as promiser_name FROM users WHERE user_id = $promiser) d"; 
 	
