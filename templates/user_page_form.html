@@ -182,19 +182,26 @@ window.onload = function() {
 		});
 	};
 
-	// configure accordions, sliders, cookies & misc. stuff
-//	state = getCookie('acc-com-state');
+	// configure accordions: get initial state from cookies
 	acc_com_state = (getCookie('acc-com-state') == 'false') ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
-	if (acc_com_state == false) { //acc is closed, so show these items
+	acc_req_state = (getCookie('acc-req-state') == 0) ? 0 : false; // defaults to closed if no cookie
+	acc_proj_state = (getCookie('acc-proj-state') == 'false') ? false : 0; // defaults open if no cookie
+	
+	// configure accordions: show totals in header if initial state is closed
+	if (acc_com_state == false) {
 		$('#commitments_total-above').show('slow');
 		$('#spacer-commitments_total-above').show('slow');
 	}
-		
-	state = getCookie('acc-req-state');
-	acc_req_state = state == 0 ? 0 : false; // defaults to closed if no cookie
-	state = getCookie('acc-proj-state');
-	acc_proj_state = state == 'false' ? false : 0; // defaults open if no cookie
+	if (acc_req_state == false) {
+		$('#requests_total-above').show('slow');
+		$('#spacer-requests_total-above').show('slow');
+	}
+	if (acc_proj_state == false) {
+		$('#proj_total-above').show('slow');
+		$('#spacer-proj_total-above').show('slow');
+	}
 	
+	// configure accordions: create
 	$('#accordion-com').accordion({
 		heightStyle: 'content',
 		collapsible: true,
@@ -234,6 +241,7 @@ window.onload = function() {
 		}
 	});
 	
+	//configure horizon slider: get initial state from cookie & create
 	hor = getCookie('horizon');
 	horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 14);
 	setCookie('horizon', horizon);
@@ -272,6 +280,7 @@ window.onload = function() {
 		}
 	});
 
+	// configure show_closed button
 	show_closed = getCookie('showClosed') == 'true' ? true : false;
 	$('#show-closed').prop('checked', show_closed);
 	setCookie('showClosed', show_closed);
@@ -281,6 +290,7 @@ window.onload = function() {
 		load_comms(undefined, this.checked);
 	});
 		
+	// configure paginators
 	commPageSize = parseInt(getCookie(commitments.name+'PageSize') || 10); 
 	$('#comm_page_size').val(commPageSize);
 	reqPageSize = parseInt(getCookie(requests.name+'PageSize') || 10); 
