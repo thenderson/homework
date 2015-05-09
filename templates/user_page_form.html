@@ -183,15 +183,23 @@ window.onload = function() {
 	};
 
 	// configure accordions, sliders, cookies & misc. stuff
+	
+	state = getCookie('acc-com-state');
+	acc-com-state = state == false ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
+	state = getCookie('acc-req-state');
+	acc-req-state = state == 0 ? 0 : false; // defaults to closed if no cookie found
+	state = getCookie('acc-proj-state');
+	acc-proj-state = state == false ? false : 0; // false closes accordion, 0 has it open
+	
 	$('#accordion-com').accordion({
 		heightStyle: 'content',
 		collapsible: true,
-		create: function(event, ui) {
-			isopen = getCookie('acc-com-state');
-		},
+		active: acc-com-state,
 		beforeActivate: function(event, ui) {
 			$('#commitments_total-above').toggle('slow');
 			$('#spacer-commitments_total-above').toggle('slow');
+		},
+		activate: function(event, ui) {
 			console.log($('#accordion-com').accordion( "option", "active" ));
 			setCookie('acc-com-state', $('#accordion-com').accordion( "option", "active" ));
 		}
