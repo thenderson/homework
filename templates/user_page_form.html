@@ -188,15 +188,15 @@ window.onload = function() {
 	acc_proj_state = (getCookie('acc-proj-state') == 'false') ? false : 0; // defaults open if no cookie
 	
 	// configure accordions: show totals in header if initial state is closed
-	if (acc_com_state == false) {
+	if (acc_com_state === false) {
 		$('#commitments_total-above').show('slow');
 		$('#spacer-commitments_total-above').show('slow');
 	}
-	if (acc_req_state == false) {
+	if (acc_req_state === false) {
 		$('#requests_total-above').show('slow');
 		$('#spacer-requests_total-above').show('slow');
 	}
-	if (acc_proj_state == false) {
+	if (acc_proj_state === false) {
 		$('#proj_total-above').show('slow');
 		$('#spacer-proj_total-above').show('slow');
 	}
