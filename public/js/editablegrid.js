@@ -1082,8 +1082,7 @@ EditableGrid.prototype.getDisplayValueAt = function(rowIndex, columnIndex)
 		// use renderer to get the value that must be used for sorting
 		var renderer = rowIndex < 0 ? this.columns[columnIndex].headerRenderer : this.columns[columnIndex].cellRenderer;  
 		value = renderer.getDisplayValue(rowIndex, value);
-	}	
-console.log(value);
+	}
 	return value;
 };
 

@@ -117,6 +117,7 @@ EditableGrid.prototype.sort_date = function(a,b)
 	aa = typeof date == "object" ? date.sortDate : 0;
 	date = EditableGrid.prototype.checkDate(b[0]);
 	bb = typeof date == "object" ? date.sortDate : 0;
+console.log(aa, bb, aa-bb);
 	return aa-bb;
 };
 
