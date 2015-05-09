@@ -186,9 +186,14 @@ window.onload = function() {
 	$('#accordion-com').accordion({
 		heightStyle: 'content',
 		collapsible: true,
+		create: function(event, ui) {
+			isopen = getCookie('acc-com-state');
+		},
 		beforeActivate: function(event, ui) {
 			$('#commitments_total-above').toggle('slow');
 			$('#spacer-commitments_total-above').toggle('slow');
+			console.log($('#accordion-com').accordion( "option", "active" ));
+			setCookie('acc-com-state', $('#accordion-com').accordion( "option", "active" ));
 		}
 	});
 	
@@ -211,7 +216,7 @@ window.onload = function() {
 	});
 	
 	hor = getCookie('horizon');
-	horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 21);
+	horizon = (parseInt(hor, 10) != 'NaN') ? hor : (hor == 'all' ? 'all' : 14);
 	setCookie('horizon', horizon);
 	var weeks = parseInt((horizon == 'all') ? 10 : horizon / 7);
 	
