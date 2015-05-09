@@ -79,7 +79,9 @@
 	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
+	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 	$grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
 	$grid->addColumn('magnitude', 'MAG', 'double(,2,dot,coma,)');
 	
@@ -87,9 +89,7 @@
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
 
 	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('visual', 'CHART', 'date', NULL, false);
-	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 
 	//render grid
 	$grid->renderXML($commitments);
