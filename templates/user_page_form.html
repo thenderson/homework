@@ -183,13 +183,12 @@ window.onload = function() {
 	};
 
 	// configure accordions, sliders, cookies & misc. stuff
-	
 	state = getCookie('acc-com-state');
 	acc_com_state = (state == 'false') ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
 	state = getCookie('acc-req-state');
-	acc_req_state = state == 0 ? 0 : false; // defaults to closed if no cookie found
+	acc_req_state = state == 0 ? 0 : false; // defaults to closed if no cookie
 	state = getCookie('acc-proj-state');
-	acc_proj_state = state == 'false' ? false : 0; // false closes accordion, 0 has it open
+	acc_proj_state = state == 'false' ? false : 0; // defaults open if no cookie
 	
 	$('#accordion-com').accordion({
 		heightStyle: 'content',
@@ -200,7 +199,6 @@ window.onload = function() {
 			$('#spacer-commitments_total-above').toggle('slow');
 		},
 		activate: function(event, ui) {
-			console.log($('#accordion-com').accordion( "option", "active" ));
 			setCookie('acc-com-state', $('#accordion-com').accordion( "option", "active" ));
 		}
 	});
@@ -208,18 +206,26 @@ window.onload = function() {
 	$('#accordion-req').accordion({
 		heightStyle: 'content',
 		collapsible: true,
+		active: acc_req_state,
 		beforeActivate: function(event, ui) {
 			$('#requests_total-above').toggle('slow');
 			$('#spacer-requests_total-above').toggle('slow');
+		},
+		activate: function(event, ui) {
+			setCookie('acc-req-state', $('#accordion-req').accordion( "option", "active" ));
 		}
 	});
 	
 	$('#accordion-proj').accordion({
 		heightStyle: 'content',
 		collapsible: true,
+		active: acc_proj_state,
 		beforeActivate: function(event, ui) {
 			$('#proj_total-above').toggle('slow');
 			$('#spacer-proj_total-above').toggle('slow');
+		},
+		activate: function(event, ui) {
+			setCookie('acc-proj-state', $('#accordion-proj').accordion( "option", "active" ));
 		}
 	});
 	
