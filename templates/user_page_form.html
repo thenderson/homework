@@ -183,8 +183,13 @@ window.onload = function() {
 	};
 
 	// configure accordions, sliders, cookies & misc. stuff
-	state = getCookie('acc-com-state');
-	acc_com_state = (state == 'false') ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
+//	state = getCookie('acc-com-state');
+	acc_com_state = (getCookie('acc-com-state') == 'false') ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
+	if (acc_com_state == false) { //acc is closed, so show these items
+		$('#commitments_total-above').show('slow');
+		$('#spacer-commitments_total-above').show('slow');
+	}
+		
 	state = getCookie('acc-req-state');
 	acc_req_state = state == 0 ? 0 : false; // defaults to closed if no cookie
 	state = getCookie('acc-proj-state');
@@ -195,14 +200,8 @@ window.onload = function() {
 		collapsible: true,
 		active: acc_com_state,
 		beforeActivate: function(event, ui) {
-			if (getCookie('acc-com-state') == 0) { //acc is closing, so show these items
-				$('#commitments_total-above').show('slow');
-				$('#spacer-commitments_total-above').show('slow');
-			}
-			else { //acc is opening, so hide 'em
-				$('#commitments_total-above').hide('slow');
-				$('#spacer-commitments_total-above').hide('slow');
-			}
+			$('#commitments_total-above').toggle('slow');
+			$('#spacer-commitments_total-above').toggle('slow');
 		},
 		activate: function(event, ui) {
 			setCookie('acc-com-state', $('#accordion-com').accordion( "option", "active" ));
