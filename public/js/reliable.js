@@ -599,7 +599,7 @@ function getparam(name){
 EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
 	return { 
 		formattedDate: strDate,
-		sortDate: strDate,
+		sortDate: Date.parse(strDate),
 		dbDate: strDate 
 	};
 };
