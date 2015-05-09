@@ -185,11 +185,11 @@ window.onload = function() {
 	// configure accordions, sliders, cookies & misc. stuff
 	
 	state = getCookie('acc-com-state');
-	acc-com-state = state == false ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
+	acc-com-state = (state == 'false') ? false : 0; // false closes accordion, 0 has it open; defaults open if no cookie
 	state = getCookie('acc-req-state');
-	acc-req-state = state == 0 ? 0 : false; // defaults to closed if no cookie found
+//	acc-req-state = state == 0 ? 0 : false; // defaults to closed if no cookie found
 	state = getCookie('acc-proj-state');
-	acc-proj-state = state == false ? false : 0; // false closes accordion, 0 has it open
+//	acc-proj-state = state == false ? false : 0; // false closes accordion, 0 has it open
 	
 	$('#accordion-com').accordion({
 		heightStyle: 'content',
