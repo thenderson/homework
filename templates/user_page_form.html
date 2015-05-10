@@ -555,7 +555,7 @@ window.onload = function() {
 			$.each(result, function(key, object) {
 				$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 			});
-			$('#inp_proj').selectmenu('refresh')'
+			$('#inp_proj').selectmenu('refresh');
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
