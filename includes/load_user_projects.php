@@ -12,6 +12,22 @@
 		SELECT 
 			a.project_number as project_number_2, 
 			a.project_name,
+			(SELECT count(*)
+				FROM commitments c
+				WHERE c.status IN ('O', '?', 'NA', NULL)
+				AND a.project_number=c.project_number) as num_open
+		FROM projects a
+		WHERE EXISTS(
+			SELECT b.user_id, b.project_number
+			FROM users_projects b
+			WHERE a.project_number = b.project_number
+			AND b.user_id = :user)
+		ORDER BY project_number_2");
+		
+/*		$stmt = $comm_db->prepare("
+		SELECT 
+			a.project_number as project_number_2, 
+			a.project_name,
 			IF(
 				EXISTS(
 					SELECT b.user_id, b.project_number
@@ -24,7 +40,8 @@
 				AND a.project_number=c.project_number) as num_open
 		FROM projects a
 		ORDER BY project_number_2");
-	
+*/
+
 	if (!$stmt)
 	{
 		trigger_error('Statement failed : ' . $stmt->error, E_USER_ERROR);
