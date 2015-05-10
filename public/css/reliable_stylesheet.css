@@ -429,13 +429,73 @@ and (orientation : portrait) { /* iphone portrait */
 }
 
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait),  /* ipad portrait */
-@media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) 
 and (orientation : landscape) { /* iphone landscape (adds status column)*/
+	th.editablegrid-project_number,
+	td.editablegrid-project_number  {
+	display: none;
+	}
+			
+	th.editablegrid-project_shortname,
+	td.editablegrid-project_shortname {
+	padding-left: 0px;
+	}
+
+	th.editablegrid-requester,
+	td.editablegrid-requester {
+	display: none;
+	}
+
+	th.editablegrid-status,
+	td.editablegrid-status {
+	padding-right: 0px;
+}
+
+	th.editablegrid-actions,
+	td.editablegrid-actions {
+	display: none;
+	}
+	
+	th.editablegrid-visual,
+	td.editablegrid-visual {
+	display: none;
+	}
+
+	th.editablegrid-priority_h,
+	td.editablegrid-priority_h {
+	display: none;
+	}
+	
+	th.editablegrid-magnitude,
+	td.editablegrid-magnitude {
+	display: none;
+	}
+	
+	th.editablegrid-num_open,
+	td.editablegrid-num_open {
+	display: none;
+	}
+	
+	th.editablegrid-PPC,
+	td.editablegrid-PPC {
+	width: 200px;
+	}
+
+	th.editablegrid-PTA,
+	td.editablegrid-PTA,
+	th.editablegrid-PTI,
+	td.editablegrid-PTI,
+	th.editablegrid-V,
+	td.editablegrid-V {
+	display: none;
+	}
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { /* ipad portrait */
 	th.editablegrid-project_number,
 	td.editablegrid-project_number  {
 	display: none;
