@@ -617,7 +617,7 @@ function populate_select_names(element, values) {
 			$(element).append($('<option>', {value : key+''}).text(value));
 		});
 	}
-	else if (Object.keys(values.length == 1) { // if only one choice, select it for the user to be nice
+	else if (Object.keys(values).length == 1) { // if only one choice, select it for the user to be nice
 		$.each(values, function(key, value) {
 			$(element).append($('<option>', {value : key+'', selected: true}).text(value));
 		});
