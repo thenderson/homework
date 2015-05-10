@@ -145,7 +145,7 @@
 			// format modal for new commitments
 			else {
 				$('[id^=msg]').hide();
-				//$('#inp_proj').val('placeholder').selectmenu('refresh');
+				$('#inp_proj').val('placeholder').selectmenu('refresh');
 				//$('#inp_req').val('placeholder').selectmenu('refresh');
 				//$('#inp_prom').val('placeholder').selectmenu('refresh');
 			}
@@ -167,8 +167,8 @@
 				$('#add-commitment').data('duplicate', null);
 				//$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				//$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
-				$('#comm_form').trigger('reset');
 				$('#inp_proj').val('placeholder').selectmenu('refresh');
+				$('#comm_form').trigger('reset');
 				$(this).dialog("close");
 			},
 			"Submit+": function() {
@@ -197,8 +197,8 @@
 				}
 				//$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				//$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
-				$('#comm_form').trigger('reset');
 				$('#inp_proj').val('placeholder').selectmenu('refresh');
+				$('#comm_form').trigger('reset');
 				$(this).dialog("close");
 			}
 		},
