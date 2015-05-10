@@ -444,11 +444,6 @@ and (orientation : landscape) { /* iphone landscape */
 	display: none;
 	}
 
-	th.editablegrid-requester,
-	td.editablegrid-requester {
-	display: none;
-	}
-
 	th.editablegrid-status,
 	td.editablegrid-status {
 	padding-right: 0px;
