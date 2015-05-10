@@ -107,7 +107,7 @@ function CommitmentGrid(name) {
 						date_due=moment(value, 'YYYY-MM-DD');
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						how_soon=date_due.diff(moment(),'days');
-						due_class = how_soon < 2 ? 'due_tomorrow' : (how_soon < 8 ? 'due_nextweek' : 'due_future');
+						due_class = how_soon < 0 ? 'overdue' : (how_soon < 2 ? 'due_tomorrow' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 						$(cell).addClass(due_class).removeClass('status_me_now');
 					}
 				}}));

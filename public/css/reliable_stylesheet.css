@@ -159,6 +159,11 @@ background-color: rgba(228, 228, 228, .5);
 background-color: rgba(228, 228, 228, .5);
 }
 
+.overdue {
+color: rgb(192,0,0);
+font-weight: bold;
+}
+
 .due_tomorrow {
 color: rgb(221, 128, 71);
 font-weight: bold;
