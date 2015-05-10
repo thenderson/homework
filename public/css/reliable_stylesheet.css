@@ -370,7 +370,7 @@ and (orientation : portrait) { /* iphone portrait */
 			
 	th.editablegrid-project_shortname,
 	td.editablegrid-project_shortname {
-	padding-left: 0px;
+	display: none;
 	}
 	
 	th.editablegrid-task_id,
@@ -383,11 +383,11 @@ and (orientation : portrait) { /* iphone portrait */
 	display: none;
 	}
 
-	th.editablegrid-status,
+/*	th.editablegrid-status,
 	td.editablegrid-status {
 	display: none;
-}
-
+	}
+*/
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 	display: none;
@@ -441,6 +441,11 @@ and (orientation : landscape) { /* iphone landscape (adds status column)*/
 	td.editablegrid-project_shortname {
 	padding-left: 0px;
 	}
+	
+	th.editablegrid-task_id,
+	td.editablegrid-task_id {
+	display: none;
+	}
 
 	th.editablegrid-requester,
 	td.editablegrid-requester {
@@ -450,7 +455,7 @@ and (orientation : landscape) { /* iphone landscape (adds status column)*/
 	th.editablegrid-status,
 	td.editablegrid-status {
 	padding-right: 0px;
-}
+	}
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
@@ -478,16 +483,16 @@ and (orientation : landscape) { /* iphone landscape (adds status column)*/
 	}
 	
 	th.editablegrid-PPC,
-	td.editablegrid-PPC {
+	td.editablegrid-PPC,
+	th.editablegrid-V,
+	td.editablegrid-V {
 	width: 200px;
 	}
 
 	th.editablegrid-PTA,
 	td.editablegrid-PTA,
 	th.editablegrid-PTI,
-	td.editablegrid-PTI,
-	th.editablegrid-V,
-	td.editablegrid-V {
+	td.editablegrid-PTI {
 	display: none;
 	}
 }
@@ -505,12 +510,17 @@ and (orientation : portrait) { /* ipad portrait */
 	td.editablegrid-project_shortname {
 	padding-left: 0px;
 	}
-
-	th.editablegrid-requester,
-	td.editablegrid-requester {
+	
+	th.editablegrid-task_id,
+	td.editablegrid-task_id {
 	display: none;
 	}
 
+/*	th.editablegrid-requester,
+	td.editablegrid-requester {
+	display: none;
+	}
+*/
 	th.editablegrid-status,
 	td.editablegrid-status {
 	padding-right: 0px;
@@ -542,16 +552,16 @@ and (orientation : portrait) { /* ipad portrait */
 	}
 	
 	th.editablegrid-PPC,
-	td.editablegrid-PPC {
+	td.editablegrid-PPC,
+	th.editablegrid-V,
+	td.editablegrid-V {
 	width: 200px;
 	}
 
 	th.editablegrid-PTA,
 	td.editablegrid-PTA,
 	th.editablegrid-PTI,
-	td.editablegrid-PTI,
-	th.editablegrid-V,
-	td.editablegrid-V {
+	td.editablegrid-PTI {
 	display: none;
 	}
 }
