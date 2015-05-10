@@ -11,7 +11,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inp-proj">Project</label>
 					<div class="controls">
-						<select class="input-sm" id="inp-proj" name="projectnumber" style="width: 270px" tabindex=1>
+						<select required class="input-sm" id="inp-proj" name="projectnumber" style="width: 270px" tabindex=1>
 						</select>
 					</div>
 				</div>
@@ -116,7 +116,6 @@
 					$('#inp-due').datepicker('setDate', oneweekout);
 				}
 				else if ($('#add-commitment').data('duplicate') == 1) {// duplicate
-					//olddate = moment(oldRowValues['due_by']).format('YYYY-MM-DD');
 					$('#inp-due').datepicker('setDate', oldRowValues['due_by']);
 					$('#msg-date-due').hide();
 					$('#msg-description').hide();
@@ -128,12 +127,8 @@
 					dataType: 'JSON',
 					data: {p: oldRowValues['project_number']},
 					success: function (proj_users) {
-
-						//$('#inp-req').selectmenu('enable').empty();
 						populate_select_names("#inp-req", proj_users);
 						$('#inp-req').val(oldRowValues['requester']).selectmenu('refresh');
-						
-						//$('#inp-prom').selectmenu('enable').empty();
 						populate_select_names("#inp-prom", proj_users);
 						$('#inp-prom').val(oldRowValues['promiser']).selectmenu('refresh');
 					},
@@ -146,8 +141,6 @@
 			else {
 				$('[id^=msg]').hide();
 				$('#inp-proj').val('placeholder').selectmenu('refresh');
-				//$('#inp-req').val('placeholder').selectmenu('refresh');
-				//$('#inp-prom').val('placeholder').selectmenu('refresh');
 			}
 		},
 		buttons: {
@@ -165,8 +158,6 @@
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
 				$('#add-commitment').data('duplicate', null);
-				//$('#inp-req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
-				//$('#inp-prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				$('#inp-proj').val('placeholder').selectmenu('refresh');
 				$('#comm_form').trigger('reset');
 				$(this).dialog("close");
@@ -195,8 +186,6 @@
 					$('#add-commitment').data('replan', null);
 					$('#add-commitment').data('duplicate', null);
 				}
-				//$('#inp-req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
-				//$('#inp-prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				$('#inp-proj').val('placeholder').selectmenu('refresh');
 				$('#comm_form').trigger('reset');
 				$(this).dialog("close");

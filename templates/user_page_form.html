@@ -551,7 +551,6 @@ window.onload = function() {
 		dataType: 'JSON',
 		success: function (result) {
 			//populate_select_projects("#inp-proj", user_proj_list);
-			//$('#inp_proj').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 			$("#inp-proj").empty().append($("<option>").attr({value:'placeholder', selected: true, disabled: true}).text('select project'));
 			$.each(result, function(key, object) {
 				$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));

@@ -241,6 +241,12 @@ function CommitmentGrid(name) {
 			
 					y1 = midline - 2;
 					y2 = midline + 2;
+										
+					graph.append('circle')
+						.attr('class', 'req_circle')
+						.attr('cx', x(requested_on))
+						.attr('cy', midline)
+						.attr('r', r(1));
 					
 					for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
 						xx = x(last_monday.clone().add(j, 'weeks'));
@@ -261,12 +267,6 @@ function CommitmentGrid(name) {
 								.attr('class', 'tick_chart');
 						}
 					}
-					
-					graph.append('circle')
-						.attr('class', 'req_circle')
-						.attr('cx', x(requested_on))
-						.attr('cy', midline)
-						.attr('r', r(1));
 					
 					if (/V[0123456789]/.test(status)) {
 						graph.append('text')
