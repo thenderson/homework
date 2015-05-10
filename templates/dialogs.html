@@ -99,6 +99,7 @@
 		closeOnEscape: false, 
 		position: {my: "center", at: "center", of: window},
 		open: function( event, ui ) {
+			// format modal for replanned or duplicated commitments
 			if ($('#add-commitment').data('replan') == 1 || $('#add-commitment').data('duplicate') == 1) {
 				oldRowValues = $(this).data('oldRowValues');
 				$('[id^=msg]').show();
@@ -143,7 +144,12 @@
 					async: true
 				});
 			}
-			else $('[id^=msg]').hide();
+			// format modal for new commitments
+			else {
+				$('[id^=msg]').hide();
+				$('#inp_req').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+				$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+			}
 		},
 		buttons: {
 			"Submit": function() {
