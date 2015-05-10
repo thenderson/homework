@@ -551,17 +551,16 @@ window.onload = function() {
 		dataType: 'JSON',
 		success: function (result) {
 			//populate_select_projects("#inp-proj", user_proj_list);
+			$('#inp_proj').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 			$.each(result, function(key, object) {
 				$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 			});
+			$('#inp_proj').selectmenu('refresh')'
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax failure.\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
-	
-	//$('#inp-req').selectmenu('disable');
-	//$('#inp-prom').selectmenu('disable');
 	
 	// populate new commitment requester and promiser select menus with project team members
 	$('#inp-proj').on("selectmenuselect", function( event, object ) {
@@ -571,9 +570,7 @@ window.onload = function() {
 			dataType: 'JSON',
 			data: { p: $('#inp-proj').val() },
 			success: function (proj_users) {
-				//$('#inp-req').selectmenu('enable');
 				populate_select_names("#inp-req", proj_users);
-				//$('#inp-prom').selectmenu('enable');
 				populate_select_names("#inp-prom", proj_users);
 			},
 			error: function(XMLHttpRequest, textStatus, exception) { 
