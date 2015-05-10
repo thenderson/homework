@@ -611,19 +611,18 @@ function populate_select(element, values) {
 };
 
 function populate_select_names(element, values) {
-	$(element).empty();
-
+	$(element).empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 	if (Object.keys(values).length > 1) {
-		$(element).append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
 		$.each(values, function(key, value) {
 			$(element).append($('<option>', {value : key+''}).text(value));
 		});
 	}
-	else { // if only one choice, select it for the user to be nice
+	else if (Object.keys(values.length == 1) { // if only one choice, select it for the user to be nice
 		$.each(values, function(key, value) {
 			$(element).append($('<option>', {value : key+'', selected: true}).text(value));
 		});
 	}
+	else { } // ignore list of length 0
 	$(element).selectmenu('refresh');
 };
 
