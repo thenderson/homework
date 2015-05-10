@@ -544,14 +544,15 @@ window.onload = function() {
 		projects.filter($(this).val());
 	});
 	
-	// populate project list in New Commitment dialog, disable requester & promiser until project is selected & team members can be loaded
+	// populate project list in New Commitment dialog
 	$.ajax({
 		url: '../includes/load_user_project_list.php',
 		type: 'POST',
 		dataType: 'JSON',
 		success: function (result) {
 			//populate_select_projects("#inp-proj", user_proj_list);
-			$('#inp_proj').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+			//$('#inp_proj').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text(''));
+			$("#inp-proj").empty().append($("<option>").attr('value','placeholder').text(''));
 			$.each(result, function(key, object) {
 				$("#inp-proj").append($("<option>").attr('value',object['project_number']).text(object['project_name']));
 			});
