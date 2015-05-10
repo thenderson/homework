@@ -335,6 +335,14 @@ padding-left: 2px;
 padding-right: 2px;
 }
 
+th.editablegrid-num_open,
+td.editablegrid-num_open { /* for project lists */
+text-align: center;
+width: 4 em;
+padding-left: 2px;
+padding-right: 2px;
+}
+
 th.editablegrid-PPC,
 td.editablegrid-PPC,
 th.editablegrid-PTA,
@@ -357,12 +365,17 @@ and (max-device-width : 568px)
 and (orientation : portrait) { /* iphone portrait */
 	th.editablegrid-project_number,
 	td.editablegrid-project_number  {
-		display: none;
+	display: none;
 	}
 			
 	th.editablegrid-project_shortname,
 	td.editablegrid-project_shortname {
-		padding-left: 0px;
+	padding-left: 0px;
+	}
+	
+	th.editablegrid-task_id,
+	td.editablegrid-task_id {
+	display: none;
 	}
 
 	th.editablegrid-requester,
@@ -380,8 +393,8 @@ and (orientation : portrait) { /* iphone portrait */
 	display: none;
 	}
 	
-	th.editablegrid-due_by,
-	td.editablegrid-due_by {
+	th.editablegrid-visual,
+	td.editablegrid-visual {
 	display: none;
 	}
 
@@ -392,6 +405,25 @@ and (orientation : portrait) { /* iphone portrait */
 	
 	th.editablegrid-magnitude,
 	td.editablegrid-magnitude {
+	display: none;
+	}
+	
+	th.editablegrid-num_open,
+	td.editablegrid-num_open {
+	display: none;
+	}
+	
+	th.editablegrid-PPC,
+	td.editablegrid-PPC {
+	width: 200px;
+	}
+
+	th.editablegrid-PTA,
+	td.editablegrid-PTA,
+	th.editablegrid-PTI,
+	td.editablegrid-PTI,
+	th.editablegrid-V,
+	td.editablegrid-V {
 	display: none;
 	}
 }
@@ -425,8 +457,8 @@ and (orientation : landscape) { /* iphone landscape (adds status column)*/
 	display: none;
 	}
 	
-	th.editablegrid-due_by,
-	td.editablegrid-due_by {
+	th.editablegrid-visual,
+	td.editablegrid-visual {
 	display: none;
 	}
 
@@ -437,6 +469,25 @@ and (orientation : landscape) { /* iphone landscape (adds status column)*/
 	
 	th.editablegrid-magnitude,
 	td.editablegrid-magnitude {
+	display: none;
+	}
+	
+	th.editablegrid-num_open,
+	td.editablegrid-num_open {
+	display: none;
+	}
+	
+	th.editablegrid-PPC,
+	td.editablegrid-PPC {
+	width: 200px;
+	}
+
+	th.editablegrid-PTA,
+	td.editablegrid-PTA,
+	th.editablegrid-PTI,
+	td.editablegrid-PTI,
+	th.editablegrid-V,
+	td.editablegrid-V {
 	display: none;
 	}
 }
