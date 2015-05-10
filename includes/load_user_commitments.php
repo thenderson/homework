@@ -10,6 +10,8 @@
 	$p_or_r = strip_tags($_POST['p_or_r']); // load promises or requests
 	$showDeferred = $planning_horizon == 'all' ? 'true' : 'false';
 
+error_log($showClosed.' '.$p_or_r.' '.$showDeferred);
+	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
 		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?'),0,1) as is_closed FROM commitments";
