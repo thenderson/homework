@@ -156,7 +156,7 @@
 				$.each($('#comm_form').serializeArray(), function(i, field) {
 					data[field.name] = field.value;
 				});
-				$(this).dialog("close");
+				
 				if ($('#add-commitment').data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
@@ -169,13 +169,14 @@
 				//$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				$('#comm_form').trigger('reset');
 				$('#inp_proj').val('placeholder').selectmenu('refresh');
+				$(this).dialog("close");
 			},
 			"Submit+": function() {
 				var data = {};
 				$.each($('#comm_form').serializeArray(), function(i, field) {
 					data[field.name] = field.value;
 				});
-				$(this).dialog("close");
+				
 				if ($('#add-commitment').data('replan') == 1) { // if replanning a replannable task, we update the old task's variance now
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$('#add-commitment').data('oldValue'), $('#add-commitment').data('newValue'));
@@ -185,10 +186,9 @@
 				commitments.AddRow(data);
 				$('#add-commitment').data('replan', null);
 				$('#add-commitment').data('duplicate', null);
+				$(this).dialog("close");
 			},
 			Cancel: function() {
-				$(this).dialog("close");
-		
 				if ($('#add-commitment').data('replan') == 1) { // user cancels suggestion to replan -> we conclude that variance was 8, 'not needed.'
 					updateCellValue($('#add-commitment').data('commitmentgrid'), $('#add-commitment').data('rowIndex'), $('#add-commitment').data('columnIndex'), 
 					$(this).data('oldValue'), 'V8');
@@ -199,6 +199,7 @@
 				//$('#inp_prom').empty().append($('<option>', {value: 'placeholder', selected: true, disabled: true, hidden:true}).text('')).selectmenu('refresh');
 				$('#comm_form').trigger('reset');
 				$('#inp_proj').val('placeholder').selectmenu('refresh');
+				$(this).dialog("close");
 			}
 		},
 	});
