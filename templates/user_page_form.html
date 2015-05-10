@@ -571,7 +571,6 @@ window.onload = function() {
 			dataType: 'JSON',
 			data: { p: $('#inp-proj').val() },
 			success: function (proj_users) {
-console.debug(proj_users);
 				populate_select_names("#inp-req", proj_users);
 				populate_select_names("#inp-prom", proj_users);
 			},
