@@ -379,15 +379,12 @@ and (orientation : portrait) { /* iphone portrait */
 	}
 
 	th.editablegrid-requester,
-	td.editablegrid-requester {
+	td.editablegrid-requester,
+	th.editablegrid-promiser,
+	td.editablegrid-promiser	{
 	display: none;
 	}
 
-/*	th.editablegrid-status,
-	td.editablegrid-status {
-	display: none;
-	}
-*/
 	th.editablegrid-actions,
 	td.editablegrid-actions {
 	display: none;
@@ -431,7 +428,7 @@ and (orientation : portrait) { /* iphone portrait */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) 
-and (orientation : landscape) { /* iphone landscape (adds status column)*/
+and (orientation : landscape) { /* iphone landscape */
 	th.editablegrid-project_number,
 	td.editablegrid-project_number  {
 	display: none;
