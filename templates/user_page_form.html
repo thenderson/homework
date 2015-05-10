@@ -571,9 +571,9 @@ window.onload = function() {
 			dataType: 'JSON',
 			data: { p: $('#inp-proj').val() },
 			success: function (proj_users) {
-				$('#inp-req').selectmenu('enable');
+				//$('#inp-req').selectmenu('enable');
 				populate_select_names("#inp-req", proj_users);
-				$('#inp-prom').selectmenu('enable');
+				//$('#inp-prom').selectmenu('enable');
 				populate_select_names("#inp-prom", proj_users);
 			},
 			error: function(XMLHttpRequest, textStatus, exception) { 
