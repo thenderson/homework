@@ -107,7 +107,7 @@ function CommitmentGrid(name) {
 						date_due=moment(value, 'YYYY-MM-DD');
 						cell.innerHTML=date_due.format("\'YY.MM.DD");
 						how_soon=date_due.diff(moment(),'days');
-						due_class = how_soon < -7 ? 'overdue_2w' : (how_soon < 0 ? 'overdue_1w' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
+						due_class = how_soon < 2 ? 'due_tomorrow' : (how_soon < 8 ? 'due_nextweek' : 'due_future');
 						$(cell).addClass(due_class).removeClass('status_me_now');
 					}
 				}}));
@@ -403,8 +403,11 @@ function updateCellValue(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 			};
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Session expired. Please reload page.");
+	console.log("AJAX failure. Textstatus: " + textStatus + "; exception: " + exception);
+	console.debug(XMLHttpRequest);
+			comgrid.grid.setValueAt(rowIndex, columnIndex, oldValue);
 			highlight(comgrid.grid.name, rowId, "error");
-			alert("Ajax failure\n" + XMLHttpRequest + "\n Textstatus: " + textStatus + "\n Exception:" + exception);
 		},
 		complete: function () {
 			$('[id^='+comgrid.name+'_total]').animate({opacity: .8}, 500, function() {

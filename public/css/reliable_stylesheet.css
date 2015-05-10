@@ -94,7 +94,7 @@ background-color: none;
 	}
 }
 
-@media screen and (max-device-width:480px) {
+@media screen and (max-device-width:480px) { /* iphone */
 	#commitments,
 	#requests,
 	#projects,
@@ -159,16 +159,13 @@ background-color: rgba(228, 228, 228, .5);
 background-color: rgba(228, 228, 228, .5);
 }
 
-.overdue_2w {/* for table rows > 2 weeks overdue */
-background-color: rgba(221, 128, 71, .45);
+.due_tomorrow {
+color: rgb(192,0,0);
+font-weight: bold;
 }
 
-.overdue_1w {/* for table rows < 2 weeks overdue */
-background-color: rgba(216, 178, 92, .4);
-}
-
-.due_nextweek {/* for table rows due next week */
-background-color: rgb(228, 228, 228);
+.due_nextweek {
+font-weight: bold;
 }
 
 .due_future {
@@ -259,6 +256,14 @@ padding-left: 2px;
 padding-right: 2px;
 }
 
+th.editablegrid-magnitude,
+td.editablegrid-magnitude {
+text-align: center;
+width: 4em;
+padding-left: 1px;
+padding-right: 1px;
+}
+
 th.editablegrid-promiser,
 td.editablegrid-promiser {
 text-align: center;
@@ -346,7 +351,10 @@ padding-top: 2px;
 padding-bottom: 2px;
 }
 
-@media screen and (max-device-width:480px) {
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) { /* iphone portrait */
 	th.editablegrid-project_number,
 	td.editablegrid-project_number  {
 		display: none;
@@ -359,7 +367,52 @@ padding-bottom: 2px;
 
 	th.editablegrid-requester,
 	td.editablegrid-requester {
-		display: none;
+	display: none;
+	}
+
+	th.editablegrid-status,
+	td.editablegrid-status {
+	display: none;
+}
+
+	th.editablegrid-actions,
+	td.editablegrid-actions {
+	display: none;
+	}
+	
+	th.editablegrid-due_by,
+	td.editablegrid-due_by {
+	display: none;
+	}
+
+	th.editablegrid-priority_h,
+	td.editablegrid-priority_h {
+	display: none;
+	}
+	
+	th.editablegrid-magnitude,
+	td.editablegrid-magnitude {
+	display: none;
+	}
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : landscape) { /* iphone landscape (adds status column)*/
+	th.editablegrid-project_number,
+	td.editablegrid-project_number  {
+	display: none;
+	}
+			
+	th.editablegrid-project_shortname,
+	td.editablegrid-project_shortname {
+	padding-left: 0px;
+	}
+
+	th.editablegrid-requester,
+	td.editablegrid-requester {
+	display: none;
 	}
 
 	th.editablegrid-status,
@@ -369,7 +422,22 @@ padding-bottom: 2px;
 
 	th.editablegrid-actions,
 	td.editablegrid-actions {
-		display: none;
+	display: none;
+	}
+	
+	th.editablegrid-due_by,
+	td.editablegrid-due_by {
+	display: none;
+	}
+
+	th.editablegrid-priority_h,
+	td.editablegrid-priority_h {
+	display: none;
+	}
+	
+	th.editablegrid-magnitude,
+	td.editablegrid-magnitude {
+	display: none;
 	}
 }
 
