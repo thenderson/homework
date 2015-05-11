@@ -273,8 +273,8 @@ function CommitmentGrid(name) {
 					
 					// draw today on timescale
 					graph.append('svg:line')
-						.attr('x1', today)
-						.attr('x2', today)
+						.attr('x1', x(today))
+						.attr('x2', x(today))
 						.attr('y1', y1-6)
 						.attr('y2', y2+6)
 						.attr('class', 'tick_chart_today');
