@@ -256,8 +256,8 @@ function CommitmentGrid(name) {
 							graph.append('svg:line')
 								.attr('x1', xx)
 								.attr('x2', xx)
-								.attr('y1', y1-3)
-								.attr('y2', y2+3)
+								.attr('y1', y1-2)
+								.attr('y2', y2+2)
 								.attr('class', 'tick_chart_thiswk');
 						}
 						else {
@@ -272,7 +272,6 @@ function CommitmentGrid(name) {
 					
 					// draw today on timescale
 					xx = x(moment());
-	console.log(xx);
 					graph.append('svg:line')
 						.attr('x1', xx)
 						.attr('x2', xx)
