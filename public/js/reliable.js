@@ -208,6 +208,7 @@ function CommitmentGrid(name) {
 					var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
 					var lookback = (show_closed == true) ? lookahead : 2;
 				
+					var today = moment();
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(lookback, 'weeks');
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
@@ -242,20 +243,22 @@ function CommitmentGrid(name) {
 					y1 = midline - 2;
 					y2 = midline + 2;
 										
+					// requested_on marker
 					graph.append('circle')
 						.attr('class', 'req_circle')
 						.attr('cx', x(requested_on))
 						.attr('cy', midline)
 						.attr('r', r(1));
 					
+					// draw timescale
 					for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
 						xx = x(last_monday.clone().add(j, 'weeks'));
 						if (j == 0 || j == 1) {
 							graph.append('svg:line')
 								.attr('x1', xx)
 								.attr('x2', xx)
-								.attr('y1', y1-4)
-								.attr('y2', y2+4)
+								.attr('y1', y1-3)
+								.attr('y2', y2+3)
 								.attr('class', 'tick_chart_thiswk');
 						}
 						else {
@@ -268,6 +271,15 @@ function CommitmentGrid(name) {
 						}
 					}
 					
+					// draw today on timescale
+					graph.append('svg:line')
+						.attr('x1', today)
+						.attr('x2', today)
+						.attr('y1', y1-6)
+						.attr('y2', y2+6)
+						.attr('class', 'tick_chart_today');
+					
+					// draw commitment due_on
 					if (/V[0123456789]/.test(status)) {
 						graph.append('text')
 							.attr('x', x(due_by))
@@ -404,8 +416,6 @@ function updateCellValue(comgrid, rowIndex, columnIndex, oldValue, newValue) {
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Session expired. Please reload page.");
-	console.log("AJAX failure. Textstatus: " + textStatus + "; exception: " + exception);
-	console.debug(XMLHttpRequest);
 			comgrid.grid.setValueAt(rowIndex, columnIndex, oldValue);
 			highlight(comgrid.grid.name, rowId, "error");
 		},

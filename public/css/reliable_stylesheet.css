@@ -759,6 +759,12 @@ stroke-width: 1px;
 shape-rendering: crispEdges;
 }
 
+line.tick_chart_todayk {
+stroke: rgb(192,0,0);
+stroke-width: 1px;
+shape-rendering: crispEdges;
+}
+
 .req_circle {
 fill: rgb(192,192,192);
 stroke: none;
