@@ -275,8 +275,8 @@ function CommitmentGrid(name) {
 					graph.append('svg:line')
 						.attr('x1', xx)
 						.attr('x2', xx)
-						.attr('y1', y1-6)
-						.attr('y2', y2+6)
+						.attr('y1', 2)
+						.attr('y2', height-2)
 						.attr('class', 'tick_chart_today');
 					
 					// draw commitment due_on
