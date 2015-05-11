@@ -204,23 +204,22 @@ function CommitmentGrid(name) {
 					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
 					var status_col = self.grid.getColumnIndex('status');
 					var status = self.grid.getValueAt(cell.rowIndex, status_col);
-					
+
 					var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
 					var lookback = (show_closed == true) ? lookahead : 2;
-				
-					var today = moment();
+
 					var last_monday = moment().startOf('ISOweek');
 					var min_date = last_monday.clone().subtract(lookback, 'weeks');
 					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
 					var requested_on = moment(value);
-	
+
 					var height = 32;
 					var midline = height / 2;
 
 					var width = $('.editablegrid-visual').width();
 					var ypad = 6;
 					var xpad = 12;
-	
+
 					var graph = d3.select(cell)
 						.append("svg:svg")
 						.attr("width", width)
@@ -272,9 +271,11 @@ function CommitmentGrid(name) {
 					}
 					
 					// draw today on timescale
+					xx = x(moment());
+	console.log(xx);
 					graph.append('svg:line')
-						.attr('x1', x(today))
-						.attr('x2', x(today))
+						.attr('x1', xx)
+						.attr('x2', xx)
 						.attr('y1', y1-6)
 						.attr('y2', y2+6)
 						.attr('class', 'tick_chart_today');
