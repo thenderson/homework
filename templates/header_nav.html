@@ -112,28 +112,28 @@
 		success: function (prefs) {
 console.debug(prefs);
 			// configure column filters
-			x = parseInt(prefs['pref-show-id']) == 1 ? true : false;
+			x = parseInt(prefs['pref_show_id']) == 1 ? true : false;
 			$('#show-id').prop('checked', x);
-			$('.editablegrid_task_id').toggle(x);
+			$('.editablegrid-task_id').toggle(x);
 			$('#show-id').change(function() {
 				//update preference
-				$('.editablegrid_task_id').toggle($('#show-id').prop('checked'));
+				$('.editablegrid-task_id').toggle($('#show-id').prop('checked'));
 			});
 			
-			x = prefs['pref-show-imp'] == '1' ? true : false;
+			x = prefs['pref_show_imp'] == '1' ? true : false;
 	console.log('imp:'+x);
 			$('#show-imp').prop('checked', x);
-			$('.editablegrid_priority_h').toggle(x);
+			$('.editablegrid-priority_h').toggle(x);
 			$('#show-imp').change(function() {
 				//update preference
 	console.log($('#show-imp').prop('checked'));
-				$('.editablegrid_priority_h').toggle($('#show-imp').prop('checked'));
+				$('.editablegrid-priority_h').toggle($('#show-imp').prop('checked'));
 			});
 			
 			$('#show-mag').prop('checked', parseInt(prefs['pref-show-mag']));
 			$('#show-mag').change(function() {
 				//update preference
-				$('.editablegrid_magnitude').toggle($('#show-mag').prop('checked'));
+				$('.editablegrid-magnitude').toggle($('#show-mag').prop('checked'));
 			});
 			
 			$('#show-time').prop('checked', parseInt(prefs['pref-show-time']));
