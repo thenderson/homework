@@ -28,8 +28,6 @@ if (!$stmt) {
 }
 try {
 	$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
-	$stmt->bindParam(':preference', $pref, PDO::PARAM_STR);
-	$stmt->bindParam(':value', $new_value, PDO::PARAM_STR);
 	$stmt->execute();		
 	$prefs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
