@@ -121,10 +121,12 @@ console.debug(prefs);
 			});
 			
 			x = parseInt(prefs['pref-show-imp']) == 1 ? true : false;
+	console.log(x);
 			$('#show-imp').prop('checked', x);
 			$('.editablegrid_priority_h').toggle(x);
 			$('#show-imp').change(function() {
 				//update preference
+	console.log($('#show-imp').prop('checked'));
 				$('.editablegrid_priority_h').toggle($('#show-imp').prop('checked'));
 			});
 			
