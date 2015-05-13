@@ -72,7 +72,7 @@
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('visual', 'CHART', 'date', NULL, false);
+	$grid->addColumn('visual', 'TIMELINE', 'date', NULL, false);
 
 	//render grid
 	$grid->renderXML($commitments);

@@ -146,8 +146,9 @@ border-bottom: 1px solid rgb(220,220,220);
 }
 
 #commitments td.border-dark,
-#requests td.border-dark {
-border-bottom: 1px solid rgb(0,0,0);
+#requests td.border-dark,
+#project_commitments td.border-dark {
+border-bottom: 2px solid rgb(220,220,220);
 }
 
 tbody tr.overdue_2w:hover {
@@ -318,7 +319,7 @@ padding-right: 1px;
 th.editablegrid-status,
 td.editablegrid-status {
 text-align: center;
-width: 2em;
+width: 3em;
 padding-left: 1px;
 padding-right: 1px;
 }

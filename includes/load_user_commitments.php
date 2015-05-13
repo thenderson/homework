@@ -10,6 +10,22 @@
 	$p_or_r = strip_tags($_POST['p_or_r']); // load promises or requests
 	$showDeferred = $planning_horizon == 'all' ? 'true' : 'false';
 	
+	// Load user preferences
+	$q = "SELECT pref_show_id, pref_show_imp, pref_show_mag, pref_show_timeline FROM users WHERE user_id = :user";
+	
+	$stmt = $comm_db->prepare($q);
+	
+	if (!$stmt) {
+		trigger_error('Statement failed: ' . $stmt->error, E_USER_ERROR);
+		exit;
+	}
+	
+	try {
+		$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
+		$stmt->execute();		
+		$preferences = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
 		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?'),0,1) as is_closed FROM commitments";
@@ -78,18 +94,18 @@
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
-	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
+	if ($preferences['pref_show_id']) $grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
-	$grid->addColumn('priority_h', '!','boolean');
+	if ($preferences['pref_show_imp']) $grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
-	$grid->addColumn('magnitude', 'MAG', 'double(,,dot,coma,)');
+	if ($preferences['pref_show_mag']) $grid->addColumn('magnitude', 'MAG', 'double(,,dot,coma,)');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
 
 	$grid->addColumn('due_by','DUE BY','date');
-	$grid->addColumn('visual', 'CHART', 'date', NULL, false);
+	if ($preferences['pref_show_timeline']) $grid->addColumn('visual', 'TIMELINE', 'date', NULL, false);
 
 	//render grid
 	$grid->renderXML($commitments);
