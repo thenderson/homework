@@ -1,5 +1,4 @@
 <?php
-
     // configuration
     require_once('../includes/config.php');     
 	require_once('../includes/EditableGrid.php');     
@@ -98,10 +97,10 @@
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	if ($preferences[0]['pref_show_id']) $grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
-	if ($preferences[0]['pref_show_imp']) $grid->addColumn('priority_h', '!','boolean');
+	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
-	if ($preferences[0]['pref_show_mag']) $grid->addColumn('magnitude', 'MAG', 'double(,,dot,coma,)');
+	$grid->addColumn('magnitude', 'MAG', 'double(,,dot,coma,)');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);

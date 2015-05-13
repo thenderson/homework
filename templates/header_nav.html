@@ -13,7 +13,7 @@
 			
 			<div class="collapse navbar-collapse" id="rp-navbar">
 				<form class='navbar-form navbar-left'>
-					<button id="new_com_btn" type="button" class="btn btn-default navbar-btn btn-sm">new commitment</button>
+					<button id="new_com_btn" type="button" class="btn btn-default navbar-btn btn-sm"> new </button>
 					<div class="input-group input-group-filter">
 						<input class="form-control input-sm" type="text" id="filter_all" placeholder="filter" name="filter"/>
 					</div>
@@ -21,11 +21,7 @@
 						<div id="horizon-slider"></div>
 						<div id="horizon-text">lookahead</div>
 					</div>
-					<div class="checkbox">
-						<label>
-							<input id="show-closed" type="checkbox">&nbsp;show closed
-						</label>
-					</div>
+					
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<?php
@@ -36,13 +32,73 @@
 					}
 					else
 					{ ?>
-						<li class="navbar-text">hi, <strong><?php echo $_SESSION["username"];?></strong></li>
+						<li class="navbar-text"><?php echo $_SESSION["username"];?></li>
 					<?php
 					} ?>
-					<li class="disabled"><a href="settings.php"><span class="glyphicon glyphicon-wrench"></span></a></li>
+					<li>
+						<div class="dropdown"><span class="glyphicon glyphicon-wrench"></span>
+						  <button class="btn btn-default dropdown-toggle" type="button" id="preferences" data-toggle="dropdown" aria-expanded="true">
+							Dropdown
+							<span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="preferences">
+							<li >
+								<div class="checkbox">
+									<label>
+										<input id="show-closed" type="checkbox">&nbsp;show closed
+									</label>
+								</div>
+							</li>
+							<li >
+								<div class="checkbox">
+									<label>
+										<input id="show-task-id" type="checkbox">&nbsp;show task ID column
+									</label>
+								</div>
+							</li>
+							<li >
+								<div class="checkbox">
+									<label>
+										<input id="show-imp" type="checkbox">&nbsp;show high priority column
+									</label>
+								</div>
+							</li>
+							<li >
+								<div class="checkbox">
+									<label>
+										<input id="show-mag" type="checkbox">&nbsp;show magnitude column
+									</label>
+								</div>
+							</li>
+							<li >
+								<div class="checkbox">
+									<label>
+										<input id="show-time" type="checkbox">&nbsp;show timeline column
+									</label>
+								</div>
+							</li>
+						  </ul>
+						</div>
+					</li>
+					
 					<li><a href="../public/logout.php">logout</a></li>
 				</ul>
 			</div> <!--navbar-->
 		</div> <!--container-->
 	</nav>
 </header>
+
+<script type="text/javascript">	
+	$.ajax({
+		url: '../includes/load_user preferences.php',
+		type: 'GET',
+		dataType: 'JSON',
+		success: function (prefs) {
+			
+		},
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+		async: true
+	});
+	
+</script>
