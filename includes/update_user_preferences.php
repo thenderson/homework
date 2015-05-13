@@ -28,8 +28,7 @@ if (!$stmt) {
 }
 try {
 	$stmt->bindParam(':user', $_SESSION['id'], PDO::PARAM_INT);
-	$stmt->execute();		
-	$prefs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt->execute();
 }
 catch(PDOException $e) {
 	trigger_error('Wrong SQL: ' . $q . ' Error: ' . $e->getMessage(), E_USER_ERROR);
