@@ -112,25 +112,29 @@
 		success: function (prefs) {
 console.debug(prefs);
 			// configure column filters
-			$('#show-id').prop('checked', prefs['pref-show-id']);
+			x = parseInt(prefs['pref-show-id']) == 1 ? true : false;
+			$('#show-id').prop('checked', x);
+			$('.editablegrid_task_id').toggle(x);
 			$('#show-id').change(function() {
 				//update preference
 				$('.editablegrid_task_id').toggle($('#show-id').prop('checked'));
 			});
 			
-			$('#show-imp').prop('checked', prefs['pref-show-imp']);
+			x = parseInt(prefs['pref-show-imp']) == 1 ? true : false;
+			$('#show-imp').prop('checked', x);
+			$('.editablegrid_priority_h').toggle(x);
 			$('#show-imp').change(function() {
 				//update preference
 				$('.editablegrid_priority_h').toggle($('#show-imp').prop('checked'));
 			});
 			
-			$('#show-mag').prop('checked', prefs['pref-show-mag']);
+			$('#show-mag').prop('checked', parseInt(prefs['pref-show-mag']));
 			$('#show-mag').change(function() {
 				//update preference
 				$('.editablegrid_magnitude').toggle($('#show-mag').prop('checked'));
 			});
 			
-			$('#show-time').prop('checked', prefs['pref-show-time']);
+			$('#show-time').prop('checked', parseInt(prefs['pref-show-time']));
 			$('#show-time').change(function() {
 				//update preference
 				//reload page
