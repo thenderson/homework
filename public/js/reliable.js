@@ -82,6 +82,7 @@ function CommitmentGrid(name) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+console.log(self.sortedColumnName);
 						if (self.sortedColumnName == 'project_number') {	
 							if (getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
 								row=self.grid.getRow(cell.rowIndex);
