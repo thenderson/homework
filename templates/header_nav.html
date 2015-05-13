@@ -94,7 +94,7 @@
 		type: 'GET',
 		dataType: 'JSON',
 		success: function (prefs) {
-			
+console.debug(prefs);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
