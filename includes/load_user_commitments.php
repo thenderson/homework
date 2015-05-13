@@ -95,7 +95,7 @@
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
-	if ($preferences[0]['pref_show_id']) $grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
+	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STAT','string');
