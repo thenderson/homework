@@ -32,7 +32,7 @@ try {
 	$prefs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 catch(PDOException $e) {
-	trigger_error('Error: ' . $e->getMessage(), E_USER_ERROR);
+	trigger_error('Wrong SQL: ' . $q . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 }
 
 echo 'ok';
