@@ -77,12 +77,13 @@ function CommitmentGrid(name) {
 			var closed_col = self.grid.getColumnIndex('is_closed');
 			var priority_col = self.grid.getColumnIndex('priority_h');
 			var status_col = self.grid.getColumnIndex('status');
+			var due_by_col = self.grid.getColumnIndex('due_by');
 			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
-						if (self.grid.sortedColumnName == 'project_number') {	
+						if (self.grid.sortedColumnName == 'project_number') { // dark line when sorted by this column
 							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>0) {
 								row=self.grid.getRow(cell.rowIndex-1);
 								$(row).children().addClass('border-dark');
@@ -117,6 +118,12 @@ function CommitmentGrid(name) {
 						due_class = how_soon < 0 ? 'overdue' : (how_soon < 2 ? 'due_tomorrow' : (how_soon < 8 ? 'due_nextweek' : 'due_future'));
 						$(cell).addClass(due_class).removeClass('status_me_now');
 					}
+					if (self.grid.sortedColumnName == 'due_by') { // dark line when sorted by this column
+							if (self.grid.getValueAt(cell.rowIndex-1, due_by_col) != value && cell.rowIndex>0) {
+								row=self.grid.getRow(cell.rowIndex-1);
+								$(row).children().addClass('border-dark');
+							}
+						}
 				}}));
 				
 			this.setCellRenderer('description', new CellRenderer ({ //shades cells based on priority
@@ -163,6 +170,13 @@ function CommitmentGrid(name) {
 					
 					if (/C[L012]/.test(value) || /V[0123456789]/.test(value)) $(row).addClass('closed');
 					else $(row).removeClass('closed');
+					
+					if (self.grid.sortedColumnName == 'status') { // dark line when sorted by this column
+							if (self.grid.getValueAt(cell.rowIndex-1, status_col) != value && cell.rowIndex>0) {
+								row=self.grid.getRow(cell.rowIndex-1);
+								$(row).children().addClass('border-dark');
+							}
+						}
 				}
 			}));
 			
