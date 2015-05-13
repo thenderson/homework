@@ -83,11 +83,9 @@ function CommitmentGrid(name) {
 					render: function(cell, value) { 
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 						if (self.grid.sortedColumnName == 'project_number') {	
-	console.log(self.grid.getValueAt(cell.rowIndex-1, pnum_col), value, cell.rowIndex)
-							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
-								row=self.grid.getRow(cell.rowIndex);
-								$(row).addClass('border-dark');
-	console.log('bing!');
+							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>0) {
+								row=self.grid.getRow(cell.rowIndex-1);
+								$(row).children().addClass('border-dark');
 							}
 						}
 					}}));
