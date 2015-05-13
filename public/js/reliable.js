@@ -170,6 +170,13 @@ function CommitmentGrid(name) {
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
 			
+/*			this.setCellRenderer('magnitude', new CellRenderer ({
+				render: function(cell, value) {
+					var floor = Math.floor(value);
+					if 
+					cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
+			}}));
+*/			
 	/*		this.setCellRenderer('requester', new CellRenderer ({
 				render: function(cell, value) {
 					if (value == '0') {
@@ -230,8 +237,8 @@ function CommitmentGrid(name) {
 						.range([0, width - xpad]);
 						
 					var r = d3.scale.linear() // radius of circles
-						.domain([0, 100])
-						.clamp(true)
+						.domain([0, 50])
+						.clamp(false)
 						.range([3, height*.47]);
 						
 					var op = d3.scale.linear() // fill opacity for circles

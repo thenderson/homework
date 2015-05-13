@@ -68,7 +68,7 @@
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
-	$grid->addColumn('magnitude', 'MAG', 'double(,2,dot,coma,)');
+	$grid->addColumn('magnitude', 'MAG', 'double(,1,dot,coma,)');
 	$grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	$grid->addColumn('promiser','PROMISER','string', $username_lookup);
 	$grid->addColumn('due_by','DUE BY','date');

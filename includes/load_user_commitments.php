@@ -83,7 +83,7 @@
 	$grid->addColumn('priority_h', '!','boolean');
 	$grid->addColumn('status','STAT','string');
 	$grid->addColumn('description', 'COMMITMENT', 'string');
-	$grid->addColumn('magnitude', 'MAG', 'double(,2,dot,coma,)');
+	$grid->addColumn('magnitude', 'MAG', 'double(,,dot,coma,)');
 	
 	if ($p_or_r == 'promises') $grid->addColumn('requester','REQUESTER','string', $username_lookup);
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
