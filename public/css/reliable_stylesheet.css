@@ -1,34 +1,34 @@
 /* custom CSS stylesheet for reliable commitment mgr */
 /* colors from MS Office Median color scheme: 
 
-		accent 1 / ice blue		rgb(148, 182, 210)		accordion header
-		accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
-		accent 3 / olive 4		rgb(165, 171, 129)		
-		accent 3 / olive 3		rgb(200, 204, 179)   	accordion header
-		accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
-		accent 5 / green		rgb(123, 167, 157)		
-		accent 5 / green 40%	rgb(174, 202, 196)		accordion header
-		accent 6 / grey 50%		rgb(150, 140, 140)
-		tan background / dark 2	rgb(119, 95, 85)
-		tan background 25%		rgb(207, 174, 114)		accordion header
-		background / light 2	rgb(235, 221, 195)		row hover
-		dark red				rgb(192, 0, 0)			delete icon
-		light grey				rgb(228, 228, 228)		
-		med grey				rgb(217, 217, 217)		commitments due next week
-		dark med grey			rgb(190, 190, 190)		table header
+accent 1 / ice blue		rgb(148, 182, 210)		accordion header
+accent 2 / orange		rgb(221, 128, 71)		overdue commitments 2 weeks+
+accent 3 / olive 4		rgb(165, 171, 129)		
+accent 3 / olive 3		rgb(200, 204, 179)   	accordion header
+accent 4 / gold			rgb(216, 178, 92)		overdue commitments 1 week
+accent 5 / green		rgb(123, 167, 157)		
+accent 5 / green 40%	rgb(174, 202, 196)		accordion header
+accent 6 / grey 50%		rgb(150, 140, 140)
+tan background / dark 2	rgb(119, 95, 85)
+tan background 25%		rgb(207, 174, 114)		accordion header
+background / light 2	rgb(235, 221, 195)		row hover
+dark red				rgb(192, 0, 0)			delete icon
+light grey				rgb(228, 228, 228)		
+med grey				rgb(217, 217, 217)		commitments due next week
+dark med grey			rgb(190, 190, 190)		table header
 */
 @media screen and (min-device-width:481px) {
-	h2, .h2 {font-size: 18px;}
-	h3, .h3 {font-size: 14px; margin: 2 0;}
-	h4, .h4 {font-size: 12px;}
-	h5, .h5 {font-size: 11px;}
+h2, .h2 {font-size: 18px;}
+h3, .h3 {font-size: 14px; margin: 2 0;}
+h4, .h4 {font-size: 12px;}
+h5, .h5 {font-size: 11px;}
 }
 
 @media screen and (max-device-width:480px) {
-	h2, .h2 {font-size: 16px;}
-	h3, .h3 {font-size: 12px; margin: 2 0;}
-	h4, .h4 {font-size: 10px;}
-	h5, .h5 {font-size: 9px;}
+h2, .h2 {font-size: 16px;}
+h3, .h3 {font-size: 12px; margin: 2 0;}
+h4, .h4 {font-size: 10px;}
+h5, .h5 {font-size: 9px;}
 }
 
 .table>thead>tr>th, 
@@ -86,20 +86,20 @@ background-color: none;
 	#requests,
 	#projects,
 	#project_commitments {
-		margin-bottom: 2px; 
-		margin-top: 2px;
-		border-collapse: collapse; 
-		width: 100%;
-		font-size: 12px;
+	margin-bottom: 2px; 
+	margin-top: 2px;
+	border-collapse: collapse; 
+	width: 100%;
+	font-size: 12px;
 	}
 	
 	.container-fluid { /* was 2.5% */
-		margin-left: 1%;
-		margin-right: 1%;
+	margin-left: 1%;
+	margin-right: 1%;
 	}
 	
 	.navbar-form .checkbox input[type=checkbox] {
-		margin-left: 16;
+	margin-left: 16;
 	}
 }
 
@@ -108,18 +108,18 @@ background-color: none;
 	#requests,
 	#projects,
 	#project_commitments {
-		margin-bottom: 2px; 
-		margin-top: 2px; 
-		border-collapse: collapse; 
-		width: 100%;
-		font-size: 10px;
+	margin-bottom: 2px; 
+	margin-top: 2px; 
+	border-collapse: collapse; 
+	width: 100%;
+	font-size: 10px;
 	}
 	.spacer {
-		display: none;
+	display: none;
 	}
 	
 	.navbar-form .checkbox input[type=checkbox] {
-		margin-left: 0;
+	margin-left: 0;
 	}
 }
 
@@ -148,7 +148,7 @@ border-bottom: 1px solid rgb(220,220,220);
 #commitments td.border-dark,
 #requests td.border-dark,
 #project_commitments td.border-dark {
-border-bottom: 2px solid rgb(220,220,220);
+border-bottom: 2px solid rgb(192,192,192);
 }
 
 tbody tr.overdue_2w:hover {
