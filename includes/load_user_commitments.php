@@ -10,7 +10,7 @@
 	$showDeferred = $planning_horizon == 'all' ? 'true' : 'false';
 	
 	// Load user preferences
-	$q = "SELECT pref_show_id, pref_show_imp, pref_show_mag, pref_show_timeline FROM users WHERE user_id = :user";
+	$q = "SELECT pref_show_timeline FROM users WHERE user_id = :user";
 	
 	$stmt = $comm_db->prepare($q);
 	
