@@ -86,7 +86,7 @@ console.log(self.grid.sortedColumnName);
 						if (self.grid.sortedColumnName == 'project_number') {	
 							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
 								row=self.grid.getRow(cell.rowIndex);
-								row.addClass('border-dark');
+								$(row).addClass('border-dark');
 							}
 						}
 					}}));
