@@ -105,7 +105,7 @@
 </header>
 
 <script type="text/javascript">	
-window.onload = function() {
+$( document ).ready(function() {
 	$.ajax({
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
@@ -175,5 +175,5 @@ console.log(result);
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
-	}
+	});
 </script>
