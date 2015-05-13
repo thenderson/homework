@@ -84,7 +84,7 @@ function CommitmentGrid(name) {
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
 console.log(self.grid.sortedColumnName);
 						if (self.grid.sortedColumnName == 'project_number') {	
-							if (getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
+							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
 								row=self.grid.getRow(cell.rowIndex);
 								row.addClass('border-dark');
 							}
