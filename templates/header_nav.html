@@ -36,44 +36,60 @@
 					<?php
 					} ?>
 					<li>
-						<div class="dropdown"><span class="glyphicon glyphicon-wrench"></span>
+						<div class="dropdown">
 						  <button class="btn btn-default dropdown-toggle" type="button" id="preferences" data-toggle="dropdown" aria-expanded="true">
-							Dropdown
+							<span class="glyphicon glyphicon-wrench"></span>
 							<span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu" aria-labelledby="preferences">
-							<li >
+							<li role="presentation" class="dropdown-header">commitment filters</li>
+							<li>
 								<div class="checkbox">
 									<label>
 										<input id="show-closed" type="checkbox">&nbsp;show closed
 									</label>
 								</div>
 							</li>
-							<li >
+							<li>
 								<div class="checkbox">
 									<label>
-										<input id="show-task-id" type="checkbox">&nbsp;show task ID column
+										<input id="show-deferred" type="checkbox">&nbsp;show deferred
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="checkbox">
+									<label>
+										<input id="show-personal" type="checkbox">&nbsp;show personal
+									</label>
+								</div>
+							</li>
+							<li role="presentation" class="dropdown-header">show/hide columns</li>
+							<li>
+								<div class="checkbox">
+									<label>
+										<input id="show-id" type="checkbox">&nbsp;show task ID
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="checkbox">
+									<label>
+										<input id="show-imp" type="checkbox">&nbsp;show priority
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="checkbox">
+									<label>
+										<input id="show-mag" type="checkbox">&nbsp;show magnitude
 									</label>
 								</div>
 							</li>
 							<li >
 								<div class="checkbox">
 									<label>
-										<input id="show-imp" type="checkbox">&nbsp;show high priority column
-									</label>
-								</div>
-							</li>
-							<li >
-								<div class="checkbox">
-									<label>
-										<input id="show-mag" type="checkbox">&nbsp;show magnitude column
-									</label>
-								</div>
-							</li>
-							<li >
-								<div class="checkbox">
-									<label>
-										<input id="show-time" type="checkbox">&nbsp;show timeline column
+										<input id="show-time" type="checkbox">&nbsp;show timeline
 									</label>
 								</div>
 							</li>
@@ -90,7 +106,7 @@
 
 <script type="text/javascript">	
 	$.ajax({
-		url: '../includes/load_user preferences.php',
+		url: '../includes/load_user_preferences.php',
 		type: 'GET',
 		dataType: 'JSON',
 		success: function (prefs) {
