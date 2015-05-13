@@ -105,12 +105,13 @@
 </header>
 
 <script type="text/javascript">	
+window.onload = function() {
 	$.ajax({
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
 		dataType: 'JSON',
 		success: function (prefs) {
-console.debug(prefs);
+
 			// configure column per initial filter values
 			x = prefs['pref_show_id'] == '1' ? true : false;
 			$('#show-id').prop('checked', x);
@@ -156,6 +157,7 @@ console.debug(prefs);
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
+}
 	
 	updatePrefs = function(pref, value) {
 		$.ajax({
