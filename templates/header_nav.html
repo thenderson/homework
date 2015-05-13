@@ -120,8 +120,8 @@ console.debug(prefs);
 				$('.editablegrid_task_id').toggle($('#show-id').prop('checked'));
 			});
 			
-			x = parseInt(prefs['pref-show-imp']) == 1 ? true : false;
-	console.log(x);
+			x = prefs['pref-show-imp'] == '1' ? true : false;
+	console.log('imp:'+x);
 			$('#show-imp').prop('checked', x);
 			$('.editablegrid_priority_h').toggle(x);
 			$('#show-imp').change(function() {
