@@ -20,4 +20,4 @@
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-	echo json_encode($prefs);
+	echo json_encode($prefs[0]);

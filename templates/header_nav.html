@@ -111,6 +111,30 @@
 		dataType: 'JSON',
 		success: function (prefs) {
 console.debug(prefs);
+			// configure column filters
+			$('#show-id').prop('checked', prefs['pref-show-id']);
+			$('#show-id').change(function() {
+				//update preference
+				$('.editablegrid_task_id').toggle($('#show-id').prop('checked'));
+			});
+			
+			$('#show-imp').prop('checked', prefs['pref-show-imp']);
+			$('#show-imp').change(function() {
+				//update preference
+				$('.editablegrid_priority_h').toggle($('#show-imp').prop('checked'));
+			});
+			
+			$('#show-mag').prop('checked', prefs['pref-show-mag']);
+			$('#show-mag').change(function() {
+				//update preference
+				$('.editablegrid_magnitude').toggle($('#show-mag').prop('checked'));
+			});
+			
+			$('#show-time').prop('checked', prefs['pref-show-time']);
+			$('#show-time').change(function() {
+				//update preference
+				//reload page
+			});
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
