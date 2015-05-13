@@ -31,6 +31,15 @@
 	h5, .h5 {font-size: 9px;}
 }
 
+.table>thead>tr>th, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>tbody>tr>td, 
+.table>tfoot>tr>td {
+padding: 0;
+}
+
 .navbar-right,
 .navbar-nav.navbar-right:last-child {  /* for aligning header text */ 
 padding-right: 0px;
@@ -133,7 +142,11 @@ padding-top: 4px;
 padding-bottom: 4px;
 vertical-align: middle;
 line-height: normal;
-border-bottom: 1px solid rgb(192,192,192);
+border-bottom: 1px solid rgb(220,220,220);
+}
+
+.border-dark {
+border-bottom: 1px solid rgb(0,0,0);
 }
 
 tbody tr.overdue_2w:hover {
@@ -235,7 +248,7 @@ padding-right: 2px;
 th.editablegrid-task_id,
 td.editablegrid-task_id {
 text-align: right;
-width: 5em;
+width: 4em;
 padding-left: 2px;
 padding-right: 8px;
 }
@@ -257,14 +270,14 @@ th.editablegrid-description-wide,
 td.editablegrid-description-wide {
 text-align: left;
 min-width: 20em;
-padding-left: 2px;
-padding-right: 2px;
+padding-left: 1px;
+padding-right: 1px;
 }
 
 th.editablegrid-magnitude,
 td.editablegrid-magnitude {
 text-align: center;
-width: 4em;
+width: 3em;
 padding-left: 1px;
 padding-right: 1px;
 }
@@ -288,7 +301,7 @@ padding-right: 1px;
 th.editablegrid-due_by,
 td.editablegrid-due_by {
 text-align: center;
-width: 6em;
+width: 5em;
 padding-left: 1px;
 padding-right: 1px;
 }
@@ -296,7 +309,7 @@ padding-right: 1px;
 th.editablegrid-priority_h,
 td.editablegrid-priority_h {
 text-align: center;
-width: 3em;
+width: 2em;
 padding-left: 1px;
 padding-right: 1px;
 }
@@ -304,7 +317,7 @@ padding-right: 1px;
 th.editablegrid-status,
 td.editablegrid-status {
 text-align: center;
-width: 3em;
+width: 2em;
 padding-left: 1px;
 padding-right: 1px;
 }
@@ -312,7 +325,7 @@ padding-right: 1px;
 th.editablegrid-actions,
 td.editablegrid-actions {
 text-align: right;
-width: 4em;
+width: 3em;
 padding-left: 1px;
 padding-right: 0px;
 }

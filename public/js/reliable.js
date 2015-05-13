@@ -73,6 +73,7 @@ function CommitmentGrid(name) {
 		},
 		tableLoaded: function() { 
 
+			var pnum_col = self.grid.getColumnIndex('project_number');
 			var closed_col = self.grid.getColumnIndex('is_closed');
 			var priority_col = self.grid.getColumnIndex('priority_h');
 			var status_col = self.grid.getColumnIndex('status');
@@ -81,6 +82,12 @@ function CommitmentGrid(name) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
 						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+						if (self.sortedColumnName == 'project_number') {	
+							if (getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>1) {
+								row=self.grid.getRow(cell.rowIndex);
+								row.addClass('border-dark');
+							}
+						}
 					}}));
 			};
 					
@@ -169,14 +176,7 @@ function CommitmentGrid(name) {
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 			}}));
-			
-/*			this.setCellRenderer('magnitude', new CellRenderer ({
-				render: function(cell, value) {
-					var floor = Math.floor(value);
-					if 
-					cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
-			}}));
-*/			
+		
 	/*		this.setCellRenderer('requester', new CellRenderer ({
 				render: function(cell, value) {
 					if (value == '0') {
@@ -494,6 +494,7 @@ CommitmentGrid.prototype.AddRow = function(values) {
 			req: values['requester'],
 			due: values['date_due'],
 			stat: values['status'],
+			mag: values['magnitude'] || 1,
 			replan: (values['replan']) ? values['replan'] : -1
 		},
 		success: function (response) { 
