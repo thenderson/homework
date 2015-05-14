@@ -116,18 +116,18 @@ function configurePrefs() {
 			x = prefs['pref_show_id'] == '1' ? true : false;
 			$('#show-id').prop('checked', x);
 			$('.editablegrid-task_id').toggle(x);
-			
+console.log('show_id '+x);			
 			x = prefs['pref_show_imp'] == '1' ? true : false;
 			$('#show-imp').prop('checked', x);
 			$('.editablegrid-priority_h').toggle(x);
-			
+console.log('show_imp '+x);				
 			x = prefs['pref_show_mag'] == '1' ? true : false;
 			$('#show-mag').prop('checked', x);
 			$('.editablegrid-magnitude').toggle(x)
-			
+console.log('show_mag '+x);				
 			x = prefs['pref_show_time'] == '1' ? true : false;
 			$('#show-time').prop('checked', x);
-			
+console.log('show_time '+x);				
 			// configure watchers
 			$('#show-id').change(function() {
 				x = $('#show-id').prop('checked');
@@ -169,7 +169,7 @@ function updatePrefs(pref, value) {
 		v: value
 	},
 	success: function (result) {
-console.log(result);
+console.log(pref+' '+value+' '+result);
 	},
 	error: function(XMLHttpRequest, textStatus, exception) { 
 		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
