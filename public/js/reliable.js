@@ -36,6 +36,8 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
+			configurePrefs();
+			
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
