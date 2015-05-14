@@ -123,9 +123,10 @@ console.debug(prefs);
 		
 			x = prefs['pref_show_mag'] == '1' ? true : false;
 			$('#show-mag').prop('checked', x);
-			$('.editablegrid-magnitude').toggle(x)
+			$('.editablegrid-magnitude').toggle(x);
 			
 			x = prefs['pref_show_timeline'] == '1' ? true : false;
+			$('#show-time').prop('checked', x);
 			
 			// configure watchers
 			$('#show-id').change(function() {
