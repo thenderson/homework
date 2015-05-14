@@ -124,6 +124,8 @@ window.onload = function() {
 	commitments = new CommitmentGrid('commitments');
 	requests = new CommitmentGrid('requests');
 	
+	configurePrefs();
+	
 	load_comms = function (horizon, showClosed) {
 		if (typeof(horizon) === 'undefined') {
 			hor = getCookie('horizon');

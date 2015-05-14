@@ -105,7 +105,7 @@
 </header>
 
 <script type="text/javascript">	
-$( document ).ready(function() {
+function configure_prefs() {
 	$.ajax({
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
@@ -159,21 +159,21 @@ $( document ).ready(function() {
 	});
 });
 	
-	updatePrefs = function(pref, value) {
-		$.ajax({
-		url: '../includes/update_user_preferences.php',
-		type: 'POST',
-		dataType: 'text',
-		data: {
-			p: pref,
-			v: value
-		},
-		success: function (result) {
+function updatePrefs(pref, value) {
+	$.ajax({
+	url: '../includes/update_user_preferences.php',
+	type: 'POST',
+	dataType: 'text',
+	data: {
+		p: pref,
+		v: value
+	},
+	success: function (result) {
 console.log(result);
-		},
-		error: function(XMLHttpRequest, textStatus, exception) { 
-			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-		async: true
-	});
-	};
+	},
+	error: function(XMLHttpRequest, textStatus, exception) { 
+		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+	async: true
+});
+};
 </script>

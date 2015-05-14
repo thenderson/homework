@@ -71,7 +71,7 @@ if ($replan == -1) {
 	}
 	else $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$new_Id = $result[0]['task_id'] + 1; 
+	$new_Id = floor($result[0]['task_id']) + 1; 
 }
 
 // Insert new commitment into database
