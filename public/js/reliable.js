@@ -36,6 +36,7 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
+			configurePrefs();
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
@@ -80,6 +81,7 @@ function CommitmentGrid(name) {
 			var due_by_col = self.grid.getColumnIndex('due_by');
 			
 			prefs = loadPrefs();
+console.debug(prefs);
 			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
@@ -192,7 +194,7 @@ function CommitmentGrid(name) {
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
 					
-					if (prefs['pref_show_id'] == '0') $(cell).hide();
+					//if (prefs['pref_show_id'] == '0') $(cell).hide();
 			}}));
 		
 	/*		this.setCellRenderer('requester', new CellRenderer ({
