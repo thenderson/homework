@@ -739,6 +739,6 @@ function loadPrefs() {
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
-	
+console.debug(prefs);	
 	return prefs;
 };
