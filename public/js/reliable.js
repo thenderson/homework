@@ -729,6 +729,7 @@ function updatePrefs(pref, value) {
 };
 
 function loadPrefs() {
+	var prefs = {};
 	$.ajax({
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
