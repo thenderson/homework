@@ -36,8 +36,6 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
-			configurePrefs();
-			
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
@@ -80,6 +78,8 @@ function CommitmentGrid(name) {
 			var priority_col = self.grid.getColumnIndex('priority_h');
 			var status_col = self.grid.getColumnIndex('status');
 			var due_by_col = self.grid.getColumnIndex('due_by');
+			
+			prefs = loadPrefs();
 			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
@@ -191,6 +191,8 @@ function CommitmentGrid(name) {
 					
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
+					
+					if (prefs['pref_show_id'] == '0') $(cell).hide();
 			}}));
 		
 	/*		this.setCellRenderer('requester', new CellRenderer ({
@@ -707,3 +709,31 @@ function getCookie(cookieName) {
  if (ind1==-1) ind1=theCookie.length; 
  return unescape(theCookie.substring(ind+cookieName.length+2,ind1));
 }
+	
+function updatePrefs(pref, value) {
+	$.ajax({
+	url: '../includes/update_user_preferences.php',
+	type: 'POST',
+	dataType: 'text',
+	data: {
+		p: pref,
+		v: value
+	},
+	success: function (result) { },
+	error: function(XMLHttpRequest, textStatus, exception) { 
+		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+	async: true
+	});
+};
+
+function loadPrefs() {
+	$.ajax({
+		url: '../includes/load_user_preferences.php',
+		type: 'GET',
+		dataType: 'JSON',
+		success: function (prefs) { return prefs },
+		error: function(XMLHttpRequest, textStatus, exception) { 
+			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+		async: true
+	});
+};

@@ -106,74 +106,48 @@
 
 <script type="text/javascript">	
 function configurePrefs() {
-	$.ajax({
-		url: '../includes/load_user_preferences.php',
-		type: 'GET',
-		dataType: 'JSON',
-		success: function (prefs) {
-console.debug(prefs);
-			// configure column per initial filter values
-			x = prefs['pref_show_id'] == '1' ? true : false;
-			$('#show-id').prop('checked', x);
-			$('.editablegrid-task_id').toggle(x);
+	prefs = loadPrefs();
+	
+	// configure column per initial filter values
+	x = prefs['pref_show_id'] == '1' ? true : false;
+	$('#show-id').prop('checked', x);
+	//$('.editablegrid-task_id').toggle(x);
 
-			x = prefs['pref_show_imp'] == '1' ? true : false;
-			$('#show-imp').prop('checked', x);
-			$('.editablegrid-priority_h').toggle(x);
-		
-			x = prefs['pref_show_mag'] == '1' ? true : false;
-			$('#show-mag').prop('checked', x);
-			$('.editablegrid-magnitude').toggle(x);
-			
-			x = prefs['pref_show_timeline'] == '1' ? true : false;
-			$('#show-time').prop('checked', x);
-			
-			// configure watchers
-			$('#show-id').change(function() {
-				x = $('#show-id').prop('checked');
-				updatePrefs('pref_show_id', x);
-				$('.editablegrid-task_id').toggle(x);
-			});
-			
-			$('#show-imp').change(function() {
-				x = $('#show-imp').prop('checked');
-				updatePrefs('pref_show_imp', x);
-				$('.editablegrid-priority_h').toggle(x);
-			});
-			
-			$('#show-mag').change(function() {
-				x = $('#show-mag').prop('checked');
-				updatePrefs('pref_show_mag', x);
-				$('.editablegrid-magnitude').toggle(x);
-			});
-			
-			$('#show-time').change(function() {
-				x = $('#show-time').prop('checked');
-				updatePrefs('pref_show_timeline', x);
-				load_comms();
-			});
-		},
-		error: function(XMLHttpRequest, textStatus, exception) { 
-			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-		async: true
+	x = prefs['pref_show_imp'] == '1' ? true : false;
+	$('#show-imp').prop('checked', x);
+	//$('.editablegrid-priority_h').toggle(x);
+
+	x = prefs['pref_show_mag'] == '1' ? true : false;
+	$('#show-mag').prop('checked', x);
+	//$('.editablegrid-magnitude').toggle(x);
+	
+	x = prefs['pref_show_timeline'] == '1' ? true : false;
+	$('#show-time').prop('checked', x);
+	
+	// configure watchers
+	$('#show-id').change(function() {
+		x = $('#show-id').prop('checked');
+		updatePrefs('pref_show_id', x);
+		$('.editablegrid-task_id').toggle(x);
+	});
+	
+	$('#show-imp').change(function() {
+		x = $('#show-imp').prop('checked');
+		updatePrefs('pref_show_imp', x);
+		$('.editablegrid-priority_h').toggle(x);
+	});
+	
+	$('#show-mag').change(function() {
+		x = $('#show-mag').prop('checked');
+		updatePrefs('pref_show_mag', x);
+		$('.editablegrid-magnitude').toggle(x);
+	});
+	
+	$('#show-time').change(function() {
+		x = $('#show-time').prop('checked');
+		updatePrefs('pref_show_timeline', x);
+		load_comms();
 	});
 };
-	
-function updatePrefs(pref, value) {
-	$.ajax({
-	url: '../includes/update_user_preferences.php',
-	type: 'POST',
-	dataType: 'text',
-	data: {
-		p: pref,
-		v: value
-	},
-	success: function (result) {
-console.log(pref+' '+value+' '+result);
-	},
-	error: function(XMLHttpRequest, textStatus, exception) { 
-		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-	async: true
-});
 };
 </script>
