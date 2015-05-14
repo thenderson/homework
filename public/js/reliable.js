@@ -733,9 +733,11 @@ function loadPrefs() {
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
 		dataType: 'JSON',
-		success: function (prefs) { return prefs },
+		success: function (p) { prefs=p; },
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});
+	
+	return prefs;
 };
