@@ -80,9 +80,6 @@ function CommitmentGrid(name) {
 			var status_col = self.grid.getColumnIndex('status');
 			var due_by_col = self.grid.getColumnIndex('due_by');
 			
-			prefs = loadPrefs();
-console.debug(prefs);
-			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
@@ -328,7 +325,17 @@ console.debug(prefs);
 				}
 			}));
 			
-			this.renderGrid(self.name+'_d', 'table', self.name); 
+			// load preferences for use in initial grid display & invoke renderGrid when complete
+			$.ajax({
+				url: '../includes/load_user_preferences.php',
+				type: 'GET',
+				dataType: 'JSON',
+				success: function (p) { this.renderGrid(self.name+'_d', 'table', self.name); },
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			});
+			
 			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
@@ -725,21 +732,5 @@ function updatePrefs(pref, value) {
 	error: function(XMLHttpRequest, textStatus, exception) { 
 		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 	async: true
-	});
-};
-
-function loadPrefs() {
-	var prefs = {};
-	$.ajax({
-		url: '../includes/load_user_preferences.php',
-		type: 'GET',
-		dataType: 'JSON',
-		success: function (p) {  
-			console.debug(p);
-			return p;
-		},
-		error: function(XMLHttpRequest, textStatus, exception) { 
-			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-		async: false
 	});
 };
