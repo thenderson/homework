@@ -324,8 +324,7 @@ function CommitmentGrid(name) {
 						}
 					}
 				}));
-			}
-console.debug(prefs);			
+			}	
 			// load preferences & hide columns before renderGrid
 			$.ajax({
 				url: '../includes/load_user_preferences.php',
