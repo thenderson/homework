@@ -736,7 +736,7 @@ function loadPrefs() {
 		dataType: 'JSON',
 		success: function (p) { 
 			prefs=p; 
-			//console.debug(p, prefs)
+			console.debug(p, prefs)
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
