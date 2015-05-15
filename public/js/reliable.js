@@ -330,7 +330,7 @@ function CommitmentGrid(name) {
 				url: '../includes/load_user_preferences.php',
 				type: 'GET',
 				dataType: 'JSON',
-				success: function (p) { this.renderGrid(self.name+'_d', 'table', self.name); },
+				success: function (p) { self.renderGrid(self.name+'_d', 'table', self.name); },
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
