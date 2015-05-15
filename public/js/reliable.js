@@ -335,7 +335,7 @@ function CommitmentGrid(name) {
 					$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] == '1' ? true : false);
 					$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] == '1' ? true : false);
 					
-					//self.grid.renderGrid(self.name+'_d', 'table', self.name); 
+					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
