@@ -740,6 +740,6 @@ function loadPrefs() {
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-		async: true
+		async: false
 	});
 };
