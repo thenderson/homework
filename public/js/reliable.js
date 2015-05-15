@@ -36,7 +36,6 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
-			configurePrefs();
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
@@ -218,119 +217,127 @@ function CommitmentGrid(name) {
 					}
 				}}));
 	*/		
-			this.setCellRenderer('visual', new CellRenderer ({
-				render: function(cell, value) {
+			if (this.hasColumn('project_number')) {
+				this.setCellRenderer('visual', new CellRenderer ({
+					render: function(cell, value) {
 
-					var row=self.grid.getRow(cell.rowIndex);
-					var magnitude_col = self.grid.getColumnIndex('magnitude');
-					var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
-					var date_due_col = self.grid.getColumnIndex('due_by');
-					var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
-					var status_col = self.grid.getColumnIndex('status');
-					var status = self.grid.getValueAt(cell.rowIndex, status_col);
+						var row=self.grid.getRow(cell.rowIndex);
+						var magnitude_col = self.grid.getColumnIndex('magnitude');
+						var magnitude = self.grid.getValueAt(cell.rowIndex, magnitude_col);
+						var date_due_col = self.grid.getColumnIndex('due_by');
+						var due_by = moment(self.grid.getValueAt(cell.rowIndex, date_due_col));
+						var status_col = self.grid.getColumnIndex('status');
+						var status = self.grid.getValueAt(cell.rowIndex, status_col);
 
-					var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
-					var lookback = (show_closed == true) ? lookahead : 2;
+						var lookahead = Math.max(3, (horizon == 'all' ? 26 : horizon/7 + 1));
+						var lookback = (show_closed == true) ? lookahead : 2;
 
-					var last_monday = moment().startOf('ISOweek');
-					var min_date = last_monday.clone().subtract(lookback, 'weeks');
-					var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
-					var requested_on = moment(value);
+						var last_monday = moment().startOf('ISOweek');
+						var min_date = last_monday.clone().subtract(lookback, 'weeks');
+						var max_date = last_monday.clone().add(Math.max(3, lookahead), 'weeks');
+						var requested_on = moment(value);
 
-					var height = 32;
-					var midline = height / 2;
+						var height = 32;
+						var midline = height / 2;
 
-					var width = $('.editablegrid-visual').width();
-					var ypad = 6;
-					var xpad = 12;
+						var width = $('.editablegrid-visual').width();
+						var ypad = 6;
+						var xpad = 12;
 
-					var graph = d3.select(cell)
-						.append("svg:svg")
-						.attr("width", width)
-						.attr("height", height);
+						var graph = d3.select(cell)
+							.append("svg:svg")
+							.attr("width", width)
+							.attr("height", height);
 
-					var x = d3.time.scale()
-						.domain([min_date, max_date])
-						.range([0, width - xpad]);
+						var x = d3.time.scale()
+							.domain([min_date, max_date])
+							.range([0, width - xpad]);
+							
+						var r = d3.scale.linear() // radius of circles
+							.domain([0, 50])
+							.clamp(false)
+							.range([3, height*.47]);
+							
+						var op = d3.scale.linear() // fill opacity for circles
+							.domain([0, 100])
+							.clamp(true)
+							.range([1, .4]);
+				
+						y1 = midline - 2;
+						y2 = midline + 2;
+											
+						// requested_on marker
+						graph.append('circle')
+							.attr('class', 'req_circle')
+							.attr('cx', x(requested_on))
+							.attr('cy', midline)
+							.attr('r', r(1));
 						
-					var r = d3.scale.linear() // radius of circles
-						.domain([0, 50])
-						.clamp(false)
-						.range([3, height*.47]);
+						// draw timescale
+						for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
+							xx = x(last_monday.clone().add(j, 'weeks'));
+							if (j == 0 || j == 1) {
+								graph.append('svg:line')
+									.attr('x1', xx)
+									.attr('x2', xx)
+									.attr('y1', y1-2)
+									.attr('y2', y2+2)
+									.attr('class', 'tick_chart_thiswk');
+							}
+							else {
+								graph.append('svg:line')
+									.attr('x1', xx)
+									.attr('x2', xx)
+									.attr('y1', y1)
+									.attr('y2', y2)
+									.attr('class', 'tick_chart');
+							}
+						}
 						
-					var op = d3.scale.linear() // fill opacity for circles
-						.domain([0, 100])
-						.clamp(true)
-						.range([1, .4]);
-			
-					y1 = midline - 2;
-					y2 = midline + 2;
-										
-					// requested_on marker
-					graph.append('circle')
-						.attr('class', 'req_circle')
-						.attr('cx', x(requested_on))
-						.attr('cy', midline)
-						.attr('r', r(1));
-					
-					// draw timescale
-					for (j=-lookback; j<lookahead+1; j++) { // build homebrewed axis
-						xx = x(last_monday.clone().add(j, 'weeks'));
-						if (j == 0 || j == 1) {
-							graph.append('svg:line')
-								.attr('x1', xx)
-								.attr('x2', xx)
-								.attr('y1', y1-2)
-								.attr('y2', y2+2)
-								.attr('class', 'tick_chart_thiswk');
+						// draw today on timescale
+						xx = x(moment());
+						graph.append('svg:line')
+							.attr('x1', xx)
+							.attr('x2', xx)
+							.attr('y1', 0)
+							.attr('y2', height)
+							.attr('class', 'tick_chart_today');
+						
+						// draw commitment due_on
+						if (/V[0123456789]/.test(status)) {
+							graph.append('text')
+								.attr('x', x(due_by))
+								.attr('y', midline + 4)
+								.attr('text-anchor', 'middle')
+								.text('X')
+								.attr('class', 'due_variance');
 						}
 						else {
-							graph.append('svg:line')
-								.attr('x1', xx)
-								.attr('x2', xx)
-								.attr('y1', y1)
-								.attr('y2', y2)
-								.attr('class', 'tick_chart');
+							graph.append('svg:circle')
+								.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
+									(status == 'V?' ? 'due_circle_overdue' : 
+										(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
+								.attr('cx', x(due_by))
+								.attr('cy', midline)
+								.attr('r', r(magnitude))
+								.attr('fill-opacity', String(op(magnitude)));
 						}
 					}
-					
-					// draw today on timescale
-					xx = x(moment());
-					graph.append('svg:line')
-						.attr('x1', xx)
-						.attr('x2', xx)
-						.attr('y1', 0)
-						.attr('y2', height)
-						.attr('class', 'tick_chart_today');
-					
-					// draw commitment due_on
-					if (/V[0123456789]/.test(status)) {
-						graph.append('text')
-							.attr('x', x(due_by))
-							.attr('y', midline + 4)
-							.attr('text-anchor', 'middle')
-							.text('X')
-							.attr('class', 'due_variance');
-					}
-					else {
-						graph.append('svg:circle')
-							.attr('class', (/C[L012]/.test(status) ? 'due_circle_closed' : 
-								(status == 'V?' ? 'due_circle_overdue' : 
-									(/V[0123456789]/.test(status) ? 'due_circle_variance' : 'due_circle'))))
-							.attr('cx', x(due_by))
-							.attr('cy', midline)
-							.attr('r', r(magnitude))
-							.attr('fill-opacity', String(op(magnitude)));
-					}
-				}
-			}));
-			
-			// load preferences for use in initial grid display & invoke renderGrid when complete
+				}));
+			}
+console.debug(prefs);			
+			// load preferences & hide columns before renderGrid
 			$.ajax({
 				url: '../includes/load_user_preferences.php',
 				type: 'GET',
 				dataType: 'JSON',
-				success: function (p) { self.grid.renderGrid(self.name+'_d', 'table', self.name); },
+				success: function (prefs) { 
+					$('.editablegrid-task_id').toggle(prefs['pref_show_id'] == '1' ? true : false);
+					$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] == '1' ? true : false);
+					$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] == '1' ? true : false);
+					
+					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
+				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
 					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 				async: true
