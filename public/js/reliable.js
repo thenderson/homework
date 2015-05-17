@@ -217,7 +217,7 @@ function CommitmentGrid(name) {
 					}
 				}}));
 	*/		
-			if (this.hasColumn('project_number')) {
+			if (this.hasColumn('visual')) {
 				this.setCellRenderer('visual', new CellRenderer ({
 					render: function(cell, value) {
 
