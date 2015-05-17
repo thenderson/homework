@@ -28,8 +28,9 @@
 	}
 	
 error_log('');
-error_log('preference:'.$preferences[0]['pref_show_timeline']);
+error_log('preference show timeline:'.$preferences[0]['pref_show_timeline']);
 error_log('');
+error_log('\n');
 	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
@@ -111,7 +112,7 @@ error_log('');
 
 	$grid->addColumn('due_by','DUE BY','date');
 	
-	if ($preferences[0]['pref_show_timeline']) $grid->addColumn('visual', 'TIMELINE', 'date', NULL, false);
+	if ($preferences[0]['pref_show_timeline'] == '1') $grid->addColumn('visual', 'TIMELINE', 'date', NULL, false);
 
 	//render grid
 	$grid->renderXML($commitments);
