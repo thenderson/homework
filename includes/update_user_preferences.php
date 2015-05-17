@@ -17,6 +17,10 @@ else {
 	exit;
 }
 
+error_log('');
+error_log("UPDATE users SET $pref = $new_value WHERE user_id = $_SESSION['id']");
+error_log('');
+
 // Update user preferences
 $q = "UPDATE users SET $pref = $new_value WHERE user_id = :user";
 
