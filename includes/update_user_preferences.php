@@ -37,7 +37,7 @@ catch(PDOException $e) {
 echo 'ok';
 
 error_log('');
-error_log("UPDATE users SET $pref = $new_value WHERE user_id = $_SESSION['id']");
+error_log("UPDATE users SET $pref = $new_value WHERE user_id = ".$_SESSION['id']);
 error_log('');
 
 exit;
