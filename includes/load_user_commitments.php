@@ -27,9 +27,9 @@
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
-error.log('');
-error.log('preference:'.$preferences[0]['pref_show_timeline']);
-error.log('');
+error_log('');
+error_log('preference:'.$preferences[0]['pref_show_timeline']);
+error_log('');
 	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
