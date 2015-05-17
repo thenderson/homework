@@ -334,7 +334,7 @@ function CommitmentGrid(name) {
 					$('.editablegrid-task_id').toggle(prefs['pref_show_id'] == '1' ? true : false);
 					$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] == '1' ? true : false);
 					$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] == '1' ? true : false);
-					
+console.debug(prefs);					
 					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
 				},
 				error: function(XMLHttpRequest, textStatus, exception) { 
