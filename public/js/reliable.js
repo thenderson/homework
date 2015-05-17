@@ -726,9 +726,6 @@ function getCookie(cookieName) {
 }
 	
 function updatePrefs(pref, value) {
-console.log('updatePref: '+pref+' '+value);
-console.log('cooked value: '+(value == true ? 1 : 0));
-
 	$.ajax({
 	url: '../includes/update_user_preferences.php',
 	type: 'POST',
@@ -737,7 +734,7 @@ console.log('cooked value: '+(value == true ? 1 : 0));
 		p: pref,
 		v: (value == true ? 1 : 0)
 	},
-	success: function (result) { console.log('updatePref result: '+result); },
+	success: function (result) { },
 	error: function(XMLHttpRequest, textStatus, exception) { 
 		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 	async: true
