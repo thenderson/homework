@@ -27,6 +27,10 @@
 		trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $e->getMessage(), E_USER_ERROR);
 	}
 	
+error.log('');
+error.log('preference:'.$preferences[0]['pref_show_timeline']);
+error.log('');
+	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, project_number, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
 		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?'),0,1) as is_closed FROM commitments";
@@ -106,6 +110,7 @@
 	else $grid->addColumn('promiser','PROMISER','string', $username_lookup);
 
 	$grid->addColumn('due_by','DUE BY','date');
+	
 	if ($preferences[0]['pref_show_timeline']) $grid->addColumn('visual', 'TIMELINE', 'date', NULL, false);
 
 	//render grid
