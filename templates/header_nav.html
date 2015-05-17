@@ -106,6 +106,7 @@
 
 <script type="text/javascript">	
 function configurePrefs() {
+console.log('configure prefs');
 	$.ajax({
 		url: '../includes/load_user_preferences.php',
 		type: 'GET',
@@ -116,12 +117,18 @@ function configurePrefs() {
 			$('#show-imp').prop('checked', prefs['pref_show_imp'] == '1' ? true : false);
 			$('#show-mag').prop('checked', prefs['pref_show_mag'] == '1' ? true : false);
 			$('#show-time').prop('checked', prefs['pref_show_timeline'] == '1' ? true : false);
+console.debug(prefs);
+console.log('id '+$('#show-id').prop('checked'));
+console.log('imp '+$('#show-imp').prop('checked'));
+console.log('mag '+$('#show-mag').prop('checked'));
+console.log('time '+$('#show-time').prop('checked'));
 		},
 		error: function(XMLHttpRequest, textStatus, exception) { 
 			alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 		async: true
 	});	
 	
+console.log('configure watchers');
 	// configure watchers
 	$('#show-id').change(function() {
 		x = $('#show-id').prop('checked');
@@ -146,5 +153,6 @@ function configurePrefs() {
 		updatePrefs('pref_show_timeline', x);
 		load_comms();
 	});
+console.log('configure prefs done');
 };
 </script>
