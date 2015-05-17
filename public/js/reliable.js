@@ -726,6 +726,7 @@ function getCookie(cookieName) {
 }
 	
 function updatePrefs(pref, value) {
+console.log('updatePref: '+pref+' '+value);
 	$.ajax({
 	url: '../includes/update_user_preferences.php',
 	type: 'POST',
@@ -734,7 +735,7 @@ function updatePrefs(pref, value) {
 		p: pref,
 		v: value
 	},
-	success: function (result) { },
+	success: function (result) { console.log('updatePref result: '+result); },
 	error: function(XMLHttpRequest, textStatus, exception) { 
 		alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
 	async: true
