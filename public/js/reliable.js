@@ -727,13 +727,15 @@ function getCookie(cookieName) {
 	
 function updatePrefs(pref, value) {
 console.log('updatePref: '+pref+' '+value);
+console.log('cooked value: '+(value == true ? 1 : 0));
+
 	$.ajax({
 	url: '../includes/update_user_preferences.php',
 	type: 'POST',
 	dataType: 'text',
 	data: {
 		p: pref,
-		v: value
+		v: (value == true ? 1 : 0)
 	},
 	success: function (result) { console.log('updatePref result: '+result); },
 	error: function(XMLHttpRequest, textStatus, exception) { 

@@ -10,9 +10,7 @@ if (!in_array($pref, array('pref_show_id', 'pref_show_imp', 'pref_show_mag', 'pr
 	echo 'error';
 	exit;
 }
-if ($new_value == 'true' || $new_value == true) $new_value = 1;
-else if ($new_value == 'false' || $new_value == false) $new_value = 0;
-else {
+if ($new_value != 1 && $new_value != 0) {
 	echo 'error';
 	exit;
 }
@@ -37,7 +35,9 @@ catch(PDOException $e) {
 echo 'ok';
 
 error_log('');
+error_log('');
 error_log("UPDATE users SET $pref = $new_value WHERE user_id = ".$_SESSION['id']);
+error_log('');
 error_log('');
 
 exit;
