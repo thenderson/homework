@@ -330,11 +330,6 @@ function CommitmentGrid(name) {
 					}
 				}));
 			}
-			
-			//add custom classes to hideable columns to control their display
-			$('.editablegrid-task_id').addClass('editablegrid-task_id_v');
-			$('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
-			$('.editablegrid-priority_h').addClass('editablegrid-priority_h_v');
 					
 			// load preferences & hide columns before renderGrid
 			$.ajax({
@@ -350,20 +345,6 @@ function CommitmentGrid(name) {
 					
 					if (prefs['pref_show_mag'] === '1') addCSSRule('.editablegrid-magnitude_v', 'display: ');
 					else addCSSRule('.editablegrid-magnitude', 'display: none');
-					
-					
-					// if (prefs['pref_show_id'] === '1') $('.editablegrid-task_id').css({'display': ''});
-					// else $('.editablegrid-task_id').css({'display': 'none'});
-
-					// if (prefs['pref_show_imp'] === '1') $('.editablegrid-priority_h').css({'display': ''});
-					// else $('.editablegrid-priority_h').css({'display': 'none'});
-					
-					// if (prefs['pref_show_mag'] === '1') $('.editablegrid-magnitude').css({'display': ''});
-					// else $('.editablegrid-magnitude').css({'display': 'none'});
-					
-					//$('.editablegrid-task_id').toggle(prefs['pref_show_id'] === '1' ? true : false);
-					//$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] === '1' ? true : false);
-					//$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] === '1' ? true : false);
 
 					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
 					$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
