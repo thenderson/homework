@@ -36,22 +36,6 @@ function CommitmentGrid(name) {
 		editmode: 'absolute',
 
         tableRendered:  function() { 
-		
-			// load preferences & hide columns before renderGrid
-			$.ajax({
-				url: '../includes/load_user_preferences.php',
-				type: 'GET',
-				dataType: 'JSON',
-				success: function (prefs) { 
-					$('.editablegrid-task_id').toggle(prefs['pref_show_id'] === '1' ? true : false);
-					$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] === '1' ? true : false);
-					$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] === '1' ? true : false);
-				},
-				error: function(XMLHttpRequest, textStatus, exception) { 
-					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
-				async: true
-			});
-			
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
 
@@ -341,9 +325,35 @@ function CommitmentGrid(name) {
 						}
 					}
 				}));
-			}	
-			self.grid.renderGrid(self.name+'_d', 'table', self.name); 
-			$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+			}
+			
+					
+			// load preferences & hide columns before renderGrid
+			$.ajax({
+				url: '../includes/load_user_preferences.php',
+				type: 'GET',
+				dataType: 'JSON',
+				success: function (prefs) { 
+					if (prefs['pref_show_id'] === '1') $('.editablegrid-task_id').css({'display': ''});
+					else $('.editablegrid-task_id').css({'display': 'none'});
+
+					if (prefs['pref_show_imp'] === '1') $('.editablegrid-priority_h').css({'display': ''});
+					else $('.editablegrid-priority_h').css({'display': 'none'});
+					
+					if (prefs['pref_show_mag'] === '1') $('.editablegrid-magnitude').css({'display': ''});
+					else $('.editablegrid-magnitude').css({'display': 'none'});
+					
+					//$('.editablegrid-task_id').toggle(prefs['pref_show_id'] === '1' ? true : false);
+					//$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] === '1' ? true : false);
+					//$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] === '1' ? true : false);
+					
+					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
+					$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
+				},
+				error: function(XMLHttpRequest, textStatus, exception) { 
+					alert("Ajax FAIL!\n" + "\nTextstatus: " + textStatus + "\nException: " + exception);},
+				async: true
+			});
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 			if (/V[012345679]/.test(newValue) && !(/V[012345679]/.test(oldValue))) { // if setting a new variance, unless changing from a previous replannable variance
