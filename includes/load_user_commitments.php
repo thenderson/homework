@@ -93,7 +93,7 @@
 	//declare grid columns
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
-	$grid->addColumn('project_number', 'PROJECT #', 'string', NULL, false);
+	$grid->addColumn('project_number', 'PROJECT', 'string', NULL, false);
 	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
