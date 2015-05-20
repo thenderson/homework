@@ -190,13 +190,13 @@ function CommitmentGrid(name) {
 					
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
-					$(cell).addClass('editablegrid-task_id_v');
+					$('.editablegrid-task_id').addClass('editablegrid-task_id_v');
 			}}));
 			
 			this.setCellRenderer('magnitude', new CellRenderer ({
 				render: function(cell, value) {
 					cell.innerHTML = value;
-					$(cell).addClass('editablegrid-magnitude_v');
+					$('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
 			}}));
 		
 	/*		this.setCellRenderer('requester', new CellRenderer ({

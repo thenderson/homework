@@ -126,28 +126,33 @@
 	$('#show-id').change(function() {
 		x = $('#show-id').prop('checked');
 		updatePrefs('pref_show_id', x);
-		if (x == true) $('.editablegrid-task_id').show('slow');
+		if (x === true) $('.editablegrid-task_id').show('slow');
 		else $('.editablegrid-task_id').hide('slow');
 	});
 	
 	$('#show-imp').change(function() {
 		x = $('#show-imp').prop('checked');
 		updatePrefs('pref_show_imp', x);
-		if (x == true) $('.editablegrid-priority_h').show('slow');
+		if (x === true) $('.editablegrid-priority_h').show('slow');
 		else $('.editablegrid-priority_h').hide('slow');
 	});
 	
 	$('#show-mag').change(function() {
 		x = $('#show-mag').prop('checked');
 		updatePrefs('pref_show_mag', x);
-		if (x == true) $('.editablegrid-magnitude').show('slow');
+		if (x === true) $('.editablegrid-magnitude').show('slow');
 		else $('.editablegrid-magnitude').hide('slow');
 	});
 	
 	$('#show-time').change(function() {
 		x = $('#show-time').prop('checked');
 		updatePrefs('pref_show_timeline', x);
-		load_comms();
+		if (x === true) {
+			$('.editablegrid-visual').show('slow');
+			load_comms();
+		}
+		else $('.editablegrid-visual').hide('slow');
+		
 	});
 //};
 </script>
