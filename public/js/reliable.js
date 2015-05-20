@@ -190,8 +190,13 @@ function CommitmentGrid(name) {
 					
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
-					
-					//if (prefs['pref_show_id'] == '0') $(cell).hide();
+					$(cell).addClass('.editablegrid-task_id_v');
+			}}));
+			
+			this.setCellRenderer('magnitude', new CellRenderer ({
+				render: function(cell, value) {
+					cell.innerHTML = value;
+					$(cell).addClass('.editablegrid-magnitude_v');
 			}}));
 		
 	/*		this.setCellRenderer('requester', new CellRenderer ({
@@ -334,14 +339,24 @@ function CommitmentGrid(name) {
 				type: 'GET',
 				dataType: 'JSON',
 				success: function (prefs) { 
-					if (prefs['pref_show_id'] === '1') $('.editablegrid-task_id').css({'display': ''});
-					else $('.editablegrid-task_id').css({'display': 'none'});
+					if (prefs['pref_show_id'] === '1') addCSSRule('.editablegrid-task_id_v', "display: ");
+					else addCSSRule('.editablegrid-task_id_v', "display: none");
 
-					if (prefs['pref_show_imp'] === '1') $('.editablegrid-priority_h').css({'display': ''});
-					else $('.editablegrid-priority_h').css({'display': 'none'});
+					if (prefs['pref_show_imp'] === '1') addCSSRule('.editablegrid-priority_h_v', 'display: ');
+					else addCSSRule('.editablegrid-priority_h_v', 'display: none');
 					
-					if (prefs['pref_show_mag'] === '1') $('.editablegrid-magnitude').css({'display': ''});
-					else $('.editablegrid-magnitude').css({'display': 'none'});
+					if (prefs['pref_show_mag'] === '1') addCSSRule('.editablegrid-magnitude_v', 'display: ');
+					else addCSSRule('.editablegrid-magnitude', 'display: none');
+					
+					
+					// if (prefs['pref_show_id'] === '1') $('.editablegrid-task_id').css({'display': ''});
+					// else $('.editablegrid-task_id').css({'display': 'none'});
+
+					// if (prefs['pref_show_imp'] === '1') $('.editablegrid-priority_h').css({'display': ''});
+					// else $('.editablegrid-priority_h').css({'display': 'none'});
+					
+					// if (prefs['pref_show_mag'] === '1') $('.editablegrid-magnitude').css({'display': ''});
+					// else $('.editablegrid-magnitude').css({'display': 'none'});
 					
 					//$('.editablegrid-task_id').toggle(prefs['pref_show_id'] === '1' ? true : false);
 					//$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] === '1' ? true : false);
@@ -751,3 +766,13 @@ function updatePrefs(pref, value) {
 	async: true
 	});
 };
+
+function addCSSRule(selector, rules, index) {
+	sheet = $('#reliableCSS').sheet;
+	if("insertRule" in sheet) {
+		sheet.insertRule(selector + "{" + rules + "}", index);
+	}
+	else if("addRule" in sheet) {
+		sheet.addRule(selector, rules, index);
+	}
+}
