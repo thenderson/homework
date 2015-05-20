@@ -255,10 +255,11 @@ padding-right: 1px;
 
 th.editablegrid-project_shortname,
 td.editablegrid-project_shortname {
-text-align: left;
+/*text-align: left;
 width: 9em;
 padding-left: 2px;
-padding-right: 2px;
+padding-right: 2px; */
+display: none;
 }
 
 th.editablegrid-task_id,

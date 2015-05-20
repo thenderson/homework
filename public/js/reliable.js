@@ -78,11 +78,12 @@ function CommitmentGrid(name) {
 			var priority_col = self.grid.getColumnIndex('priority_h');
 			var status_col = self.grid.getColumnIndex('status');
 			var due_by_col = self.grid.getColumnIndex('due_by');
+			var proj_name_col = self.grid.getColumnIndex('project_shortname');
 			
 			if (this.hasColumn('project_number')) {
 				this.setCellRenderer('project_number', new CellRenderer({ 
 					render: function(cell, value) { 
-						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>";
+						cell.innerHTML= "<a title=\"go to project page\" href=\"#\" onclick=\"goto_project_view(\'"+value+"\'); return false;\">"+value+"</a>" + self.grid.getValueAt(cell.rowIndex, proj_name_col);;
 						if (self.grid.sortedColumnName == 'project_number') { // dark line when sorted by this column
 							if (self.grid.getValueAt(cell.rowIndex-1, pnum_col) != value && cell.rowIndex>0) {
 								row=self.grid.getRow(cell.rowIndex-1);
