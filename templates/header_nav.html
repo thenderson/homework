@@ -126,8 +126,8 @@
 	$('#show-id').change(function() {
 		x = $('#show-id').prop('checked');
 		updatePrefs('pref_show_id', x);
-		if (x === true) $('.editablegrid-task_id').show('slow' function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
-		else $('.editablegrid-task_id').hide('slow' function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
+		if (x === true) $('.editablegrid-task_id').show('slow', function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
+		else $('.editablegrid-task_id').hide('slow', function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
 	});
 	
 	$('#show-imp').change(function() {
