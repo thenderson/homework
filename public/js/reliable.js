@@ -190,13 +190,6 @@ function CommitmentGrid(name) {
 					
 					if (dec != 0) cell.innerHTML = value;
 					else cell.innerHTML = floor + "<span class='zerozero'>" + decstr + '</span>';
-					$('.editablegrid-task_id').addClass('editablegrid-task_id_v');
-			}}));
-			
-			this.setCellRenderer('magnitude', new CellRenderer ({
-				render: function(cell, value) {
-					cell.innerHTML = value;
-					$('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
 			}}));
 		
 	/*		this.setCellRenderer('requester', new CellRenderer ({
@@ -361,6 +354,11 @@ function CommitmentGrid(name) {
 					//$('.editablegrid-task_id').toggle(prefs['pref_show_id'] === '1' ? true : false);
 					//$('.editablegrid-priority_h').toggle(prefs['pref_show_imp'] === '1' ? true : false);
 					//$('.editablegrid-magnitude').toggle(prefs['pref_show_mag'] === '1' ? true : false);
+					
+					//add custom classes to hideable columns to control their display
+					$('.editablegrid-task_id').addClass('editablegrid-task_id_v');
+					$('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
+					$('.editablegrid-priority_h').addClass('editablegrid-priority_h_v');
 					
 					self.grid.renderGrid(self.name+'_d', 'table', self.name); 
 					$('[id^='+self.name+'_total]').html('total: <strong>'+self.grid.getTotalRowCount()+'</strong>');
