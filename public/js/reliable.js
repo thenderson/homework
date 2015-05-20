@@ -768,7 +768,7 @@ function updatePrefs(pref, value) {
 };
 
 function addCSSRule(selector, rules, index) {
-	sheet = $('#reliableCSS').sheet;
+	sheet = $('#reliableCSS').prop('sheet');
 	if("insertRule" in sheet) {
 		sheet.insertRule(selector + "{" + rules + "}", index);
 	}
