@@ -83,7 +83,7 @@
 		$rows = $proj_res->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($rows as $row) $projects[$row["project_number"]] = $row["project_shortname"];
 		foreach ($commitments as &$com) {
-			$com['project_number'] = $com['project_number'].' '.$projects[$com['project_number']];
+			$com['project_number'] = $projects[$com['project_number']];
 		}
 	}
 
@@ -94,7 +94,7 @@
 	$grid->addColumn('unique_id', 'U_ID #', 'integer', NULL, false);
 	$grid->addColumn('is_closed', '?', 'integer', NULL, false);
 	$grid->addColumn('project_number', 'PROJECT', 'string', NULL, false);
-	//$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
+	$grid->addColumn('project_shortname', 'PROJECT NAME', 'string', NULL, false);
 	$grid->addColumn('task_id', 'ID #', 'double(,2,dot,comma,)', NULL, false);
 	$grid->addColumn('actions', 'DO', 'html', NULL, false, 'id');
 	$grid->addColumn('priority_h', '!','boolean');
