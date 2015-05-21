@@ -38,9 +38,9 @@ function CommitmentGrid(name) {
         tableRendered:  function() { 
 
 			//add custom classes to hideable columns to control their display
-			$('.editablegrid-task_id').addClass('editablegrid-task_id_v');
-			$('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
-			$('.editablegrid-priority_h').addClass('editablegrid-priority_h_v');
+			// $('.editablegrid-task_id').addClass('editablegrid-task_id_v');
+			// $('.editablegrid-magnitude').addClass('editablegrid-magnitude_v');
+			// $('.editablegrid-priority_h').addClass('editablegrid-priority_h_v');
 			
 			// // activate tooltips onto rendered grid
 			// $('th.editablegrid-priority_h').attr('title', 'high priority.').attr('data-placement', 'left').attr('data-container', 'body').tooltip();
