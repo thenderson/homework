@@ -127,14 +127,14 @@
 		x = $('#show-id').prop('checked');
 		updatePrefs('pref_show_id', x);
 		if (x === true) $('.editablegrid-task_id').show('slow', function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
-		else $('.editablegrid-task_id').hide('slow', function() {addCSSRule('.editablegrid-task_id_v', "display: ");});
+		else $('.editablegrid-task_id').hide('slow', function() {addCSSRule('.editablegrid-task_id_v', "display: none");});
 	});
 	
 	$('#show-imp').change(function() {
 		x = $('#show-imp').prop('checked');
 		updatePrefs('pref_show_imp', x);
-		if (x === true) $('.editablegrid-priority_h').show('slow');
-		else $('.editablegrid-priority_h').hide('slow');
+		if (x === true) $('.editablegrid-priority_h').show('slow', function() {addCSSRule('.editablegrid-priority_h_v', "display: ");});
+		else $('.editablegrid-priority_h').hide('slow', function() {addCSSRule('.editablegrid-priority_h_v', "display: none");});
 	});
 	
 	$('#show-mag').change(function() {

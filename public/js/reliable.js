@@ -760,3 +760,4 @@ function addCSSRule(selector, rules, index) {
 		sheet.addRule(selector, rules, index);
 	}
 }
+
