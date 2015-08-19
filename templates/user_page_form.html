@@ -325,7 +325,7 @@ window.onload = function() {
 					var target = .85;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
-	
+console.debug(data);	
 					var graph = d3.select(cell)
 						.append("svg:svg")
 						.attr("width", width)
@@ -334,6 +334,7 @@ window.onload = function() {
 					var x = d3.scale.linear()
 						.domain([0, data.length-1])
 						.range([xpad_l, width - xpad_r]);
+						
 					var y = d3.scale.linear()
 						.domain([0, 1])
 						.range([height - ypad_bot, ypad_top]);
@@ -350,9 +351,9 @@ window.onload = function() {
 					graph.append('svg:path')
 						.attr('d', line_target(data))
 						.attr('class', 'sparkline_target');
-						
-					graph.append("svg:path")
-						.attr("d", line(data))
+					
+					graph.append('svg:path')
+						.attr('d', line(data))
 						.attr("class", "sparkline_ppc");
 						
 					graph.append('circle')
