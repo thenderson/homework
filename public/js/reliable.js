@@ -172,10 +172,10 @@ function CommitmentGrid(name) {
 					if (value == 'D') $(row).addClass('deferred');
 					else $(row).removeClass('deferred');
 					
-					if (value == 'V?' || value == '?') $(cell).addClass('status_me_now');
+					if (value == 'V?' || value == '?' || value == 'V*') $(cell).addClass('status_me_now');
 					else $(cell).removeClass('status_me_now');
 					
-					if (/C[L012]/.test(value) || /V[0123456789]/.test(value)) $(row).addClass('closed');
+					if (/C[L012]/.test(value) || /V[0123456789*]/.test(value)) $(row).addClass('closed');
 					else $(row).removeClass('closed');
 					
 					if (self.grid.sortedColumnName == 'status') { // dark line when sorted by this column

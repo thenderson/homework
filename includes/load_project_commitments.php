@@ -11,7 +11,7 @@
 	
 	/*  COMPOSE QUERY */
 	$q = "SELECT unique_id, task_id, description, magnitude, requester, promiser, due_by, requested_on as visual,
-		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?'),0,1) as is_closed FROM commitments";
+		priority_h, status, IF(status IN ('O', '?', 'D', 'NA', 'V?', 'V*'),0,1) as is_closed FROM commitments";
 	
 	if ($planning_horizon == 'all') {
 		$q = $q . " WHERE project_number = :projnum";
@@ -21,8 +21,8 @@
 	}
 	
 	if ($showClosed == 'false') {
-		if ($showDeferred == 'true') $q = $q . " and status IN ('O', '?', 'D', 'NA', 'V?')";
-		else $q = $q . " and status IN ('O', '?', 'NA', 'V?')";
+		if ($showDeferred == 'true') $q = $q . " and status IN ('O', '?', 'D', 'NA', 'V?', 'V*')";
+		else $q = $q . " and status IN ('O', '?', 'NA', 'V?', 'V*')";
 	}
 	else { // showClosed = true
 		if ($showDeferred == 'false') $q = $q . " and status != 'D'";
