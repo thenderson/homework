@@ -279,6 +279,14 @@ switch ($column_name) {
 		exit;
 }
 
+
+
+
+error_log('USER METRICS '.$q_user_metrics, 3, '/srv/reliablepromising/logs/debug.log');
+error_log('PROJECT METRICS '.$q_proj_metrics, 3, '/srv/reliablepromising/logs/debug.log');
+error_log('', 3, '/srv/reliablepromising/logs/debug.log');
+
+
 // UPDATE COMMITMENT DATABASE
 $stmt = $comm_db->prepare($q);
 
@@ -318,12 +326,6 @@ if (!$stmt)
 	exit;
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-error_log('USER METRICS '.$q_user_metrics, 3, '/srv/reliablepromising/logs/debug.log');
-error_log('PROJECT METRICS '.$q_project_metrics, 3, '/srv/reliablepromising/logs/debug.log');
-error_log('', 3, '/srv/reliablepromising/logs/debug.log');
-
 
 // UPDATE USER_METRICS & PROJECT_METRICS DATABASES, IF NEEDED
 if ($q_user_metrics != "" && $q_proj_metrics != "") {
