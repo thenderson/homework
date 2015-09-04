@@ -282,9 +282,9 @@ switch ($column_name) {
 
 
 
-error_log('USER METRICS '.$q_user_metrics, 3, '/srv/reliablepromising/logs/debug.log');
-error_log('PROJECT METRICS '.$q_proj_metrics, 3, '/srv/reliablepromising/logs/debug.log');
-error_log('', 3, '/srv/reliablepromising/logs/debug.log');
+error_log('USER METRICS '.$q_user_metrics.'/n');
+error_log('PROJECT METRICS '.$q_proj_metrics.'/n');
+error_log('');
 
 
 // UPDATE COMMITMENT DATABASE
