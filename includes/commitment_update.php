@@ -292,11 +292,6 @@ switch ($column_name) {
 }
 
 
-error_log('USER METRICS '.$q_user_metrics);
-error_log('PROJECT METRICS '.$q_proj_metrics);
-error_log('');
-
-
 // UPDATE COMMITMENT DATABASE
 $stmt = $comm_db->prepare($q);
 
