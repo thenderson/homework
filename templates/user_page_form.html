@@ -325,8 +325,7 @@ window.onload = function() {
 					var target = .85;
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
-					data.unshift('0');
-					data.push('0'); //add zeros on either end so that polygon closes along axis and fill works properly	
+					data.unshift('0'); //add zero to front so that polygon closes along axis and fill works properly
 					
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -334,7 +333,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear()
-						.domain([0, data.length-3]) //subtract 2 extra for the 0's appended to either end of data
+						.domain([1, data.length-1]) //accomodate extra for the 0 appended to front of data
 						.range([xpad_l, width - xpad_r]);
 						
 					var y = d3.scale.linear()
