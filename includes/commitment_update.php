@@ -280,10 +280,8 @@ switch ($column_name) {
 }
 
 
-
-
-error_log('USER METRICS '.$q_user_metrics.'/n');
-error_log('PROJECT METRICS '.$q_proj_metrics.'/n');
+error_log('USER METRICS '.$q_user_metrics);
+error_log('PROJECT METRICS '.$q_proj_metrics);
 error_log('');
 
 
