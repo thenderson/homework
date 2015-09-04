@@ -85,7 +85,8 @@ switch ($column_name) {
 		11. V? --> variance: increment V to project & individual; set status to V#
 		x12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0 [DEPRECATED: BAD IDEA]
 		13. variance --> V?: decrement V to project & individual; set status to V? 
-		14. variance --> variance: decrement old V to project & individual, increment new; set status to V# */
+		14. variance --> variance: decrement old V to project & individual, increment new; set status to V#
+		15. V? --> closed: same as 1 */
 		
 	/* TESTING STATUS	(x=basic function restored; X=stat update functional; *=todo listed above
 	   old new	O	C	D	?	V?	V#
@@ -215,6 +216,16 @@ switch ($column_name) {
 					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, $new_value) VALUES('$project_number', '$last_monday', 1)
 						ON DUPLICATE KEY UPDATE $new_value = $new_value + 1;";
 				}
+				else if ($new_value == 'C') {
+					// 15. V? --> closed: calculate closing status value; increment PPC & TA to project & individual
+					$new_value = calc_closed_status($unique_id, $date_due, $comm_db);
+					$q='UPDATE commitments SET status = ?, closed_on = CURDATE() WHERE unique_id = ?';
+					
+					$q_user_metrics = "INSERT INTO user_metrics (user_id, date, P, $new_value)  VALUES($promiser, '$last_monday', 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";						
+	
+					$q_proj_metrics = "INSERT INTO project_metrics (project_number, date, P, $new_value)  VALUES('$project_number', '$last_monday', 1, 1)
+						ON DUPLICATE KEY UPDATE P = P + 1, $new_value = $new_value + 1;";
 				else {
 					echo 'error';
 					exit;
