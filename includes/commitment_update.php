@@ -319,6 +319,14 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+error_log('');
+error_log('USER METRICS');
+error_log($q_user_metrics);
+error_log('PROJECT METRICS');
+error_log($q_project_metrics);
+error_log('');
+
+
 // UPDATE USER_METRICS & PROJECT_METRICS DATABASES, IF NEEDED
 if ($q_user_metrics != "" && $q_proj_metrics != "") {
 	$stmt_user = $comm_db->query($q_user_metrics);
