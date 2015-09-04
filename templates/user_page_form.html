@@ -333,7 +333,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear()
-						.domain([1, data.length-1]) //accomodate extra for the 0 appended to front of data
+						.domain([1, data.length-1]) //allows added 0 at front of data to hang off the edge of the graph
 						.range([xpad_l, width - xpad_r]);
 						
 					var y = d3.scale.linear()
@@ -359,14 +359,14 @@ window.onload = function() {
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
-						.attr('cx', x(data.length-3))
-						.attr('cy', y(data[data.length-3]))
+						.attr('cx', x(data.length-2))
+						.attr('cy', y(data[data.length-2]))
 						.attr('r', 2);
 						
 					graph.append('text')
-						.attr('x', x(data.length-3)+7)
-						.attr('y', y(data[data.length-3])+1)
-						.text(d3.format(',%')(data[data.length-3]))
+						.attr('x', x(data.length-2)+7)
+						.attr('y', y(data[data.length-2])+1)
+						.text(d3.format(',%')(data[data.length-2]))
 						.attr('class', 'sparklabel');
 				}
 			}));
@@ -384,7 +384,6 @@ window.onload = function() {
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 					data.unshift('0');
-					data.push('0'); //add zeros on either end so that polygon closes along axis and fill works properly
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -392,7 +391,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear()
-						.domain([0, data.length-1])
+						.domain([1, data.length-1])
 						.range([xpad_l, width - xpad_r]);
 					var y = d3.scale.linear()
 						.domain([0, 1])
@@ -442,7 +441,6 @@ window.onload = function() {
 					var data = d3.csv.parseRows(csv_data);
 					var data = data[0];
 					data.unshift('0');
-					data.push('0'); //add zeros on either end so that polygon closes along axis and fill works properly
 	
 					var graph = d3.select(cell)
 						.append("svg:svg")
@@ -450,7 +448,7 @@ window.onload = function() {
 						.attr("height", height);
 
 					var x = d3.scale.linear()
-						.domain([0, data.length-1])
+						.domain([1, data.length-1])
 						.range([xpad_l, width - xpad_r]);
 						
 					var y = d3.scale.linear()
