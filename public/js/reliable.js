@@ -156,8 +156,8 @@ function CommitmentGrid(name) {
 					else if (status == 'D') return {'O':'reOpen', 'C':'Close', '?':'Unknown'};
 					else if (status == '?') return {'O':'reOpen', 'C':'Close', 'D':'Defer'};
 					else if (/C[L012]/.test(status)) return {'O':'reOpen'}; 
-					else if (status == 'V?') return {'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
-						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure','CC':'Closed on time'};
+					else if (status == 'V?') return {'C':'Closed','V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
+						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure'};
 					else if (/V[123456789*]/.test(status)) return {'V1':'V1 time','V2':'V2 waiting, int.','V3':'V3 waiting, ext.','V4':'V4 COS','V5':'V5 fire, int.',
 						'V6':'V6 fire, ext.','V7':'V7 forgot','V8':'V8 not needed','V9':'V9 tech failure'};
 					return;

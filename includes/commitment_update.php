@@ -63,7 +63,7 @@ switch ($column_name) {
 		break;
 		
 	/*	MAPPING COMMITMENT STATUS CHANGES OLD --> NEW
-	   old  new	O	C	D	?	V?	V#
+	   old  new	O	C	D	?	V?	V#&*
 		O		-	1	2	3	X	X		
 		C_		4	-	X	X	X	X
 		D		5	5a	-	6	X	X
@@ -230,6 +230,7 @@ switch ($column_name) {
 			case 'V7':
 			case 'V8':
 			case 'V9':
+			case 'V*':
 				// if ($new_value == 'O') {
 					// // 12. variance --> open: decrement PPC, TA & V to project & individual; set status to 0
 					// $q = 'UPDATE commitments SET status = ?, closed_on = NULL WHERE unique_id = ?';
