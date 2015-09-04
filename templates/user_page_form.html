@@ -360,14 +360,14 @@ window.onload = function() {
 						
 					graph.append('circle')
 						.attr('class', 'sparkcircle')
-						.attr('cx', x(data.length-2))
-						.attr('cy', y(data[data.length-2]))
+						.attr('cx', x(data.length-3))
+						.attr('cy', y(data[data.length-3]))
 						.attr('r', 2);
 						
 					graph.append('text')
-						.attr('x', x(data.length-2)+7)
-						.attr('y', y(data[data.length-2])+1)
-						.text(d3.format(',%')(data[data.length-2]))
+						.attr('x', x(data.length-3)+7)
+						.attr('y', y(data[data.length-3])+1)
+						.text(d3.format(',%')(data[data.length-3]))
 						.attr('class', 'sparklabel');
 				}
 			}));
