@@ -319,12 +319,10 @@ if (!$stmt)
 }
 else $new_comm = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-error_log('');
-error_log('USER METRICS');
-error_log($q_user_metrics);
-error_log('PROJECT METRICS');
-error_log($q_project_metrics);
-error_log('');
+
+error_log('USER METRICS '.$q_user_metrics, 3, '/srv/reliablepromising/logs/debug.log');
+error_log('PROJECT METRICS '.$q_project_metrics, 3, '/srv/reliablepromising/logs/debug.log');
+error_log('', 3, '/srv/reliablepromising/logs/debug.log');
 
 
 // UPDATE USER_METRICS & PROJECT_METRICS DATABASES, IF NEEDED
